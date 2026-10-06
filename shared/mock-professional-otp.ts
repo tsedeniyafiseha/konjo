@@ -1,0 +1,5 @@
+export const PROFESSIONAL_MOCK_OTP_CODE = '247124';
+export const PROFESSIONAL_MOCK_OTP_CODE_LENGTH = 6 as const;
+export const PROFESSIONAL_MOCK_OTP_CHALLENGE_PREFIX = 'professional-mock-';
+export const PROFESSIONAL_MOCK_OTP_LIFETIME_MS = 5 * 60 * 1000;
+

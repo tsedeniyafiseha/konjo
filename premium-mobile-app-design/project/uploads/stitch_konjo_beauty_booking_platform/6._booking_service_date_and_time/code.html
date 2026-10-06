@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><title>Konjo Wellness</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { width: 100vw; min-height: 100%; margin: 0; padding: 0; } body { overscroll-behavior: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-surface-variant": "#404947", "secondary-fixed-dim": "#fcbb45", "on-primary-container": "#84bbb3", "surface-container-highest": "#d9e5e2", "primary": "#00342f", "surface-container-high": "#deebe7", "surface-container": "#e4f1ed", "on-tertiary-container": "#e3a18c", "inverse-primary": "#99d1c9", "tertiary-container": "#663727", "background": "#f0fcf8", "surface-bright": "#f0fcf8", "on-tertiary-fixed-variant": "#6a3a2a", "on-secondary-container": "#714e00", "error": "#ba1a1a", "inverse-on-surface": "#e7f3f0", "surface-tint": "#306761", "on-secondary-fixed": "#281900", "tertiary-fixed": "#ffdbd0", "on-tertiary-fixed": "#341004", "error-container": "#ffdad6", "tertiary-fixed-dim": "#fbb6a0", "on-background": "#131e1c", "on-primary-fixed-variant": "#144f49", "secondary-fixed": "#ffdeac", "tertiary": "#4b2213", "on-error": "#ffffff", "surface": "#f0fcf8", "surface-variant": "#d9e5e2", "surface-dim": "#d0ddd9", "on-secondary": "#ffffff", "surface-container-lowest": "#ffffff", "on-primary": "#ffffff", "outline": "#707977", "on-secondary-fixed-variant": "#604100", "surface-container-low": "#eaf6f3", "primary-fixed-dim": "#99d1c9", "primary-fixed": "#b5ede5", "on-primary-fixed": "#00201d", "secondary-container": "#ffbe48", "outline-variant": "#bfc8c6", "inverse-surface": "#273330", "secondary": "#7e5700", "primary-container": "#0f4c46", "on-surface": "#131e1c", "on-tertiary": "#ffffff", "on-error-container": "#93000a" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1rem", "margin": "1rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "space-md": "1rem" }, fontFamily: { "headline-sm": ["Inter"], "body-sm": ["Inter"], "display": ["Inter"], "price-md": ["Inter"], "headline-lg": ["Inter"], "price-lg": ["Inter"], "label-sm": ["Inter"], "label-md": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Inter"] }, fontSize: { "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "price-md": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "price-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col pt-safe pb-safe"><main class="flex-1 flex flex-col relative w-full bg-surface"><div class="flex flex-col w-full max-w-[480px] mx-auto pb-28">
+<!-- Progress Stepper Header -->
+<div class="px-gutter pt-4 pb-3">
+<div class="flex items-center justify-between relative">
+<!-- Background Connecting Track -->
+<div class="absolute left-6 right-6 top-3.5 h-[2px] bg-surface-container-highest -z-0"></div>
+<!-- Step 1: Active -->
+<div class="flex flex-col items-center gap-1.5 z-10">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-sm text-label-sm shadow-sm transition-transform active:scale-95">
+          1
+        </div>
+<span class="font-label-sm text-label-sm font-semibold text-primary">Service</span>
+</div>
+<!-- Step 2: Inactive -->
+<div class="flex flex-col items-center gap-1.5 z-10">
+<div class="w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm">
+          2
+        </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Where</span>
+</div>
+<!-- Step 3: Inactive -->
+<div class="flex flex-col items-center gap-1.5 z-10">
+<div class="w-7 h-7 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-label-sm text-label-sm">
+          3
+        </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pay</span>
+</div>
+</div>
+</div>
+<!-- Professional Mini-Card -->
+<div class="px-gutter mb-6">
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-sm flex items-center gap-3.5">
+<div class="relative w-14 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A warm, studio portrait of Hanan T., an Ethiopian wellness professional and hairstylist with delicate micro-braids wearing an earth-toned terracotta top, with gentle lighting and a warm serene studio backdrop in deep emerald and warm sand tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9mPseprv32TjrpLOKi_stz1FVTGh4JAj7_DoYUZgNqXzwhTtq6lXgawRJDrimVxnZ3JPjevh1TXThGDShYRWQleCMuy92ByX3fwK7Qv1267UMyKIjBCQIXtkw04ahxJ5sAChuA3hzXMTTmYZZS6s8x-5vHMnYsnXWnXBBSUK2IGXuIZQ_eQlrjBWXLnzoHIZMg4-aom4dij-3MJTLx9jWK91gjIENLGhOr9wzC72fEodDL-9EdH8"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-1.5 mb-0.5">
+<h2 class="font-headline-sm text-headline-sm text-on-surface truncate">Hanan T.</h2>
+<div class="inline-flex items-center gap-1 px-1.5 py-0.5 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-[13px] text-secondary-container" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface">Fayda verified</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Braids &amp; natural hair</p>
+<div class="flex items-center gap-2 mt-1 text-on-surface-variant">
+<span class="inline-flex items-center gap-0.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">location_on</span>
+            Bole, Addis Ababa
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-0.5 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface font-semibold">4.9</span>
+<span class="text-on-surface-variant">(128)</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 1: Select Service -->
+<div class="px-gutter mb-6">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Select service</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1 selected</span>
+</div>
+<div class="space-y-2.5" id="services-group">
+<!-- Option 1: Selected -->
+<label class="service-card block bg-surface-container-low p-3.5 rounded-xl cursor-pointer shadow-sm transition-all" data-duration="3 hr" data-endtime="1:30 PM" data-price="ETB 1,800">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 flex-1 min-w-0">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
+<div class="w-2 h-2 rounded-full bg-on-primary"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Box braids</span>
+<span class="font-price-md text-price-md text-secondary whitespace-nowrap">ETB 1,800</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                  3 hr
+                </span>
+<span>•</span>
+<span class="text-primary-container font-label-sm text-label-sm">Full session</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-snug">Includes washing, scalp conditioning &amp; styling</p>
+</div>
+</div>
+</div>
+</label>
+<!-- Option 2: Unselected -->
+<label class="service-card block bg-surface-container-lowest p-3.5 rounded-xl cursor-pointer shadow-sm transition-all hover:bg-surface-container-low" data-duration="90 min" data-endtime="12:00 PM" data-price="ETB 900">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 flex-1 min-w-0">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0">
+<div class="w-2 h-2 rounded-full bg-transparent"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Cornrows</span>
+<span class="font-price-md text-price-md text-secondary whitespace-nowrap">ETB 900</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                  90 min
+                </span>
+<span>•</span>
+<span class="font-label-sm text-label-sm">Scalp care included</span>
+</div>
+</div>
+</div>
+</div>
+</label>
+<!-- Option 3: Unselected -->
+<label class="service-card block bg-surface-container-lowest p-3.5 rounded-xl cursor-pointer shadow-sm transition-all hover:bg-surface-container-low" data-duration="2 hr" data-endtime="12:30 PM" data-price="ETB 1,200">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 flex-1 min-w-0">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0">
+<div class="w-2 h-2 rounded-full bg-transparent"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Silk press</span>
+<span class="font-price-md text-price-md text-secondary whitespace-nowrap">ETB 1,200</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                  2 hr
+                </span>
+<span>•</span>
+<span class="font-label-sm text-label-sm">Steam hydration</span>
+</div>
+</div>
+</div>
+</div>
+</label>
+<!-- Option 4: Unselected -->
+<label class="service-card block bg-surface-container-lowest p-3.5 rounded-xl cursor-pointer shadow-sm transition-all hover:bg-surface-container-low" data-duration="2 hr" data-endtime="12:30 PM" data-price="ETB 1,400">
+<div class="flex items-start justify-between gap-3">
+<div class="flex items-start gap-3 flex-1 min-w-0">
+<div class="mt-0.5 w-5 h-5 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0">
+<div class="w-2 h-2 rounded-full bg-transparent"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Natural hair treatment</span>
+<span class="font-price-md text-price-md text-secondary whitespace-nowrap">ETB 1,400</span>
+</div>
+<div class="flex items-center gap-2 mt-0.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                  2 hr
+                </span>
+<span>•</span>
+<span class="font-label-sm text-label-sm">Deep herbal mask</span>
+</div>
+</div>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Section 2: Select Date -->
+<div class="mb-6">
+<div class="px-gutter flex items-center justify-between mb-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Select date</h3>
+<span class="font-label-sm text-label-sm text-primary-container">March 2025</span>
+</div>
+<!-- Horizontal Week Strip -->
+<div class="flex gap-2.5 overflow-x-auto px-gutter no-scrollbar py-0.5" id="date-selector">
+<!-- Mon 18 -->
+<button class="date-chip flex-shrink-0 w-14 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface flex flex-col items-center gap-0.5 shadow-sm transition-transform active:scale-95" type="button">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mon</span>
+<span class="font-headline-sm text-headline-sm font-semibold">18</span>
+<span class="font-label-sm text-[10px] leading-tight text-on-surface-variant mt-0.5">Avail</span>
+</button>
+<!-- Tue 19 (SELECTED) -->
+<button class="date-chip flex-shrink-0 w-14 py-2.5 rounded-xl bg-primary-container text-on-primary flex flex-col items-center gap-0.5 shadow-sm transition-transform active:scale-95" type="button">
+<span class="font-label-sm text-label-sm opacity-90">Tue</span>
+<span class="font-headline-sm text-headline-sm font-semibold">19</span>
+<span class="font-label-sm text-[10px] leading-tight font-medium bg-on-primary/20 px-1.5 rounded-full mt-0.5">Today</span>
+</button>
+<!-- Wed 20 -->
+<button class="date-chip flex-shrink-0 w-14 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface flex flex-col items-center gap-0.5 shadow-sm transition-transform active:scale-95" type="button">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Wed</span>
+<span class="font-headline-sm text-headline-sm font-semibold">20</span>
+<span class="font-label-sm text-[10px] leading-tight text-on-surface-variant mt-0.5">Avail</span>
+</button>
+<!-- Thu 21 -->
+<button class="date-chip flex-shrink-0 w-14 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface flex flex-col items-center gap-0.5 shadow-sm transition-transform active:scale-95" type="button">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Thu</span>
+<span class="font-headline-sm text-headline-sm font-semibold">21</span>
+<span class="font-label-sm text-[10px] leading-tight text-on-surface-variant mt-0.5">Avail</span>
+</button>
+<!-- Fri 22 -->
+<button class="date-chip flex-shrink-0 w-14 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface flex flex-col items-center gap-0.5 shadow-sm transition-transform active:scale-95" type="button">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fri</span>
+<span class="font-headline-sm text-headline-sm font-semibold">22</span>
+<span class="font-label-sm text-[10px] leading-tight text-on-surface-variant mt-0.5">Avail</span>
+</button>
+<!-- Sat 23 -->
+<button class="date-chip flex-shrink-0 w-14 py-2.5 rounded-xl bg-surface-container-lowest text-on-surface flex flex-col items-center gap-0.5 shadow-sm transition-transform active:scale-95" type="button">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sat</span>
+<span class="font-headline-sm text-headline-sm font-semibold">23</span>
+<span class="font-label-sm text-[10px] leading-tight text-on-surface-variant mt-0.5">Avail</span>
+</button>
+</div>
+</div>
+<!-- Section 3: Select Start Time -->
+<div class="px-gutter mb-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Select start time</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">East Africa Time (EAT)</span>
+</div>
+<!-- 3 Columns Grid -->
+<div class="grid grid-cols-3 gap-2.5" id="time-grid">
+<!-- 09:00 AM (Unavailable) -->
+<button class="py-3 px-2 rounded-xl bg-surface-container-high text-on-surface-variant/40 font-label-md text-label-md cursor-not-allowed flex items-center justify-center line-through" disabled="" type="button">
+        09:00 AM
+      </button>
+<!-- 10:30 AM (SELECTED) -->
+<button class="time-slot-btn py-3 px-2 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md font-semibold shadow-sm flex items-center justify-center transition-transform active:scale-95" type="button">
+        10:30 AM
+      </button>
+<!-- 11:30 AM (Available) -->
+<button class="time-slot-btn py-3 px-2 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm flex items-center justify-center transition-all hover:bg-surface-container-low active:scale-95" type="button">
+        11:30 AM
+      </button>
+<!-- 01:00 PM (Unavailable) -->
+<button class="py-3 px-2 rounded-xl bg-surface-container-high text-on-surface-variant/40 font-label-md text-label-md cursor-not-allowed flex items-center justify-center line-through" disabled="" type="button">
+        01:00 PM
+      </button>
+<!-- 02:30 PM (Available) -->
+<button class="time-slot-btn py-3 px-2 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm flex items-center justify-center transition-all hover:bg-surface-container-low active:scale-95" type="button">
+        02:30 PM
+      </button>
+<!-- 04:00 PM (Available) -->
+<button class="time-slot-btn py-3 px-2 rounded-xl bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm flex items-center justify-center transition-all hover:bg-surface-container-low active:scale-95" type="button">
+        04:00 PM
+      </button>
+</div>
+<!-- Calculated Schedule Note -->
+<div class="mt-4 p-3 bg-surface-container-low rounded-xl flex items-center gap-2.5 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px] text-primary-container flex-shrink-0">schedule</span>
+<p class="font-body-sm text-body-sm leading-snug" id="schedule-duration-text">
+        Ends around <span class="font-semibold text-on-surface" id="end-time-display">1:30 PM</span> based on a 3 hour service
+      </p>
+</div>
+</div>
+<!-- Sticky Bottom Checkout Bar -->
+<div class="fixed bottom-0 inset-x-0 bg-surface-container-lowest shadow-[0_-4px_24px_rgba(22,33,31,0.06)] z-30">
+<div class="max-w-[480px] mx-auto px-gutter py-3.5 flex items-center justify-between gap-4">
+<!-- Left side: Running total -->
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total estimate</span>
+<span class="text-outline-variant text-[10px]">•</span>
+<span class="font-label-sm text-label-sm text-primary-container font-medium">Step 1 of 3</span>
+</div>
+<div class="font-price-lg text-price-lg text-secondary" id="total-price-display">
+          ETB 1,800
+        </div>
+</div>
+<!-- Right side: CTA Button -->
+<button class="h-12 px-6 rounded-xl bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md font-medium inline-flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]" type="button">
+<span>Continue</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const serviceCards = document.querySelectorAll('.service-card');
+    const priceDisplay = document.getElementById('total-price-display');
+    const endTimeDisplay = document.getElementById('end-time-display');
+    const scheduleDurationText = document.getElementById('schedule-duration-text');
+
+    let currentDuration = "3 hr";
+
+    serviceCards.forEach(card => {
+      card.addEventListener('click', () => {
+        serviceCards.forEach(c => {
+          c.classList.remove('bg-surface-container-low');
+          c.classList.add('bg-surface-container-lowest');
+          const dotWrapper = c.querySelector('.w-5');
+          const dot = c.querySelector('.w-2');
+          if (dotWrapper && dot) {
+            dotWrapper.classList.remove('bg-primary-container');
+            dotWrapper.classList.add('bg-surface-container');
+            dot.classList.remove('bg-on-primary');
+            dot.classList.add('bg-transparent');
+          }
+        });
+
+        card.classList.remove('bg-surface-container-lowest');
+        card.classList.add('bg-surface-container-low');
+        const activeDotWrapper = card.querySelector('.w-5');
+        const activeDot = card.querySelector('.w-2');
+        if (activeDotWrapper && activeDot) {
+          activeDotWrapper.classList.remove('bg-surface-container');
+          activeDotWrapper.classList.add('bg-primary-container');
+          activeDot.classList.remove('bg-transparent');
+          activeDot.classList.add('bg-on-primary');
+        }
+
+        const price = card.getAttribute('data-price');
+        const duration = card.getAttribute('data-duration');
+        const endTime = card.getAttribute('data-endtime');
+
+        currentDuration = duration;
+        if (priceDisplay && price) priceDisplay.textContent = price;
+        if (endTimeDisplay && endTime) endTimeDisplay.textContent = endTime;
+        if (scheduleDurationText) {
+          scheduleDurationText.innerHTML = `Ends around <span class="font-semibold text-on-surface">${endTime}</span> based on a ${duration} service`;
+        }
+      });
+    });
+
+    const dateChips = document.querySelectorAll('.date-chip');
+    dateChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        dateChips.forEach(d => {
+          d.classList.remove('bg-primary-container', 'text-on-primary');
+          d.classList.add('bg-surface-container-lowest', 'text-on-surface');
+          const label = d.querySelector('span:first-child');
+          if (label) {
+            label.classList.remove('opacity-90');
+            label.classList.add('text-on-surface-variant');
+          }
+          const subtext = d.querySelector('span:last-child');
+          if (subtext) {
+            subtext.classList.remove('bg-on-primary/20', 'px-1.5', 'rounded-full');
+            subtext.classList.add('text-on-surface-variant');
+          }
+        });
+
+        chip.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+        chip.classList.add('bg-primary-container', 'text-on-primary');
+        const label = chip.querySelector('span:first-child');
+        if (label) {
+          label.classList.remove('text-on-surface-variant');
+          label.classList.add('opacity-90');
+        }
+        const subtext = chip.querySelector('span:last-child');
+        if (subtext) {
+          subtext.classList.remove('text-on-surface-variant');
+          subtext.classList.add('bg-on-primary/20', 'px-1.5', 'rounded-full');
+        }
+      });
+    });
+
+    const timeSlotBtns = document.querySelectorAll('.time-slot-btn');
+    timeSlotBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        timeSlotBtns.forEach(b => {
+          b.classList.remove('bg-primary-container', 'text-on-primary', 'font-semibold');
+          b.classList.add('bg-surface-container-lowest', 'text-on-surface');
+        });
+        btn.classList.remove('bg-surface-container-lowest', 'text-on-surface');
+        btn.classList.add('bg-primary-container', 'text-on-primary', 'font-semibold');
+      });
+    });
+  })();
+</script></main></body></html>

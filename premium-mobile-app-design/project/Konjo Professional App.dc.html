@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#586851"/><text x="100" y="115" font-family="serif" font-size="56" fill="#fff" text-anchor="middle">K</text></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EDEAE2}
+a{color:#586851;text-decoration:none}
+a:hover{color:#212822}
+*{box-sizing:border-box}
+::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:56px 24px;background:#EDEAE2;font-family:'Plus Jakarta Sans',sans-serif">
+<x-import component-from-global-scope="AndroidDevice" from="./android-frame.jsx" hint-size="412px,892px">
+<div style="display:flex;flex-direction:column;height:100%;background:#FAF9F5;color:#212822;position:relative">
+<div style="flex:1;overflow:auto">
+
+<sc-if value="{{is_home}}" hint-placeholder-val="{{true}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px;border-bottom:1px solid #E6E8E2">
+    <div>
+      <div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#212822;font-weight:500">Konjo</div>
+      <div style="font-size:10px;color:#9DA399;letter-spacing:0.1em;text-transform:uppercase">Atelier &amp; Home</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+      <div style="width:36px;height:36px;border-radius:50%;overflow:hidden;border:1.5px solid #9CAF88"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px 0">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="font-size:17px;font-weight:600;color:#212822">Hanan T.</div>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <sc-if value="{{available}}" hint-placeholder-val="{{true}}"><span style="font-size:11px;font-weight:700;color:#586851;letter-spacing:0.05em;text-transform:uppercase">Available</span></sc-if>
+      <sc-if value="{{notAvailable}}" hint-placeholder-val="{{false}}"><span style="font-size:11px;font-weight:700;color:#9DA399;letter-spacing:0.05em;text-transform:uppercase">Offline</span></sc-if>
+      <sc-if value="{{available}}" hint-placeholder-val="{{true}}"><div onClick="{{toggleAvailable}}" style="width:44px;height:26px;border-radius:100px;background:#9CAF88;display:flex;align-items:center;padding:3px;cursor:pointer;justify-content:flex-end"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+      <sc-if value="{{notAvailable}}" hint-placeholder-val="{{false}}"><div onClick="{{toggleAvailable}}" style="width:44px;height:26px;border-radius:100px;background:#E6E8E2;display:flex;align-items:center;padding:3px;cursor:pointer"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+    </div>
+  </div>
+
+  <sc-if value="{{isOffer}}" hint-placeholder-val="{{false}}">
+  <div style="margin:18px 20px 0;background:#fff;border:1.5px solid #C5A059;border-radius:14px;padding:18px">
+    <div style="display:flex;align-items:center;gap:8px"><span style="width:7px;height:7px;border-radius:50%;background:#C5A059"></span><span style="font-size:10.5px;font-weight:700;color:#775A19;letter-spacing:0.06em;text-transform:uppercase">New request</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-top:10px">
+      <div><div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#212822">{{job.name}}</div><div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{job.service}} · {{job.desc}}</div></div>
+      <div style="font-size:17px;font-weight:700;color:#212822">ETB {{job.price}}</div>
+    </div>
+    <div style="margin-top:14px;background:#F5F4EF;border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#5F665C"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>{{job.time}}</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#5F665C"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/></svg>{{job.address}} · {{job.addressDetail}}</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <div onClick="{{declineJob}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#212822;padding:13px 0;border-radius:8px;font-size:13.5px;font-weight:600;cursor:pointer">Decline</div>
+      <div onClick="{{acceptJob}}" style="flex:2;text-align:center;background:#9CAF88;color:#fff;padding:13px 0;border-radius:8px;font-size:13.5px;font-weight:700;cursor:pointer">Accept</div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{hasJob}}" hint-placeholder-val="{{false}}">
+  <sc-if value="{{isAccepted}}" hint-placeholder-val="{{false}}">
+  <div onClick="{{goToActiveJob}}" style="margin:18px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:14px;padding:18px;cursor:pointer">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10.5px;font-weight:700;color:#586851;background:#E9F0E6;padding:4px 10px;border-radius:100px">Confirmed</span><span style="font-size:12px;color:#9DA399">{{job.time}}</span></div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#212822;margin-top:10px">{{job.name}}</div>
+    <div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{job.service}} · {{job.desc}} · ETB {{job.price}}</div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <div onClick="{{startTravel}}" style="flex:2;text-align:center;background:#586851;color:#fff;padding:13px 0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">I'm on my way</div>
+      <div onClick="{{goToActiveJob}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#212822;padding:13px 0;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">View</div>
+    </div>
+  </div>
+  </sc-if>
+  <sc-if value="{{isTraveling}}" hint-placeholder-val="{{false}}">
+  <div onClick="{{goToActiveJob}}" style="margin:18px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:14px;padding:18px;cursor:pointer">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10.5px;font-weight:700;color:#586851;background:#E9F0E6;padding:4px 10px;border-radius:100px">On the way</span><span style="font-size:12px;color:#9DA399">{{job.time}}</span></div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#212822;margin-top:10px">{{job.name}}</div>
+    <div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{job.address}} · {{job.addressDetail}}</div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <div onClick="{{checkIn}}" style="flex:2;text-align:center;background:#586851;color:#fff;padding:13px 0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Check in</div>
+      <div onClick="{{goToActiveJob}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#212822;padding:13px 0;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">View</div>
+    </div>
+  </div>
+  </sc-if>
+  <sc-if value="{{isOnsite}}" hint-placeholder-val="{{false}}">
+  <div onClick="{{goToActiveJob}}" style="margin:18px 20px 0;background:#212822;border-radius:14px;padding:18px;cursor:pointer">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:10.5px;font-weight:700;color:#C5A059;background:rgba(197,160,89,0.15);padding:4px 10px;border-radius:100px">In progress</span><span style="font-family:'Bodoni Moda',serif;font-size:16px;color:#fff">{{elapsedFormatted}}</span></div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#fff;margin-top:10px">{{job.name}}</div>
+    <div style="font-size:12.5px;color:rgba(255,255,255,0.6);margin-top:2px">{{job.service}} · {{job.desc}}</div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <div onClick="{{checkOut}}" style="flex:2;text-align:center;background:#9CAF88;color:#fff;padding:13px 0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer">Check out</div>
+      <div onClick="{{goToActiveJob}}" style="flex:1;text-align:center;background:rgba(255,255,255,0.1);color:#fff;padding:13px 0;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">View</div>
+    </div>
+  </div>
+  </sc-if>
+  </sc-if>
+  <sc-if value="{{noJob}}" hint-placeholder-val="{{false}}">
+  <div style="margin:18px 20px 0;background:#fff;border:1px dashed #C5C8BC;border-radius:14px;padding:26px;text-align:center">
+    <div style="font-size:13.5px;color:#5F665C">No active requests right now. New bookings will appear here.</div>
+  </div>
+  </sc-if>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 20px 0">
+    <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 8px;text-align:center">
+      <div style="font-family:'Bodoni Moda',serif;font-size:17px;color:#212822">ETB {{weekEarnings}}</div>
+      <div style="font-size:10px;color:#9DA399;margin-top:3px">This week</div>
+    </div>
+    <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 8px;text-align:center">
+      <div style="font-family:'Bodoni Moda',serif;font-size:17px;color:#212822">{{completedCount}}</div>
+      <div style="font-size:10px;color:#9DA399;margin-top:3px">Completed</div>
+    </div>
+    <div onClick="{{goToRatings}}" style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 8px;text-align:center;cursor:pointer">
+      <div style="font-family:'Bodoni Moda',serif;font-size:17px;color:#212822">4.9</div>
+      <div style="font-size:10px;color:#9DA399;margin-top:3px">Rating</div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:baseline;margin:24px 20px 0">
+    <div style="font-family:'Bodoni Moda',serif;font-size:17px;color:#212822;font-weight:500">Upcoming today</div>
+    <a href="#" onClick="{{goCalendarTab}}" style="font-size:12px;font-weight:600">Calendar</a>
+  </div>
+  <div style="padding:12px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{upcoming}}" as="u" hint-placeholder-count="2">
+      <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:12px">
+        <div style="background:#F5F4EF;border-radius:8px;padding:8px 10px;text-align:center;min-width:56px"><div style="font-size:9px;color:#9DA399;text-transform:uppercase">Starts</div><div style="font-size:13px;font-weight:700;color:#212822">{{u.time}}</div></div>
+        <div style="flex:1"><div style="font-size:13.5px;font-weight:600;color:#212822">{{u.name}}</div><div style="font-size:11.5px;color:#5F665C">{{u.service}} · {{u.desc}}</div></div>
+        <div style="font-size:10px;font-weight:700;color:#586851;background:#E9F0E6;padding:4px 9px;border-radius:100px">{{u.statusLabel}}</div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin:24px 20px 0;background:#E9F0E6;border-radius:10px;padding:16px;display:flex;gap:10px;align-items:flex-start">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8" style="flex-shrink:0;margin-top:1px"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+    <div style="font-size:12px;color:#33422D;line-height:1.5"><strong>Fayda verified specialist #ET-4820.</strong> Travel radius active in Bole, CMC and Kazanchis.</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_activeJob}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:30px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822">Job details</div>
+  </div>
+  <sc-if value="{{hasJob}}" hint-placeholder-val="{{true}}">
+  <div style="padding:18px 20px 0">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822">{{job.name}}</div><div style="font-size:13px;color:#5F665C;margin-top:4px">{{job.service}} · {{job.desc}}</div></div>
+      <div style="font-size:19px;font-weight:700;color:#212822">ETB {{job.price}}</div>
+    </div>
+    <div style="margin-top:18px;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:#212822"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>{{job.time}}</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:#212822"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/></svg>{{job.address}} · {{job.addressDetail}}</div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:13.5px;color:#212822"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>{{job.pay}}<sc-if value="{{job.travelFee}}" hint-placeholder-val="{{false}}"><span style="color:#C5A059;font-weight:600"> · +ETB {{job.travelFee}} travel</span></sc-if></div>
+    </div>
+    <div style="margin-top:16px;height:140px;border-radius:12px;background:linear-gradient(135deg,#E9F0E6,#DDE5DB);position:relative;overflow:hidden">
+      <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-70%)"><div style="width:34px;height:34px;border-radius:50% 50% 50% 0;background:#586851;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center"><div style="width:11px;height:11px;border-radius:50%;background:#fff;transform:rotate(45deg)"></div></div></div>
+    </div>
+    <sc-if value="{{isOnsite}}" hint-placeholder-val="{{false}}">
+    <div style="margin-top:16px;background:#212822;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between">
+      <div style="font-size:12.5px;color:rgba(255,255,255,0.7)">Session timer running</div>
+      <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#fff">{{elapsedFormatted}}</div>
+    </div>
+    </sc-if>
+    <sc-if value="{{isOffer}}" hint-placeholder-val="{{false}}">
+    <div style="display:flex;gap:10px;margin-top:20px">
+      <div onClick="{{declineJob}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#212822;padding:15px 0;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer">Decline</div>
+      <div onClick="{{acceptJob}}" style="flex:2;text-align:center;background:#9CAF88;color:#fff;padding:15px 0;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer">Accept</div>
+    </div>
+    </sc-if>
+    <sc-if value="{{isAccepted}}" hint-placeholder-val="{{false}}">
+    <div onClick="{{startTravel}}" style="margin-top:20px;background:#586851;color:#fff;text-align:center;padding:16px;border-radius:8px;font-size:14.5px;font-weight:700;cursor:pointer">I'm on my way</div>
+    </sc-if>
+    <sc-if value="{{isTraveling}}" hint-placeholder-val="{{false}}">
+    <div onClick="{{checkIn}}" style="margin-top:20px;background:#586851;color:#fff;text-align:center;padding:16px;border-radius:8px;font-size:14.5px;font-weight:700;cursor:pointer">Check in — I've arrived</div>
+    </sc-if>
+    <sc-if value="{{isOnsite}}" hint-placeholder-val="{{false}}">
+    <div onClick="{{checkOut}}" style="margin-top:20px;background:#9CAF88;color:#fff;text-align:center;padding:16px;border-radius:8px;font-size:14.5px;font-weight:700;cursor:pointer">Check out — complete job</div>
+    </sc-if>
+    <div style="margin-top:12px;border:1.5px solid #BA1A1A;color:#BA1A1A;border-radius:8px;padding:13px;text-align:center;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#BA1A1A" stroke-width="2"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4"/></svg>SOS · Alert Konjo support
+    </div>
+  </div>
+  </sc-if>
+  <sc-if value="{{noJob}}" hint-placeholder-val="{{false}}">
+  <div style="padding:60px 30px 0;text-align:center;font-size:13.5px;color:#5F665C">No active job to show.</div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{is_calendar}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="padding:18px 20px 6px"><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;font-weight:500">Calendar</div></div>
+  <div style="display:flex;gap:8px;padding:14px 20px;overflow-x:auto">
+    <sc-for list="{{calendarDays}}" as="d" hint-placeholder-count="7">
+      <sc-if value="{{d.active}}" hint-placeholder-val="{{false}}"><div onClick="{{d.onSelect}}" style="flex-shrink:0;padding:10px 16px;border-radius:10px;background:#212822;color:#fff;font-size:13px;font-weight:600;cursor:pointer">{{d.label}}</div></sc-if>
+      <sc-if value="{{d.notActive}}" hint-placeholder-val="{{true}}"><div onClick="{{d.onSelect}}" style="flex-shrink:0;padding:10px 16px;border-radius:10px;background:#fff;border:1px solid #E6E8E2;color:#212822;font-size:13px;font-weight:600;cursor:pointer">{{d.label}}</div></sc-if>
+    </sc-for>
+  </div>
+  <div style="padding:8px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <div style="display:flex;align-items:center;gap:12px;background:#F5F4EF;border-radius:10px;padding:12px;opacity:0.7">
+      <div style="background:#fff;border-radius:8px;padding:8px 10px;text-align:center;min-width:56px"><div style="font-size:9px;color:#9DA399;text-transform:uppercase">Done</div><div style="font-size:13px;font-weight:700;color:#212822">9:00</div></div>
+      <div style="flex:1"><div style="font-size:13.5px;font-weight:600;color:#212822">Almaz W.</div><div style="font-size:11.5px;color:#5F665C">Cornrows · Completed</div></div>
+    </div>
+    <sc-for list="{{upcoming}}" as="u" hint-placeholder-count="2">
+      <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:12px">
+        <div style="background:#F5F4EF;border-radius:8px;padding:8px 10px;text-align:center;min-width:56px"><div style="font-size:9px;color:#9DA399;text-transform:uppercase">Starts</div><div style="font-size:13px;font-weight:700;color:#212822">{{u.time}}</div></div>
+        <div style="flex:1"><div style="font-size:13.5px;font-weight:600;color:#212822">{{u.name}}</div><div style="font-size:11.5px;color:#5F665C">{{u.service}} · {{u.desc}}</div></div>
+        <div style="font-size:10px;font-weight:700;color:#586851;background:#E9F0E6;padding:4px 9px;border-radius:100px">{{u.statusLabel}}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_earnings}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="padding:18px 20px 6px"><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;font-weight:500">Earnings</div></div>
+  <div style="margin:14px 20px 0;background:#212822;border-radius:14px;padding:20px">
+    <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em">This week</div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:32px;color:#fff;margin-top:6px">ETB {{weekEarnings}}</div>
+    <div style="font-size:12px;color:#9CAF88;margin-top:6px;font-weight:600">↑ 18% vs last week</div>
+  </div>
+  <div style="margin:14px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between">
+    <div><div style="font-size:13.5px;font-weight:600;color:#212822">Next payout</div><div style="font-size:12px;color:#5F665C;margin-top:2px">Friday · Telebirr</div></div>
+    <div style="font-size:17px;font-weight:700;color:#C5A059">ETB {{weekEarnings}}</div>
+  </div>
+  <div style="margin:10px 20px 0;font-size:11.5px;color:#9DA399;line-height:1.5">18% platform commission already deducted. Funds are held securely until each visit is checked out.</div>
+  <div style="margin:22px 20px 0;font-family:'Bodoni Moda',serif;font-size:17px;color:#212822;font-weight:500">Payout history</div>
+  <div style="padding:12px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{payoutHistory}}" as="p" hint-placeholder-count="3">
+      <div style="display:flex;align-items:center;justify-content:space-between;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:13px 14px">
+        <div><div style="font-size:13.5px;font-weight:600;color:#212822">{{p.week}}</div><div style="font-size:11.5px;color:#9DA399;margin-top:1px">{{p.status}}</div></div>
+        <div style="font-size:14.5px;font-weight:700;color:#212822">ETB {{p.amount}}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_profile}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="padding:18px 20px 6px"><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;font-weight:500">Profile</div></div>
+  <div style="padding:14px 20px 0;display:flex;gap:14px;align-items:center">
+    <div style="width:70px;height:70px;border-radius:14px;overflow:hidden;flex-shrink:0"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></div>
+    <div>
+      <div style="display:flex;align-items:center;gap:6px"><div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#212822">Hanan T.</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <div style="font-size:12.5px;color:#5F665C;margin-top:2px">Braids &amp; natural hair</div>
+      <div style="font-size:12px;color:#C5A059;font-weight:600;margin-top:3px">★ 4.9 (128 reviews)</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;padding:16px 20px 0;flex-wrap:wrap">
+    <div style="background:#F5F4EF;color:#5F665C;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:100px">Zones: Bole, CMC, Kazanchis</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:18px 20px 0">
+    <div style="background:#fff;border:1px solid #E6E8E2;border-radius:8px;padding:12px 4px;text-align:center"><div style="font-size:15px;font-weight:700;color:#212822">420+</div><div style="font-size:9px;color:#9DA399;margin-top:2px">Jobs done</div></div>
+    <div style="background:#fff;border:1px solid #E6E8E2;border-radius:8px;padding:12px 4px;text-align:center"><div style="font-size:15px;font-weight:700;color:#212822">8 yrs</div><div style="font-size:9px;color:#9DA399;margin-top:2px">Experience</div></div>
+    <div style="background:#fff;border:1px solid #E6E8E2;border-radius:8px;padding:12px 4px;text-align:center"><div style="font-size:15px;font-weight:700;color:#212822">94%</div><div style="font-size:9px;color:#9DA399;margin-top:2px">Repeats</div></div>
+    <div style="background:#fff;border:1px solid #E6E8E2;border-radius:8px;padding:12px 4px;text-align:center"><div style="font-size:15px;font-weight:700;color:#212822">99%</div><div style="font-size:9px;color:#9DA399;margin-top:2px">On-time</div></div>
+  </div>
+  <div style="margin:18px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+    <div style="font-size:14px;font-weight:600;color:#212822">Available for bookings</div>
+    <sc-if value="{{available}}" hint-placeholder-val="{{true}}"><div onClick="{{toggleAvailable}}" style="width:44px;height:26px;border-radius:100px;background:#9CAF88;display:flex;align-items:center;padding:3px;cursor:pointer;justify-content:flex-end"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+    <sc-if value="{{notAvailable}}" hint-placeholder-val="{{false}}"><div onClick="{{toggleAvailable}}" style="width:44px;height:26px;border-radius:100px;background:#E6E8E2;display:flex;align-items:center;padding:3px;cursor:pointer"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+  </div>
+  <div style="margin:16px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <div onClick="{{goToServicesPricing}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Services &amp; pricing</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div onClick="{{goToDocuments}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Documents &amp; verification</div><span style="font-size:10px;font-weight:700;color:#586851;background:#E9F0E6;padding:3px 9px;border-radius:100px">Approved</span></div>
+    <div onClick="{{goToZonesTravel}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Home zones &amp; travel</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div onClick="{{goToPayoutAccount}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Payout account</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div onClick="{{goToHelpSupport}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 3.5"/><circle cx="12" cy="17" r="0.6" fill="#586851"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Help &amp; support</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+  </div>
+  <div style="text-align:center;margin-top:22px;font-size:13.5px;font-weight:600;color:#BA1A1A;cursor:pointer">Log out</div>
+  <div style="text-align:center;margin-top:24px;font-size:11px;color:#9DA399">Konjo Pro v1.0 · Addis Ababa</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_servicesPricing}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Services &amp; pricing</div>
+  </div>
+  <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{services}}" as="sv" hint-placeholder-count="3">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px 16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="font-size:10.5px;font-weight:600;color:#9DA399;background:#F5F4EF;padding:3px 9px;border-radius:100px">{{sv.category}}</span><sc-if value="{{sv.popular}}" hint-placeholder-val="{{false}}"><span style="font-size:10.5px;font-weight:700;color:#C5A059">★ Popular</span></sc-if></div>
+            <div style="font-family:'Bodoni Moda',serif;font-size:17px;color:#212822;margin-top:6px">{{sv.name}}</div>
+          </div>
+          <div onClick="{{sv.onRemove}}" style="width:30px;height:30px;border-radius:50%;background:#F5F4EF;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#BA1A1A" stroke-width="2"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m2 0-1 14a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1L6 6"/></svg></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <div style="flex:1;background:#F5F4EF;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Duration</div><div style="font-size:14px;font-weight:600;color:#212822;margin-top:2px">{{sv.durationLabel}}</div></div>
+          <div style="flex:1;background:#F5F4EF;border-radius:8px;padding:10px 12px"><div style="font-size:10px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Your price (ETB)</div><div style="font-size:14px;font-weight:700;color:#C5A059;margin-top:2px">{{sv.price}}</div></div>
+        </div>
+        <div style="font-size:11.5px;color:#5F665C;margin-top:10px">{{sv.note}}</div>
+      </div>
+    </sc-for>
+    <sc-if value="{{hasNoServices}}" hint-placeholder-val="{{false}}"><div style="text-align:center;padding:30px;color:#9DA399;font-size:13px">No services yet — add one to start receiving bookings.</div></sc-if>
+  </div>
+  <div style="margin:14px 20px 0;text-align:center;background:#fff;border:1.5px dashed #C5C8BC;border-radius:12px;padding:16px;font-size:13.5px;font-weight:600;color:#586851;cursor:pointer">+ Add a new service</div>
+  <div style="margin:18px 20px 0;background:#E9F0E6;border-radius:10px;padding:14px 16px;font-size:12px;color:#33422D;line-height:1.5">Prices include your supplies and equipment. Standard travel fees (ETB 150–250) are added automatically based on the client's zone.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_zonesTravel}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Home zones &amp; travel</div>
+  </div>
+  <div style="margin:16px 20px 0;font-size:12px;font-weight:700;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Working hours</div>
+  <div style="margin:10px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <sc-for list="{{workingHours}}" as="d" hint-placeholder-count="7">
+      <div style="display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #F5F4EF">
+        <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#212822">{{d.day}}</div><div style="font-size:12px;color:#5F665C;margin-top:2px">{{d.hours}}</div></div>
+        <sc-if value="{{d.on}}" hint-placeholder-val="{{true}}"><div onClick="{{d.onToggle}}" style="width:42px;height:24px;border-radius:100px;background:#9CAF88;display:flex;align-items:center;padding:2px;cursor:pointer;justify-content:flex-end;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+        <sc-if value="{{d.off}}" hint-placeholder-val="{{false}}"><div onClick="{{d.onToggle}}" style="width:42px;height:24px;border-radius:100px;background:#E6E8E2;display:flex;align-items:center;padding:2px;cursor:pointer;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin:20px 20px 0;font-size:12px;font-weight:700;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Zones you travel to</div>
+  <div style="margin:10px 20px 0;font-size:12.5px;color:#5F665C;line-height:1.5">Clients can only request bookings if their home is within your chosen sub-cities.</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 20px 0">
+    <sc-for list="{{travelZones}}" as="z" hint-placeholder-count="8">
+      <sc-if value="{{z.active}}" hint-placeholder-val="{{false}}"><div onClick="{{z.onToggle}}" style="padding:9px 16px;border-radius:100px;background:#212822;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px">✓ {{z.label}}</div></sc-if>
+      <sc-if value="{{z.notActive}}" hint-placeholder-val="{{true}}"><div onClick="{{z.onToggle}}" style="padding:9px 16px;border-radius:100px;background:#fff;border:1px solid #E6E8E2;color:#5F665C;font-size:12.5px;font-weight:600;cursor:pointer">{{z.label}}</div></sc-if>
+    </sc-for>
+  </div>
+  <div style="margin:14px 20px 0;background:#E9F0E6;border-radius:10px;padding:12px 16px;font-size:12px;color:#33422D">{{activeZoneCount}} zones selected. Clients outside your active travel zones will not be able to book home visits.</div>
+  <div style="margin:22px 20px 0;font-size:12px;font-weight:700;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Instant booking preferences</div>
+  <div style="margin:10px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+    <div><div style="font-size:14px;font-weight:600;color:#212822">Accept same-day bookings</div><div style="font-size:11.5px;color:#5F665C;margin-top:2px">Requires at least 2 hours notice before arrival</div></div>
+    <sc-if value="{{sameDayBookings}}" hint-placeholder-val="{{true}}"><div onClick="{{toggleSameDay}}" style="width:42px;height:24px;border-radius:100px;background:#9CAF88;display:flex;align-items:center;padding:2px;cursor:pointer;justify-content:flex-end;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+    <sc-if value="{{notSameDayBookings}}" hint-placeholder-val="{{false}}"><div onClick="{{toggleSameDay}}" style="width:42px;height:24px;border-radius:100px;background:#E6E8E2;display:flex;align-items:center;padding:2px;cursor:pointer;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_documents}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Documents &amp; verification</div>
+  </div>
+  <div style="margin:16px 20px 0;background:#E9F0E6;border-radius:10px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8" style="flex-shrink:0;margin-top:1px"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+    <div style="font-size:12.5px;color:#33422D;line-height:1.5">Fayda ID verified professionals receive 3x more bookings.</div>
+  </div>
+  <div style="margin:16px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M6 8a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Fayda National ID</div><span style="font-size:10px;font-weight:700;color:#586851;background:#E9F0E6;padding:3px 9px;border-radius:100px">Verified</span></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Live selfie match</div><span style="font-size:10px;font-weight:700;color:#586851;background:#E9F0E6;padding:3px 9px;border-radius:100px">Verified</span></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Diploma / certificates</div><span style="font-size:10px;font-weight:700;color:#775A19;background:#FBF3E2;padding:3px 9px;border-radius:100px">1 added</span></div>
+  </div>
+  <div style="margin:14px 20px 0;text-align:center;background:#fff;border:1.5px dashed #C5C8BC;border-radius:12px;padding:16px;font-size:13.5px;font-weight:600;color:#586851;cursor:pointer">+ Upload diploma / certificate</div>
+  <div style="margin:18px 20px 0;font-size:11.5px;color:#9DA399;line-height:1.5">Your national ID and official documents are used only for internal vetting and background verification. They are never shared or visible to clients or any third parties.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_payoutAccount}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Payout account</div>
+  </div>
+  <div style="margin:16px 20px 0;background:#212822;border-radius:14px;padding:18px">
+    <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.05em">Payout method</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div style="font-family:'Bodoni Moda',serif;font-size:18px;color:#fff">Telebirr · •••• 4521</div></div>
+    <div style="font-size:11.5px;color:rgba(255,255,255,0.6);margin-top:10px">Weekly payout every Friday, minus 18% platform commission.</div>
+  </div>
+  <div style="margin:14px 20px 0;text-align:center;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px;font-size:13.5px;font-weight:600;color:#212822;cursor:pointer">Change payout method</div>
+  <div style="margin:22px 20px 0;font-size:12px;font-weight:700;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Payout history</div>
+  <div style="margin:10px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <sc-for list="{{payoutHistory}}" as="p" hint-placeholder-count="3">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid #F5F4EF">
+        <div><div style="font-size:14px;font-weight:600;color:#212822">{{p.week}}</div><div style="font-size:11.5px;color:#9DA399;margin-top:2px">{{p.status}}</div></div>
+        <div style="font-size:14px;font-weight:700;color:#212822">ETB {{p.amount}}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_helpSupport}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Help &amp; support</div>
+  </div>
+  <div style="margin:16px 20px 0;border:1.5px solid #BA1A1A;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BA1A1A" stroke-width="2" style="flex-shrink:0"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4"/></svg>
+    <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#BA1A1A">Safety emergency (SOS)</div><div style="font-size:12px;color:#5F665C;margin-top:2px">Alerts Konjo support and shares your live location instantly.</div></div>
+  </div>
+  <div style="margin:16px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.1z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Call support</div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.5 9 9 0 0 1-4-1L3 20l1.1-3.9a8.4 8.4 0 0 1-1.1-4A8.4 8.4 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Chat with us</div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17.5a1 1 0 0 0 .9 1.5h17.2a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.7 0z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Report a safety issue</div></div>
+  </div>
+  <div style="margin:20px 20px 0;font-size:12px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em;font-weight:600">Frequently asked</div>
+  <div style="margin:10px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <div style="padding:14px 16px;border-bottom:1px solid #F5F4EF;font-size:13.5px;color:#212822;font-weight:500">When and how are weekly payouts sent?</div>
+    <div style="padding:14px 16px;border-bottom:1px solid #F5F4EF;font-size:13.5px;color:#212822;font-weight:500">What happens if a client cancels last minute?</div>
+    <div style="padding:14px 16px;font-size:13.5px;color:#212822;font-weight:500">How do I add a new zone or service?</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_ratings}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <div style="font-size:17px;font-weight:600;color:#212822">Client reviews &amp; ratings</div>
+    </div>
+  </div>
+  <div style="margin:16px 20px 0;font-size:12.5px;color:#5F665C">Based on 128 verified home visits</div>
+  <div style="margin:12px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:14px;padding:18px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div><div style="font-size:11px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Overall score</div><div style="font-family:'Bodoni Moda',serif;font-size:36px;color:#212822;margin-top:2px">4.9<span style="font-size:16px;color:#9DA399"> / 5.0</span></div><div style="color:#C5A059;font-size:14px;margin-top:2px">★★★★★</div></div>
+      <div style="text-align:right"><div style="font-size:11px;font-weight:700;color:#586851;background:#E9F0E6;padding:4px 10px;border-radius:100px">100% verified clients</div><div style="font-size:11px;font-weight:700;color:#775A19;background:#FBF3E2;padding:4px 10px;border-radius:100px;margin-top:6px">99.2% repeat</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+      <sc-for list="{{reviewBreakdown}}" as="r" hint-placeholder-count="4">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12.5px;color:#5F665C;margin-bottom:5px"><span>{{r.label}}</span><span style="font-weight:600;color:#212822">{{r.pct}}%</span></div>
+          <div style="height:5px;background:#F5F4EF;border-radius:3px"><div style="height:5px;background:#586851;border-radius:3px;width:{{r.pct}}%"></div></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  <div style="margin:16px 20px 0;font-size:12px;font-weight:700;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Client reviews</div>
+  <div style="padding:10px 20px 0;display:flex;flex-direction:column;gap:12px">
+    <sc-for list="{{reviewsList}}" as="rv" hint-placeholder-count="3">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px 16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div style="font-size:14px;font-weight:600;color:#212822">{{rv.name}}</div><div style="font-size:11.5px;color:#9DA399;margin-top:1px">{{rv.zone}}</div></div>
+          <div style="text-align:right"><div style="font-size:11.5px;font-weight:700;color:#C5A059">★ {{rv.rating}}</div><div style="font-size:10.5px;color:#9DA399;margin-top:2px">{{rv.time}}</div></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
+          <sc-for list="{{rv.tags}}" as="tg" hint-placeholder-count="2">
+            <span style="font-size:10.5px;font-weight:600;color:#586851;background:#E9F0E6;padding:3px 9px;border-radius:100px">{{tg}}</span>
+          </sc-for>
+        </div>
+        <div style="font-size:13px;color:#5F665C;margin-top:10px;line-height:1.5">{{rv.text}}</div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+</div>
+
+<sc-if value="{{isTabRoot}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;border-top:1px solid #E6E8E2;background:#fff;padding:10px 8px 6px;flex-shrink:0">
+  <sc-if value="{{is_home}}" hint-placeholder-val="{{true}}"><div onClick="{{goHomeTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.9"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span style="font-size:10px;font-weight:600;color:#586851">Home</span></div></sc-if>
+  <sc-if value="{{is_home_off}}" hint-placeholder-val="{{false}}"><div onClick="{{goHomeTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.9"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span style="font-size:10px;font-weight:500;color:#9DA399">Home</span></div></sc-if>
+  <sc-if value="{{is_calendar}}" hint-placeholder-val="{{false}}"><div onClick="{{goCalendarTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.9"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span style="font-size:10px;font-weight:600;color:#586851">Calendar</span></div></sc-if>
+  <sc-if value="{{is_calendar_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goCalendarTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.9"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span style="font-size:10px;font-weight:500;color:#9DA399">Calendar</span></div></sc-if>
+  <sc-if value="{{is_earnings}}" hint-placeholder-val="{{false}}"><div onClick="{{goEarningsTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.9"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span style="font-size:10px;font-weight:600;color:#586851">Earnings</span></div></sc-if>
+  <sc-if value="{{is_earnings_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goEarningsTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.9"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span style="font-size:10px;font-weight:500;color:#9DA399">Earnings</span></div></sc-if>
+  <sc-if value="{{is_profile}}" hint-placeholder-val="{{false}}"><div onClick="{{goProfileTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.9"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg><span style="font-size:10px;font-weight:600;color:#586851">Profile</span></div></sc-if>
+  <sc-if value="{{is_profile_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goProfileTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.9"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg><span style="font-size:10px;font-weight:500;color:#9DA399">Profile</span></div></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+<div style="position:absolute;left:20px;right:20px;bottom:90px;background:#212822;color:#fff;padding:14px 18px;border-radius:10px;font-size:13.5px;font-weight:600;text-align:center;box-shadow:0 12px 32px -4px rgba(33,40,34,0.3);z-index:20">{{toast}}</div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:508,&quot;height&quot;:988}}">
+const TRANSPARENT_PX = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+
+class Component extends DCLogic {
+  state = {
+    screen: 'home',
+    history: [],
+    available: true,
+    activeIndex: 0,
+    elapsedSeconds: 0,
+    weekEarnings: 12400,
+    completedCount: 9,
+    toast: '',
+    jobs: [
+      { id: 'j1', name: 'Meron G.', initials: 'MG', service: 'Box braids', desc: '3 hr wellness ritual', price: 2450, pay: 'Cash / Telebirr', time: 'Today at 2:30 PM', address: 'Bole Atlas', addressDetail: 'Behind Edna Mall, blue gate #14', travelFee: 150, status: 'offer' },
+      { id: 'j2', name: 'Selam D.', initials: 'SD', service: 'Cornrows', desc: 'Shuruba accents · 90 min', price: 900, pay: 'Telebirr', time: 'Today at 5:30 PM', address: 'CMC Michael', addressDetail: 'Near the main roundabout', travelFee: 0, status: 'accepted' },
+      { id: 'j3', name: 'Kalkidan B.', initials: 'KB', service: 'Silk press', desc: 'Thermal protectant · 2 hr', price: 1200, pay: 'CBE Birr', time: 'Today at 7:45 PM', address: 'Kazanchis', addressDetail: 'Gate 2, apartment block C', travelFee: 0, status: 'accepted' },
+    ],
+    calendarDay: 'Today',
+    services: [
+      { id: 'sv1', category: 'Braids & Hair', name: 'Box braids', duration: 180, price: 1800, note: 'Includes standard synthetic braiding hair', popular: true },
+      { id: 'sv2', category: 'Braids & Hair', name: 'Cornrows / Shuruba', duration: 90, price: 900, note: 'Pre-washed hair recommended', popular: false },
+      { id: 'sv3', category: 'Hair Care', name: 'Natural hair hydration mask', duration: 120, price: 1400, note: 'Organic oils, scalp massage included', popular: false },
+    ],
+    workingHours: [
+      { day: 'Monday', hours: '9:00 AM – 6:00 PM', on: true },
+      { day: 'Tuesday', hours: '9:00 AM – 6:00 PM', on: true },
+      { day: 'Wednesday', hours: '9:00 AM – 6:00 PM', on: true },
+      { day: 'Thursday', hours: '9:00 AM – 6:00 PM', on: true },
+      { day: 'Friday', hours: '9:00 AM – 7:00 PM', on: true },
+      { day: 'Saturday', hours: '8:30 AM – 6:30 PM', on: true },
+      { day: 'Sunday', hours: 'Day off / Resting', on: false },
+    ],
+    travelZones: [
+      { id: 'bole', label: 'Bole', active: true },
+      { id: 'cmc', label: 'CMC', active: true },
+      { id: 'kazanchis', label: 'Kazanchis', active: true },
+      { id: 'oldairport', label: 'Old Airport', active: false },
+      { id: 'ayat', label: 'Ayat', active: false },
+      { id: 'megenagna', label: 'Megenagna', active: false },
+      { id: 'summit', label: 'Summit', active: false },
+      { id: 'sarbet', label: 'Sarbet', active: false },
+    ],
+    sameDayBookings: true,
+  };
+
+  timers = [];
+  componentWillUnmount() { this.timers.forEach(clearTimeout); if (this.tickInterval) clearInterval(this.tickInterval); }
+
+  navigate = (screen) => this.setState(s => ({ history: [...s.history, s.screen], screen }));
+  goBack = () => this.setState(s => { const h = [...s.history]; const prev = h.pop(); return { history: h, screen: prev || 'home' }; });
+  switchTab = (tab) => this.setState({ screen: tab, history: [] });
+  goHomeTab = () => this.switchTab('home');
+  goCalendarTab = () => this.switchTab('calendar');
+  goEarningsTab = () => this.switchTab('earnings');
+  goProfileTab = () => this.switchTab('profile');
+  goToActiveJob = () => this.navigate('activeJob');
+  toggleAvailable = () => this.setState(s => ({ available: !s.available }));
+  setCalendarDay = (d) => this.setState({ calendarDay: d });
+  goToRatings = () => this.navigate('ratings');
+  goToServicesPricing = () => this.navigate('servicesPricing');
+  goToZonesTravel = () => this.navigate('zonesTravel');
+  goToDocuments = () => this.navigate('documents');
+  goToPayoutAccount = () => this.navigate('payoutAccount');
+  goToHelpSupport = () => this.navigate('helpSupport');
+  removeService = (id) => this.setState(s => ({ services: s.services.filter(sv => sv.id !== id) }));
+  toggleWorkingDay = (day) => this.setState(s => ({ workingHours: s.workingHours.map(d => d.day === day ? { ...d, on: !d.on } : d) }));
+  toggleZone = (id) => this.setState(s => ({ travelZones: s.travelZones.map(z => z.id === id ? { ...z, active: !z.active } : z) }));
+  toggleSameDay = () => this.setState(s => ({ sameDayBookings: !s.sameDayBookings }));
+
+  updateActiveJob(patch) {
+    this.setState(s => ({ jobs: s.jobs.map((j, i) => i === s.activeIndex ? { ...j, ...patch } : j) }));
+  }
+
+  acceptJob = () => this.updateActiveJob({ status: 'accepted' });
+  declineJob = () => {
+    this.setState(s => {
+      const jobs = s.jobs.filter((_, i) => i !== s.activeIndex);
+      return { jobs, activeIndex: Math.min(s.activeIndex, jobs.length - 1), toast: 'Request declined and reassigned' };
+    });
+    const t = setTimeout(() => this.setState({ toast: '' }), 2500);
+    this.timers.push(t);
+  };
+  startTravel = () => this.updateActiveJob({ status: 'traveling' });
+  checkIn = () => {
+    this.updateActiveJob({ status: 'onsite' });
+    this.setState({ elapsedSeconds: 0 });
+    this.tickInterval = setInterval(() => this.setState(s => ({ elapsedSeconds: s.elapsedSeconds + 1 })), 1000);
+  };
+  checkOut = () => {
+    if (this.tickInterval) clearInterval(this.tickInterval);
+    const s = this.state;
+    const job = s.jobs[s.activeIndex];
+    this.setState(prev => ({
+      weekEarnings: prev.weekEarnings + job.price,
+      completedCount: prev.completedCount + 1,
+      jobs: prev.jobs.filter((_, i) => i !== prev.activeIndex),
+      activeIndex: 0, elapsedSeconds: 0,
+      toast: 'Job complete — payout queued for ' + job.name,
+      screen: 'home', history: [],
+    }));
+    const t = setTimeout(() => this.setState({ toast: '' }), 2800);
+    this.timers.push(t);
+  };
+
+  fmtTime(sec) {
+    const m = Math.floor(sec / 60).toString().padStart(2, '0');
+    const r = (sec % 60).toString().padStart(2, '0');
+    return m + ':' + r;
+  }
+
+  renderVals() {
+    const s = this.state;
+    const job = s.jobs[s.activeIndex] || null;
+    const hasJob = !!job;
+    const noJob = !job;
+    const isOffer = hasJob && job.status === 'offer';
+    const isAccepted = hasJob && job.status === 'accepted';
+    const isTraveling = hasJob && job.status === 'traveling';
+    const isOnsite = hasJob && job.status === 'onsite';
+
+    const upcoming = s.jobs.slice(1).map(j => ({ ...j, statusLabel: j.status === 'offer' ? 'Pending' : 'Confirmed' }));
+
+    const screenIds = ['home', 'calendar', 'earnings', 'profile', 'activeJob', 'ratings', 'servicesPricing', 'zonesTravel', 'documents', 'payoutAccount', 'helpSupport'];
+    const flags = {};
+    screenIds.forEach(id => { flags['is_' + id] = s.screen === id; flags['is_' + id + '_off'] = s.screen !== id; });
+
+    const calendarDays = ['Mon', 'Tue', 'Wed', 'Today', 'Fri', 'Sat', 'Sun'].map(d => ({ label: d, active: s.calendarDay === d, notActive: s.calendarDay !== d, onSelect: () => this.setCalendarDay(d) }));
+
+    const payoutHistory = [
+      { week: 'Week of Sep 1', amount: 10800, status: 'Paid' },
+      { week: 'Week of Aug 25', amount: 9600, status: 'Paid' },
+      { week: 'Week of Aug 18', amount: 11200, status: 'Paid' },
+    ];
+
+    const services = s.services.map(sv => ({ ...sv, durationLabel: (sv.duration / 60).toFixed(1) + ' hours', onRemove: () => this.removeService(sv.id) }));
+    const workingHours = s.workingHours.map(d => ({ ...d, off: !d.on, onToggle: () => this.toggleWorkingDay(d.day) }));
+    const travelZones = s.travelZones.map(z => ({ ...z, onToggle: () => this.toggleZone(z.id) }));
+    const activeZoneCount = s.travelZones.filter(z => z.active).length;
+
+    const reviewBreakdown = [
+      { label: 'Technique & braid neatness', pct: 98 },
+      { label: 'Punctuality & time keeping', pct: 96 },
+      { label: 'Cleanliness & sanitized tools', pct: 99 },
+      { label: 'Gentle scalp care', pct: 94 },
+    ];
+    const reviewsList = [
+      { name: 'Meron G.', zone: 'Bole Atlas', rating: '5.0', time: 'Yesterday', tags: ['On time', 'Sterile tools', 'Knotless braids'], text: 'Hanan arrived right on time at my Bole compound with her own clean stool and disinfected tools. The parting on my knotless braids is scalpel-sharp and totally painless.' },
+      { name: 'Almaz W.', zone: 'CMC Michael', rating: '5.0', time: '3 days ago', tags: ['Clean & tidy', 'Cornrows'], text: 'She worked so quietly and neatly while my baby was sleeping. Zero mess left behind. Highly recommend her for in-home styling.' },
+      { name: 'Selamawit T.', zone: 'Kazanchis', rating: '5.0', time: '1 week ago', tags: [], text: 'Always reliable and fast without pulling tightly on edges. Very considerate with sensitive scalp care.' },
+    ];
+
+    return {
+      ...flags,
+      isTabRoot: !['activeJob', 'ratings', 'servicesPricing', 'zonesTravel', 'documents', 'payoutAccount', 'helpSupport'].includes(s.screen),
+      screen: s.screen, available: s.available, notAvailable: !s.available, toggleAvailable: this.toggleAvailable, toast: s.toast,
+      goBack: this.goBack, goHomeTab: this.goHomeTab, goCalendarTab: this.goCalendarTab, goEarningsTab: this.goEarningsTab, goProfileTab: this.goProfileTab,
+      goToActiveJob: this.goToActiveJob,
+      goToRatings: this.goToRatings, goToServicesPricing: this.goToServicesPricing, goToZonesTravel: this.goToZonesTravel,
+      goToDocuments: this.goToDocuments, goToPayoutAccount: this.goToPayoutAccount, goToHelpSupport: this.goToHelpSupport,
+      job, hasJob, noJob, isOffer, isAccepted, isTraveling, isOnsite,
+      acceptJob: this.acceptJob, declineJob: this.declineJob, startTravel: this.startTravel, checkIn: this.checkIn, checkOut: this.checkOut,
+      elapsedFormatted: this.fmtTime(s.elapsedSeconds),
+      upcoming, upcomingCount: upcoming.length,
+      weekEarnings: s.weekEarnings, completedCount: s.completedCount,
+      calendarDays, calendarDay: s.calendarDay, payoutHistory,
+      services, hasNoServices: services.length === 0, reviewBreakdown, reviewsList,
+      workingHours, travelZones, activeZoneCount,
+      sameDayBookings: s.sameDayBookings, notSameDayBookings: !s.sameDayBookings, toggleSameDay: this.toggleSameDay,
+    };
+  }
+}
+</script>
+</body>
+</html>

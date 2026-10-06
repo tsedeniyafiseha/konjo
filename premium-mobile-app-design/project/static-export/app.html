@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konjo — Onboarding</title>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#8FA073"/><text x="100" y="115" font-family="serif" font-size="48" fill="#fff" text-anchor="middle">K</text></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EDEAE2;font-family:'Plus Jakarta Sans',sans-serif}
+*{box-sizing:border-box}
+::-webkit-scrollbar{display:none}
+a{text-decoration:none}
+.screen{display:none;height:100%;width:100%}
+.screen.active{display:block}
+#otpSection{display:none}
+</style>
+</head>
+<body>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:56px 24px;background:#EDEAE2">
+<div style="width:412px;height:892px;border-radius:40px;overflow:hidden;box-shadow:0 20px 60px -10px rgba(0,0,0,0.3);background:#FAF9F5;position:relative">
+
+<div class="screen active" id="screen-welcome">
+<div id="scroller" style="position:relative;height:100%;width:100%;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth">
+  <div style="flex:0 0 100%;scroll-snap-align:start;position:relative;height:100%;background:#8FA073;overflow:hidden">
+    <svg width="100%" height="100%" viewBox="0 0 412 892" preserveAspectRatio="none" style="position:absolute;inset:0" fill="none">
+      <path d="M206 0 C206 60, 178 95, 186 150 C193 195, 213 212, 218 248 C222 278, 204 298, 210 330 C214 352, 232 358, 238 378 C242 390, 246 393, 248 400 L244 460 C224 480, 200 480, 196 505 C192 528, 214 542, 230 528 C244 516, 240 494, 224 490 C224 522, 224 545, 214 570 C206 592, 192 605, 198 632 C203 655, 220 665, 216 692 C213 712, 198 722, 204 745 C209 765, 222 770, 218 792 C214 812, 200 822, 206 892" stroke="#FAF9F5" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="248" cy="399" r="5" fill="#FAF9F5"/>
+    </svg>
+    <div style="position:relative;height:100%;display:flex;align-items:center;justify-content:center">
+      <div style="font-family:'Bodoni Moda',serif;font-size:64px;line-height:1;font-weight:600;color:#FAF9F5;letter-spacing:0">Konjo</div>
+    </div>
+    <div onclick="document.getElementById('scroller').scrollBy({left:412,behavior:'smooth'})" style="position:absolute;bottom:28px;right:24px;width:48px;height:48px;border-radius:50%;background:rgba(250,249,245,0.18);border:1.5px solid rgba(250,249,245,0.6);display:flex;align-items:center;justify-content:center;cursor:pointer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAF9F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+  <div style="flex:0 0 100%;scroll-snap-align:start;position:relative;height:100%;overflow:hidden">
+    <img src="../assets/hero-beauty-welcome.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,40,34,0.2) 0%,rgba(33,40,34,0.4) 55%,rgba(21,27,20,0.92) 100%)"></div>
+    <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 26px 44px">
+      <div style="font-family:'Bodoni Moda',serif;font-size:34px;line-height:1.15;color:#FAF9F5;font-weight:500">Beauty comes to you.</div>
+      <div style="color:rgba(250,249,245,0.88);font-size:14.5px;line-height:1.55;margin-top:12px;max-width:320px">Book trusted beauty, grooming &amp; wellness professionals wherever you are in Addis Ababa.</div>
+      <div style="font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;color:#9CAF88;margin-top:16px;font-weight:600">Home &nbsp;•&nbsp; Hotel &nbsp;•&nbsp; Office</div>
+      <div onclick="showScreen('role-select')" style="background:#9CAF88;color:#15201A;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;margin-top:24px;cursor:pointer">Get Started</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="screen" id="screen-role-select">
+<div style="position:relative;height:100%;width:100%;overflow:hidden">
+  <img src="../assets/hero-barber-role.jpeg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,40,34,0.5) 0%,rgba(33,40,34,0.65) 40%,rgba(21,27,20,0.94) 78%,#15201A 100%)"></div>
+  <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 20px 32px;gap:14px">
+    <div style="font-family:'Bodoni Moda',serif;font-size:26px;line-height:1.2;color:#FAF9F5;font-weight:500;margin-bottom:2px">How will you use Konjo?</div>
+    <div style="display:flex;gap:10px">
+      <div style="flex:1;background:rgba(250,249,245,0.96);border-radius:12px;padding:14px;display:flex;flex-direction:column">
+        <div style="font-size:20px;margin-bottom:6px">👩🏾</div>
+        <div style="font-size:14.5px;font-weight:600;color:#212822">I'm a Client</div>
+        <div style="font-size:11.5px;color:#5F665C;line-height:1.4;margin-top:4px;flex:1">I want to discover and book beauty &amp; wellness services.</div>
+        <div onclick="showScreen('phone')" style="background:#586851;color:#fff;text-align:center;padding:11px 6px;border-radius:6px;font-size:12.5px;font-weight:600;margin-top:12px;cursor:pointer">Continue as Client</div>
+      </div>
+      <div style="flex:1;background:rgba(250,249,245,0.96);border-radius:12px;padding:14px;display:flex;flex-direction:column">
+        <div style="font-size:20px;margin-bottom:6px">✨</div>
+        <div style="font-size:14.5px;font-weight:600;color:#212822">I'm a Professional</div>
+        <div style="font-size:11.5px;color:#5F665C;line-height:1.4;margin-top:4px;flex:1">I offer beauty, grooming or wellness services.</div>
+        <div onclick="showScreen('pro-note')" style="background:#fff;border:1.5px solid #586851;color:#586851;text-align:center;padding:11px 6px;border-radius:6px;font-size:12.5px;font-weight:600;margin-top:12px;cursor:pointer">Join as a Professional</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="screen" id="screen-phone">
+<div style="padding:8px 20px 32px">
+  <div style="display:flex;align-items:center;gap:12px;padding:10px 0 28px">
+    <div onclick="showScreen('role-select')" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+  </div>
+  <div style="font-family:'Bodoni Moda',serif;font-size:27px;color:#212822;font-weight:500">Enter your phone number</div>
+  <div style="font-size:13.5px;color:#5F665C;margin-top:8px;line-height:1.5">We'll text you a one-time verification code to confirm it's you.</div>
+  <div style="display:flex;align-items:center;gap:10px;margin-top:28px;background:#fff;border:1px solid #E6E8E2;border-radius:6px;padding:14px 16px">
+    <span style="font-size:15px;color:#212822;font-weight:600">+251</span>
+    <div style="width:1px;height:20px;background:#E6E8E2"></div>
+    <input placeholder="9 12 345 678" style="border:none;flex:1;font-size:15px;color:#212822;background:transparent"/>
+  </div>
+  <div onclick="document.getElementById('otpSection').style.display='block'" style="margin-top:20px;background:#9CAF88;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Send code</div>
+  <div id="otpSection" style="margin-top:36px">
+    <div style="font-size:13px;color:#5F665C;margin-bottom:14px">Enter the 4-digit code we sent you</div>
+    <div style="display:flex;gap:12px">
+      <div style="width:56px;height:60px;border:1.5px solid #9CAF88;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:#212822;background:#fff">2</div>
+      <div style="width:56px;height:60px;border:1.5px solid #9CAF88;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:#212822;background:#fff">4</div>
+      <div style="width:56px;height:60px;border:1.5px solid #9CAF88;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:#212822;background:#fff">7</div>
+      <div style="width:56px;height:60px;border:1.5px solid #9CAF88;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:#212822;background:#fff">1</div>
+    </div>
+    <div style="font-size:12.5px;color:#9DA399;margin-top:14px">Didn't get a code? <a href="#" style="color:#586851">Resend</a></div>
+    <div onclick="showScreen('verified')" style="margin-top:22px;background:#212822;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Verify &amp; continue</div>
+  </div>
+</div>
+</div>
+
+<div class="screen" id="screen-pro-note">
+<div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 32px;text-align:center;background:#FAF9F5">
+  <div style="font-size:40px;margin-bottom:16px">✨</div>
+  <div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;font-weight:500">Professional sign-up lives in the Konjo Professional App</div>
+  <div style="font-size:13.5px;color:#5F665C;margin-top:10px;line-height:1.5">This onboarding flow is for clients. Open the Professional App design to continue as a specialist.</div>
+  <div onclick="showScreen('role-select')" style="margin-top:24px;background:#586851;color:#fff;padding:14px 24px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer">Back</div>
+</div>
+</div>
+
+<div class="screen" id="screen-verified">
+<div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 32px;text-align:center;background:#FAF9F5">
+  <div style="width:64px;height:64px;border-radius:50%;background:#9CAF88;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+  </div>
+  <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">You're verified</div>
+  <div style="font-size:13.5px;color:#5F665C;margin-top:8px;line-height:1.5">Your phone number is confirmed. The Home screen continues in the full Konjo Client App design.</div>
+</div>
+</div>
+
+</div>
+</div>
+<script>
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
+  document.getElementById('screen-'+id).classList.add('active');
+}
+</script>
+</body>
+</html>

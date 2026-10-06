@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="412" height="892" viewBox="0 0 412 892" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="role" x1="206" y1="0" x2="206" y2="892" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#212822" stop-opacity="0.50"/>
+      <stop offset="0.40" stop-color="#212822" stop-opacity="0.65"/>
+      <stop offset="0.78" stop-color="#151B14" stop-opacity="0.94"/>
+      <stop offset="1" stop-color="#15201A"/>
+    </linearGradient>
+  </defs>
+  <rect width="412" height="892" fill="url(#role)"/>
+</svg>

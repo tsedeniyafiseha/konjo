@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-tint":"#306761","surface-container":"#e4f1ed","on-primary-container":"#84bbb3","tertiary-container":"#663727","inverse-primary":"#99d1c9","on-secondary-fixed-variant":"#604100","outline":"#707977","on-primary-fixed":"#00201d","on-primary":"#ffffff","secondary-container":"#ffbe48","on-surface":"#131e1c","primary-fixed":"#b5ede5","primary":"#00342f","primary-fixed-dim":"#99d1c9","tertiary":"#4b2213","inverse-surface":"#273330","primary-container":"#0f4c46","on-secondary":"#ffffff","surface-container-lowest":"#ffffff","tertiary-fixed":"#ffdbd0","on-background":"#131e1c","on-surface-variant":"#404947","on-tertiary-container":"#e3a18c","surface-container-high":"#deebe7","on-tertiary-fixed-variant":"#6a3a2a","surface-dim":"#d0ddd9","error":"#ba1a1a","on-secondary-fixed":"#281900","secondary-fixed-dim":"#fcbb45","surface-container-highest":"#d9e5e2","surface":"#f0fcf8","inverse-on-surface":"#e7f3f0","surface-bright":"#f0fcf8","tertiary-fixed-dim":"#fbb6a0","background":"#f0fcf8","on-error":"#ffffff","outline-variant":"#bfc8c6","error-container":"#ffdad6","on-primary-fixed-variant":"#144f49","on-secondary-container":"#714e00","on-tertiary-fixed":"#341004","on-tertiary":"#ffffff","surface-container-low":"#eaf6f3","secondary-fixed":"#ffdeac","secondary":"#7e5700","surface-variant":"#d9e5e2","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","space-xl":"2rem","margin":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-md":"1rem","space-sm":"0.5rem"},"fontFamily":{"headline-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"display":["Inter"],"label-md":["Inter"],"label-sm":["Inter"],"price-md":["Inter"],"price-lg":["Inter"],"headline-md":["Inter"]},"fontSize":{"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"body-lg":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"400"}],"body-sm":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"price-md":["16px",{"lineHeight":"22px","letterSpacing":"-0.01em","fontWeight":"600"}],"price-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-16 px-space-md flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Konjo Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Uvciip7rThMzq6gg2kVv3IEGk03EgbdMyK7mXpxIW7dclBVcWb1i4y5CevvEKE8XYX96N1jgen5_v9_pGEAC_RoqywIi1TPUhH57fI0N-9NJ1NoR6Fj_aZQGv1NcFhTiFeVrN-DWVWL2TqeNvrBrfV0_hcedkClY-aDLYHdVPz-QCzWyS42nKRN_MSGNU93aT6Kvz8FS5rTMXXSV5eV50S3cT3CmGXAUe7ylZLCANPhS2Qq3f1ZD_s"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">Konjo</span><span class="font-label-sm text-label-sm text-on-surface-variant">Operations HQ · Addis Ababa</span></div></div><nav class="flex-1 px-space-sm py-space-md flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-xl shadow-sm"><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="operations-dispatch" href="#">Operations & Dispatch</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="specialist-verification-queue" href="#">Specialist Verification & Queue</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="escrow-telebirr-settlements" href="#">Escrow & Telebirr Settlements</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="bookings-disputes" href="#">Bookings & Disputes</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="zone-pricing-rules" href="#">Zone & Pricing Rules</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="platform-analytics" href="#">Platform Analytics</a></nav></div><div class="p-space-sm bg-surface-container-low"><div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-lowest"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col flex-1 min-w-0"><div class="flex items-center justify-between"><span class="font-label-md text-label-md text-on-surface truncate font-semibold">Abebe K.</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Super Admin</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[14px]">verified</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Fayda Cleared · Addis</span></div></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-10 pr-space-md bg-surface-container-low text-on-surface placeholder-on-surface-variant rounded-xl font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Search specialists, bookings #KJ, Fayda FIN, phone..." type="search"/></div><div class="hidden xl:flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-high whitespace-nowrap"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface">Addis Live: 42 Active Pros · 18 In-Transit</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-surface-container-low p-1 rounded-xl"><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">All Zones</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Bole</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">CMC</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Kazanchis</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Old Airport</button></div><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-surface-tint"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">Telebirr Live · 99.9%</span></div><div class="relative"><button class="w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary-container"></span></button></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<div class="p-space-lg max-w-7xl mx-auto w-full flex flex-col gap-space-xl">
+<!-- Top Context & Action Bar -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-xs">
+<span class="px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">Tariff & Geospatial Rules v4.2</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Live Production Sync · Addis Ababa Central</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Sub-City Zones & Dynamic Pricing Engine</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Configure Addis Ababa geographic boundaries, travel compensation surcharges, peak-hour surge multipliers, and minimum specialist commission corridors.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm self-start xl:self-auto">
+<button class="h-10 px-space-md rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center gap-space-xs shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+          Export Tariff Policy (PDF)
+        </button>
+<div class="flex items-center gap-space-xs h-10 px-space-md rounded-xl bg-surface-container text-on-surface shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">bolt</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Global Surge:</span>
+<select class="bg-transparent font-label-md text-label-md text-primary font-semibold focus:outline-none cursor-pointer" id="globalSurgeSelect">
+<option value="1.0">Normal (1.0x)</option>
+<option value="1.15">Bole Peak (1.15x)</option>
+<option value="1.25">High Rain Surge (1.25x)</option>
+<option value="1.5">Holiday Emergency (1.5x)</option>
+</select>
+</div>
+<button class="h-10 px-space-md rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md flex items-center gap-space-xs shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">add_location_alt</span>
+          + Add Sub-City Zone
+        </button>
+</div>
+</div>
+<!-- 4 KPI Stat Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- KPI 1 -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Active Operating Zones</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">map</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-display text-display text-primary">8</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Sub-Cities</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant truncate">Bole, CMC, Kazanchis, Old Airport, Sarbet, Ayat, Megenagna, Summit</p>
+<div class="mt-space-sm flex items-center gap-1.5 text-surface-tint font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+          100% municipal coverage
+        </div>
+</div>
+<!-- KPI 2 -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Avg Travel Fee Surcharge</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">local_taxi</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-medium">ETB</span>
+<span class="font-display text-display text-primary">185</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">100% routed directly to specialist Feres/Ride transit</p>
+<div class="mt-space-sm flex items-center gap-1.5 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">swap_horiz</span>
+          Zero platform commission cut
+        </div>
+</div>
+<!-- KPI 3 -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Active Surge Multiplier</span>
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-display text-display text-secondary">1.15x</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Bole Peak Braiding hours active</p>
+<div class="mt-space-sm flex items-center gap-1.5 text-secondary font-label-sm text-label-sm font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-ping"></span>
+          4 zones in evening rush window
+        </div>
+</div>
+<!-- KPI 4 -->
+<div class="relative overflow-hidden rounded-xl bg-surface-container-lowest p-space-md shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Specialist Min Rate Floor</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">shield</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-medium">ETB</span>
+<span class="font-display text-display text-primary">600</span>
+</div>
+<p class="mt-space-xs font-body-sm text-body-sm text-on-surface-variant">Ensuring living wage compliance in Addis Ababa</p>
+<div class="mt-space-sm flex items-center gap-1.5 text-surface-tint font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">balance</span>
+          Fayda verified guarantee
+        </div>
+</div>
+</div>
+<!-- Main Section 1: Interactive Zone Configurator & Addis Ababa Sub-City Matrix -->
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary font-semibold">SECTION 01</span>
+<span class="text-outline-variant font-label-sm text-label-sm">/</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">GEOGRAPHIC SURCHARGES</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Active Addis Ababa Sub-City Matrix</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Filter By:</span>
+<div class="inline-flex rounded-xl bg-surface-container p-1 text-on-surface">
+<button class="px-space-sm py-1 rounded-lg bg-surface-container-lowest font-label-sm text-label-sm text-primary shadow-sm">All Zones (8)</button>
+<button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface">Central Corridor</button>
+<button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface">Eastern Sub-Cities</button>
+</div>
+</div>
+</div>
+<!-- Grid of Zones with Visual Micro-Map & Controls -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md">
+<!-- Left Side: Interactive Map Visual Card -->
+<div class="lg:col-span-4 rounded-xl bg-surface-container-lowest p-space-md flex flex-col justify-between shadow-sm">
+<div class="flex flex-col gap-space-xs mb-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Sub-City Boundary Heatmap</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-tint/10 text-surface-tint font-label-sm text-label-sm">GPS Centroid</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time specialist telemetry from Meskel Flower to Ayat Ring Road.</p>
+</div>
+<!-- Static Map Component -->
+<div class="w-full h-72 rounded-xl bg-cover bg-center relative overflow-hidden shadow-inner flex flex-col justify-between p-space-sm" data-location="Bole, Addis Ababa, Ethiopia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRaV2StUYVbe5CwQdDnCXjagz2X0w7t9B1iZw6YadWW9mUhZajjY3X1OimcmoUW_6jinz0MFT69ed4d2IZ1ZyMT726nO7pSroymUlUaRVomO0QI8WehHdxVc34EInJ4BgchX_TxC105qkU3bZnQsxkyApByra7wUN__xMfHaCOZhKTwMj_u7X2YSX2m-BRVx-vzpMnU2YeX-EsBmrju6B0vUlzcMXfCVEQmv-shgZRpgjnXwe6rUE')">
+<div class="flex items-center justify-between">
+<span class="px-space-sm py-1 rounded-md bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-label-sm text-primary shadow-sm flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+                Bole Corridor (Surge Active)
+              </span>
+<span class="px-space-sm py-1 rounded-md bg-primary text-on-primary font-label-sm text-label-sm shadow-sm">
+                42 Live Pros
+              </span>
+</div>
+<div class="bg-surface-container-lowest/95 backdrop-blur-md p-space-sm rounded-lg shadow-md flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-medium">Bole Road · In-Transit Buffer</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">+20 min auto-added during peak hours</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[20px]">traffic</span>
+</div>
+</div>
+<div class="mt-space-md grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Highest Transit Fee</span>
+<span class="font-price-md text-price-md text-primary mt-1">ETB 250</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Summit & Ayat Zone</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lowest Density Zone</span>
+<span class="font-price-md text-price-md text-secondary mt-1">8 Online</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Old Airport / Sarbet</span>
+</div>
+</div>
+</div>
+<!-- Right Side: Zone Configurations -->
+<div class="lg:col-span-8 flex flex-col gap-space-sm">
+<!-- Zone 1: Bole -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">apartment</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Bole Sub-City</h3>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm font-medium">Peak Surge +15%</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-tint/10 text-surface-tint font-label-sm text-label-sm">High Demand</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Atlas · Medhanialem · Rwanda · Olympia</span>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface">Base Travel: <strong class="text-primary font-price-md text-price-md">ETB 150</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface">Surge Window: <strong>16:00 - 20:00</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<strong>18</strong> Specialists Online
+                  </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-end md:self-center shrink-0">
+<button class="h-9 px-space-sm rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" type="button">
+                Edit Rates
+              </button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Zone 2: Kazanchis & ECA -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Kazanchis & ECA Diplomatic Corridor</h3>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Surge 1.0x (Standard)</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">UN-ECA · Hilton Area · Menelik II Ave · Bambis</span>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface">Base Travel: <strong class="text-primary font-price-md text-price-md">ETB 180</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface">Security Clearance: <strong>Fayda FIN Verified</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<strong>12</strong> Specialists Online
+                  </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-end md:self-center shrink-0">
+<button class="h-9 px-space-sm rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" type="button">
+                Edit Rates
+              </button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Zone 3: CMC & Ayat -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">holiday_village</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">CMC & Ayat Residential Corridor</h3>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">+ETB 50 Ring Road Tier</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Ayat Zone 2 · CMC St. Michael · Safari · Tsehay Real Estate</span>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface">Base Travel: <strong class="text-primary font-price-md text-price-md">ETB 220</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface">Transit Allowance: <strong>Feres direct pass</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<strong>14</strong> Specialists Online
+                  </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-end md:self-center shrink-0">
+<button class="h-9 px-space-sm rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" type="button">
+                Edit Rates
+              </button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Zone 4: Old Airport & Sarbet -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Old Airport & Sarbet (Embassy Zone)</h3>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">Premium Quality Tier</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Vauxhall · African Union Quarter · South Africa St · Karl Square</span>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface">Base Travel: <strong class="text-primary font-price-md text-price-md">ETB 200</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface">Specialist Minimum: <strong>4.8+ Star Rating</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<strong>8</strong> Specialists Online
+                  </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-end md:self-center shrink-0">
+<button class="h-9 px-space-sm rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" type="button">
+                Edit Rates
+              </button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Zone 5: Megenagna & Summit (Expansion Zone) -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs flex-wrap">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Megenagna & Summit (Expansion Zone)</h3>
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm">Pilot Active</span>
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm">-ETB 50 Subsidised</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Megenagna Roundabout · Summit Condominium · Gurd Shola</span>
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 mt-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface">Base Travel: <strong class="text-primary font-price-md text-price-md">ETB 250</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface">Platform Growth Subsidy: <strong>Active (-ETB 50)</strong></span>
+<span class="text-outline-variant">·</span>
+<span class="font-body-sm text-body-sm text-on-surface flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<strong>6</strong> Specialists Online
+                  </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-end md:self-center shrink-0">
+<button class="h-9 px-space-sm rounded-lg bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" type="button">
+                Edit Rates
+              </button>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Section 2: Service Minimum Rate Corridors & Commission Tiers -->
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary font-semibold">SECTION 02</span>
+<span class="text-outline-variant font-label-sm text-label-sm">/</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">COMMISSION MATRIX</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Service Minimum Rate Corridors & Commission Tiers</h2>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Protects living wages while maintaining transparent Telebirr platform take-rates.</span>
+</div>
+<!-- High polish responsive table container -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+<th class="py-3.5 px-space-md font-semibold">Service Category & Scope</th>
+<th class="py-3.5 px-space-md font-semibold">Living Wage Floor</th>
+<th class="py-3.5 px-space-md font-semibold">Addis Market Corridor</th>
+<th class="py-3.5 px-space-md font-semibold">Platform Commission</th>
+<th class="py-3.5 px-space-md font-semibold">Specialist Net (Min)</th>
+<th class="py-3.5 px-space-md font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-transparent font-body-sm text-body-sm">
+<!-- Row 1: Box Braids -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded-lg object-cover shrink-0" data-alt="Close up photograph of neat artisan Ethiopian box braids with clean parted geometric sections, soft studio side lighting, high resolution salon portfolio style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOJ5osmOQ8QfxpVHe6x9roIr21kMtyGo0jwzFmRspmlHIdfqrN0Dh8FtdDFCQ0t0XyykUG-_jaMSF9atO1e6pfMU7q-eVALHqQw5BMu8WxXW7F64T5b35oOXiWJUEk51BfBZI_IYEx965XaxHd4rn-1W3H9gVxwfmZMoxA8Z0Q579j4XV_VIh1E0vHJEV3v8gyVp6UeQG6sCEp03RPyT5rnspFioxn3ujgXD2hKTXc-i6_H-lUgzA"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Box Braids / Knotless</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Includes hair prep & tension-free finishing (3.5 - 5 hrs)</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-price-md text-price-md text-primary">
+<span>ETB</span>
+<span>1,600</span>
+</div>
+<span class="font-label-sm text-label-sm text-surface-tint">Verified Minimum</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-body-md text-body-md text-on-surface font-medium">ETB 1,800 - 2,500</span>
+<div class="w-32 h-1.5 rounded-full bg-surface-container mt-1.5 overflow-hidden">
+<div class="w-3/4 h-full bg-primary rounded-full"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-md text-label-md text-primary font-semibold">15%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">Telebirr escrow split</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-price-md text-price-md text-surface-tint">ETB 1,360</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">+ Travel fee payout</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="h-8 px-space-sm rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-label-sm text-label-sm" type="button">
+                    Configure
+                  </button>
+</td>
+</tr>
+<!-- Row 2: Traditional Shuruba -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded-lg object-cover shrink-0" data-alt="Intricate traditional Ethiopian Shuruba cornrows styled on a model with elegant cultural jewelry, warm soft ambient lighting, high end editorial photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkzkWWC_tFosuOzyhQnuj77P9tHM3jryKGqovndgB2VPaKk4hFdq4vlrhYmnNS0PLoWttLRGin43-4fUDBhG6GTwC_mNQ4xBquaVKcP0TLkU6wV-5eC7CIVAbsQamJgL8gDqES65CHTUlaUSYSsqkmseZiPz6AS_ZsQOy5JLJQ9JAtdwR0_lBsR8JDrRDfFTYdBYH7G6FJYHMF7-qUcMpm1P77Fu6Q0PE66cHXUiwHbGnc8egvBcY"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Cornrows / Traditional Shuruba</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Classic Habesha hair artistry, bridal & festive styling</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-price-md text-price-md text-primary">
+<span>ETB</span>
+<span>800</span>
+</div>
+<span class="font-label-sm text-label-sm text-surface-tint">Verified Minimum</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-body-md text-body-md text-on-surface font-medium">ETB 900 - 1,400</span>
+<div class="w-32 h-1.5 rounded-full bg-surface-container mt-1.5 overflow-hidden">
+<div class="w-2/3 h-full bg-primary rounded-full"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-md text-label-md text-primary font-semibold">15%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">Telebirr escrow split</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-price-md text-price-md text-surface-tint">ETB 680</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">+ Travel fee payout</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="h-8 px-space-sm rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-label-sm text-label-sm" type="button">
+                    Configure
+                  </button>
+</td>
+</tr>
+<!-- Row 3: Massage -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-12 h-12 rounded-lg object-cover shrink-0" data-alt="Serene home wellness setup with organic aromatherapy oils, white folded towels, natural eucalyptus sprig and soothing warm morning light in an Addis Ababa residence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD94CzhtVOmjp3YGj2T6G_GY81rRLaA6BC2Fa-3dgliLOxHrPeVT6wRhEkbM4YqME9jiyngL1SgxZ4ay6z3NgNehwJujcxRk6nVxr5FWuLyTCDaikTEusixjGufWY0J56snXC4fiwXjLNmKsJ9aJFhP4q3nhqOljowWqPdCZ8uTAGkWYNbKTRYRlqHLmeD8aALDOS6uwmjTkBAaN1FvSeyF7-LvB_oSs0JBBpiNI2VeFC0Mr3UxU3w"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">In-Home Massage & Aromatherapy</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Includes mobile table, organic oils, and sanitary sanitization</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-price-md text-price-md text-primary">
+<span>ETB</span>
+<span>1,400</span>
+</div>
+<span class="font-label-sm text-label-sm text-surface-tint">Verified Minimum</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-body-md text-body-md text-on-surface font-medium">ETB 1,800 - 2,800</span>
+<div class="w-32 h-1.5 rounded-full bg-surface-container mt-1.5 overflow-hidden">
+<div class="w-4/5 h-full bg-primary rounded-full"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-semibold">18%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">Insurance & equipment cover</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-price-md text-price-md text-surface-tint">ETB 1,148</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">+ Travel fee payout</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="h-8 px-space-sm rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-label-sm text-label-sm" type="button">
+                    Configure
+                  </button>
+</td>
+</tr>
+<!-- Row 4: Bridal Package -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">diamond</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Bridal Package (Hair + Henna + Makeup)</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Multi-specialist team dispatch for full wedding entourage</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-price-md text-price-md text-primary">
+<span>ETB</span>
+<span>3,000</span>
+</div>
+<span class="font-label-sm text-label-sm text-surface-tint">Verified Minimum</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-body-md text-body-md text-on-surface font-medium">ETB 3,800 - 6,000</span>
+<div class="w-32 h-1.5 rounded-full bg-surface-container mt-1.5 overflow-hidden">
+<div class="w-full h-full bg-secondary rounded-full"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-md text-label-md text-primary font-semibold">15%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">Concierge support guarantee</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-price-md text-price-md text-surface-tint">ETB 2,550</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">+ Multi-transit payout</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="h-8 px-space-sm rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-label-sm text-label-sm" type="button">
+                    Configure
+                  </button>
+</td>
+</tr>
+<!-- Row 5: Men's Grooming -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">content_cut</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Men's Grooming & Barbering</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Precision fade, hot towel beard sculpting & hair wash</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-price-md text-price-md text-primary">
+<span>ETB</span>
+<span>600</span>
+</div>
+<span class="font-label-sm text-label-sm text-surface-tint">Verified Minimum</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-body-md text-body-md text-on-surface font-medium">ETB 800 - 1,200</span>
+<div class="w-32 h-1.5 rounded-full bg-surface-container mt-1.5 overflow-hidden">
+<div class="w-1/2 h-full bg-primary rounded-full"></div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="px-2.5 py-1 rounded-full bg-surface-container font-label-md text-label-md text-primary font-semibold">12%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block mt-0.5">High velocity tier</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-price-md text-price-md text-surface-tint">ETB 528</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant block">+ Travel fee payout</span>
+</td>
+<td class="py-space-md px-space-md text-right whitespace-nowrap">
+<button class="h-8 px-space-sm rounded-lg bg-surface-container text-primary hover:bg-surface-container-high font-label-sm text-label-sm" type="button">
+                    Configure
+                  </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Main Section 3: Dynamic Surge & Traffic Rule Builder -->
+<div class="flex flex-col gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-primary font-semibold">SECTION 03</span>
+<span class="text-outline-variant font-label-sm text-label-sm">/</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">DYNAMIC AUTOMATION</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight">Dynamic Surge & Traffic Buffer Automation Rules</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Automation Rule 1: Addis Rush Hour -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Addis Ababa Rush Hour Travel Buffer Rule</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-tint/10 text-surface-tint font-label-sm text-label-sm font-medium">Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Auto-expand specialist calendar transit buffers by <strong>+20 minutes</strong> between <strong>16:30 and 19:30</strong> on high-congestion corridors: Gotera Interchange, Meskel Square, and Bole Road routes.
+            </p>
+<div class="flex flex-wrap items-center gap-2 pt-space-xs">
+<span class="px-2 py-1 rounded-md bg-surface-container font-label-sm text-label-sm text-on-surface">Route: Gotera - Meskel</span>
+<span class="px-2 py-1 rounded-md bg-surface-container font-label-sm text-label-sm text-on-surface">Route: Bole Ring Road</span>
+<span class="px-2 py-1 rounded-md bg-surface-container font-label-sm text-label-sm text-on-surface">+20 min buffer</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Trigger: Automated by Clock & GPS Telemetry</span>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline" type="button">Edit Parameters</button>
+</div>
+</div>
+<!-- Automation Rule 2: Severe Weather / Rain -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">rainy</span>
+</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Severe Weather / Rain Surcharge Rule</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary/15 text-secondary font-label-sm text-label-sm font-medium">Season Standby</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Auto add <strong>+ETB 100 travel allowance</strong> directly credited to the assigned practitioner during heavy rain spells in Addis Ababa (Kiremt and Belg seasonal storm alerts via Addis Meteorology API).
+            </p>
+<div class="flex flex-wrap items-center gap-2 pt-space-xs">
+<span class="px-2 py-1 rounded-md bg-surface-container font-label-sm text-label-sm text-on-surface">+ETB 100 flat transit grant</span>
+<span class="px-2 py-1 rounded-md bg-surface-container font-label-sm text-label-sm text-on-surface">Kiremt & Belg Mode</span>
+<span class="px-2 py-1 rounded-md bg-surface-container font-label-sm text-label-sm text-on-surface">Specialist Safety</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Trigger: Precipitation sensor > 12mm/hr</span>
+<button class="font-label-sm text-label-sm text-primary font-semibold hover:underline" type="button">Configure Sensor</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Persistent Floating Save / Publish Bar -->
+<div class="sticky bottom-4 z-30 w-full p-space-md rounded-2xl bg-surface-container-lowest/95 backdrop-blur-xl shadow-xl flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-3 h-3 rounded-full bg-surface-tint"></span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Ready to deploy changes</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Updates will propagate to 42 active specialists and customer booking flows instantly.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<button class="h-11 px-space-md rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md" type="button">
+          Discard Changes
+        </button>
+<button class="h-11 px-space-lg rounded-xl bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md flex items-center gap-space-xs shadow-md" id="publishBtn" type="button">
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+          Publish Rules to Live App
+        </button>
+</div>
+</div>
+</div>
+<script>
+    const publishBtn = document.getElementById('publishBtn');
+    if (publishBtn) {
+      publishBtn.addEventListener('click', () => {
+        publishBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span> Publishing to Live DB...';
+        setTimeout(() => {
+          publishBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">done_all</span> Live Rules Updated!';
+          publishBtn.classList.remove('bg-primary');
+          publishBtn.classList.add('bg-surface-tint');
+          setTimeout(() => {
+            publishBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">cloud_upload</span> Publish Rules to Live App';
+            publishBtn.classList.remove('bg-surface-tint');
+            publishBtn.classList.add('bg-primary');
+          }, 3000);
+        }, 800);
+      });
+    }
+  </script>
+</div></main></div></body></html>

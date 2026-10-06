@@ -1,0 +1,18 @@
+project_id = "konjo-client"
+
+# Enable phone identities and require the SMS OTP before Supabase issues a
+# session. Delivery is replaced by the signed Send SMS hook below.
+[auth.sms]
+enable_signup = true
+enable_confirmations = true
+
+# Hosted Supabase Auth calls this Edge Function whenever it needs to deliver a
+# phone OTP. The signing secret is supplied only by the deployment shell and is
+# never committed to source control.
+[auth.hook.send_sms]
+enabled = true
+uri = "https://uikwhmkkfidckcejllrk.supabase.co/functions/v1/send-sms"
+secrets = "env(SEND_SMS_HOOK_SECRET)"
+
+[functions.send-sms]
+verify_jwt = false

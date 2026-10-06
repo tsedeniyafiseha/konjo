@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-tint":"#306761","surface-container":"#e4f1ed","on-primary-container":"#84bbb3","tertiary-container":"#663727","inverse-primary":"#99d1c9","on-secondary-fixed-variant":"#604100","outline":"#707977","on-primary-fixed":"#00201d","on-primary":"#ffffff","secondary-container":"#ffbe48","on-surface":"#131e1c","primary-fixed":"#b5ede5","primary":"#00342f","primary-fixed-dim":"#99d1c9","tertiary":"#4b2213","inverse-surface":"#273330","primary-container":"#0f4c46","on-secondary":"#ffffff","surface-container-lowest":"#ffffff","tertiary-fixed":"#ffdbd0","on-background":"#131e1c","on-surface-variant":"#404947","on-tertiary-container":"#e3a18c","surface-container-high":"#deebe7","on-tertiary-fixed-variant":"#6a3a2a","surface-dim":"#d0ddd9","error":"#ba1a1a","on-secondary-fixed":"#281900","secondary-fixed-dim":"#fcbb45","surface-container-highest":"#d9e5e2","surface":"#f0fcf8","inverse-on-surface":"#e7f3f0","surface-bright":"#f0fcf8","tertiary-fixed-dim":"#fbb6a0","background":"#f0fcf8","on-error":"#ffffff","outline-variant":"#bfc8c6","error-container":"#ffdad6","on-primary-fixed-variant":"#144f49","on-secondary-container":"#714e00","on-tertiary-fixed":"#341004","on-tertiary":"#ffffff","surface-container-low":"#eaf6f3","secondary-fixed":"#ffdeac","secondary":"#7e5700","surface-variant":"#d9e5e2","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","space-xl":"2rem","margin":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-md":"1rem","space-sm":"0.5rem"},"fontFamily":{"headline-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"display":["Inter"],"label-md":["Inter"],"label-sm":["Inter"],"price-md":["Inter"],"price-lg":["Inter"],"headline-md":["Inter"]},"fontSize":{"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"body-lg":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"400"}],"body-sm":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"price-md":["16px",{"lineHeight":"22px","letterSpacing":"-0.01em","fontWeight":"600"}],"price-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-16 px-space-md flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Konjo Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Uvciip7rThMzq6gg2kVv3IEGk03EgbdMyK7mXpxIW7dclBVcWb1i4y5CevvEKE8XYX96N1jgen5_v9_pGEAC_RoqywIi1TPUhH57fI0N-9NJ1NoR6Fj_aZQGv1NcFhTiFeVrN-DWVWL2TqeNvrBrfV0_hcedkClY-aDLYHdVPz-QCzWyS42nKRN_MSGNU93aT6Kvz8FS5rTMXXSV5eV50S3cT3CmGXAUe7ylZLCANPhS2Qq3f1ZD_s"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">Konjo</span><span class="font-label-sm text-label-sm text-on-surface-variant">Operations HQ · Addis Ababa</span></div></div><nav class="flex-1 px-space-sm py-space-md flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-xl shadow-sm"><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="operations-dispatch" href="#">Operations & Dispatch</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="specialist-verification-queue" href="#">Specialist Verification & Queue</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="escrow-telebirr-settlements" href="#">Escrow & Telebirr Settlements</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="bookings-disputes" href="#">Bookings & Disputes</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="zone-pricing-rules" href="#">Zone & Pricing Rules</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="platform-analytics" href="#">Platform Analytics</a></nav></div><div class="p-space-sm bg-surface-container-low"><div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-lowest"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col flex-1 min-w-0"><div class="flex items-center justify-between"><span class="font-label-md text-label-md text-on-surface truncate font-semibold">Abebe K.</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Super Admin</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[14px]">verified</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Fayda Cleared · Addis</span></div></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-10 pr-space-md bg-surface-container-low text-on-surface placeholder-on-surface-variant rounded-xl font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Search specialists, bookings #KJ, Fayda FIN, phone..." type="search"/></div><div class="hidden xl:flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-high whitespace-nowrap"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface">Addis Live: 42 Active Pros · 18 In-Transit</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-surface-container-low p-1 rounded-xl"><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">All Zones</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Bole</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">CMC</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Kazanchis</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Old Airport</button></div><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-surface-tint"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">Telebirr Live · 99.9%</span></div><div class="relative"><button class="w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary-container"></span></button></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full px-space-lg py-space-md space-y-space-lg">
+<!-- Breadcrumb & Administrative Header -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md">
+<div class="space-y-1">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Operations</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-sm text-label-sm">Trust & Safety</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">Dispute Arbitration</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Bookings & Dispute Mediation Console</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-3xl">
+        Arbitration workspace for appointment issues, escrow hold releases, specialist late arrivals, and service quality disputes across Addis Ababa.
+      </p>
+</div>
+<!-- Top Action Cluster -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<a class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface text-label-sm font-label-sm transition-colors shadow-sm" href="#">
+<span class="material-symbols-outlined text-[16px] text-surface-tint">policy</span>
+<span>Mediation Policy Manual (NBE/MoT compliant)</span>
+</a>
+<button class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Log Inbound Incident</span>
+</button>
+</div>
+</div>
+<!-- KPI / Metric Highlights (4 Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- Metric 1 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Active Disputes Under Review</span>
+<span class="w-7 h-7 rounded-lg bg-secondary-container/20 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-2">
+<span class="font-display text-display text-on-surface font-semibold">7</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">3 High Priority</span>
+</div>
+<div class="mt-2 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-surface-tint">schedule</span>
+          Avg resolution: 42 mins
+        </span>
+<span class="text-secondary font-medium">Active Addis Queue</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Escrow in Contention</span>
+<span class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-2">
+<span class="font-display text-display text-primary font-semibold">ETB 18,450</span>
+</div>
+<div class="mt-2 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="text-surface-tint">Held in Telebirr Merchant Vault</span>
+<span class="font-medium text-on-surface">100% Protected</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mediation Resolution Rate</span>
+<span class="w-7 h-7 rounded-lg bg-surface-container-low flex items-center justify-center text-surface-tint">
+<span class="material-symbols-outlined text-[16px]">handshake</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-2">
+<span class="font-display text-display text-on-surface font-semibold">94.2%</span>
+<span class="text-surface-tint font-label-sm text-label-sm flex items-center">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> +1.8%
+        </span>
+</div>
+<div class="mt-2 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Mutual sign-off achieved</span>
+<span class="text-on-surface">Past 30 days</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Telebirr Chargeback Rate</span>
+<span class="w-7 h-7 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[16px]">account_balance_wallet</span>
+</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-2">
+<span class="font-display text-display text-on-surface font-semibold">0.2%</span>
+<span class="text-surface-tint font-label-sm text-label-sm">Optimal</span>
+</div>
+<div class="mt-2 flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Industry benchmark < 1.0%</span>
+<span class="text-primary font-medium">Zero penalties</span>
+</div>
+</div>
+</div>
+<!-- Status Filter Segmented Navigation -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest p-1.5 rounded-xl shadow-sm">
+<div class="inline-flex rounded-lg bg-surface-container-low p-1 gap-1">
+<button class="px-3.5 py-1.5 rounded-md bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm font-semibold" type="button">
+        Active Disputes (7)
+      </button>
+<button class="px-3.5 py-1.5 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" type="button">
+        Pending Review (12)
+      </button>
+<button class="px-3.5 py-1.5 rounded-md text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" type="button">
+        Resolved (148)
+      </button>
+</div>
+<div class="flex items-center gap-space-sm pr-2">
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span>Queue auto-refreshes every 60s</span>
+</div>
+<span class="text-outline-variant">|</span>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</div>
+<!-- Split Workspace: Left Queue & Right Detailed Investigation Dossier -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start pb-space-xl">
+<!-- LEFT PANEL: Dispute Queue (5 Columns) -->
+<div class="lg:col-span-5 space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface">Queue Items</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">3 filtered</span>
+</div>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-on-surface-variant">
+<span>Sort:</span>
+<span class="text-primary font-medium cursor-pointer flex items-center">Urgency <span class="material-symbols-outlined text-[14px]">expand_more</span></span>
+</div>
+</div>
+<!-- Queue Cards List -->
+<div class="space-y-space-sm">
+<!-- Dispute Card 1 (Active / Selected) -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-md transition-all cursor-pointer relative bg-gradient-to-r from-primary-container/10 via-transparent to-transparent">
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">#DSP-4091</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">High Priority</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">In Mediation</span>
+</div>
+<div class="space-y-1 mb-2">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface font-medium">Selamawit T. <span class="text-on-surface-variant font-normal">(Client)</span></span>
+<span class="text-on-surface-variant text-label-sm font-label-sm">vs</span>
+<span class="text-on-surface font-medium">Tigist M. <span class="text-on-surface-variant font-normal">(Pro)</span></span>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Booking #KJ-8849 · Bridal Shuruba</span>
+<span class="font-price-md text-price-md text-primary">ETB 2,400</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low mb-3">
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Claim: Specialist arrived 48 minutes late due to road traffic; client requested 30% discount on final service escrow.
+            </p>
+</div>
+<div class="flex items-center justify-between pt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-surface-tint">location_on</span> Bole Medhanialem
+            </span>
+<span class="flex items-center gap-1 text-secondary font-medium">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span> 11:20 AM today
+            </span>
+</div>
+</div>
+<!-- Dispute Card 2 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">#DSP-4088</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Normal</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">Evidence Submitted</span>
+</div>
+<div class="space-y-1 mb-2">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface font-medium">Meron G. <span class="text-on-surface-variant font-normal">(Client)</span></span>
+<span class="text-on-surface-variant text-label-sm font-label-sm">vs</span>
+<span class="text-on-surface font-medium">Dawit K. <span class="text-on-surface-variant font-normal">(Pro)</span></span>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Booking #KJ-8832 · Barbershop & Grooming</span>
+<span class="font-price-md text-price-md text-primary">ETB 950</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low mb-3">
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Claim: Technician missed requested beard shaping specification; requested re-trim or partial ETB 300 voucher.
+            </p>
+</div>
+<div class="flex items-center justify-between pt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-surface-tint">location_on</span> Kazanchis, Behind UNECA
+            </span>
+<span class="text-on-surface-variant">Yesterday 4:10 PM</span>
+</div>
+</div>
+<!-- Dispute Card 3 -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm hover:shadow-md transition-all cursor-pointer">
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">#DSP-4085</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Normal</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">Pending Client</span>
+</div>
+<div class="space-y-1 mb-2">
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span class="text-on-surface font-medium">Bethlehem A. <span class="text-on-surface-variant font-normal">(Client)</span></span>
+<span class="text-on-surface-variant text-label-sm font-label-sm">vs</span>
+<span class="text-on-surface font-medium">Rahel Y. <span class="text-on-surface-variant font-normal">(Pro)</span></span>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Booking #KJ-8819 · Box Braids</span>
+<span class="font-price-md text-price-md text-primary">ETB 1,800</span>
+</div>
+</div>
+<div class="p-2.5 rounded-lg bg-surface-container-low mb-3">
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2">
+              Claim: Mutual timer discrepancy. Specialist completed 4h service; client logged in-app departure at 3h 15m.
+            </p>
+</div>
+<div class="flex items-center justify-between pt-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-surface-tint">location_on</span> CMC Michael, Zone 3
+            </span>
+<span class="text-on-surface-variant">2 days ago</span>
+</div>
+</div>
+</div>
+<!-- Quick Escalation Protocol Notice -->
+<div class="p-space-md rounded-xl bg-surface-container-low text-on-surface-variant space-y-2">
+<div class="flex items-center gap-2 text-primary font-medium">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md">Addis Escrow Arbitration Policy</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Funds are held in Konjo's national payment gateway escrow. All resolutions below require dual audit verification before Telebirr instant settlement is triggered.
+        </p>
+</div>
+</div>
+<!-- RIGHT PANEL: Detailed Dispute Investigation Dossier (7 Columns) -->
+<div class="lg:col-span-7 space-y-space-md">
+<!-- Main Dossier Container Card -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm space-y-space-lg">
+<!-- Dossier Header Section -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2.5 py-1 rounded-md bg-primary-container text-on-primary font-headline-sm text-headline-sm font-semibold">
+                DSP-4091
+              </span>
+<span class="font-headline-md text-headline-md text-on-surface tracking-tight">Late arrival & timing adjustment</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">schedule</span> Initiated today at 11:20 AM · Assigned Arbiter: <span class="text-primary font-semibold">Abebe K. (Super Admin)</span>
+</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> High Priority SLA: 18m left
+            </span>
+</div>
+</div>
+<!-- Appointment Context Strip -->
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-2">
+<div class="flex flex-wrap items-center justify-between gap-2">
+<span class="font-label-md text-label-md text-primary font-semibold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">spa</span>
+              Booking #KJ-8849 · Bridal Shuruba & Makeup
+            </span>
+<span class="font-price-md text-price-md text-primary">
+              ETB 2,400 <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">+ ETB 200 Travel Fee</span>
+</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-label-sm font-label-sm text-on-surface-variant pt-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-surface-tint">event_available</span>
+<span>Scheduled: Today, 10:30 AM (Duration: 2.5 hrs)</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-surface-tint">pin_drop</span>
+<span>Bole Medhanialem (Villa #12 behind Edna Mall)</span>
+</div>
+</div>
+</div>
+<!-- Two-Party Statement Comparison -->
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Arbitration Statements</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Dual statements collected under penalty of platform suspension</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Client Statement Card -->
+<div class="p-space-md rounded-xl bg-surface-container-low/60 space-y-3 flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary font-semibold font-label-md text-label-md">
+                      ST
+                    </div>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Selamawit T.</div>
+<div class="font-label-sm text-label-sm text-surface-tint flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified</span> Verified Client · 14 Bookings
+                      </div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">11:22 AM</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm shadow-sm">
+                  “Specialist arrived at 11:18 AM when she was supposed to be here at 10:30 AM sharp. My sister's bridal prep schedule was delayed, creating immense stress for the ceremony. I requested an immediate 30% adjustment for tardiness.”
+                </div>
+</div>
+<!-- Evidence attachments preview -->
+<div class="space-y-1.5 pt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Attached Evidence (2 Items):</span>
+<div class="flex items-center gap-2">
+<div class="w-14 h-14 rounded-lg bg-surface-container overflow-hidden relative shadow-sm cursor-pointer group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Close up photograph of a wall clock inside a modern Ethiopian home salon showing 11:19 AM with daylight pouring through windows in soft warm hues" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALR14YyZbC-9FkAu2c9QZEHVz33Ogs0w-mwu1D4KWaObzwJpbaGRlLl-1WxgtuedM9B5969gN0nE86NcaLRT7dwd1DA0GsLlRq7U3sqpLsAgsucK7DcJ_KSpzk_oSaEABdd_feS0llFJy1I06vIWMAGFArzDBe-nRdGzxjYf1F5_7e21jQm3woWgeli_Vd9KtH2Hm6YnKA_Ci8y7p9iSv24xpde-8eDq8a6w4FeVZUUoqKu73uHBU"/>
+<span class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-on-primary">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</span>
+</div>
+<div class="w-14 h-14 rounded-lg bg-surface-container overflow-hidden relative shadow-sm cursor-pointer group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Screenshot of an event organizer prep sheet on an iPad displaying a tight wedding preparation timeline printed in Amharic and English" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2_5JUz-tlIpbw08sX5CC8BG2tk2RCZ8ivh0NaHZ6VnrK24ddDTT0mUSrJHRwps2U1FRnZM48mvgLEgV4c56pCXTdprN0ZHP4uC8-y1NcMupu8PQyn-7Ur9LRX7CP_LBvTMLen9_Ch12yDl4VOxutKsDuMDm4j4GDCL0QYSWgxvjARYI7Pzz5zxU2ew8LCg5q9rkh0OwcokcW2juyiNzPwqIE30CKYbFrtQVASyUwyIa5f_DeIS10"/>
+<span class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-on-primary">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant pl-1">
+                    Clock stamp verified (11:18 AM)
+                  </div>
+</div>
+</div>
+</div>
+<!-- Specialist Statement Card -->
+<div class="p-space-md rounded-xl bg-surface-container-low/60 space-y-3 flex flex-col justify-between">
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-semibold font-label-md text-label-md">
+                      TM
+                    </div>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Tigist M.</div>
+<div class="font-label-sm text-label-sm text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px] text-secondary">verified</span> Fayda Verified · 4.9★ (182 jobs)
+                      </div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">11:35 AM</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm shadow-sm">
+                  “Severe road blockade at Gotera Interchange caused ride diversion. I messaged client via app at 10:15 AM warning of delay. I completed the full 2.5 hr treatment with extra conditioning, delivering immaculate traditional bridal braids.”
+                </div>
+</div>
+<!-- Specialist Finished Proof -->
+<div class="space-y-1.5 pt-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Specialist Portfolio Log (1 Item):</span>
+<div class="flex items-center gap-2">
+<div class="w-14 h-14 rounded-lg bg-surface-container overflow-hidden relative shadow-sm cursor-pointer group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="High detail salon photograph of intricate traditional Ethiopian bridal shuruba braids finished with fine gold hair cuffs and neat side styling in soft studio light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYAvmUTKSTWPu7ZDcg-Cceva9g_UQqrAbGaZajXu3cKeOWZ3_c2nc_dlCIRFQzeDTocgfMK18t6KYNUC04HwD5Fr69ZjFCwlvUo0OVmz_XF-HIWZzlXJyHVGYRLCAXO4LHnu-1Q_DzITCClft4RJDJuKpaeGPoM1YtvomleciTSu3l7mZ5aCYVLm6n1CIB4pb8RYMQ5OwkKFwZ-_hUWvTyIoqV2cusuRN8QnXXAh37z7wdvzpkdz0"/>
+<span class="absolute inset-0 bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-on-primary">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant pl-1">
+                    Complete styling confirmed by client on completion
+                  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Telemetry & Digital Evidence Timeline -->
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">sensors</span>
+              Telemetry & Digital Evidence Log
+            </h3>
+<span class="font-label-sm text-label-sm text-surface-tint font-medium">GPS Geofence Synced</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low space-y-3">
+<div class="flex items-start gap-3">
+<div class="w-6 flex flex-col items-center">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-tint"></span>
+<span class="w-0.5 h-7 bg-surface-container-highest"></span>
+</div>
+<div class="flex-1 -mt-0.5 flex flex-wrap items-center justify-between gap-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">10:05 AM — Specialist transit started</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tapped “I am on my way” in Kazanchis dispatch</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 flex flex-col items-center">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="w-0.5 h-7 bg-surface-container-highest"></span>
+</div>
+<div class="flex-1 -mt-0.5 flex flex-wrap items-center justify-between gap-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">10:15 AM — Delay notification transmitted</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">In-app message sent to client regarding Gotera Ring Road congestion</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 flex flex-col items-center">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-tint"></span>
+<span class="w-0.5 h-7 bg-surface-container-highest"></span>
+</div>
+<div class="flex-1 -mt-0.5 flex flex-wrap items-center justify-between gap-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">11:18 AM — GPS Geofence arrival</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Arrival ping confirmed at Bole Medhanialem (Villa #12)</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 flex flex-col items-center">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+</div>
+<div class="flex-1 -mt-0.5 flex flex-wrap items-center justify-between gap-1">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">11:20 AM – 1:55 PM — Service executed</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Mutual timer completed: 2h 35m (Full treatment verified)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Proposed Resolution & Settlement Adjuster (3 Options) -->
+<div class="space-y-space-sm pt-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Arbitration Settlement Adjuster</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Escrow Total: ETB 2,400 (+ ETB 200 Travel)</span>
+</div>
+<div class="space-y-space-sm" id="settlement-options">
+<!-- Option A -->
+<label class="flex items-start gap-3 p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input class="mt-1 accent-primary" name="settlement" type="radio" value="option-a"/>
+<div class="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Option A: Full Escrow Release to Specialist</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Specialist mitigated tardiness via prior in-app alert and completed full 2.5h scope without quality deficit.</div>
+</div>
+<div class="text-right whitespace-nowrap">
+<span class="font-price-md text-price-md text-primary">ETB 2,600 to Pro</span>
+<div class="font-label-sm text-label-sm text-on-surface-variant">0 ETB to Client</div>
+</div>
+</div>
+</label>
+<!-- Option B (Selected / Recommended) -->
+<label class="flex items-start gap-3 p-space-md rounded-xl bg-surface-container-lowest shadow-md cursor-pointer transition-all bg-gradient-to-r from-secondary-container/10 via-transparent to-transparent">
+<input checked="" class="mt-1 accent-primary" name="settlement" type="radio" value="option-b"/>
+<div class="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Option B: 25% Courtesy Refund to Client via Telebirr</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Recommended</span>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                    ETB 600 goodwill refund to Selamawit T. for 48-min delay + ETB 1,800 service fee & ETB 200 travel fee released to Pro Tigist.
+                  </div>
+</div>
+<div class="text-right whitespace-nowrap">
+<span class="font-price-md text-price-md text-secondary">ETB 600 Refund</span>
+<div class="font-label-sm text-label-sm text-primary font-semibold">ETB 2,000 to Pro</div>
+</div>
+</div>
+</label>
+<!-- Option C -->
+<label class="flex items-start gap-3 p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input class="mt-1 accent-primary" name="settlement" type="radio" value="option-c"/>
+<div class="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Option C: Full Cancellation & Refund to Client</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Treat booking as nullified appointment. Reverses entire ETB 2,600 to client Telebirr wallet.</div>
+</div>
+<div class="text-right whitespace-nowrap">
+<span class="font-price-md text-price-md text-error">ETB 2,600 to Client</span>
+<div class="font-label-sm text-label-sm text-on-surface-variant">0 ETB to Pro</div>
+</div>
+</div>
+</label>
+</div>
+</div>
+<!-- Arbiter Decision Notes & Policy Tags -->
+<div class="space-y-space-sm pt-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-headline-sm text-headline-sm text-on-surface" for="arbiter-notes">Arbitration Findings & Settlement Notes</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Disclosed on client & specialist SMS receipts</span>
+</div>
+<textarea class="w-full p-space-md rounded-xl bg-surface-container-low text-on-surface placeholder-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-inner" id="arbiter-notes" placeholder="Enter formal mediation determination..." rows="3">Punctuality delay of 48 mins verified via GPS geofence. Specialist provided advance notice of Gotera congestion at 10:15 AM and completed full 2.5 hour bridal shuruba styling. 25% courtesy refund (ETB 600) issued to client under Konjo Punctuality Buffer rules, balance ETB 2,000 released immediately to Specialist Tigist M.</textarea>
+<!-- Pre-defined Regulatory / Policy Compliance Tags -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mandated Tags:</span>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+              #PunctualityBuffer
+            </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+              #TrafficExemption
+            </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-primary font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+              #ServiceCompletedInFull
+            </button>
+<button class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container-high transition-colors" type="button">
+              #TelebirrInstantReversal
+            </button>
+</div>
+</div>
+<!-- Action Execution Strip -->
+<div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-surface-container-low text-error hover:bg-error-container/40 font-label-md text-label-md transition-colors" type="button">
+              Decline Claim
+            </button>
+<button class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container font-label-md text-label-md transition-colors" type="button">
+              Request Phone Hearing
+            </button>
+</div>
+<div class="w-full sm:w-auto">
+<button class="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md font-semibold transition-all shadow-md flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Release Partial Escrow & Close Dispute</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Historical Precedents in Bole Medhanialem -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">auto_stories</span>
+</span>
+<div>
+<div class="font-label-md text-label-md text-on-surface font-semibold">Sub-City Precedent: Bole Traffic Buffer</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">3 similar cases resolved this month. Standard practice: 20–25% voucher/refund when notice is provided before 20m grace period.</div>
+</div>
+</div>
+<a class="font-label-sm text-label-sm text-primary font-semibold whitespace-nowrap hover:underline" href="#">
+          Review 3 Cases
+        </a>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for radio selection highlight
+  document.querySelectorAll('input[name="settlement"]').forEach((radio) => {
+    radio.addEventListener('change', (e) => {
+      document.querySelectorAll('#settlement-options > label').forEach((lbl) => {
+        lbl.classList.remove('bg-surface-container-lowest', 'shadow-md', 'bg-gradient-to-r', 'from-secondary-container/10', 'via-transparent', 'to-transparent');
+        lbl.classList.add('bg-surface-container-low');
+      });
+      const selectedLabel = e.target.closest('label');
+      if (selectedLabel) {
+        selectedLabel.classList.remove('bg-surface-container-low');
+        selectedLabel.classList.add('bg-surface-container-lowest', 'shadow-md', 'bg-gradient-to-r', 'from-secondary-container/10', 'via-transparent', 'to-transparent');
+      }
+    });
+  });
+</script></main></div></body></html>

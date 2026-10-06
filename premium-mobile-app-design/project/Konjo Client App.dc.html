@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="ext-resource-dependency" content="./assets/headshot-hanan.png">
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#586851"/><text x="100" y="115" font-family="serif" font-size="56" fill="#fff" text-anchor="middle">K</text></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#EDEAE2}
+a{color:#586851;text-decoration:none}
+a:hover{color:#212822}
+*{box-sizing:border-box}
+::-webkit-scrollbar{display:none}
+input,textarea{font-family:'Plus Jakarta Sans',sans-serif;outline:none}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:56px 24px;background:#EDEAE2;font-family:'Plus Jakarta Sans',sans-serif">
+<x-import component-from-global-scope="AndroidDevice" from="./android-frame.jsx" hint-size="412px,892px">
+<div style="display:flex;flex-direction:column;height:100%;background:#FAF9F5;color:#212822;position:relative">
+<div style="flex:1;overflow:auto">
+
+<sc-if value="{{is_logoSplash}}" hint-placeholder-val="{{true}}">
+<div ref="{{welcomeScrollRef}}" style="position:relative;height:100%;width:100%;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth">
+  <div onClick="{{scrollToBrandIntro}}" style="flex:0 0 100%;scroll-snap-align:start;position:relative;height:100%;background:#8FA073;overflow:hidden;cursor:pointer">
+    <img src="./assets/welcome-splash.png" alt="Konjo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+    <div style="position:absolute;bottom:32px;right:24px;width:48px;height:48px;border-radius:50%;background:rgba(250,249,245,0.18);border:1.5px solid rgba(250,249,245,0.6);display:flex;align-items:center;justify-content:center">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAF9F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+  <div style="flex:0 0 100%;scroll-snap-align:start;position:relative;height:100%;overflow:hidden">
+    <img src="./assets/hero-beauty-welcome.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,40,34,0.2) 0%,rgba(33,40,34,0.4) 55%,rgba(21,27,20,0.92) 100%)"></div>
+    <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 26px 44px">
+      <div style="font-family:'Bodoni Moda',serif;font-size:34px;line-height:1.15;color:#FAF9F5;font-weight:500">Beauty comes to you.</div>
+      <div style="color:rgba(250,249,245,0.88);font-size:14.5px;line-height:1.55;margin-top:12px;max-width:320px">Book trusted beauty, grooming &amp; wellness professionals wherever you are in Addis Ababa.</div>
+      <div style="font-size:11.5px;letter-spacing:0.08em;text-transform:uppercase;color:#9CAF88;margin-top:16px;font-weight:600">Home &nbsp;•&nbsp; Hotel &nbsp;•&nbsp; Office</div>
+      <div onClick="{{goToRoleSelect}}" style="background:#9CAF88;color:#15201A;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;margin-top:24px;cursor:pointer">Get Started</div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_roleSelect}}" hint-placeholder-val="{{false}}">
+<div style="position:relative;height:100%;width:100%;overflow:hidden">
+  <img src="./assets/hero-barber-role.jpeg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,40,34,0.5) 0%,rgba(33,40,34,0.65) 40%,rgba(21,27,20,0.94) 78%,#15201A 100%)"></div>
+  <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 20px 32px;gap:14px">
+    <div style="font-family:'Bodoni Moda',serif;font-size:26px;line-height:1.2;color:#FAF9F5;font-weight:500;margin-bottom:2px">How will you use Konjo?</div>
+    <div style="display:flex;gap:10px">
+      <div style="flex:1;background:rgba(250,249,245,0.96);border-radius:12px;padding:14px;display:flex;flex-direction:column">
+        <div style="font-size:20px;margin-bottom:6px">👩🏾</div>
+        <div style="font-size:14.5px;font-weight:600;color:#212822">I'm a Client</div>
+        <div style="font-size:11.5px;color:#5F665C;line-height:1.4;margin-top:4px;flex:1">I want to discover and book beauty &amp; wellness services.</div>
+        <div onClick="{{goToPhone}}" style="background:#586851;color:#fff;text-align:center;padding:11px 6px;border-radius:6px;font-size:12.5px;font-weight:600;margin-top:12px;cursor:pointer">Continue as Client</div>
+      </div>
+      <div style="flex:1;background:rgba(250,249,245,0.96);border-radius:12px;padding:14px;display:flex;flex-direction:column">
+        <div style="font-size:20px;margin-bottom:6px">✨</div>
+        <div style="font-size:14.5px;font-weight:600;color:#212822">I'm a Professional</div>
+        <div style="font-size:11.5px;color:#5F665C;line-height:1.4;margin-top:4px;flex:1">I offer beauty, grooming or wellness services.</div>
+        <a href="https://konjo-professional-app-76b8b798.vercel.app/" style="background:#fff;border:1.5px solid #586851;color:#586851;text-align:center;padding:11px 6px;border-radius:6px;font-size:12.5px;font-weight:600;margin-top:12px;cursor:pointer;display:block;text-decoration:none">Join as a Professional</a>
+      </div>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_phone}}" hint-placeholder-val="{{false}}">
+<div style="padding:8px 20px 32px">
+  <div style="display:flex;align-items:center;gap:12px;padding:10px 0 28px">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+  </div>
+  <div style="font-family:'Bodoni Moda',serif;font-size:27px;color:#212822;font-weight:500">Enter your phone number</div>
+  <div style="font-size:13.5px;color:#5F665C;margin-top:8px;line-height:1.5">We'll text you a one-time verification code to confirm it's you.</div>
+  <div style="display:flex;align-items:center;gap:10px;margin-top:28px;background:#fff;border:1px solid #E6E8E2;border-radius:6px;padding:14px 16px">
+    <span style="font-size:15px;color:#212822;font-weight:600">+251</span>
+    <div style="width:1px;height:20px;background:#E6E8E2"></div>
+    <input value="{{phone}}" onChange="{{setPhone}}" placeholder="9 12 345 678" style="border:none;flex:1;font-size:15px;color:#212822;background:transparent"/>
+  </div>
+  <div onClick="{{sendCode}}" style="margin-top:20px;background:#9CAF88;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Send code</div>
+  <sc-if value="{{otpPhase}}" hint-placeholder-val="{{false}}">
+  <div style="margin-top:36px">
+    <div style="font-size:13px;color:#5F665C;margin-bottom:14px">Enter the 4-digit code we sent you</div>
+    <div style="display:flex;gap:12px">
+      <div style="width:56px;height:60px;border:1.5px solid #9CAF88;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:#212822;background:#fff">2</div>
+      <div style="width:56px;height:60px;border:1.5px solid #9CAF88;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:#212822;background:#fff">4</div>
+      <div style="width:56px;height:60px;border:1.5px solid #9CAF88;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:#212822;background:#fff">7</div>
+      <div style="width:56px;height:60px;border:1.5px solid #9CAF88;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:600;color:#212822;background:#fff">1</div>
+    </div>
+    <div style="font-size:12.5px;color:#9DA399;margin-top:14px">Didn't get a code? <a href="#">Resend</a></div>
+    <div onClick="{{verifyCode}}" style="margin-top:22px;background:#212822;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Verify &amp; continue</div>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{is_home}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 14px">
+    <div>
+      <div style="font-family:'Bodoni Moda',serif;font-size:20px;color:#212822;font-weight:500">Konjo</div>
+      <div style="font-size:10.5px;color:#9DA399;letter-spacing:0.06em;text-transform:uppercase">Home</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;position:relative">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span style="position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:#C5A059"></span>
+      </div>
+      <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;border:1.5px solid #9CAF88"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></div>
+    </div>
+  </div>
+  <div style="padding:0 20px 16px">
+    <div onClick="{{goToBrowseAll}}" style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #E6E8E2;border-radius:6px;padding:14px 16px;cursor:pointer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <span style="font-size:14px;color:#9DA399;flex:1">Search braids, nails, massage…</span>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+    </div>
+  </div>
+  <div style="display:flex;gap:20px;padding:0 20px 26px;overflow-x:auto">
+    <sc-for list="{{categories}}" as="cat" hint-placeholder-count="6">
+      <div onClick="{{cat.onSelect}}" style="display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0;cursor:pointer">
+        <div style="width:60px;height:60px;border-radius:50%;background:#E9F0E6;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;font-size:20px;color:#586851">{{cat.initial}}</div>
+        <div style="font-size:12px;color:#212822;font-weight:500">{{cat.label}}</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="padding:0 20px 8px">
+    <div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#212822;font-weight:500">Available today near you</div>
+    <div style="font-size:12.5px;color:#5F665C;margin-top:2px">Verified at-home specialists in Bole &amp; surrounding</div>
+  </div>
+  <div style="display:flex;gap:14px;padding:14px 20px 28px;overflow-x:auto">
+    <sc-for list="{{homePros}}" as="p" hint-placeholder-count="2">
+      <div style="flex-shrink:0;width:230px;background:#fff;border:1px solid #E6E8E2;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px -2px rgba(33,40,34,0.04)">
+        <div onClick="{{p.onOpen}}" style="position:relative;height:150px;background:#E3EAE1;cursor:pointer">
+          <sc-if value="{{p.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+          <sc-if value="{{p.noPhoto}}" hint-placeholder-val="{{true}}"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;font-size:34px;color:#9CAF88;background:linear-gradient(135deg,#EEF3EA,#E3EAE1)">{{p.initials}}</div></sc-if>
+          <div style="position:absolute;top:10px;left:10px;background:rgba(255,255,255,0.94);border-radius:100px;padding:4px 9px;font-size:11px;font-weight:600;display:flex;align-items:center;gap:4px">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#C5A059"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.9L6 21.2l1.7-7L2.3 9.5l7.1-.6L12 2z"/></svg>{{p.rating}}
+          </div>
+          <div style="position:absolute;bottom:10px;left:10px;background:rgba(33,40,34,0.75);color:#fff;border-radius:100px;padding:4px 10px;font-size:10.5px;font-weight:600">Next slot {{p.nextSlot}}</div>
+        </div>
+        <div style="padding:13px 14px 15px" onClick="{{p.onOpen}}">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;cursor:pointer"><div style="font-size:15px;font-weight:600;color:#212822">{{p.name}}</div><div style="font-size:11px;color:#5F665C">{{p.zone}}</div></div>
+          <div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{p.service}}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px">
+            <div><div style="font-size:10px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">From</div><div style="font-size:15px;font-weight:700;color:#C5A059">ETB {{p.priceFrom}}</div></div>
+            <div style="background:#586851;color:#fff;padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600">Book</div>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="padding:0 20px 8px;display:flex;align-items:baseline;justify-content:space-between">
+    <div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#212822;font-weight:500">Book again</div>
+    <a href="#" onClick="{{goBookingsTab}}" style="font-size:12.5px;font-weight:600">History</a>
+  </div>
+  <div style="padding:10px 20px 20px;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{rebookPros}}" as="p" hint-placeholder-count="2">
+      <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E6E8E2;border-radius:8px;padding:12px">
+        <div onClick="{{p.onOpen}}" style="width:46px;height:46px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#E3EAE1;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;color:#586851;cursor:pointer">
+          <sc-if value="{{p.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+          <sc-if value="{{p.noPhoto}}" hint-placeholder-val="{{true}}">{{p.initials}}</sc-if>
+        </div>
+        <div style="flex:1;min-width:0;cursor:pointer" onClick="{{p.onOpen}}">
+          <div style="font-size:14px;font-weight:600;color:#212822">{{p.name}}</div>
+          <div style="font-size:12px;color:#5F665C;margin-top:1px">{{p.service}} · {{p.lastDate}}</div>
+          <div style="font-size:11.5px;color:#C5A059;margin-top:2px;font-weight:600">★ {{p.rating}} · ETB {{p.price}}</div>
+        </div>
+        <div onClick="{{p.onBook}}" style="background:#586851;color:#fff;padding:9px 14px;border-radius:6px;font-size:12.5px;font-weight:600;white-space:nowrap;cursor:pointer">Book again</div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin:8px 20px 0;background:#E9F0E6;border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start">
+    <div style="width:34px;height:34px;border-radius:50%;background:#586851;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+    </div>
+    <div><div style="font-size:13.5px;font-weight:600;color:#212822">Safe &amp; discreet home visits</div><div style="font-size:12px;color:#5F665C;margin-top:2px;line-height:1.4">All specialists identity-screened via the national Fayda ID registry.</div></div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_browse}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 6px">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">{{selectedCategoryLabel}}</div>
+    <div onClick="{{toggleFilters}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></div>
+  </div>
+  <div style="display:flex;gap:8px;padding:14px 20px;overflow-x:auto">
+    <sc-for list="{{categories}}" as="cat" hint-placeholder-count="6">
+      <sc-if value="{{cat.active}}" hint-placeholder-val="{{false}}"><div onClick="{{cat.onSelect}}" style="flex-shrink:0;padding:8px 16px;border-radius:100px;font-size:12.5px;font-weight:600;cursor:pointer;background:#9CAF88;color:#fff">{{cat.label}}</div></sc-if>
+      <sc-if value="{{cat.notActive}}" hint-placeholder-val="{{true}}"><div onClick="{{cat.onSelect}}" style="flex-shrink:0;padding:8px 16px;border-radius:100px;font-size:12.5px;font-weight:600;cursor:pointer;background:#fff;color:#5F665C;border:1px solid #E6E8E2">{{cat.label}}</div></sc-if>
+    </sc-for>
+  </div>
+  <sc-if value="{{showFilters}}" hint-placeholder-val="{{false}}">
+  <div style="margin:0 20px 16px;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 16px">
+    <div style="font-size:11px;font-weight:700;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px">Sort by</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{sortOptions}}" as="o" hint-placeholder-count="3">
+        <sc-if value="{{o.active}}" hint-placeholder-val="{{false}}"><div onClick="{{o.onSelect}}" style="padding:7px 14px;border-radius:100px;font-size:12.5px;font-weight:600;cursor:pointer;background:#212822;color:#fff">{{o.label}}</div></sc-if>
+        <sc-if value="{{o.notActive}}" hint-placeholder-val="{{true}}"><div onClick="{{o.onSelect}}" style="padding:7px 14px;border-radius:100px;font-size:12.5px;font-weight:600;cursor:pointer;background:#F5F4EF;color:#5F665C">{{o.label}}</div></sc-if>
+      </sc-for>
+    </div>
+    <div style="height:1px;background:#F5F4EF;margin:14px 0"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div><div style="font-size:13px;font-weight:600;color:#212822">Female specialist only</div><div style="font-size:11.5px;color:#9DA399;margin-top:2px">Request a female-only match when available</div></div>
+      <sc-if value="{{femaleOnly}}" hint-placeholder-val="{{false}}"><div onClick="{{toggleFemaleOnly}}" style="width:42px;height:24px;border-radius:100px;background:#9CAF88;display:flex;align-items:center;padding:2px;cursor:pointer;justify-content:flex-end;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+      <sc-if value="{{notFemaleOnly}}" hint-placeholder-val="{{true}}"><div onClick="{{toggleFemaleOnly}}" style="width:42px;height:24px;border-radius:100px;background:#E6E8E2;display:flex;align-items:center;padding:2px;cursor:pointer;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+    </div>
+  </div>
+  </sc-if>
+  <div style="padding:6px 20px 0;display:flex;flex-direction:column;gap:12px">
+    <sc-for list="{{browsePros}}" as="p" hint-placeholder-count="4">
+      <div onClick="{{p.onOpen}}" style="display:flex;gap:12px;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:12px;cursor:pointer">
+        <div style="width:74px;height:74px;border-radius:8px;overflow:hidden;flex-shrink:0;background:#E3EAE1;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;font-size:20px;color:#586851">
+          <sc-if value="{{p.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+          <sc-if value="{{p.noPhoto}}" hint-placeholder-val="{{true}}">{{p.initials}}</sc-if>
+        </div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;justify-content:space-between"><div style="font-size:14.5px;font-weight:600;color:#212822">{{p.name}}</div><div style="font-size:12px;font-weight:700;color:#C5A059">★ {{p.rating}}</div></div>
+          <div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{p.service}}</div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:8px"><div style="font-size:11px;color:#9DA399">{{p.zone}} · Next {{p.nextSlot}}</div><div style="font-size:13px;font-weight:700;color:#212822">ETB {{p.priceFrom}}</div></div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_proProfile}}" hint-placeholder-val="{{false}}">
+<div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="display:flex;gap:10px">
+      <div style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="1.8"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.3 10.7l7.4-4.2M8.3 13.3l7.4 4.2"/></svg></div>
+      <sc-if value="{{pro.favorited}}" hint-placeholder-val="{{false}}"><div onClick="{{pro.onToggleFav}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="#BA1A1A" stroke="#BA1A1A"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div></sc-if>
+      <sc-if value="{{pro.notFavorited}}" hint-placeholder-val="{{true}}"><div onClick="{{pro.onToggleFav}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div></sc-if>
+    </div>
+  </div>
+  <div style="padding:18px 20px 0;display:flex;gap:14px;align-items:center">
+    <div style="width:84px;height:84px;border-radius:16px;overflow:hidden;flex-shrink:0;background:#E3EAE1;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;font-size:28px;color:#586851">
+      <sc-if value="{{pro.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+      <sc-if value="{{pro.noPhoto}}" hint-placeholder-val="{{true}}">{{pro.initials}}</sc-if>
+    </div>
+    <div>
+      <div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;font-weight:500">{{pro.name}}</div>
+      <div style="font-size:13.5px;color:#5F665C;margin-top:2px">{{pro.service}}</div>
+      <div style="font-size:13px;color:#C5A059;font-weight:600;margin-top:4px">★ {{pro.rating}} ({{pro.reviews}} reviews)</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;padding:16px 20px 0;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:5px;background:#E9F0E6;color:#586851;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:100px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>Fayda verified</div>
+    <div style="background:#F5F4EF;color:#5F665C;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:100px">Zone: {{pro.zone}}</div>
+  </div>
+  <div style="padding:16px 20px 0;font-size:13.5px;color:#5F665C;line-height:1.55">{{pro.bio}}</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:18px 20px 0">
+    <sc-for list="{{pro.stats}}" as="st" hint-placeholder-count="4">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:8px;padding:12px 6px;text-align:center">
+        <div style="font-size:16px;font-weight:700;color:#212822">{{st.v}}</div>
+        <div style="font-size:9.5px;color:#9DA399;margin-top:2px">{{st.l}}</div>
+      </div>
+    </sc-for>
+  </div>
+  <sc-if value="{{pro.hasPhoto}}" hint-placeholder-val="{{false}}">
+  <div style="padding:24px 20px 0">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-family:'Bodoni Moda',serif;font-size:18px;color:#212822;font-weight:500">Portfolio work</div><div style="font-size:12px;color:#9DA399">{{pro.portfolio.length}} styles</div></div>
+    <div style="display:flex;gap:10px;margin-top:12px;overflow-x:auto">
+      <sc-for list="{{pro.portfolio}}" as="pstyle" hint-placeholder-count="4">
+        <image-slot id="port-{{pro.id}}-{{$index}}" style="width:120px;height:150px;flex-shrink:0" shape="rounded" radius="10" placeholder="{{pstyle}}"></image-slot>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+  <div style="padding:24px 20px 0">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-family:'Bodoni Moda',serif;font-size:18px;color:#212822;font-weight:500">Services &amp; pricing</div><div style="font-size:12px;color:#9DA399">Home service</div></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+      <sc-for list="{{services}}" as="sv" hint-placeholder-count="3">
+        <sc-if value="{{sv.selected}}" hint-placeholder-val="{{false}}">
+        <div onClick="{{sv.onSelect}}" style="background:#212822;color:#fff;border-radius:10px;padding:14px 16px;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600">{{sv.name}}<sc-if value="{{sv.tag}}" hint-placeholder-val="{{false}}"><span style="background:rgba(255,255,255,0.15);font-size:10px;font-weight:600;padding:3px 8px;border-radius:100px">{{sv.tag}}</span></sc-if></div>
+            <div style="font-size:15px;font-weight:700;color:#C5A059">ETB {{sv.price}}</div>
+          </div>
+          <div style="font-size:12.5px;color:rgba(255,255,255,0.7);margin-top:6px;line-height:1.4">{{sv.desc}}</div>
+          <div style="display:flex;gap:14px;margin-top:10px;font-size:11.5px;color:rgba(255,255,255,0.6)"><span>{{sv.duration}}</span><span>{{sv.note}}</span></div>
+        </div>
+        </sc-if>
+        <sc-if value="{{sv.notSelected}}" hint-placeholder-val="{{true}}">
+        <div onClick="{{sv.onSelect}}" style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 16px;cursor:pointer">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div style="display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#212822">{{sv.name}}<sc-if value="{{sv.tag}}" hint-placeholder-val="{{false}}"><span style="background:#E9F0E6;color:#586851;font-size:10px;font-weight:600;padding:3px 8px;border-radius:100px">{{sv.tag}}</span></sc-if></div>
+            <div style="font-size:15px;font-weight:700;color:#212822">ETB {{sv.price}}</div>
+          </div>
+          <div style="font-size:12.5px;color:#5F665C;margin-top:6px;line-height:1.4">{{sv.desc}}</div>
+          <div style="display:flex;gap:14px;margin-top:10px;font-size:11.5px;color:#9DA399"><span>{{sv.duration}}</span><span>{{sv.note}}</span></div>
+        </div>
+        </sc-if>
+      </sc-for>
+    </div>
+  </div>
+  <sc-if value="{{pro.hasPhoto}}" hint-placeholder-val="{{false}}">
+  <div style="padding:24px 20px 0">
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-family:'Bodoni Moda',serif;font-size:18px;color:#212822;font-weight:500">Client reviews</div><a href="#" style="font-size:12px;font-weight:600">Read all</a></div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:12px">
+      <sc-for list="{{proReviews}}" as="rv" hint-placeholder-count="2">
+        <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div style="display:flex;gap:9px;align-items:center">
+              <div style="width:30px;height:30px;border-radius:50%;background:#E9F0E6;color:#586851;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center">{{rv.initial}}</div>
+              <div><div style="font-size:13px;font-weight:600;color:#212822">{{rv.name}}</div><div style="font-size:11px;color:#9DA399">{{rv.zone}}</div></div>
+            </div>
+            <div style="font-size:12.5px;font-weight:700;color:#C5A059">★ {{rv.rating}}</div>
+          </div>
+          <div style="font-size:13px;color:#212822;margin-top:10px;line-height:1.5">"{{rv.text}}"</div>
+          <div style="font-size:11px;color:#9DA399;margin-top:8px">{{rv.time}} · {{rv.service}}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+  <div style="position:sticky;bottom:0;margin-top:22px;background:rgba(250,249,245,0.96);border-top:1px solid #E6E8E2;padding:14px 20px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(8px)">
+    <div style="flex:1"><div style="font-size:10px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em">Selected service</div><div style="font-size:18px;font-weight:700;color:#212822">ETB {{service.price}}</div></div>
+    <div onClick="{{goToBookingWhen}}" style="background:#9CAF88;color:#fff;padding:15px 24px;border-radius:6px;font-size:14.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px">Book {{pro.firstName}}<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_bookingWhen}}" hint-placeholder-val="{{false}}">
+<div style="display:flex;flex-direction:column;min-height:100%">
+<div style="padding:18px 20px 0;display:flex;align-items:center;gap:12px">
+  <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+  <div style="font-size:11px;color:#9DA399;font-weight:600;letter-spacing:0.05em;text-transform:uppercase">Step 1 of 3 · When</div>
+</div>
+<div style="padding:16px 20px 0;flex:1">
+  <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Choose date &amp; time</div>
+  <div style="display:flex;gap:10px;margin-top:20px;overflow-x:auto;padding-bottom:4px">
+    <sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+      <sc-if value="{{d.selected}}" hint-placeholder-val="{{false}}"><div onClick="{{d.onSelect}}" style="flex-shrink:0;width:56px;padding:12px 0;border-radius:10px;background:#212822;color:#fff;text-align:center;cursor:pointer"><div style="font-size:11px;opacity:0.7">{{d.dow}}</div><div style="font-size:17px;font-weight:700;margin-top:4px">{{d.dayNum}}</div></div></sc-if>
+      <sc-if value="{{d.notSelected}}" hint-placeholder-val="{{true}}"><div onClick="{{d.onSelect}}" style="flex-shrink:0;width:56px;padding:12px 0;border-radius:10px;background:#fff;border:1px solid #E6E8E2;color:#212822;text-align:center;cursor:pointer"><div style="font-size:11px;color:#9DA399">{{d.dow}}</div><div style="font-size:17px;font-weight:700;margin-top:4px">{{d.dayNum}}</div></div></sc-if>
+    </sc-for>
+  </div>
+  <div style="font-size:12.5px;color:#5F665C;font-weight:600;margin-top:24px;margin-bottom:12px">Available times</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+    <sc-for list="{{slots}}" as="t" hint-placeholder-count="6">
+      <sc-if value="{{t.selectedActive}}" hint-placeholder-val="{{false}}"><div onClick="{{t.onSelect}}" style="padding:13px 0;border-radius:8px;background:#9CAF88;color:#fff;text-align:center;font-size:13.5px;font-weight:600;cursor:pointer">{{t.label}}</div></sc-if>
+      <sc-if value="{{t.availableInactive}}" hint-placeholder-val="{{true}}"><div onClick="{{t.onSelect}}" style="padding:13px 0;border-radius:8px;background:#fff;border:1px solid #E6E8E2;color:#212822;text-align:center;font-size:13.5px;font-weight:600;cursor:pointer">{{t.label}}</div></sc-if>
+      <sc-if value="{{t.full}}" hint-placeholder-val="{{false}}"><div style="padding:13px 0;border-radius:8px;background:#F5F4EF;color:#9DA399;text-align:center;font-size:13.5px;font-weight:600">{{t.label}}</div></sc-if>
+    </sc-for>
+  </div>
+  <div style="margin-top:26px;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 16px">
+    <div style="font-size:11px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px">Booking summary</div>
+    <div style="display:flex;justify-content:space-between;font-size:14px;color:#212822;font-weight:600"><span>{{pro.name}}</span><span>ETB {{service.price}}</span></div>
+    <div style="font-size:12.5px;color:#5F665C;margin-top:3px">{{service.name}} · {{service.duration}}</div>
+  </div>
+</div>
+<div style="position:sticky;bottom:0;background:rgba(250,249,245,0.96);border-top:1px solid #E6E8E2;padding:16px 20px 20px">
+  <sc-if value="{{canContinueWhen}}" hint-placeholder-val="{{false}}"><div onClick="{{goToBookingWhere}}" style="background:#9CAF88;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Continue</div></sc-if>
+  <sc-if value="{{cannotContinueWhen}}" hint-placeholder-val="{{true}}"><div style="background:#F5F4EF;color:#9DA399;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600">Select a date &amp; time</div></sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_bookingWhere}}" hint-placeholder-val="{{false}}">
+<div style="display:flex;flex-direction:column;min-height:100%">
+<div style="padding:18px 20px 0;display:flex;align-items:center;gap:12px">
+  <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+  <div style="font-size:11px;color:#9DA399;font-weight:600;letter-spacing:0.05em;text-transform:uppercase">Step 2 of 3 · Where</div>
+</div>
+<div style="padding:16px 20px 0;flex:1">
+  <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Where should we come?</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px">
+    <sc-for list="{{addresses}}" as="a" hint-placeholder-count="2">
+      <sc-if value="{{a.selected}}" hint-placeholder-val="{{false}}">
+      <div onClick="{{a.onSelect}}" style="border:1.5px solid #9CAF88;background:#F4FBF2;border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;gap:12px;align-items:flex-start">
+        <div style="width:18px;height:18px;border-radius:50%;background:#9CAF88;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div style="flex:1"><div style="font-size:14.5px;font-weight:600;color:#212822">{{a.label}}</div><div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{a.detail}}</div></div>
+        <div style="font-size:12px;font-weight:600;color:#586851">{{a.zone}}</div>
+      </div>
+      </sc-if>
+      <sc-if value="{{a.notSelected}}" hint-placeholder-val="{{true}}">
+      <div onClick="{{a.onSelect}}" style="border:1px solid #E6E8E2;background:#fff;border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;gap:12px;align-items:flex-start">
+        <div style="width:18px;height:18px;border-radius:50%;border:1.5px solid #E6E8E2;flex-shrink:0;margin-top:2px"></div>
+        <div style="flex:1"><div style="font-size:14.5px;font-weight:600;color:#212822">{{a.label}}</div><div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{a.detail}}</div></div>
+        <div style="font-size:12px;font-weight:600;color:#9DA399">{{a.zone}}</div>
+      </div>
+      </sc-if>
+    </sc-for>
+    <div style="border:1px dashed #C5C8BC;border-radius:10px;padding:14px 16px;color:#586851;font-size:13.5px;font-weight:600;text-align:center">+ Add new address</div>
+  </div>
+  <div style="margin-top:22px;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between">
+    <div><div style="font-size:14px;font-weight:600;color:#212822">Female specialist only</div><div style="font-size:12px;color:#5F665C;margin-top:2px">Request a female-only match when available</div></div>
+    <sc-if value="{{femaleOnly}}" hint-placeholder-val="{{false}}"><div onClick="{{toggleFemaleOnly}}" style="width:42px;height:24px;border-radius:100px;background:#9CAF88;display:flex;align-items:center;padding:2px;cursor:pointer;justify-content:flex-end;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+    <sc-if value="{{notFemaleOnly}}" hint-placeholder-val="{{true}}"><div onClick="{{toggleFemaleOnly}}" style="width:42px;height:24px;border-radius:100px;background:#E6E8E2;display:flex;align-items:center;padding:2px;cursor:pointer;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+  </div>
+  <div style="margin:20px 0 0;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 16px">
+    <div style="font-size:11px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px">Booking summary</div>
+    <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#5F665C"><span>{{service.name}}</span><span>ETB {{service.price}}</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#5F665C;margin-top:6px"><span>Travel fee ({{addr.zone}})</span><span>ETB {{addr.fee}}</span></div>
+    <div style="height:1px;background:#E6E8E2;margin:10px 0"></div>
+    <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:#212822"><span>Total</span><span>ETB {{total}}</span></div>
+  </div>
+</div>
+<div style="position:sticky;bottom:0;background:rgba(250,249,245,0.96);border-top:1px solid #E6E8E2;padding:16px 20px 20px">
+  <div onClick="{{goToPayment}}" style="background:#9CAF88;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Continue to payment</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_payment}}" hint-placeholder-val="{{false}}">
+<div style="display:flex;flex-direction:column;min-height:100%">
+<div style="padding:18px 20px 0;display:flex;align-items:center;gap:12px">
+  <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+  <div style="font-size:11px;color:#9DA399;font-weight:600;letter-spacing:0.05em;text-transform:uppercase">Step 3 of 3 · Pay</div>
+</div>
+<div style="padding:16px 20px 0;flex:1">
+  <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Payment method</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px">
+    <sc-for list="{{paymentOptions}}" as="pm" hint-placeholder-count="4">
+      <sc-if value="{{pm.selected}}" hint-placeholder-val="{{false}}">
+      <div onClick="{{pm.onSelect}}" style="border:1.5px solid #9CAF88;background:#F4FBF2;border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px">
+        <div style="width:18px;height:18px;border-radius:50%;background:#9CAF88;flex-shrink:0;display:flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div style="flex:1"><div style="font-size:14.5px;font-weight:600;color:#212822">{{pm.label}}</div><div style="font-size:12px;color:#5F665C;margin-top:2px">{{pm.sub}}</div></div>
+        <sc-if value="{{pm.tag}}" hint-placeholder-val="{{false}}"><div style="font-size:10px;font-weight:700;color:#C5A059;background:rgba(197,160,89,0.12);padding:3px 8px;border-radius:100px">{{pm.tag}}</div></sc-if>
+      </div>
+      </sc-if>
+      <sc-if value="{{pm.notSelected}}" hint-placeholder-val="{{true}}">
+      <div onClick="{{pm.onSelect}}" style="border:1px solid #E6E8E2;background:#fff;border-radius:10px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px">
+        <div style="width:18px;height:18px;border-radius:50%;border:1.5px solid #E6E8E2;flex-shrink:0"></div>
+        <div style="flex:1"><div style="font-size:14.5px;font-weight:600;color:#212822">{{pm.label}}</div><div style="font-size:12px;color:#5F665C;margin-top:2px">{{pm.sub}}</div></div>
+        <sc-if value="{{pm.tag}}" hint-placeholder-val="{{false}}"><div style="font-size:10px;font-weight:700;color:#9DA399;background:#F5F4EF;padding:3px 8px;border-radius:100px">{{pm.tag}}</div></sc-if>
+      </div>
+      </sc-if>
+    </sc-for>
+  </div>
+  <div style="margin:20px 0 0;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:14px 16px">
+    <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#5F665C"><span>{{service.name}}</span><span>ETB {{service.price}}</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:13.5px;color:#5F665C;margin-top:6px"><span>Travel fee</span><span>ETB {{addr.fee}}</span></div>
+    <div style="height:1px;background:#E6E8E2;margin:10px 0"></div>
+    <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#212822"><span>Total</span><span>ETB {{total}}</span></div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:flex-start;margin-top:16px;font-size:11.5px;color:#9DA399;line-height:1.5">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.8" style="flex-shrink:0;margin-top:1px"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg>
+    Funds are held securely by Konjo and only released to {{pro.firstName}} after your service is complete.
+  </div>
+</div>
+<div style="position:sticky;bottom:0;background:rgba(250,249,245,0.96);border-top:1px solid #E6E8E2;padding:16px 20px 20px">
+  <sc-if value="{{notProcessing}}" hint-placeholder-val="{{true}}"><div onClick="{{submitPayment}}" style="background:#9CAF88;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Pay ETB {{total}}</div></sc-if>
+  <sc-if value="{{processingPay}}" hint-placeholder-val="{{false}}"><div style="background:#9CAF88;opacity:0.65;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600">Processing…</div></sc-if>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_tracking}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0">
+    <div style="font-size:17px;font-weight:600;color:#212822">Your booking</div>
+    <div onClick="{{goHome}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+  </div>
+  <div style="margin:18px 20px 0;height:140px;border-radius:12px;background:linear-gradient(135deg,#E9F0E6,#DDE5DB);position:relative;overflow:hidden">
+    <svg width="100%" height="100%" viewBox="0 0 350 140" style="position:absolute;inset:0">
+      <path d="M0 40 L350 60" stroke="#C5C8BC" stroke-width="2" fill="none"/>
+      <path d="M0 95 L350 78" stroke="#C5C8BC" stroke-width="2" fill="none"/>
+      <path d="M60 0 L90 140" stroke="#C5C8BC" stroke-width="2" fill="none"/>
+      <path d="M260 0 L230 140" stroke="#C5C8BC" stroke-width="2" fill="none"/>
+    </svg>
+    <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-70%)">
+      <div style="width:36px;height:36px;border-radius:50% 50% 50% 0;background:#586851;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(33,40,34,0.25)"><div style="width:12px;height:12px;border-radius:50%;background:#fff;transform:rotate(45deg)"></div></div>
+    </div>
+  </div>
+  <div style="padding:20px 20px 0">
+    <div style="display:flex;justify-content:space-between">
+      <sc-for list="{{stageItems}}" as="si" hint-placeholder-count="4">
+        <sc-if value="{{si.reached}}" hint-placeholder-val="{{false}}"><div style="text-align:center;flex:1;font-size:10px;font-weight:600;color:#586851">{{si.label}}</div></sc-if>
+        <sc-if value="{{si.notReached}}" hint-placeholder-val="{{true}}"><div style="text-align:center;flex:1;font-size:10px;font-weight:600;color:#9DA399">{{si.label}}</div></sc-if>
+      </sc-for>
+    </div>
+    <div style="position:relative;height:4px;background:#E6E8E2;border-radius:2px;margin-top:10px">
+      <div style="position:absolute;left:0;top:0;height:4px;background:#9CAF88;border-radius:2px;width:{{stageProgressPct}}%"></div>
+    </div>
+  </div>
+  <div style="margin:20px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:16px">
+    <div style="font-family:'Bodoni Moda',serif;font-size:17px;color:#212822;font-weight:500">{{currentStageLabel}}</div>
+    <div style="font-size:13px;color:#5F665C;margin-top:4px;line-height:1.5">{{stageDescription}}</div>
+    <sc-if value="{{isStageInProgress}}" hint-placeholder-val="{{false}}">
+      <div style="margin-top:14px;background:#F5F4EF;border-radius:8px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:12px;color:#5F665C">Session timer</div>
+        <div style="font-family:'Bodoni Moda',serif;font-size:20px;color:#212822;font-weight:500">{{elapsedFormatted}}</div>
+      </div>
+    </sc-if>
+  </div>
+  <div style="margin:14px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+    <div style="width:46px;height:46px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#E3EAE1;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;color:#586851">
+      <sc-if value="{{pro.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+      <sc-if value="{{pro.noPhoto}}" hint-placeholder-val="{{true}}">{{pro.initials}}</sc-if>
+    </div>
+    <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#212822">{{pro.name}}</div><div style="font-size:12px;color:#C5A059;font-weight:600">★ {{pro.rating}}</div></div>
+    <div style="width:38px;height:38px;border-radius:50%;background:#F5F4EF;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.1z"/></svg></div>
+    <div style="width:38px;height:38px;border-radius:50%;background:#F5F4EF;display:flex;align-items:center;justify-content:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.5 9 9 0 0 1-4-1L3 20l1.1-3.9a8.4 8.4 0 0 1-1.1-4A8.4 8.4 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg></div>
+  </div>
+  <div style="margin:14px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px 16px;font-size:13px;color:#5F665C">
+    <div style="font-weight:600;color:#212822;margin-bottom:4px">{{addr.detail}}</div>{{bookingTime}} · {{service.name}}
+  </div>
+  <sc-if value="{{canCancelBooking}}" hint-placeholder-val="{{true}}">
+  <div style="display:flex;gap:10px;margin:14px 20px 0">
+    <div onClick="{{rescheduleActiveBooking}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#212822;padding:13px 0;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">Reschedule</div>
+    <div onClick="{{cancelActiveBooking}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#BA1A1A;padding:13px 0;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer">Cancel booking</div>
+  </div>
+  </sc-if>
+  <sc-if value="{{cannotCancelBooking}}" hint-placeholder-val="{{false}}">
+  <div style="margin:14px 20px 0;font-size:11.5px;color:#9DA399;text-align:center">Free cancellation window has passed — the travel fee is now non-refundable.</div>
+  </sc-if>
+  <div onClick="{{goHome}}" style="margin:12px 20px 0;border:1.5px solid #BA1A1A;color:#BA1A1A;border-radius:8px;padding:13px;text-align:center;font-size:13.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#BA1A1A" stroke-width="2"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4"/></svg>SOS · Alert Konjo support
+  </div>
+  <sc-if value="{{isStageCompleted}}" hint-placeholder-val="{{false}}">
+    <div onClick="{{goToRate}}" style="margin:14px 20px 0;background:#212822;color:#fff;text-align:center;padding:15px;border-radius:8px;font-size:14.5px;font-weight:600;cursor:pointer">Rate your experience</div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{is_rate}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 0">
+    <div style="font-size:17px;font-weight:600;color:#212822">Rate your visit</div>
+    <div onClick="{{goHome}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;padding:20px 20px 0">
+    <div style="width:52px;height:52px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#E3EAE1;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;color:#586851">
+      <sc-if value="{{pro.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+      <sc-if value="{{pro.noPhoto}}" hint-placeholder-val="{{true}}">{{pro.initials}}</sc-if>
+    </div>
+    <div><div style="font-size:15px;font-weight:600;color:#212822">{{pro.name}}</div><div style="font-size:12.5px;color:#5F665C">{{service.name}} · Today</div></div>
+  </div>
+  <div style="padding:26px 20px 0">
+    <div style="font-size:13px;font-weight:600;color:#212822;margin-bottom:10px">Technique</div>
+    <div style="display:flex;gap:8px">
+      <sc-for list="{{techniqueStars}}" as="st" hint-placeholder-count="5">
+        <sc-if value="{{st.filled}}" hint-placeholder-val="{{false}}"><svg onClick="{{st.onClick}}" width="34" height="34" viewBox="0 0 24 24" fill="#C5A059" style="cursor:pointer"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.9L6 21.2l1.7-7L2.3 9.5l7.1-.6L12 2z"/></svg></sc-if>
+        <sc-if value="{{st.notFilled}}" hint-placeholder-val="{{true}}"><svg onClick="{{st.onClick}}" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E6E8E2" stroke-width="1.5" style="cursor:pointer"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.9L6 21.2l1.7-7L2.3 9.5l7.1-.6L12 2z"/></svg></sc-if>
+      </sc-for>
+    </div>
+  </div>
+  <div style="padding:22px 20px 0">
+    <div style="font-size:13px;font-weight:600;color:#212822;margin-bottom:10px">Professionalism</div>
+    <div style="display:flex;gap:8px">
+      <sc-for list="{{professionalismStars}}" as="st" hint-placeholder-count="5">
+        <sc-if value="{{st.filled}}" hint-placeholder-val="{{false}}"><svg onClick="{{st.onClick}}" width="34" height="34" viewBox="0 0 24 24" fill="#C5A059" style="cursor:pointer"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.9L6 21.2l1.7-7L2.3 9.5l7.1-.6L12 2z"/></svg></sc-if>
+        <sc-if value="{{st.notFilled}}" hint-placeholder-val="{{true}}"><svg onClick="{{st.onClick}}" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E6E8E2" stroke-width="1.5" style="cursor:pointer"><path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7-6.3-3.9L6 21.2l1.7-7L2.3 9.5l7.1-.6L12 2z"/></svg></sc-if>
+      </sc-for>
+    </div>
+  </div>
+  <div style="padding:24px 20px 0">
+    <div style="font-size:13px;font-weight:600;color:#212822;margin-bottom:10px">Quick feedback</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <sc-for list="{{ratingTagsList}}" as="tg" hint-placeholder-count="5">
+        <sc-if value="{{tg.active}}" hint-placeholder-val="{{false}}"><div onClick="{{tg.onToggle}}" style="padding:9px 14px;border-radius:100px;background:#586851;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">{{tg.label}}</div></sc-if>
+        <sc-if value="{{tg.notActive}}" hint-placeholder-val="{{true}}"><div onClick="{{tg.onToggle}}" style="padding:9px 14px;border-radius:100px;background:#fff;border:1px solid #E6E8E2;color:#212822;font-size:12.5px;font-weight:600;cursor:pointer">{{tg.label}}</div></sc-if>
+      </sc-for>
+    </div>
+  </div>
+  <div style="padding:22px 20px 0">
+    <textarea value="{{ratingText}}" onChange="{{setRatingText}}" placeholder="Share more about your experience (optional)" style="width:100%;min-height:90px;border:1px solid #E6E8E2;border-radius:8px;padding:12px 14px;font-size:13.5px;color:#212822;resize:none"></textarea>
+  </div>
+  <div style="padding:24px 20px 0">
+    <sc-if value="{{canSubmitRating}}" hint-placeholder-val="{{false}}"><div onClick="{{submitRating}}" style="background:#9CAF88;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Submit review</div></sc-if>
+    <sc-if value="{{cannotSubmitRating}}" hint-placeholder-val="{{true}}"><div style="background:#F5F4EF;color:#9DA399;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600">Submit review</div></sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_bookings}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="padding:18px 20px 6px"><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;font-weight:500">Bookings</div></div>
+  <div onClick="{{goToGift}}" style="margin:8px 20px 0;background:linear-gradient(135deg,#212822,#3a4536);border-radius:12px;padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+    <div style="width:38px;height:38px;border-radius:50%;background:rgba(197,160,89,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.8"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13"/><path d="M3 12h18"/></svg></div>
+    <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#fff">Gift a booking</div><div style="font-size:11.5px;color:rgba(255,255,255,0.6);margin-top:1px">Send self-care to someone special</div></div>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+  </div>
+  <div style="display:flex;gap:6px;background:#F5F4EF;border-radius:100px;padding:4px;margin:18px 20px 0">
+    <sc-if value="{{isUpcomingTab}}" hint-placeholder-val="{{true}}"><div onClick="{{setUpcomingTab}}" style="flex:1;text-align:center;padding:9px 0;border-radius:100px;background:#fff;font-size:13px;font-weight:600;color:#212822;cursor:pointer">Upcoming</div></sc-if>
+    <sc-if value="{{isPastTab}}" hint-placeholder-val="{{false}}"><div onClick="{{setUpcomingTab}}" style="flex:1;text-align:center;padding:9px 0;border-radius:100px;font-size:13px;font-weight:600;color:#9DA399;cursor:pointer">Upcoming</div></sc-if>
+    <sc-if value="{{isPastTab}}" hint-placeholder-val="{{false}}"><div onClick="{{setPastTab}}" style="flex:1;text-align:center;padding:9px 0;border-radius:100px;background:#fff;font-size:13px;font-weight:600;color:#212822;cursor:pointer">Past</div></sc-if>
+    <sc-if value="{{isUpcomingTab}}" hint-placeholder-val="{{true}}"><div onClick="{{setPastTab}}" style="flex:1;text-align:center;padding:9px 0;border-radius:100px;font-size:13px;font-weight:600;color:#9DA399;cursor:pointer">Past</div></sc-if>
+  </div>
+  <sc-if value="{{isUpcomingTab}}" hint-placeholder-val="{{true}}">
+  <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{upcoming}}" as="b" hint-placeholder-count="1">
+      <div onClick="{{b.onOpenTracking}}" style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px;cursor:pointer">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:10.5px;font-weight:700;color:#586851;background:#E9F0E6;padding:4px 10px;border-radius:100px">{{b.statusLabel}}</div>
+          <div style="font-size:12px;color:#9DA399">{{b.date}} · {{b.time}}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+          <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#E3EAE1;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:'Bodoni Moda',serif;color:#586851">
+            <sc-if value="{{b.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+            <sc-if value="{{b.noPhoto}}" hint-placeholder-val="{{true}}">{{b.initials}}</sc-if>
+          </div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#212822">{{b.proName}}</div><div style="font-size:12px;color:#5F665C">{{b.service}}</div></div>
+          <div style="font-size:14px;font-weight:700;color:#212822">ETB {{b.price}}</div>
+        </div>
+        <sc-if value="{{b.canCancel}}" hint-placeholder-val="{{true}}">
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <div onClick="{{b.onReschedule}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#212822;padding:9px 0;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">Reschedule</div>
+          <div onClick="{{b.onCancel}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#BA1A1A;padding:9px 0;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer">Cancel</div>
+        </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+  </sc-if>
+  <sc-if value="{{isPastTab}}" hint-placeholder-val="{{false}}">
+  <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{past}}" as="b" hint-placeholder-count="2">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#E3EAE1;display:flex;align-items:center;justify-content:center;font-size:12px;font-family:'Bodoni Moda',serif;color:#586851">
+            <sc-if value="{{b.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+            <sc-if value="{{b.noPhoto}}" hint-placeholder-val="{{true}}">{{b.initials}}</sc-if>
+          </div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#212822">{{b.proName}}</div><div style="font-size:12px;color:#5F665C">{{b.service}} · {{b.date}}</div></div>
+          <div style="font-size:14px;font-weight:700;color:#212822">ETB {{b.price}}</div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <div onClick="{{b.onRebook}}" style="flex:1;text-align:center;background:#586851;color:#fff;padding:10px 0;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer">Book again</div>
+          <div onClick="{{b.onOpenReceipt}}" style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#212822;padding:10px 0;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer">Receipt</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{is_receiptDetail}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822">Receipt</div>
+  </div>
+  <div style="margin:20px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:14px;padding:24px">
+    <div style="text-align:center"><div style="font-family:'Bodoni Moda',serif;font-size:20px;color:#212822">konjo<span style="color:#C5A059">.</span></div><div style="font-size:11px;color:#9DA399;margin-top:4px">Booking receipt</div></div>
+    <div style="border-top:1px dashed #E6E8E2;margin:18px 0"></div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:#5F665C;margin-bottom:8px"><span>Specialist</span><span style="color:#212822;font-weight:600">{{receiptBooking.proName}}</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:#5F665C;margin-bottom:8px"><span>Service</span><span style="color:#212822;font-weight:600">{{receiptBooking.service}}</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:#5F665C;margin-bottom:8px"><span>Date &amp; time</span><span style="color:#212822;font-weight:600">{{receiptBooking.date}} · {{receiptBooking.time}}</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:13px;color:#5F665C;margin-bottom:8px"><span>Address</span><span style="color:#212822;font-weight:600;text-align:right;max-width:180px">{{receiptBooking.address}}</span></div>
+    <div style="height:1px;background:#E6E8E2;margin:14px 0"></div>
+    <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#212822"><span>Total paid</span><span>ETB {{receiptBooking.price}}</span></div>
+    <div style="font-size:11.5px;color:#9DA399;margin-top:4px">Paid via Telebirr</div>
+  </div>
+  <div style="display:flex;gap:10px;padding:20px 20px 0">
+    <div style="flex:1;text-align:center;background:#fff;border:1px solid #E6E8E2;color:#212822;padding:13px 0;border-radius:8px;font-size:13.5px;font-weight:600">Download PDF</div>
+    <div onClick="{{receiptBooking.onRebook}}" style="flex:1;text-align:center;background:#586851;color:#fff;padding:13px 0;border-radius:8px;font-size:13.5px;font-weight:600;cursor:pointer">Book again</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_favourites}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="padding:18px 20px 6px"><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;font-weight:500">Favourites</div></div>
+  <div style="padding:14px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{favPros}}" as="p" hint-placeholder-count="1">
+      <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:12px">
+        <div onClick="{{p.onOpen}}" style="width:50px;height:50px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#E3EAE1;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;color:#586851;cursor:pointer">
+          <sc-if value="{{p.hasPhoto}}" hint-placeholder-val="{{false}}"><img src="./assets/headshot-hanan.png" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+          <sc-if value="{{p.noPhoto}}" hint-placeholder-val="{{true}}">{{p.initials}}</sc-if>
+        </div>
+        <div style="flex:1;cursor:pointer" onClick="{{p.onOpen}}"><div style="font-size:14.5px;font-weight:600;color:#212822">{{p.name}}</div><div style="font-size:12px;color:#5F665C">{{p.service}}</div><div style="font-size:12px;color:#C5A059;font-weight:600;margin-top:2px">★ {{p.rating}} · ETB {{p.priceFrom}}</div></div>
+        <div onClick="{{p.onToggleFav}}" style="width:34px;height:34px;border-radius:50%;background:#F5F4EF;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="#BA1A1A" stroke="#BA1A1A"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+      </div>
+    </sc-for>
+  </div>
+  <sc-if value="{{hasNoFavorites}}" hint-placeholder-val="{{false}}">
+  <div style="padding:60px 40px 0;text-align:center">
+    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.5" style="margin:0 auto;display:block"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    <div style="font-size:14px;color:#5F665C;margin-top:14px;line-height:1.5">No favourites yet. Save specialists you love to book them faster next time.</div>
+    <div onClick="{{goHomeTab}}" style="display:inline-block;margin-top:16px;background:#9CAF88;color:#fff;padding:12px 22px;border-radius:6px;font-size:13.5px;font-weight:600;cursor:pointer">Browse specialists</div>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{is_gift}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:30px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822">Gift a booking</div>
+  </div>
+  <sc-if value="{{giftSent}}" hint-placeholder-val="{{false}}">
+  <div style="padding:60px 30px 0;text-align:center">
+    <div style="width:64px;height:64px;border-radius:50%;background:#E9F0E6;display:flex;align-items:center;justify-content:center;margin:0 auto"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;margin-top:18px">Gift sent to {{giftName}}!</div>
+    <div style="font-size:13.5px;color:#5F665C;margin-top:8px;line-height:1.5">They'll receive an SMS with instructions to redeem their Konjo gift.</div>
+    <div onClick="{{resetGift}}" style="margin-top:22px;background:#212822;color:#fff;padding:14px 30px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;display:inline-block">Done</div>
+  </div>
+  </sc-if>
+  <sc-if value="{{notGiftSent}}" hint-placeholder-val="{{true}}">
+  <div style="padding:16px 20px 0">
+    <div style="font-family:'Bodoni Moda',serif;font-size:23px;color:#212822;font-weight:500">Give the gift of self-care</div>
+    <div style="margin-top:18px;border-radius:14px;padding:22px;background:linear-gradient(135deg,#212822,#3a4536);position:relative;overflow:hidden">
+      <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:rgba(197,160,89,0.12)"></div>
+      <div style="font-family:'Bodoni Moda',serif;color:#C5A059;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;position:relative">A Konjo Gift</div>
+      <div style="font-family:'Bodoni Moda',serif;color:#fff;font-size:28px;margin-top:10px;position:relative">ETB {{giftAmount}}</div>
+      <div style="color:rgba(255,255,255,0.6);font-size:12px;margin-top:10px;position:relative">{{giftOccasion}}</div>
+    </div>
+    <div style="margin-top:22px;font-size:13px;font-weight:600;color:#212822">Recipient's name</div>
+    <input value="{{giftName}}" onChange="{{setGiftName}}" placeholder="e.g. Sara" style="width:100%;margin-top:8px;border:1px solid #E6E8E2;border-radius:6px;padding:13px 16px;font-size:14px;color:#212822"/>
+    <div style="margin-top:18px;font-size:13px;font-weight:600;color:#212822">Occasion</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+      <sc-for list="{{giftOccasions}}" as="o" hint-placeholder-count="4">
+        <sc-if value="{{o.active}}" hint-placeholder-val="{{false}}"><div onClick="{{o.onSelect}}" style="padding:9px 14px;border-radius:100px;background:#586851;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">{{o.label}}</div></sc-if>
+        <sc-if value="{{o.notActive}}" hint-placeholder-val="{{true}}"><div onClick="{{o.onSelect}}" style="padding:9px 14px;border-radius:100px;background:#fff;border:1px solid #E6E8E2;color:#212822;font-size:12.5px;font-weight:600;cursor:pointer">{{o.label}}</div></sc-if>
+      </sc-for>
+    </div>
+    <div style="margin-top:18px;font-size:13px;font-weight:600;color:#212822">Amount</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px">
+      <sc-for list="{{giftAmounts}}" as="a" hint-placeholder-count="4">
+        <sc-if value="{{a.active}}" hint-placeholder-val="{{false}}"><div onClick="{{a.onSelect}}" style="text-align:center;padding:11px 0;border-radius:8px;background:#9CAF88;color:#fff;font-size:12.5px;font-weight:700;cursor:pointer">{{a.v}}</div></sc-if>
+        <sc-if value="{{a.notActive}}" hint-placeholder-val="{{true}}"><div onClick="{{a.onSelect}}" style="text-align:center;padding:11px 0;border-radius:8px;background:#fff;border:1px solid #E6E8E2;color:#212822;font-size:12.5px;font-weight:700;cursor:pointer">{{a.v}}</div></sc-if>
+      </sc-for>
+    </div>
+    <sc-if value="{{canSendGift}}" hint-placeholder-val="{{false}}"><div onClick="{{sendGift}}" style="margin-top:26px;background:#9CAF88;color:#fff;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer">Send gift</div></sc-if>
+    <sc-if value="{{cannotSendGift}}" hint-placeholder-val="{{true}}"><div style="margin-top:26px;background:#F5F4EF;color:#9DA399;text-align:center;padding:16px;border-radius:6px;font-size:15px;font-weight:600">Send gift</div></sc-if>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{is_profile}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="padding:18px 20px 6px"><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;font-weight:500">Profile</div></div>
+  <div style="margin:14px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:16px;display:flex;align-items:center;gap:14px">
+    <div style="width:56px;height:56px;border-radius:50%;background:#E9F0E6;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;font-size:20px;color:#586851">SM</div>
+    <div style="flex:1"><div style="font-size:16px;font-weight:600;color:#212822">Sara M.</div><div style="font-size:12.5px;color:#5F665C;margin-top:2px">+251 91 234 5678</div></div>
+    <div style="width:34px;height:34px;border-radius:50%;background:#F5F4EF;display:flex;align-items:center;justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+  </div>
+  <sc-if value="{{idUnverified}}" hint-placeholder-val="{{true}}">
+  <div onClick="{{goToIdVerification}}" style="margin:16px 20px 0;background:#E9F0E6;border-radius:10px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;cursor:pointer">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8" style="flex-shrink:0;margin-top:1px"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+    <div style="font-size:12.5px;color:#33422D;line-height:1.5;flex:1">Verify your ID to unlock massage bookings — required once for safety.</div>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#33422D" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M9 6l6 6-6 6"/></svg>
+  </div>
+  </sc-if>
+  <sc-if value="{{idPending}}" hint-placeholder-val="{{false}}">
+  <div style="margin:16px 20px 0;background:#FBF3E2;border-radius:10px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#775A19" stroke-width="1.8" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+    <div style="font-size:12.5px;color:#775A19;line-height:1.5">Your ID is under review — usually takes a few minutes.</div>
+  </div>
+  </sc-if>
+  <div style="margin:18px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <div onClick="{{goToAddresses}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Saved addresses</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div onClick="{{goToPaymentMethods}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Payment methods</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div onClick="{{goToNotifications}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Notifications</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+      <div style="flex:1;font-size:14px;color:#212822;font-weight:500">Language</div>
+      <div style="display:flex;background:#F5F4EF;border-radius:100px;padding:3px">
+        <sc-if value="{{isLangEn}}" hint-placeholder-val="{{true}}"><div onClick="{{toggleLangEn}}" style="padding:5px 11px;border-radius:100px;background:#fff;font-size:11px;font-weight:600;color:#212822;cursor:pointer">EN</div></sc-if>
+        <sc-if value="{{isLangAm}}" hint-placeholder-val="{{false}}"><div onClick="{{toggleLangEn}}" style="padding:5px 11px;border-radius:100px;font-size:11px;font-weight:600;color:#9DA399;cursor:pointer">EN</div></sc-if>
+        <sc-if value="{{isLangAm}}" hint-placeholder-val="{{false}}"><div onClick="{{toggleLangAm}}" style="padding:5px 11px;border-radius:100px;background:#fff;font-size:11px;font-weight:600;color:#212822;cursor:pointer">አማ</div></sc-if>
+        <sc-if value="{{isLangEn}}" hint-placeholder-val="{{true}}"><div onClick="{{toggleLangAm}}" style="padding:5px 11px;border-radius:100px;font-size:11px;font-weight:600;color:#9DA399;cursor:pointer">አማ</div></sc-if>
+      </div>
+    </div>
+    <div onClick="{{goToPrivacySecurity}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Privacy &amp; security</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div onClick="{{goToHelpSupport}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 3.5"/><circle cx="12" cy="17" r="0.6" fill="#586851"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Help &amp; support</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+  </div>
+  <div style="text-align:center;margin-top:22px;font-size:13.5px;font-weight:600;color:#BA1A1A;cursor:pointer">Log out</div>
+  <div style="text-align:center;margin-top:24px;font-size:11px;color:#9DA399">Konjo v1.0 · Addis Ababa</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_addresses}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Saved addresses</div>
+  </div>
+  <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{addresses}}" as="a" hint-placeholder-count="2">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8" style="flex-shrink:0"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#212822">{{a.label}}</div><div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{a.detail}}</div></div>
+        <sc-if value="{{a.selected}}" hint-placeholder-val="{{true}}"><span style="font-size:10px;font-weight:700;color:#586851;background:#E9F0E6;padding:4px 9px;border-radius:100px">Default</span></sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin:16px 20px 0;text-align:center;background:#fff;border:1.5px dashed #C5C8BC;border-radius:12px;padding:16px;font-size:13.5px;font-weight:600;color:#586851;cursor:pointer">+ Add new address</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_paymentMethods}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Payment methods</div>
+  </div>
+  <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{paymentOptions}}" as="o" hint-placeholder-count="4">
+      <div onClick="{{o.onSelect}}" style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8" style="flex-shrink:0"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#212822">{{o.label}}</div><div style="font-size:12.5px;color:#5F665C;margin-top:2px">{{o.sub}}</div></div>
+        <sc-if value="{{o.selected}}" hint-placeholder-val="{{false}}"><span style="font-size:10px;font-weight:700;color:#586851;background:#E9F0E6;padding:4px 9px;border-radius:100px">Default</span></sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <div style="margin:16px 20px 0;text-align:center;background:#fff;border:1.5px dashed #C5C8BC;border-radius:12px;padding:16px;font-size:13.5px;font-weight:600;color:#586851;cursor:pointer">+ Add payment method</div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_notifications}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Notifications</div>
+  </div>
+  <div style="margin:16px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <sc-for list="{{notifToggles}}" as="n" hint-placeholder-count="4">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF">
+        <div style="flex:1"><div style="font-size:14px;font-weight:600;color:#212822">{{n.label}}</div><div style="font-size:12px;color:#5F665C;margin-top:2px">{{n.sub}}</div></div>
+        <sc-if value="{{n.on}}" hint-placeholder-val="{{true}}"><div onClick="{{n.onToggle}}" style="width:42px;height:24px;border-radius:100px;background:#9CAF88;display:flex;align-items:center;padding:2px;cursor:pointer;justify-content:flex-end;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+        <sc-if value="{{n.off}}" hint-placeholder-val="{{false}}"><div onClick="{{n.onToggle}}" style="width:42px;height:24px;border-radius:100px;background:#E6E8E2;display:flex;align-items:center;padding:2px;cursor:pointer;flex-shrink:0"><div style="width:20px;height:20px;border-radius:50%;background:#fff"></div></div></sc-if>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_privacySecurity}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Privacy &amp; security</div>
+  </div>
+  <div style="margin:16px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <div onClick="{{goToIdVerification}}" style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><div style="flex:1;font-size:14px;color:#212822;font-weight:500">ID verification</div><span style="font-size:10px;font-weight:700;color:#586851;background:#E9F0E6;padding:3px 9px;border-radius:100px">{{idStatus}}</span></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Change phone number</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Blocked specialists</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Data &amp; privacy policy</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer"><div style="flex:1;font-size:14px;color:#BA1A1A;font-weight:500">Delete my account</div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_helpSupport}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:24px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Help &amp; support</div>
+  </div>
+  <div style="margin:16px 20px 0;border:1.5px solid #BA1A1A;border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#BA1A1A" stroke-width="2" style="flex-shrink:0"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v4"/></svg>
+    <div style="flex:1"><div style="font-size:14px;font-weight:700;color:#BA1A1A">Safety emergency (SOS)</div><div style="font-size:12px;color:#5F665C;margin-top:2px">Alerts Konjo support and shares your live location instantly.</div></div>
+  </div>
+  <div style="margin:16px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2.1z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Call support</div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F4EF;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-8.9 8.5 9 9 0 0 1-4-1L3 20l1.1-3.9a8.4 8.4 0 0 1-1.1-4A8.4 8.4 0 0 1 12 3a8.5 8.5 0 0 1 9 8.5z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Chat with us</div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.8"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17.5a1 1 0 0 0 .9 1.5h17.2a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.7 0z"/></svg><div style="flex:1;font-size:14px;color:#212822;font-weight:500">Report a safety issue</div></div>
+  </div>
+  <div style="margin:20px 20px 0;font-size:12px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em;font-weight:600">Frequently asked</div>
+  <div style="margin:10px 20px 0;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+    <div style="padding:14px 16px;border-bottom:1px solid #F5F4EF;font-size:13.5px;color:#212822;font-weight:500">How do refunds work if I'm unhappy with a service?</div>
+    <div style="padding:14px 16px;border-bottom:1px solid #F5F4EF;font-size:13.5px;color:#212822;font-weight:500">Can I request the same specialist every time?</div>
+    <div style="padding:14px 16px;font-size:13.5px;color:#212822;font-weight:500">What happens if my specialist cancels last minute?</div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{is_idVerification}}" hint-placeholder-val="{{false}}">
+<div style="padding-bottom:30px">
+  <div style="display:flex;align-items:center;gap:12px;padding:18px 20px 0">
+    <div onClick="{{goBack}}" style="width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #E6E8E2;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#212822" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div style="font-size:17px;font-weight:600;color:#212822;flex:1">Verify your ID</div>
+  </div>
+  <div style="margin:16px 20px 0;font-size:13px;color:#5F665C;line-height:1.5">Required once, before your first massage booking. Your ID is encrypted and never shown to specialists.</div>
+  <div style="margin:18px 20px 0;font-size:12px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em;font-weight:600">Fayda ID</div>
+  <div style="display:flex;gap:10px;margin:10px 20px 0">
+    <image-slot id="id-front" style="height:110px" shape="rounded" radius="10" placeholder="Front of ID"></image-slot>
+    <image-slot id="id-back" style="height:110px" shape="rounded" radius="10" placeholder="Back of ID"></image-slot>
+  </div>
+  <div style="margin:18px 20px 0;font-size:12px;color:#9DA399;text-transform:uppercase;letter-spacing:0.04em;font-weight:600">Selfie</div>
+  <div style="margin:10px 20px 0">
+    <image-slot id="id-selfie" style="height:150px" shape="rounded" radius="10" placeholder="Clear selfie, face visible"></image-slot>
+  </div>
+  <div onClick="{{submitIdVerification}}" style="margin:26px 20px 0;background:#212822;color:#fff;text-align:center;padding:16px;border-radius:8px;font-size:14.5px;font-weight:600;cursor:pointer">Submit for review</div>
+</div>
+</sc-if>
+
+</div>
+
+<sc-if value="{{isTabRoot}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;border-top:1px solid #E6E8E2;background:#fff;padding:10px 8px 6px;flex-shrink:0">
+  <sc-if value="{{is_home}}" hint-placeholder-val="{{true}}"><div onClick="{{goHomeTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.9"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span style="font-size:10px;font-weight:600;color:#586851">Home</span></div></sc-if>
+  <sc-if value="{{is_home_off}}" hint-placeholder-val="{{false}}"><div onClick="{{goHomeTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.9"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><span style="font-size:10px;font-weight:500;color:#9DA399">Home</span></div></sc-if>
+  <sc-if value="{{is_bookings}}" hint-placeholder-val="{{false}}"><div onClick="{{goBookingsTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.9"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span style="font-size:10px;font-weight:600;color:#586851">Bookings</span></div></sc-if>
+  <sc-if value="{{is_bookings_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goBookingsTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.9"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span style="font-size:10px;font-weight:500;color:#9DA399">Bookings</span></div></sc-if>
+  <sc-if value="{{is_favourites}}" hint-placeholder-val="{{false}}"><div onClick="{{goFavouritesTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="#586851" stroke="#586851" stroke-width="1.9"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg><span style="font-size:10px;font-weight:600;color:#586851">Favourites</span></div></sc-if>
+  <sc-if value="{{is_favourites_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goFavouritesTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.9"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg><span style="font-size:10px;font-weight:500;color:#9DA399">Favourites</span></div></sc-if>
+  <sc-if value="{{is_profile}}" hint-placeholder-val="{{false}}"><div onClick="{{goProfileTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#586851" stroke-width="1.9"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg><span style="font-size:10px;font-weight:600;color:#586851">Profile</span></div></sc-if>
+  <sc-if value="{{is_profile_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goProfileTab}}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#9DA399" stroke-width="1.9"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg><span style="font-size:10px;font-weight:500;color:#9DA399">Profile</span></div></sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+<div style="position:absolute;left:20px;right:20px;bottom:90px;background:#212822;color:#fff;padding:14px 18px;border-radius:10px;font-size:13.5px;font-weight:600;text-align:center;box-shadow:0 12px 32px -4px rgba(33,40,34,0.3);z-index:20">{{toast}}</div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:508,&quot;height&quot;:988}}">
+const TRANSPARENT_PX = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+
+class Component extends DCLogic {
+  welcomeScrollRef = React.createRef();
+  state = {
+    screen: 'logoSplash',
+    history: [],
+    lang: 'en',
+    favorites: { hanan: true },
+    selectedCategoryId: null,
+    selectedProId: 'hanan',
+    selectedServiceIdx: 0,
+    otpPhase: false,
+    phone: '',
+    bookingDateIso: null,
+    bookingTime: null,
+    addressId: 'home',
+    femaleOnly: false,
+    paymentMethod: 'telebirr',
+    processingPay: false,
+    trackingStage: 0,
+    elapsedSeconds: 0,
+    rating: { technique: 0, professionalism: 0 },
+    ratingTags: {},
+    ratingText: '',
+    toast: '',
+    bookingsTab: 'upcoming',
+    showFilters: false,
+    sortBy: 'rating',
+    activeBookingId: null,
+    bookings: [
+      { id: 'bk-past-1', proId: 'selam', service: 'Cornrows', date: '12 Aug', time: '11:00 AM', price: 650, status: 'completed', rated: true, myRating: '4.9', address: 'Bole Atlas · behind Edna Mall' },
+      { id: 'bk-past-2', proId: 'tigist', service: 'Classic manicure', date: '28 Jul', time: '3:00 PM', price: 500, status: 'completed', rated: true, myRating: '4.85', address: 'Bole Atlas · behind Edna Mall' },
+    ],
+    giftSent: false,
+    giftName: '',
+    giftOccasion: 'Birthday',
+    giftAmount: 2000,
+    idStatus: 'unverified',
+    notifPrefs: { bookingUpdates: true, promos: false, chatMessages: true, smsReminders: true },
+  };
+
+  categories = [
+    { id: 'hair', label: 'Hair' },
+    { id: 'braids', label: 'Braids' },
+    { id: 'nails', label: 'Nails' },
+    { id: 'makeup', label: 'Makeup' },
+    { id: 'barber', label: 'Barber' },
+    { id: 'massage', label: 'Massage' },
+  ];
+
+  pros = [
+    {
+      id: 'hanan', name: 'Hanan T.', firstName: 'Hanan', service: 'Braids & natural hair', category: 'braids',
+      rating: 4.9, reviews: 128, price: 1800, priceFrom: 450, zone: 'Bole', verified: true, nextSlot: '2:30 PM', gender: 'female', distanceKm: 1.8,
+      photo: './assets/headshot-hanan.png',
+      bio: '10+ years mastering traditional and modern Ethiopian braids, tailored protective styling brought directly to your home.',
+      stats: [{ v: '420+', l: 'Jobs done' }, { v: '8 yrs', l: 'Experience' }, { v: '94%', l: 'Repeats' }, { v: '99%', l: 'On-time' }],
+      services: [
+        { name: 'Box braids', tag: 'Popular', price: 1800, duration: '3 hr', note: 'Sterile kit', desc: 'Knotless or classic parting, scalp-neat grid, lightweight finish.' },
+        { name: 'Cornrows', tag: '', price: 900, duration: '90 min', note: 'Pre-washed', desc: 'Clean scalp patterns, traditional shuruba accents or straight lines.' },
+        { name: 'Silk press', tag: '', price: 1200, duration: '2 hr', note: 'Low-heat', desc: 'Thermal protectant blow-dry and lightweight ceramic smooth finish.' },
+        { name: 'Natural hair treatment', tag: '', price: 1400, duration: '2 hr', note: 'Organic oils', desc: 'Deep conditioning mask, scalp circulation massage, and detangling.' },
+      ],
+      portfolio: ['Cornrows', 'Box braids', 'Shuruba', 'Silk press'],
+      reviewsList: [
+        { name: 'Meron G.', zone: 'Bole Atlas', rating: '5.0', text: 'Hanan arrived right on time at my apartment in Bole. The braids are so neat and painless. Will rebook!', time: '3 days ago', service: 'Box braids' },
+        { name: 'Almaz W.', zone: 'CMC Michael', rating: '5.0', text: 'Brought all her clean equipment and sterile combs. Highly professional and very gentle with tender scalps.', time: '1 week ago', service: 'Cornrows' },
+      ],
+    },
+    {
+      id: 'meaza', name: 'Meaza K.', firstName: 'Meaza', service: 'Massage & wellness', category: 'massage',
+      rating: 4.95, reviews: 86, price: 1600, priceFrom: 1600, zone: 'Old Airport', verified: true, nextSlot: '3:15 PM', gender: 'female', distanceKm: 4.2,
+      photo: null,
+      bio: 'Certified therapeutic massage specialist bringing spa-grade relaxation and deep tissue work to your home, with a female-therapist option for every booking.',
+      stats: [{ v: '310+', l: 'Jobs done' }, { v: '6 yrs', l: 'Experience' }, { v: '91%', l: 'Repeats' }, { v: '97%', l: 'On-time' }],
+      services: [
+        { name: 'Full body relaxation', tag: 'Popular', price: 1600, duration: '90 min', note: 'Female therapist available', desc: 'Swedish-style full body massage with warm oils in a calm, private setting.' },
+        { name: 'Deep tissue', tag: '', price: 1900, duration: '2 hr', note: 'Firm pressure', desc: 'Targeted deep tissue work to release chronic tension.' },
+      ],
+      portfolio: [],
+      reviewsList: [
+        { name: 'Sara K.', zone: 'Old Airport', rating: '5.0', text: 'So relaxing and professional — felt completely safe having Meaza in my home.', time: '2 days ago', service: 'Full body relaxation' },
+      ],
+    },
+    {
+      id: 'selam', name: 'Selam D.', firstName: 'Selam', service: 'Cornrows', category: 'braids',
+      rating: 4.9, reviews: 61, price: 650, priceFrom: 650, zone: 'CMC', verified: true, nextSlot: 'Tomorrow', gender: 'female', distanceKm: 3.1,
+      photo: null,
+      bio: 'Specialist in clean-part cornrows and shuruba styling, gentle on sensitive scalps.',
+      stats: [{ v: '260+', l: 'Jobs done' }, { v: '5 yrs', l: 'Experience' }, { v: '90%', l: 'Repeats' }, { v: '98%', l: 'On-time' }],
+      services: [{ name: 'Cornrows', tag: '', price: 650, duration: '75 min', note: 'Pre-washed', desc: 'Clean scalp patterns, traditional shuruba accents or straight lines.' }],
+      portfolio: [],
+      reviewsList: [],
+    },
+    {
+      id: 'tigist', name: 'Tigist M.', firstName: 'Tigist', service: 'Manicure', category: 'nails',
+      rating: 4.85, reviews: 44, price: 500, priceFrom: 500, zone: 'Ayat', verified: true, nextSlot: 'Tomorrow', gender: 'female', distanceKm: 6.5,
+      photo: null,
+      bio: 'Gel and classic manicure specialist with a gentle touch and her own sterilised toolkit.',
+      stats: [{ v: '190+', l: 'Jobs done' }, { v: '4 yrs', l: 'Experience' }, { v: '88%', l: 'Repeats' }, { v: '97%', l: 'On-time' }],
+      services: [
+        { name: 'Classic manicure', tag: '', price: 500, duration: '45 min', note: 'Own tools', desc: 'Shape, cuticle care, and polish of your choice.' },
+        { name: 'Gel manicure', tag: 'Popular', price: 750, duration: '60 min', note: 'LED cured', desc: 'Long-lasting gel finish with LED curing.' },
+      ],
+      portfolio: [],
+      reviewsList: [],
+    },
+  ];
+
+  addresses = [
+    { id: 'home', label: 'Home', zone: 'Bole', detail: 'Bole Atlas · behind Edna Mall', fee: 0 },
+    { id: 'office', label: 'Office', zone: 'CMC', detail: 'CMC Michael · near roundabout', fee: 150 },
+  ];
+
+  timeSlots = ['9:00 AM', '10:30 AM', '12:00 PM', '2:30 PM', '4:00 PM', '5:30 PM'];
+  fullSlots = ['4:00 PM'];
+  timers = [];
+
+  componentWillUnmount() {
+    this.timers.forEach(clearTimeout);
+    if (this.tickInterval) clearInterval(this.tickInterval);
+  }
+
+  navigate = (screen) => this.setState(s => ({ history: [...s.history, s.screen], screen }));
+  goBack = () => this.setState(s => { const h = [...s.history]; const prev = h.pop(); return { history: h, screen: prev || 'home' }; });
+  goHome = () => this.setState({ screen: 'home', history: [] });
+  switchTab = (tab) => this.setState({ screen: tab, history: [] });
+  goHomeTab = () => this.switchTab('home');
+  goBookingsTab = () => this.switchTab('bookings');
+  goFavouritesTab = () => this.switchTab('favourites');
+  goProfileTab = () => this.switchTab('profile');
+  goToSplash = () => this.setState({ screen: 'splash' });
+  goToBrandIntro = () => this.setState({ screen: 'brandIntro' });
+  goToRoleSelect = () => this.setState({ screen: 'roleSelect' });
+  scrollToBrandIntro = () => { const el = this.welcomeScrollRef.current; if (el) el.scrollTo({ left: el.clientWidth, behavior: 'smooth' }); };
+  goToPhone = () => this.navigate('phone');
+  goToBookingWhen = () => this.navigate('bookingWhen');
+  goToBookingWhere = () => this.navigate('bookingWhere');
+  goToPayment = () => this.navigate('payment');
+  goToGift = () => this.navigate('gift');
+  goToBrowseAll = () => { this.setState({ selectedCategoryId: null }); this.navigate('browse'); };
+  goToAddresses = () => this.navigate('addresses');
+  goToPaymentMethods = () => this.navigate('paymentMethods');
+  goToNotifications = () => this.navigate('notifications');
+  goToPrivacySecurity = () => this.navigate('privacySecurity');
+  goToHelpSupport = () => this.navigate('helpSupport');
+  goToIdVerification = () => this.navigate('idVerification');
+
+  toggleLang = (lang) => this.setState({ lang });
+  openPro = (proId, idx) => { this.setState({ selectedProId: proId, selectedServiceIdx: idx || 0 }); this.navigate('proProfile'); };
+  quickRebook = (proId) => { this.setState({ selectedProId: proId, selectedServiceIdx: 0 }); this.navigate('bookingWhen'); };
+  selectCategory = (id) => { this.setState({ selectedCategoryId: id }); this.navigate('browse'); };
+  toggleFavorite = (id) => this.setState(s => ({ favorites: { ...s.favorites, [id]: !s.favorites[id] } }));
+  selectService = (idx) => this.setState({ selectedServiceIdx: idx });
+  selectDate = (iso) => this.setState({ bookingDateIso: iso });
+  selectTime = (t) => this.setState({ bookingTime: t });
+  toggleFemaleOnly = () => this.setState(s => ({ femaleOnly: !s.femaleOnly }));
+  selectAddress = (id) => this.setState({ addressId: id });
+  selectPayment = (m) => this.setState({ paymentMethod: m });
+  toggleFilters = () => this.setState(s => ({ showFilters: !s.showFilters }));
+  setSortBy = (k) => this.setState({ sortBy: k });
+  setBookingsTab = (tab) => this.setState({ bookingsTab: tab });
+  openReceipt = (id) => { this.setState({ activeBookingId: id }); this.navigate('receiptDetail'); };
+  setPhone = (e) => this.setState({ phone: e.target.value });
+  sendCode = () => this.setState({ otpPhase: true });
+  verifyCode = () => this.goHome();
+  setGiftName = (e) => this.setState({ giftName: e.target.value });
+  sendGift = () => this.setState({ giftSent: true });
+  resetGift = () => { this.setState({ giftSent: false, giftName: '' }); this.goHome(); };
+  setRatingText = (e) => this.setState({ ratingText: e.target.value });
+  rateStar = (dim, val) => this.setState(s => ({ rating: { ...s.rating, [dim]: val } }));
+  toggleRatingTag = (tag) => this.setState(s => ({ ratingTags: { ...s.ratingTags, [tag]: !s.ratingTags[tag] } }));
+  toggleNotifPref = (key) => this.setState(s => ({ notifPrefs: { ...s.notifPrefs, [key]: !s.notifPrefs[key] } }));
+
+  showToast = (msg) => {
+    this.setState({ toast: msg });
+    const t = setTimeout(() => this.setState({ toast: '' }), 3000);
+    this.timers.push(t);
+  };
+
+  cancelBooking = (id) => {
+    this.setState(s => ({ bookings: s.bookings.filter(b => b.id !== id) }));
+    this.showToast('Booking cancelled — no charge.');
+    this.goHome();
+  };
+  rescheduleBooking = (proId) => { this.setState({ selectedProId: proId, selectedServiceIdx: 0, bookingDateIso: null, bookingTime: null }); this.navigate('bookingWhen'); };
+  cancelActiveBooking = () => this.cancelBooking(this.state.activeBookingId);
+  rescheduleActiveBooking = () => this.rescheduleBooking(this.state.selectedProId);
+
+  submitIdVerification = () => {
+    this.setState({ idStatus: 'pending' });
+    const t = setTimeout(() => { this.setState({ idStatus: 'verified' }); this.showToast('ID verified — massage bookings unlocked.'); this.navigate('profile'); }, 1800);
+    this.timers.push(t);
+  };
+
+  submitPayment = () => {
+    this.setState({ processingPay: true });
+    const t = setTimeout(() => {
+      const pro = this.pros.find(p => p.id === this.state.selectedProId);
+      const svc = pro.services[this.state.selectedServiceIdx];
+      const addr = this.addresses.find(a => a.id === this.state.addressId);
+      const id = 'bk-' + Date.now();
+      const booking = { id, proId: pro.id, service: svc.name, date: 'Today', time: this.state.bookingTime, price: svc.price + addr.fee, status: 'assigned', rated: false, address: addr.detail };
+      this.setState(s => ({ processingPay: false, activeBookingId: id, trackingStage: 0, elapsedSeconds: 0, bookings: [booking, ...s.bookings] }));
+      this.navigate('tracking');
+      this.runTracking();
+    }, 900);
+    this.timers.push(t);
+  };
+
+  runTracking = () => {
+    const advance = (stage, delay) => {
+      const t = setTimeout(() => {
+        this.setState(s => ({
+          trackingStage: stage,
+          bookings: s.bookings.map(b => b.id === s.activeBookingId ? { ...b, status: stage === 3 ? 'completed' : stage === 2 ? 'in_progress' : 'on_the_way' } : b),
+        }));
+        if (stage === 2) this.tickInterval = setInterval(() => this.setState(s => ({ elapsedSeconds: s.elapsedSeconds + 1 })), 1000);
+        if (stage === 3 && this.tickInterval) clearInterval(this.tickInterval);
+      }, delay);
+      this.timers.push(t);
+    };
+    advance(1, 3500);
+    advance(2, 8000);
+    advance(3, 15000);
+  };
+
+  submitRating = () => {
+    this.setState(s => ({
+      bookings: s.bookings.map(b => b.id === s.activeBookingId ? { ...b, rated: true, myRating: ((s.rating.technique + s.rating.professionalism) / 2).toFixed(1) } : b),
+      toast: 'Thanks for rating your visit!',
+      rating: { technique: 0, professionalism: 0 }, ratingTags: {}, ratingText: '',
+    }));
+    const t = setTimeout(() => this.setState({ toast: '' }), 3000);
+    this.timers.push(t);
+    this.goHome();
+  };
+
+  fmtTime(sec) {
+    const m = Math.floor(sec / 60).toString().padStart(2, '0');
+    const r = (sec % 60).toString().padStart(2, '0');
+    return m + ':' + r;
+  }
+
+  decorateProCard(p, s) {
+    const initials = p.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+    return {
+      ...p, initials, hasPhoto: !!p.photo, noPhoto: !p.photo,
+      photoSrc: p.photo || TRANSPARENT_PX,
+      favorited: !!s.favorites[p.id], notFavorited: !s.favorites[p.id],
+      onOpen: () => this.openPro(p.id, 0),
+      onToggleFav: () => this.toggleFavorite(p.id),
+      onBook: () => this.quickRebook(p.id),
+    };
+  }
+
+  decorateBooking(b, s) {
+    const pro = this.pros.find(p => p.id === b.proId) || {};
+    const initials = pro.name ? pro.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() : '??';
+    return {
+      ...b, proName: pro.name || 'Specialist', proPhoto: pro.photo, proPhotoSrc: pro.photo || TRANSPARENT_PX, hasPhoto: !!pro.photo, noPhoto: !pro.photo, initials,
+      statusLabel: { assigned: 'Confirmed', on_the_way: 'On the way', in_progress: 'In progress', completed: 'Completed' }[b.status] || b.status,
+      isUpcoming: b.status !== 'completed',
+      onOpenTracking: () => { this.setState({ activeBookingId: b.id, selectedProId: b.proId }); this.navigate('tracking'); },
+      onOpenReceipt: () => this.openReceipt(b.id),
+      onRebook: () => this.quickRebook(b.proId),
+      canCancel: b.status === 'assigned', cannotCancel: b.status !== 'assigned',
+      onCancel: (e) => { if (e) e.stopPropagation(); this.cancelBooking(b.id); },
+      onReschedule: (e) => { if (e) e.stopPropagation(); this.rescheduleBooking(b.proId); },
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const rawPro = this.pros.find(p => p.id === s.selectedProId) || this.pros[0];
+    const pro = this.decorateProCard(rawPro, s);
+    const services = rawPro.services.map((sv, idx) => ({ ...sv, idx, selected: idx === s.selectedServiceIdx, notSelected: idx !== s.selectedServiceIdx, onSelect: () => this.selectService(idx) }));
+    const service = rawPro.services[s.selectedServiceIdx] || rawPro.services[0];
+    const addresses = this.addresses.map(a => ({ ...a, selected: s.addressId === a.id, notSelected: s.addressId !== a.id, onSelect: () => this.selectAddress(a.id) }));
+    const addr = this.addresses.find(a => a.id === s.addressId);
+    const total = service ? service.price + addr.fee : 0;
+
+    const days = [];
+    for (let i = 0; i < 7; i++) {
+      const d = new Date();
+      d.setDate(d.getDate() + i);
+      const iso = d.toDateString();
+      const selected = s.bookingDateIso === iso;
+      days.push({ iso, dayNum: d.getDate(), dow: i === 0 ? 'Today' : d.toLocaleDateString('en-US', { weekday: 'short' }), selected, notSelected: !selected, onSelect: () => this.selectDate(iso) });
+    }
+    const slots = this.timeSlots.map(t => {
+      const full = this.fullSlots.includes(t);
+      const selected = s.bookingTime === t;
+      return { label: t, full, selectedActive: selected && !full, availableInactive: !selected && !full, onSelect: () => this.selectTime(t) };
+    });
+
+    const cats = this.categories.map(c => ({ ...c, initial: c.label[0], active: s.selectedCategoryId === c.id, notActive: s.selectedCategoryId !== c.id, onSelect: () => this.selectCategory(c.id) }));
+    const sortOptions = [
+      { key: 'rating', label: 'Top rated' },
+      { key: 'distance', label: 'Nearest' },
+      { key: 'price', label: 'Price' },
+    ].map(o => ({ ...o, active: s.sortBy === o.key, notActive: s.sortBy !== o.key, onSelect: () => this.setSortBy(o.key) }));
+    const sorters = { rating: (a, b) => b.rating - a.rating, distance: (a, b) => a.distanceKm - b.distanceKm, price: (a, b) => a.priceFrom - b.priceFrom };
+    const browsePros = this.pros
+      .filter(p => !s.selectedCategoryId || p.category === s.selectedCategoryId)
+      .filter(p => !s.femaleOnly || p.gender === 'female')
+      .sort(sorters[s.sortBy])
+      .map(p => this.decorateProCard(p, s));
+    const homePros = this.pros.slice(0, 2).map(p => this.decorateProCard(p, s));
+    const rebookPros = ['selam', 'tigist'].map(id => ({ ...this.decorateProCard(this.pros.find(p => p.id === id), s), lastDate: id === 'selam' ? '12 Aug' : '28 Jul' }));
+    const favPros = this.pros.filter(p => s.favorites[p.id]).map(p => this.decorateProCard(p, s));
+
+    const upcoming = s.bookings.filter(b => b.status !== 'completed').map(b => this.decorateBooking(b, s));
+    const past = s.bookings.filter(b => b.status === 'completed').map(b => this.decorateBooking(b, s));
+    const receiptBooking = s.activeBookingId ? this.decorateBooking(s.bookings.find(b => b.id === s.activeBookingId) || s.bookings[0], s) : null;
+
+    const paymentOptions = [
+      { id: 'telebirr', label: 'Telebirr', sub: 'Mobile money', tag: '' },
+      { id: 'cbe', label: 'CBE Birr', sub: 'Bank transfer', tag: '' },
+      { id: 'card', label: 'Visa / Mastercard', sub: 'For diaspora & card payments', tag: '' },
+      { id: 'cash', label: 'Cash', sub: 'Pay the specialist directly', tag: 'Pilot' },
+    ].map(o => ({ ...o, selected: s.paymentMethod === o.id, notSelected: s.paymentMethod !== o.id, onSelect: () => this.selectPayment(o.id) }));
+
+    const stageLabels = ['Requested', 'On the way', 'In progress', 'Completed'];
+    const stageDescriptions = [
+      pro.firstName + ' has been notified and will confirm shortly.',
+      pro.firstName + ' is on the way to your address.',
+      'Your ' + (service ? service.name.toLowerCase() : 'service') + ' session has started.',
+      'Session complete — hope you loved it!',
+    ];
+    const stageItems = stageLabels.map((label, i) => ({ label, reached: i <= s.trackingStage, notReached: i > s.trackingStage }));
+    const proReviews = (rawPro.reviewsList || []).map(r => ({ ...r, initial: r.name[0] }));
+
+    const techniqueStars = [1, 2, 3, 4, 5].map(n => ({ n, filled: n <= s.rating.technique, notFilled: n > s.rating.technique, onClick: () => this.rateStar('technique', n) }));
+    const professionalismStars = [1, 2, 3, 4, 5].map(n => ({ n, filled: n <= s.rating.professionalism, notFilled: n > s.rating.professionalism, onClick: () => this.rateStar('professionalism', n) }));
+    const ratingTagsList = ['On time', 'Gentle touch', 'Great value', 'Would rebook', 'Very clean'].map(t => ({ label: t, active: !!s.ratingTags[t], notActive: !s.ratingTags[t], onToggle: () => this.toggleRatingTag(t) }));
+
+    const giftOccasions = ['Birthday', 'Genna', 'Thank you', 'Just because'].map(o => ({ label: o, active: s.giftOccasion === o, notActive: s.giftOccasion !== o, onSelect: () => this.setState({ giftOccasion: o }) }));
+    const giftAmounts = [1000, 2000, 3500, 5000].map(a => ({ v: a, active: s.giftAmount === a, notActive: s.giftAmount !== a, onSelect: () => this.setState({ giftAmount: a }) }));
+
+    const isTabRoot = ['home', 'bookings', 'favourites', 'profile'].includes(s.screen);
+    const screenIds = ['logoSplash', 'brandIntro', 'roleSelect', 'phone', 'home', 'browse', 'proProfile', 'bookingWhen', 'bookingWhere', 'payment', 'tracking', 'rate', 'bookings', 'receiptDetail', 'favourites', 'gift', 'profile', 'addresses', 'paymentMethods', 'notifications', 'privacySecurity', 'helpSupport', 'idVerification'];
+    const screenFlags = {};
+    screenIds.forEach(id => { screenFlags['is_' + id] = s.screen === id; screenFlags['is_' + id + '_off'] = s.screen !== id; });
+
+    return {
+      ...screenFlags,
+      screen: s.screen, lang: s.lang, isTabRoot, toast: s.toast,
+      navigate: this.navigate, goBack: this.goBack, goHome: this.goHome,
+      goHomeTab: this.goHomeTab, goBookingsTab: this.goBookingsTab, goFavouritesTab: this.goFavouritesTab, goProfileTab: this.goProfileTab,
+      welcomeScrollRef: this.welcomeScrollRef, scrollToBrandIntro: this.scrollToBrandIntro, goToBrandIntro: this.goToBrandIntro, goToSplash: this.goToSplash, goToRoleSelect: this.goToRoleSelect,
+      goToPhone: this.goToPhone, goToBookingWhen: this.goToBookingWhen, goToBookingWhere: this.goToBookingWhere, goToPayment: this.goToPayment, goToGift: this.goToGift, goToBrowseAll: this.goToBrowseAll,
+      toggleLangEn: () => this.toggleLang('en'), toggleLangAm: () => this.toggleLang('am'),
+      categories: cats,
+      homePros, rebookPros, browsePros, favPros,
+      selectedCategoryLabel: (this.categories.find(c => c.id === s.selectedCategoryId) || { label: 'All specialists' }).label,
+      showFilters: s.showFilters, toggleFilters: this.toggleFilters, sortOptions,
+      pro, services, service, addr, addresses, total, proReviews,
+      days, slots, canContinueWhen: !!(s.bookingDateIso && s.bookingTime), cannotContinueWhen: !(s.bookingDateIso && s.bookingTime),
+      femaleOnly: s.femaleOnly, notFemaleOnly: !s.femaleOnly, toggleFemaleOnly: this.toggleFemaleOnly,
+      paymentOptions, processingPay: s.processingPay, notProcessing: !s.processingPay, submitPayment: this.submitPayment,
+      trackingStage: s.trackingStage, stageLabels, stageItems, currentStageLabel: stageLabels[s.trackingStage], stageDescription: stageDescriptions[s.trackingStage],
+      isStageInProgress: s.trackingStage === 2, isStageCompleted: s.trackingStage === 3, stageProgressPct: Math.round((s.trackingStage / 3) * 100),
+      elapsedFormatted: this.fmtTime(s.elapsedSeconds), bookingTime: s.bookingTime, goToRate: () => this.navigate('rate'),
+      techniqueStars, professionalismStars, ratingTagsList,
+      ratingText: s.ratingText, setRatingText: this.setRatingText, submitRating: this.submitRating,
+      canSubmitRating: s.rating.technique > 0 && s.rating.professionalism > 0, cannotSubmitRating: !(s.rating.technique > 0 && s.rating.professionalism > 0),
+      bookingsTab: s.bookingsTab, isUpcomingTab: s.bookingsTab === 'upcoming', isPastTab: s.bookingsTab === 'past',
+      setUpcomingTab: () => this.setBookingsTab('upcoming'), setPastTab: () => this.setBookingsTab('past'),
+      upcoming, past, receiptBooking,
+      otpPhase: s.otpPhase, phone: s.phone, setPhone: this.setPhone, sendCode: this.sendCode, verifyCode: this.verifyCode,
+      giftSent: s.giftSent, notGiftSent: !s.giftSent, giftName: s.giftName, setGiftName: this.setGiftName, giftOccasions, giftAmounts, giftAmount: s.giftAmount,
+      canSendGift: s.giftName.trim().length > 0, cannotSendGift: s.giftName.trim().length === 0, sendGift: this.sendGift, resetGift: this.resetGift,
+      hasNoFavorites: favPros.length === 0, isLangEn: s.lang === 'en', isLangAm: s.lang === 'am',
+      goToAddresses: this.goToAddresses, goToPaymentMethods: this.goToPaymentMethods, goToNotifications: this.goToNotifications,
+      goToPrivacySecurity: this.goToPrivacySecurity, goToHelpSupport: this.goToHelpSupport, goToIdVerification: this.goToIdVerification,
+      canCancelBooking: s.trackingStage === 0, cannotCancelBooking: s.trackingStage !== 0,
+      cancelActiveBooking: this.cancelActiveBooking, rescheduleActiveBooking: this.rescheduleActiveBooking,
+      idStatus: s.idStatus, idUnverified: s.idStatus === 'unverified', idPending: s.idStatus === 'pending', idVerified: s.idStatus === 'verified',
+      submitIdVerification: this.submitIdVerification,
+      notifPrefs: s.notifPrefs,
+      notifToggles: [
+        { key: 'bookingUpdates', label: 'Booking updates', sub: 'Confirmations, reminders and status changes' },
+        { key: 'promos', label: 'Promotions & offers', sub: 'Discounts and seasonal offers' },
+        { key: 'chatMessages', label: 'Chat messages', sub: 'Messages from your specialist' },
+        { key: 'smsReminders', label: 'SMS reminders', sub: 'Backup reminders by text message' },
+      ].map(n => ({ ...n, on: !!s.notifPrefs[n.key], off: !s.notifPrefs[n.key], onToggle: () => this.toggleNotifPref(n.key) })),
+    };
+  }
+}
+</script>
+</body>
+</html>

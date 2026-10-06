@@ -1,0 +1,52 @@
+KONJO
+Technical Build Brief — for Jelani, Addis Coders
+At-home beauty, grooming and massage marketplace for Addis Ababa  ·  Prepared by Addis Alemayehou  ·  September 2026  ·  Draft v1
+1. What Konjo is
+A two-sided marketplace app for Addis Ababa. Vetted beauty and wellness professionals (barbers, nail techs, braiders, makeup artists, massage therapists) list themselves; clients book them to their home, hotel or office, pay in-app, and rate the service. The business is owned and run by two founders, Tati and Sara; I am funding the build and early running costs. Target clients are expats, diaspora and professionals in Bole, Old Airport, CMC and Ayat. Launch target: November 2026, in time for the Genna/diaspora season.
+What I'm asking of Addis Coders: a student team to design and build the product under your supervision, as a paid project. Konjo owns all code, data and IP; the students get a real shipped product on their CVs and a stipend.
+2. The three surfaces to build
+Client app (Android + mobile web)
+Professional app (Android)
+Admin panel (web)
+Phone-number sign-up with SMS OTP · English/Amharic · browse by category and zone · pro profile: photos, services, prices, ratings, reviews, availability · book date, time, address (zone-based travel fee) · pay via Telebirr, CBE Birr, or card; cash flag for pilot · booking status, reschedule, cancel · post-visit rating (technique + professionalism) and review · rebook favourites · booking history and receipts
+Registration: ID upload, selfie, portfolio photos, certificates · services, prices, working hours, home zones · accept/decline bookings with push notification · calendar view · check-in / check-out on the job (starts a session timer visible to client) · earnings dashboard · weekly payout to Telebirr/bank · ratings view · availability toggle
+Approve/reject/suspend professionals · manage categories, zones, travel fees, commission rate · bookings dashboard and search · disputes, refunds, manual payouts · featured listings and promo codes · push and SMS broadcasts · CSV export of bookings, revenue and pros · audit log of admin actions
+3. Core flows the product must get right
+Booking lifecycle: Client books → pro accepts (or auto-reassign to next nearest pro if no acceptance in 15 min) → pro checks in on arrival → service → pro checks out → client rates → payout queued.
+Money: Client pays at booking. Funds are held by Konjo, not the pro, until check-out. Commission (18%) is deducted; the pro's share is paid weekly. Cancellation free before the pro starts the journey; after that the travel fee is forfeited. Client no-show: commission non-refundable.
+Trust and safety: Pros go live only after admin approval. Clients verify phone (and ID for first massage booking). Female-therapist-only option. Live status and session timer during massage visits; SOS button on both sides that alerts admin and shares location. Ratings below 3.0 auto-hide a profile pending review.
+4. Technical guidance
+Stack (recommended, not mandatory): React Native (Expo) for the two mobile apps, Next.js for admin and mobile web, Node.js/NestJS or Python/FastAPI backend, PostgreSQL, Redis for queues, hosted on AWS or a comparable provider. If your students are stronger in another modern stack, propose it — the stack matters less than clean architecture and documentation.
+Integrations: Telebirr and CBE Birr merchant APIs; a card gateway (Chapa or similar) for USD/diaspora cards; SMS gateway for OTP (Africa's Talking, or Ethio Telecom's); Google Maps for zones and addresses; push via Firebase.
+Security and data: All personal data (IDs, addresses, phone numbers) encrypted at rest; role-based access; no ID images visible to clients; payment data never stored on our servers; HTTPS everywhere; rate limiting on OTP; a basic incident and data-deletion procedure documented.
+Performance and locale: Works on mid-range Android and slow 4G; Amharic and English strings in a single i18n file from day one; app size kept small; offline-tolerant booking screens.
+5. Team, timeline and money
+Weeks
+Milestone
+Done means
+1–2
+Discovery and design
+Clickable Figma for all three surfaces; data model and API spec reviewed and signed off by Tati, Sara and me
+3–7
+Build
+All three surfaces functional on staging; payment sandbox integrated; test bookings end-to-end
+8–9
+Pilot
+Live with 20–30 pros and friends-and-family clients in Bole; bugs fixed; security review completed
+10
+Launch
+Play Store release; admin trained; handover package delivered
+Team: Suggested team: 1 lead/architect (senior student or Addis Coders mentor), 2 mobile developers, 1 backend developer, 1 UI/UX designer, part-time QA. Jelani as technical supervisor.
+Budget: Please ask the team to cost the 10-week build (student stipends, tools, design assets) and a monthly figure for two students retained on maintenance and Phase 2 after launch. Payment in three tranches tied to milestones (design sign-off, staging complete, launch). Hosting, SMS and payment fees paid directly by Konjo.
+IP: Konjo (Tati and Sara, with my support) owns all code, repos, designs, data and accounts. Addis Coders may reference the project publicly as a case study once live. Students sign a simple IP assignment and confidentiality agreement.
+6. Handover package (required at launch)
+Source code in a Konjo-owned GitHub organisation · architecture diagram and API documentation · database schema and seed scripts · deployment scripts (Docker) and environment documentation · admin user guide (short) · a 30-minute recorded walkthrough · list of known issues and Phase 2 backlog. All third-party accounts (AWS, Firebase, Play Console, SMS, payment merchant) registered to Konjo, not to individuals.
+7. Phase 2 (after launch, not in this scope)
+iOS app · in-app chat · subscriptions and packages · corporate and group/compound bookings · pro-side bookkeeping tool · second city.
+8. What I need from you, Jelani
+A yes/no on taking this on, and the earliest start date
+Proposed team and who leads technically
+The team's costing for the build and for post-launch maintenance
+Any changes to stack or timeline you'd recommend
+A 30-minute kick-off with Tati, Sara and me to walk through the flows
+Reference point: Tausi App in Nairobi (tausiapp.com) is the closest working model of this product — worth the team studying its booking, cancellation and safety features before design starts.

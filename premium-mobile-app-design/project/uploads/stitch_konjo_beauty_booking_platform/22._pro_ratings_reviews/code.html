@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><title>Konjo Wellness</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { width: 100vw; min-height: 100%; margin: 0; padding: 0; } body { overscroll-behavior: none; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-surface-variant": "#404947", "secondary-fixed-dim": "#fcbb45", "on-primary-container": "#84bbb3", "surface-container-highest": "#d9e5e2", "primary": "#00342f", "surface-container-high": "#deebe7", "surface-container": "#e4f1ed", "on-tertiary-container": "#e3a18c", "inverse-primary": "#99d1c9", "tertiary-container": "#663727", "background": "#f0fcf8", "surface-bright": "#f0fcf8", "on-tertiary-fixed-variant": "#6a3a2a", "on-secondary-container": "#714e00", "error": "#ba1a1a", "inverse-on-surface": "#e7f3f0", "surface-tint": "#306761", "on-secondary-fixed": "#281900", "tertiary-fixed": "#ffdbd0", "on-tertiary-fixed": "#341004", "error-container": "#ffdad6", "tertiary-fixed-dim": "#fbb6a0", "on-background": "#131e1c", "on-primary-fixed-variant": "#144f49", "secondary-fixed": "#ffdeac", "tertiary": "#4b2213", "on-error": "#ffffff", "surface": "#f0fcf8", "surface-variant": "#d9e5e2", "surface-dim": "#d0ddd9", "on-secondary": "#ffffff", "surface-container-lowest": "#ffffff", "on-primary": "#ffffff", "outline": "#707977", "on-secondary-fixed-variant": "#604100", "surface-container-low": "#eaf6f3", "primary-fixed-dim": "#99d1c9", "primary-fixed": "#b5ede5", "on-primary-fixed": "#00201d", "secondary-container": "#ffbe48", "outline-variant": "#bfc8c6", "inverse-surface": "#273330", "secondary": "#7e5700", "primary-container": "#0f4c46", "on-surface": "#131e1c", "on-tertiary": "#ffffff", "on-error-container": "#93000a" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1rem", "margin": "1rem", "space-xl": "2rem", "space-xs": "0.25rem", "space-lg": "1.5rem", "space-sm": "0.5rem", "space-md": "1rem" }, fontFamily: { "headline-sm": ["Inter"], "body-sm": ["Inter"], "display": ["Inter"], "price-md": ["Inter"], "headline-lg": ["Inter"], "price-lg": ["Inter"], "label-sm": ["Inter"], "label-md": ["Inter"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-md": ["Inter"] }, fontSize: { "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-sm": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "price-md": ["16px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "price-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }], "body-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "body-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col pt-safe pb-safe"><main class="flex-1 flex flex-col relative w-full bg-surface"><div class="flex flex-col w-full max-w-[480px] mx-auto pb-24 select-none">
+<!-- Top Bar / Screen Header -->
+<header class="px-gutter pt-4 pb-3 flex items-center justify-between">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight truncate">Client reviews &amp; ratings</h1>
+<span class="font-label-sm text-label-sm text-primary-container bg-primary-fixed/60 px-2 py-0.5 rounded-full">ደረጃ</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Based on 128 verified home visits</p>
+</div>
+<button aria-label="Share reputation profile" class="w-10 h-10 rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors active:scale-95" type="button">
+<span class="material-symbols-outlined text-[20px]">ios_share</span>
+</button>
+</header>
+<!-- Reputation Scorecard Hero -->
+<section class="px-gutter mt-2">
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm relative overflow-hidden">
+<!-- Subtle Ambient Glow -->
+<div class="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-secondary-fixed/30 blur-2xl pointer-events-none"></div>
+<!-- Top Score summary row -->
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Overall score</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-display text-display font-bold text-primary tracking-tight">4.9</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ 5.0</span>
+</div>
+<div class="flex items-center gap-1 mt-1 text-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Metric Mini Pillar -->
+<div class="bg-surface-container-low rounded-xl p-3 flex flex-col items-end text-right">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm font-semibold">100%</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Verified clients</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container mt-1 font-medium bg-secondary-fixed/50 px-1.5 py-0.5 rounded">99.2% repeat</span>
+</div>
+</div>
+<!-- Category Detailed Progress Bars -->
+<div class="mt-5 space-y-3">
+<!-- Technique -->
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<span class="text-on-surface">Technique &amp; braid neatness</span>
+<span class="text-primary font-semibold">5.0 <span class="text-on-surface-variant font-normal text-label-sm">(98%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-[98%] transition-all duration-500"></div>
+</div>
+</div>
+<!-- Punctuality -->
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<span class="text-on-surface">Punctuality &amp; time keeping</span>
+<span class="text-primary font-semibold">4.9 <span class="text-on-surface-variant font-normal text-label-sm">(96%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-[96%] transition-all duration-500"></div>
+</div>
+</div>
+<!-- Cleanliness -->
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<span class="text-on-surface">Cleanliness &amp; sanitized tools</span>
+<span class="text-primary font-semibold">5.0 <span class="text-on-surface-variant font-normal text-label-sm">(99%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-[99%] transition-all duration-500"></div>
+</div>
+</div>
+<!-- Gentle Care -->
+<div>
+<div class="flex justify-between items-center text-body-sm font-body-sm mb-1">
+<span class="text-on-surface">Gentle scalp care</span>
+<span class="text-primary font-semibold">4.8 <span class="text-on-surface-variant font-normal text-label-sm">(94%)</span></span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full w-[94%] transition-all duration-500"></div>
+</div>
+</div>
+</div>
+<!-- Sub-city Leaderboard Badge -->
+<div class="mt-4 pt-3 flex items-center gap-2.5 bg-surface-container-low/70 rounded-lg p-2.5">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0">
+<span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-on-surface font-semibold truncate">#2 Top rated braider</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Bole &amp; CMC sub-cities · Addis Ababa</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium shrink-0">Top 1%</span>
+</div>
+</div>
+</section>
+<!-- Badges & Accreditations Carousel -->
+<section class="mt-6">
+<div class="px-gutter flex items-center justify-between mb-2.5">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Earned credentials</h2>
+<span class="font-label-sm text-label-sm text-primary-container font-medium">4 active</span>
+</div>
+<!-- Horizontal scrollable strip -->
+<div class="flex gap-3 overflow-x-auto px-gutter no-scrollbar py-1">
+<!-- Badge 1: Fayda -->
+<div class="w-44 shrink-0 bg-surface-container-lowest rounded-xl p-3 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+</div>
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block truncate">Fayda verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 block leading-tight">Biometric national identity cleared</span>
+</div>
+</div>
+<!-- Badge 2: Punctuality -->
+<div class="w-44 shrink-0 bg-surface-container-lowest rounded-xl p-3 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-primary">99%</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block truncate">Punctuality master</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 block leading-tight">Always early or on schedule</span>
+</div>
+</div>
+<!-- Badge 3: Gentle Hands -->
+<div class="w-44 shrink-0 bg-surface-container-lowest rounded-xl p-3 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-secondary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block truncate">Gentle hands</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 block leading-tight">High scalp comfort &amp; care rating</span>
+</div>
+</div>
+<!-- Badge 4: Top Earner -->
+<div class="w-44 shrink-0 bg-surface-container-lowest rounded-xl p-3 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold text-on-secondary-container bg-secondary-fixed/50 px-1 py-0.5 rounded">ETB Top</span>
+</div>
+<div>
+<span class="font-label-md text-label-md font-semibold text-on-surface block truncate">Top earner March</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 block leading-tight">Top 5% bookings across Addis</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter Chips Row -->
+<section class="mt-6">
+<div class="px-gutter mb-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Client reviews</h2>
+</div>
+<div class="flex gap-2 overflow-x-auto px-gutter no-scrollbar py-1 text-label-md font-label-md">
+<button class="px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary shrink-0 transition-colors shadow-sm" type="button">
+        All (128)
+      </button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container shrink-0 transition-colors shadow-sm" type="button">
+        Box braids (64)
+      </button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container shrink-0 transition-colors shadow-sm" type="button">
+        Cornrows (38)
+      </button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container shrink-0 transition-colors shadow-sm" type="button">
+        With notes (112)
+      </button>
+<button class="px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container shrink-0 transition-colors shadow-sm flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+        5-star only
+      </button>
+</div>
+</section>
+<!-- Verified Client Reviews Feed -->
+<section class="px-gutter mt-4 space-y-3.5">
+<!-- Review 1: Meron G. -->
+<article class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<!-- Client Header -->
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<img class="w-11 h-11 rounded-full object-cover shrink-0" data-alt="Portrait of an elegant young Ethiopian woman with styled knotless box braids wearing warm neutral tones and subtle gold earrings in natural sunlight in Bole Addis Ababa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7rrGUOfeUz3JL3izNL7IUAukQXCSwuI0Yh3b_rwj4O72YHABK_IX9VwA_5M4cPVVF5aqaQuGgfKgNVBSTrd4pRnR8Dq9CyFvWNzq_ys2IY1egQVaQvzO9Pke2jOLnrl2Ko1b-TK5vEAiPukLQxbpxCGDbDvTdUw_l1fubtHEvHhEMwLPK3RKGg0lGe1VUIh63qtfy4U0u9EY0Rlu3YyMtH3VMtQUZ5a_gfe0IaCtAvc6ddBqjyug"/>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px] leading-snug">Meron G.</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Bole Atlas</span>
+</div>
+<div class="flex items-center gap-1 text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface ml-1">5.0</span>
+</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0">Yesterday</span>
+</div>
+<!-- Feature Tags -->
+<div class="flex flex-wrap gap-1.5">
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-md">On time</span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-md">Sterile tools</span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-md">Gentle handling</span>
+<span class="bg-surface-container-high text-primary-container font-label-sm text-label-sm px-2.5 py-1 rounded-md">Knotless braids</span>
+</div>
+<!-- Review Body -->
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+        Hanan arrived right on time at my Bole compound with her own clean stool and disinfected tools. The parting on my knotless braids is scalpel-sharp and totally painless. Definitely my go-to braider!
+      </p>
+<!-- Review Photo Gallery Preview -->
+<div class="grid grid-cols-2 gap-2 mt-0.5">
+<img class="w-full h-28 rounded-lg object-cover" data-alt="Close up photography of perfectly parted triangular clean knotless box braids on healthy natural hair with clean scalp parting under bright interior salon light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJK7SqO0vtYpHuChfEqrJ6m2zLiH2StxdbiPpKWtWGcyyzohl_hhOsao_XQf2fGueIKLi5CyBf6pU8byUuiPibsGR4CSFmjG2bysf36rfnbPELoDZ2Lu3-xPC-6FjKR_ziDhS73crVPJQ5otBxXF3I5nzUp5zMrhBH1_wOI7XQLkE6qhFDEdnQNWTGgUOO1mj6GQNjWPRR8P0HpDJkEShW2AeW8gTQ8lb5rsWaBp6KMidPAlz4ADo"/>
+<img class="w-full h-28 rounded-lg object-cover" data-alt="Rear view of waist-length sleek braided box braids in deep brunette tone finished with clean ends in a modern living room setting in Addis Ababa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV7ayFm_YkYpSGyz-rro7NCcmqvZ_-7UiUfubbdPRmyAzBxejUeeIIwbnoxRViN1YmPutRdIJL8CSzb3d9qczFVaR3F0vx7N1P9Jjqr8_7-q9Hou8onHFuNuFgV5Sl3O8iLWiRbFuBCLQ5_6gXV7RAAICaPWoHXmLjI64BPvOHgiNKVFwmNWaD6YvznDpF966kVThXr4_29K7jsCoce2BAbWi-C0R5UdmEJPF8O4Xf3NR9A4GYwzM"/>
+</div>
+<!-- Professional Reply Badge -->
+<div class="bg-surface-container-low rounded-lg p-3 flex gap-2.5 items-start mt-1">
+<span class="material-symbols-outlined text-primary-container text-[18px] shrink-0 mt-0.5">reply</span>
+<div class="text-body-sm font-body-sm flex-1">
+<div class="flex items-center justify-between mb-0.5">
+<span class="font-semibold text-primary text-label-sm">Hanan T. (You)</span>
+<span class="text-label-sm text-on-surface-variant">1d ago</span>
+</div>
+<p class="text-on-surface-variant">Thank you Meron! It was such a pleasure styling your hair. See you for the touch-up next month!</p>
+</div>
+</div>
+</article>
+<!-- Review 2: Almaz W. -->
+<article class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-3">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<img class="w-11 h-11 rounded-full object-cover shrink-0" data-alt="Portrait of an Ethiopian mother smiling warmly with soft curls in a cozy modern apartment in CMC Michael neighborhood Addis Ababa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmC-kk_ZUPo_Rxox2_O1DZl-6oVz1G_aohRnEqfkgvidP4L01KRlgBnzabsOuu9z1P83BYJJQiD_7Z17i8IX2jWJ4RTxXBbHCEYIpO1VingNgsbXJT59pZIgKdxXcKmdIotNrSZFoy3Hn2CD_NgsCNl8f7bVTZRIjXhtTdHU3bHLrRj6VBNafeBXgH6SQ-IMDoIl6rRBtFxuHPjoWT6PDr8tkmbZzIeE-MR5KwlSFgadIsZViyI5Q"/>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px] leading-snug">Almaz W.</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CMC Michael</span>
+</div>
+<div class="flex items-center gap-1 text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface ml-1">5.0</span>
+</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0">3 days ago</span>
+</div>
+<!-- Feature Tags -->
+<div class="flex flex-wrap gap-1.5">
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-md">Clean &amp; tidy</span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-md">Friendly</span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2.5 py-1 rounded-md">Great result</span>
+<span class="bg-surface-container-high text-primary-container font-label-sm text-label-sm px-2.5 py-1 rounded-md">Cornrows</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+        She worked so quietly and neatly while my baby was sleeping. Zero mess left behind. Highly recommend her for in-home styling.
+      </p>
+<!-- Pro Action: Reply Button -->
+<div class="flex justify-end pt-1">
+<button class="flex items-center gap-1.5 text-primary text-label-sm font-label-md bg-surface-container px-3 py-1.5 rounded-lg active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">reply</span>
+          Reply to Almaz
+        </button>
+</div>
+</article>
+<!-- Review 3: Selamawit T. -->
+<article class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col gap-2.5">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed font-headline-sm font-bold text-base">
+            ST
+          </div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px] leading-snug">Selamawit T.</h3>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Kazanchis</span>
+</div>
+<div class="flex items-center gap-1 text-secondary mt-0.5">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface ml-1">5.0</span>
+</div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0">1 week ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+        Always reliable and fast without pulling tightly on edges. Very considerate with sensitive scalp care.
+      </p>
+<div class="flex justify-end pt-1">
+<button class="flex items-center gap-1.5 text-primary text-label-sm font-label-md bg-surface-container px-3 py-1.5 rounded-lg active:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">reply</span>
+          Reply
+        </button>
+</div>
+</article>
+</section>
+<!-- Pro Tip Box for Reputation Growth -->
+<section class="px-gutter mt-5">
+<div class="bg-surface-container rounded-xl p-3.5 flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed shrink-0">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md font-semibold text-on-surface">Pro tip: Collect 12 more reviews</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[13px] leading-snug">Reach 140 reviews to unlock the "Master Artisan" distinction across Addis Ababa.</p>
+</div>
+</div>
+</section>
+<!-- Sticky Bottom Navigation for Hanan T. (Pro Mode) -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_-4px_24px_rgba(22,33,31,0.06)] z-30 px-gutter py-2 flex items-center justify-around">
+<button class="flex flex-col items-center gap-1 py-1 px-3 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">space_dashboard</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 py-1 px-3 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">calendar_today</span>
+<span class="font-label-sm text-label-sm">Calendar</span>
+</button>
+<button class="flex flex-col items-center gap-1 py-1 px-3 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Earnings</span>
+</button>
+<button class="flex flex-col items-center gap-1 py-1 px-3 text-primary-container relative" type="button">
+<span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">star_rate</span>
+<span class="font-label-sm text-label-sm font-semibold">Reputation</span>
+<span class="w-1 h-1 rounded-full bg-primary-container absolute bottom-0"></span>
+</button>
+<button class="flex flex-col items-center gap-1 py-1 px-3 text-on-surface-variant hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[22px]">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</nav>
+</div>
+<script>
+  // Micro-interaction for filter chips selection
+  document.querySelectorAll('section button').forEach(button => {
+    button.addEventListener('click', function() {
+      if (this.closest('.no-scrollbar') && this.textContent.trim().includes('(')) {
+        const parent = this.parentElement;
+        parent.querySelectorAll('button').forEach(btn => {
+          btn.className = 'px-3.5 py-1.5 rounded-full bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container shrink-0 transition-colors shadow-sm flex items-center gap-1';
+        });
+        this.className = 'px-3.5 py-1.5 rounded-full bg-primary-container text-on-primary shrink-0 transition-colors shadow-sm flex items-center gap-1';
+      }
+    });
+  });
+</script></main></body></html>

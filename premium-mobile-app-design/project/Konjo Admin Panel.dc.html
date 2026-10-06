@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EDEAE2}
+a{color:#586851;text-decoration:none}
+*{box-sizing:border-box}
+::-webkit-scrollbar{display:none}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 24px;background:#EDEAE2;font-family:'Plus Jakarta Sans',sans-serif">
+<x-import component-from-global-scope="ChromeWindow" from="./browser-window.jsx" width="{{ 1320 }}" height="{{ 840 }}" url="admin.konjo.et" hint-size="1320px,840px">
+<div style="display:flex;height:100%;background:#FAF9F5;position:relative">
+
+  <div style="width:224px;flex-shrink:0;background:#212822;display:flex;flex-direction:column;padding:22px 0">
+    <div style="padding:0 22px 26px;display:flex;align-items:center;gap:8px">
+      <div style="font-family:'Bodoni Moda',serif;font-size:19px;color:#fff">konjo<span style="color:#C5A059">.</span></div>
+      <span style="font-size:10px;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.06em;text-transform:uppercase">Admin</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;padding:0 12px">
+      <sc-if value="{{is_dispatch}}" hint-placeholder-val="{{true}}"><div onClick="{{goDispatch}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;background:rgba(255,255,255,0.08);cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg><span style="font-size:13px;color:#fff;font-weight:600;flex:1">Dispatch</span></div></sc-if>
+      <sc-if value="{{is_dispatch_off}}" hint-placeholder-val="{{false}}"><div onClick="{{goDispatch}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg><span style="font-size:13px;color:rgba(255,255,255,0.65);font-weight:600;flex:1">Dispatch</span></div></sc-if>
+
+      <sc-if value="{{is_verification}}" hint-placeholder-val="{{false}}"><div onClick="{{goVerification}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;background:rgba(255,255,255,0.08);cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg><span style="font-size:13px;color:#fff;font-weight:600;flex:1">Verification</span><span style="font-size:10px;font-weight:700;background:#C5A059;color:#212822;padding:2px 7px;border-radius:100px">{{verificationCount}}</span></div></sc-if>
+      <sc-if value="{{is_verification_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goVerification}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg><span style="font-size:13px;color:rgba(255,255,255,0.65);font-weight:600;flex:1">Verification</span><span style="font-size:10px;font-weight:700;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:2px 7px;border-radius:100px">{{verificationCount}}</span></div></sc-if>
+
+      <sc-if value="{{is_disputes}}" hint-placeholder-val="{{false}}"><div onClick="{{goDisputes}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;background:rgba(255,255,255,0.08);cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17.5a1 1 0 0 0 .9 1.5h17.2a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.7 0z"/></svg><span style="font-size:13px;color:#fff;font-weight:600;flex:1">Disputes</span><span style="font-size:10px;font-weight:700;background:#BA1A1A;color:#fff;padding:2px 7px;border-radius:100px">{{openDisputeCount}}</span></div></sc-if>
+      <sc-if value="{{is_disputes_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goDisputes}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17.5a1 1 0 0 0 .9 1.5h17.2a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.7 0z"/></svg><span style="font-size:13px;color:rgba(255,255,255,0.65);font-weight:600;flex:1">Disputes</span><span style="font-size:10px;font-weight:700;background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.6);padding:2px 7px;border-radius:100px">{{openDisputeCount}}</span></div></sc-if>
+
+      <sc-if value="{{is_escrow}}" hint-placeholder-val="{{false}}"><div onClick="{{goEscrow}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;background:rgba(255,255,255,0.08);cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="3"/></svg><span style="font-size:13px;color:#fff;font-weight:600;flex:1">Escrow</span></div></sc-if>
+      <sc-if value="{{is_escrow_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goEscrow}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8"><rect x="2" y="6" width="20" height="13" rx="2"/><circle cx="12" cy="12.5" r="3"/></svg><span style="font-size:13px;color:rgba(255,255,255,0.65);font-weight:600;flex:1">Escrow</span></div></sc-if>
+
+      <sc-if value="{{is_zones}}" hint-placeholder-val="{{false}}"><div onClick="{{goZones}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;background:rgba(255,255,255,0.08);cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span style="font-size:13px;color:#fff;font-weight:600;flex:1">Zones &amp; pricing</span></div></sc-if>
+      <sc-if value="{{is_zones_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goZones}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span style="font-size:13px;color:rgba(255,255,255,0.65);font-weight:600;flex:1">Zones &amp; pricing</span></div></sc-if>
+
+      <sc-if value="{{is_analytics}}" hint-placeholder-val="{{false}}"><div onClick="{{goAnalytics}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;background:rgba(255,255,255,0.08);cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M4 20V10M11 20V4M18 20v-7"/></svg><span style="font-size:13px;color:#fff;font-weight:600;flex:1">Analytics</span></div></sc-if>
+      <sc-if value="{{is_analytics_off}}" hint-placeholder-val="{{true}}"><div onClick="{{goAnalytics}}" style="display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.8"><path d="M4 20V10M11 20V4M18 20v-7"/></svg><span style="font-size:13px;color:rgba(255,255,255,0.65);font-weight:600;flex:1">Analytics</span></div></sc-if>
+    </div>
+    <div style="flex:1"></div>
+    <div style="padding:0 22px;font-size:11px;color:rgba(255,255,255,0.4)">Signed in as Jelani</div>
+  </div>
+
+  <div style="flex:1;overflow:auto;padding:30px 36px">
+
+  <sc-if value="{{is_dispatch}}" hint-placeholder-val="{{true}}">
+  <div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Live dispatch</div>
+    <div style="font-size:13px;color:#5F665C;margin-top:4px">Bookings across Addis Ababa, refreshed in real time</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase;white-space:nowrap">Active bookings</div><div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;margin-top:6px">{{activeCount}}</div></div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase;white-space:nowrap">Searching pro</div><div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#BA1A1A;margin-top:6px">{{searchingCount}}</div></div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">GMV today</div><div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;margin-top:6px">ETB {{gmvToday}}</div></div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">Commission today</div><div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#C5A059;margin-top:6px">ETB {{commissionToday}}</div></div>
+    </div>
+    <div style="margin-top:24px;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:1fr 1.1fr 1.1fr 1.2fr 0.8fr 1fr 0.8fr 0.9fr 1fr;gap:10px;padding:12px 18px;background:#F5F4EF;font-size:10.5px;font-weight:700;color:#9DA399;text-transform:uppercase">
+        <div style="white-space:nowrap">Booking</div><div>Client</div><div>Pro</div><div>Service</div><div>Zone</div><div style="white-space:nowrap">Status</div><div>Time</div><div>Amount</div><div></div>
+      </div>
+      <sc-for list="{{bookings}}" as="b" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:1fr 1.1fr 1.1fr 1.2fr 0.8fr 1fr 0.8fr 0.9fr 1fr;gap:10px;padding:13px 18px;border-top:1px solid #F5F4EF;align-items:center;font-size:13px;color:#212822">
+          <div style="font-weight:600">{{b.id}}</div><div>{{b.client}}</div><div>{{b.pro}}</div><div>{{b.service}}</div><div style="color:#5F665C">{{b.zone}}</div>
+          <div><span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;background:{{b.meta.bg}};color:{{b.meta.color}}">{{b.meta.label}}</span></div>
+          <div style="color:#5F665C">{{b.time}}</div><div style="font-weight:600">ETB {{b.amount}}</div>
+          <sc-if value="{{b.isSearching}}" hint-placeholder-val="{{false}}"><div onClick="{{b.onReassign}}" style="text-align:right;font-size:12px;font-weight:700;color:#586851;cursor:pointer">Reassign →</div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{is_verification}}" hint-placeholder-val="{{false}}">
+  <div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Professional verification</div>
+    <div style="font-size:13px;color:#5F665C;margin-top:4px">Fayda national ID matching queue — pros go live only after approval</div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:22px">
+      <sc-for list="{{verifications}}" as="v" hint-placeholder-count="3">
+        <div style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:16px;display:flex;align-items:center;gap:16px">
+          <div style="width:44px;height:44px;border-radius:50%;background:#E9F0E6;color:#586851;font-family:'Bodoni Moda',serif;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0">{{v.initial}}</div>
+          <div style="flex:1"><div style="font-size:14.5px;font-weight:600;color:#212822">{{v.name}}</div><div style="font-size:12px;color:#5F665C;margin-top:2px">{{v.category}} · submitted {{v.submitted}} · {{v.photos}} documents</div></div>
+          <div style="font-size:11px;font-weight:700;padding:5px 12px;border-radius:100px;background:#E9F0E6;color:#586851">{{v.faydaStatus}}</div>
+          <div onClick="{{v.onReject}}" style="padding:10px 16px;border-radius:8px;border:1px solid #E6E8E2;color:#212822;font-size:13px;font-weight:600;cursor:pointer">Reject</div>
+          <div onClick="{{v.onApprove}}" style="padding:10px 16px;border-radius:8px;background:#9CAF88;color:#fff;font-size:13px;font-weight:600;cursor:pointer">Approve</div>
+        </div>
+      </sc-for>
+      <sc-if value="{{hasNoVerifications}}" hint-placeholder-val="{{false}}"><div style="text-align:center;padding:40px;color:#9DA399;font-size:13px">All caught up — no pending applications.</div></sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{is_disputes}}" hint-placeholder-val="{{false}}">
+  <div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Bookings &amp; disputes</div>
+    <div style="font-size:13px;color:#5F665C;margin-top:4px">Refunds, no-shows, and service issues</div>
+    <div style="display:flex;gap:8px;margin-top:18px">
+      <sc-for list="{{disputeFilters}}" as="f" hint-placeholder-count="3">
+        <sc-if value="{{f.active}}" hint-placeholder-val="{{false}}"><div onClick="{{f.onSelect}}" style="padding:8px 16px;border-radius:100px;background:#212822;color:#fff;font-size:12.5px;font-weight:600;cursor:pointer">{{f.label}}</div></sc-if>
+        <sc-if value="{{f.notActive}}" hint-placeholder-val="{{true}}"><div onClick="{{f.onSelect}}" style="padding:8px 16px;border-radius:100px;background:#fff;border:1px solid #E6E8E2;color:#5F665C;font-size:12.5px;font-weight:600;cursor:pointer">{{f.label}}</div></sc-if>
+      </sc-for>
+    </div>
+    <div style="margin-top:18px;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:0.9fr 1fr 1fr 1.3fr 0.8fr 0.8fr 1.2fr;gap:10px;padding:12px 18px;background:#F5F4EF;font-size:10.5px;font-weight:700;color:#9DA399;text-transform:uppercase">
+        <div>Booking</div><div>Client</div><div>Pro</div><div>Issue</div><div>Amount</div><div>Status</div><div></div>
+      </div>
+      <sc-for list="{{disputes}}" as="d" hint-placeholder-count="3">
+        <div style="display:grid;grid-template-columns:0.9fr 1fr 1fr 1.3fr 0.8fr 0.8fr 1.2fr;gap:10px;padding:13px 18px;border-top:1px solid #F5F4EF;align-items:center;font-size:13px;color:#212822">
+          <div style="font-weight:600">{{d.booking}}</div><div>{{d.client}}</div><div>{{d.pro}}</div><div>{{d.issue}}</div><div>ETB {{d.amount}}</div>
+          <sc-if value="{{d.isOpen}}" hint-placeholder-val="{{true}}"><div><span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;background:#FFDAD6;color:#BA1A1A">Open</span></div></sc-if>
+          <sc-if value="{{d.isResolved}}" hint-placeholder-val="{{false}}"><div><span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;background:#F5F4EF;color:#5F665C">Resolved</span></div></sc-if>
+          <sc-if value="{{d.isOpen}}" hint-placeholder-val="{{true}}">
+          <div style="display:flex;gap:8px;justify-content:flex-end">
+            <div onClick="{{d.onRefund}}" style="font-size:12px;font-weight:700;color:#BA1A1A;cursor:pointer">Refund</div>
+            <div onClick="{{d.onResolve}}" style="font-size:12px;font-weight:700;color:#586851;cursor:pointer">Resolve</div>
+          </div>
+          </sc-if>
+          <sc-if value="{{d.isResolved}}" hint-placeholder-val="{{false}}"><div></div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{is_escrow}}" hint-placeholder-val="{{false}}">
+  <div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Escrow &amp; settlements</div>
+    <div style="font-size:13px;color:#5F665C;margin-top:4px">Client funds held until check-out, weekly pro payouts</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">Held in escrow</div><div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;margin-top:6px">ETB {{escrowHeld}}</div></div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">Pending payouts</div><div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;margin-top:6px">ETB {{pendingPayoutTotal}}</div></div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">Commission collected</div><div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#C5A059;margin-top:6px">ETB {{commissionToday}}</div></div>
+    </div>
+    <div style="margin-top:24px;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:1.1fr 0.9fr 1.1fr 0.9fr 0.8fr 1fr;gap:10px;padding:12px 18px;background:#F5F4EF;font-size:10.5px;font-weight:700;color:#9DA399;text-transform:uppercase">
+        <div>Professional</div><div>Zone</div><div>Week</div><div>Amount</div><div>Status</div><div></div>
+      </div>
+      <sc-for list="{{payouts}}" as="p" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:1.1fr 0.9fr 1.1fr 0.9fr 0.8fr 1fr;gap:10px;padding:13px 18px;border-top:1px solid #F5F4EF;align-items:center;font-size:13px;color:#212822">
+          <div style="font-weight:600">{{p.pro}}</div><div style="color:#5F665C">{{p.zone}}</div><div style="color:#5F665C">{{p.week}}</div><div style="font-weight:600">ETB {{p.amount}}</div>
+          <sc-if value="{{p.isPending}}" hint-placeholder-val="{{true}}"><div><span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;background:rgba(197,160,89,0.15);color:#775A19">Pending</span></div></sc-if>
+          <sc-if value="{{p.isPaid}}" hint-placeholder-val="{{false}}"><div><span style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;background:#F5F4EF;color:#5F665C">Paid</span></div></sc-if>
+          <sc-if value="{{p.isPending}}" hint-placeholder-val="{{true}}"><div onClick="{{p.onMarkPaid}}" style="text-align:right;font-size:12px;font-weight:700;color:#586851;cursor:pointer">Mark as paid</div></sc-if>
+          <sc-if value="{{p.isPaid}}" hint-placeholder-val="{{false}}"><div></div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{is_zones}}" hint-placeholder-val="{{false}}">
+  <div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Zones &amp; pricing rules</div>
+    <div style="font-size:13px;color:#5F665C;margin-top:4px">Travel fees and commission by service zone · click a fee to cycle presets</div>
+    <div style="margin-top:22px;background:#fff;border:1px solid #E6E8E2;border-radius:12px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:10px;padding:12px 18px;background:#F5F4EF;font-size:10.5px;font-weight:700;color:#9DA399;text-transform:uppercase">
+        <div>Zone</div><div>Travel fee</div><div>Commission</div><div>Active</div>
+      </div>
+      <sc-for list="{{zones}}" as="z" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr 0.8fr;gap:10px;padding:14px 18px;border-top:1px solid #F5F4EF;align-items:center;font-size:13.5px;color:#212822">
+          <div style="font-weight:600">{{z.name}}</div>
+          <div onClick="{{z.onCycleFee}}" style="cursor:pointer;font-weight:600;color:#586851">ETB {{z.fee}}</div>
+          <div>{{z.commission}}%</div>
+          <sc-if value="{{z.active}}" hint-placeholder-val="{{true}}"><div onClick="{{z.onToggle}}" style="width:38px;height:22px;border-radius:100px;background:#9CAF88;display:flex;align-items:center;padding:2px;cursor:pointer;justify-content:flex-end"><div style="width:18px;height:18px;border-radius:50%;background:#fff"></div></div></sc-if>
+          <sc-if value="{{z.notActive}}" hint-placeholder-val="{{false}}"><div onClick="{{z.onToggle}}" style="width:38px;height:22px;border-radius:100px;background:#E6E8E2;display:flex;align-items:center;padding:2px;cursor:pointer"><div style="width:18px;height:18px;border-radius:50%;background:#fff"></div></div></sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{is_analytics}}" hint-placeholder-val="{{false}}">
+  <div>
+    <div style="font-family:'Bodoni Moda',serif;font-size:24px;color:#212822;font-weight:500">Platform analytics</div>
+    <div style="font-size:13px;color:#5F665C;margin-top:4px">Last 6 weeks</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">GMV (6wk)</div><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;margin-top:6px">ETB 487K</div></div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">Bookings</div><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;margin-top:6px">312</div></div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">Active pros</div><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#212822;margin-top:6px">41</div></div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:10px;padding:16px"><div style="font-size:11px;color:#9DA399;text-transform:uppercase">Repeat rate</div><div style="font-family:'Bodoni Moda',serif;font-size:22px;color:#C5A059;margin-top:6px">92%</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-top:20px">
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:20px">
+        <div style="font-size:13px;font-weight:600;color:#212822;margin-bottom:16px">Weekly bookings</div>
+        <div style="display:flex;align-items:flex-end;gap:14px;height:140px">
+          <sc-for list="{{weeklyBars}}" as="w" hint-placeholder-count="6">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end">
+              <div style="width:100%;background:#9CAF88;border-radius:4px 4px 0 0;height:{{w.v}}%"></div>
+              <div style="font-size:11px;color:#9DA399">{{w.label}}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:20px">
+        <div style="font-size:13px;font-weight:600;color:#212822;margin-bottom:14px">By category</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{categoryBreakdown}}" as="c" hint-placeholder-count="5">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:#5F665C;margin-bottom:4px"><span>{{c.label}}</span><span>{{c.pct}}%</span></div>
+              <div style="height:6px;background:#F5F4EF;border-radius:100px"><div style="height:6px;background:#586851;border-radius:100px;width:{{c.pct}}%"></div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:#fff;border:1px solid #E6E8E2;border-radius:12px;padding:20px">
+      <div style="font-size:13px;font-weight:600;color:#212822;margin-bottom:14px">Top zones by GMV</div>
+      <div style="display:flex;gap:20px">
+        <sc-for list="{{topZones}}" as="z" hint-placeholder-count="4">
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;font-size:12px;color:#5F665C;margin-bottom:4px"><span>{{z.label}}</span><span>{{z.pct}}%</span></div>
+            <div style="height:6px;background:#F5F4EF;border-radius:100px"><div style="height:6px;background:#C5A059;border-radius:100px;width:{{z.pct}}%"></div></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  </div>
+
+  <sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+  <div style="position:absolute;left:50%;bottom:30px;transform:translateX(-50%);background:#212822;color:#fff;padding:14px 22px;border-radius:10px;font-size:13.5px;font-weight:600;box-shadow:0 12px 32px -4px rgba(33,40,34,0.3);z-index:20">{{toast}}</div>
+  </sc-if>
+
+</div>
+</x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  state = {
+    section: 'dispatch',
+    toast: '',
+    bookings: [
+      { id: 'KJ-3021', client: 'Meron G.', pro: 'Hanan T.', service: 'Box braids', zone: 'Bole', status: 'in_progress', time: '2:30 PM', amount: 2450 },
+      { id: 'KJ-3022', client: 'Sara K.', pro: 'Meaza K.', service: 'Full body relaxation', zone: 'Old Airport', status: 'assigned', time: '3:15 PM', amount: 1600 },
+      { id: 'KJ-3023', client: 'Almaz W.', pro: 'Unassigned', service: 'Cornrows', zone: 'CMC', status: 'searching', time: '3:40 PM', amount: 900 },
+      { id: 'KJ-3024', client: 'Bethel T.', pro: 'Tigist M.', service: 'Gel manicure', zone: 'Ayat', status: 'completed', time: '1:00 PM', amount: 750 },
+      { id: 'KJ-3025', client: 'Ruth A.', pro: 'Selam D.', service: 'Cornrows', zone: 'CMC', status: 'completed', time: '11:00 AM', amount: 650 },
+    ],
+    verifications: [
+      { id: 'v1', name: 'Yohannes B.', category: 'Barber', submitted: 'Sep 10', faydaStatus: 'Matched', photos: 3 },
+      { id: 'v2', name: 'Liya M.', category: 'Massage', submitted: 'Sep 11', faydaStatus: 'Matched', photos: 4 },
+      { id: 'v3', name: 'Dawit K.', category: 'Makeup', submitted: 'Sep 12', faydaStatus: 'Pending scan', photos: 2 },
+    ],
+    disputes: [
+      { id: 'd1', booking: 'KJ-2991', client: 'Frehiwot S.', pro: 'Hanan T.', issue: 'Late arrival', amount: 1800, status: 'open' },
+      { id: 'd2', booking: 'KJ-2987', client: 'Nardos G.', pro: 'Meaza K.', issue: 'Service quality', amount: 1600, status: 'open' },
+      { id: 'd3', booking: 'KJ-2954', client: 'Helen T.', pro: 'Selam D.', issue: 'No-show', amount: 650, status: 'resolved' },
+    ],
+    disputeFilter: 'open',
+    payouts: [
+      { id: 'p1', pro: 'Hanan T.', zone: 'Bole', amount: 12400, week: 'Week of Sep 8', status: 'pending' },
+      { id: 'p2', pro: 'Meaza K.', zone: 'Old Airport', amount: 9100, week: 'Week of Sep 8', status: 'pending' },
+      { id: 'p3', pro: 'Selam D.', zone: 'CMC', amount: 4800, week: 'Week of Sep 8', status: 'pending' },
+      { id: 'p4', pro: 'Tigist M.', zone: 'Ayat', amount: 3200, week: 'Week of Sep 1', status: 'paid' },
+    ],
+    zones: [
+      { id: 'z1', name: 'Bole', fee: 0, commission: 18, active: true },
+      { id: 'z2', name: 'CMC', fee: 150, commission: 18, active: true },
+      { id: 'z3', name: 'Old Airport', fee: 100, commission: 18, active: true },
+      { id: 'z4', name: 'Ayat', fee: 200, commission: 15, active: true },
+      { id: 'z5', name: 'Sarbet', fee: 150, commission: 18, active: false },
+    ],
+  };
+
+  navigate = (section) => this.setState({ section });
+  goDispatch = () => this.navigate('dispatch');
+  goVerification = () => this.navigate('verification');
+  goDisputes = () => this.navigate('disputes');
+  goEscrow = () => this.navigate('escrow');
+  goZones = () => this.navigate('zones');
+  goAnalytics = () => this.navigate('analytics');
+  showToast(msg) {
+    this.setState({ toast: msg });
+    setTimeout(() => this.setState({ toast: '' }), 2600);
+  }
+  setDisputeFilter = (f) => this.setState({ disputeFilter: f });
+
+  reassign = (id) => {
+    this.setState(s => ({ bookings: s.bookings.map(b => b.id === id ? { ...b, pro: 'Selam D.', status: 'assigned' } : b) }));
+    this.showToast('Reassigned ' + id + ' to next nearest pro');
+  };
+  approveVerification = (id) => {
+    const v = this.state.verifications.find(x => x.id === id);
+    this.setState(s => ({ verifications: s.verifications.filter(x => x.id !== id) }));
+    this.showToast(v.name + ' approved and live on Konjo');
+  };
+  rejectVerification = (id) => {
+    const v = this.state.verifications.find(x => x.id === id);
+    this.setState(s => ({ verifications: s.verifications.filter(x => x.id !== id) }));
+    this.showToast(v.name + ' application rejected');
+  };
+  resolveDispute = (id) => {
+    this.setState(s => ({ disputes: s.disputes.map(d => d.id === id ? { ...d, status: 'resolved' } : d) }));
+    this.showToast('Dispute marked resolved');
+  };
+  refundDispute = (id) => {
+    const d = this.state.disputes.find(x => x.id === id);
+    this.setState(s => ({ disputes: s.disputes.map(x => x.id === id ? { ...x, status: 'resolved' } : x) }));
+    this.showToast('Refunded ETB ' + d.amount + ' to ' + d.client);
+  };
+  markPaid = (id) => {
+    this.setState(s => ({ payouts: s.payouts.map(p => p.id === id ? { ...p, status: 'paid' } : p) }));
+    this.showToast('Payout marked as sent');
+  };
+  cycleFee = (id) => {
+    const presets = [0, 100, 150, 200];
+    this.setState(s => ({
+      zones: s.zones.map(z => {
+        if (z.id !== id) return z;
+        const idx = presets.indexOf(z.fee);
+        return { ...z, fee: presets[(idx + 1) % presets.length] };
+      }),
+    }));
+  };
+  toggleZone = (id) => this.setState(s => ({ zones: s.zones.map(z => z.id === id ? { ...z, active: !z.active } : z) }));
+
+  renderVals() {
+    const s = this.state;
+    const sections = ['dispatch', 'verification', 'disputes', 'escrow', 'zones', 'analytics'];
+    const flags = {};
+    sections.forEach(id => { flags['is_' + id] = s.section === id; flags['is_' + id + '_off'] = s.section !== id; });
+
+    const statusMeta = {
+      in_progress: { label: 'In progress', bg: 'rgba(197,160,89,0.15)', color: '#775A19' },
+      assigned: { label: 'Assigned', bg: '#E9F0E6', color: '#586851' },
+      searching: { label: 'Searching', bg: '#FFDAD6', color: '#BA1A1A' },
+      completed: { label: 'Completed', bg: '#F5F4EF', color: '#5F665C' },
+    };
+    const bookings = s.bookings.map(b => ({ ...b, meta: statusMeta[b.status], isSearching: b.status === 'searching', onReassign: () => this.reassign(b.id) }));
+    const activeCount = s.bookings.filter(b => b.status !== 'completed').length;
+    const searchingCount = s.bookings.filter(b => b.status === 'searching').length;
+    const gmvToday = s.bookings.reduce((sum, b) => sum + b.amount, 0);
+
+    const verifications = s.verifications.map(v => ({ ...v, initial: v.name[0], onApprove: () => this.approveVerification(v.id), onReject: () => this.rejectVerification(v.id) }));
+    const hasNoVerifications = verifications.length === 0;
+
+    const disputes = s.disputes.filter(d => s.disputeFilter === 'all' || d.status === s.disputeFilter).map(d => ({
+      ...d, isOpen: d.status === 'open', isResolved: d.status === 'resolved',
+      onResolve: () => this.resolveDispute(d.id), onRefund: () => this.refundDispute(d.id),
+    }));
+    const disputeFilters = ['open', 'resolved', 'all'].map(f => ({ label: f.charAt(0).toUpperCase() + f.slice(1), value: f, active: s.disputeFilter === f, notActive: s.disputeFilter !== f, onSelect: () => this.setDisputeFilter(f) }));
+    const openDisputeCount = s.disputes.filter(d => d.status === 'open').length;
+
+    const payouts = s.payouts.map(p => ({ ...p, isPending: p.status === 'pending', isPaid: p.status === 'paid', onMarkPaid: () => this.markPaid(p.id) }));
+    const pendingPayoutTotal = s.payouts.filter(p => p.status === 'pending').reduce((sum, p) => sum + p.amount, 0);
+    const escrowHeld = s.bookings.filter(b => b.status !== 'completed').reduce((sum, b) => sum + b.amount, 0);
+    const commissionToday = Math.round(gmvToday * 0.18);
+
+    const zones = s.zones.map(z => ({ ...z, notActive: !z.active, onCycleFee: () => this.cycleFee(z.id), onToggle: () => this.toggleZone(z.id) }));
+
+    const weeklyBars = [
+      { label: 'W1', v: 62 }, { label: 'W2', v: 74 }, { label: 'W3', v: 68 }, { label: 'W4', v: 88 }, { label: 'W5', v: 95 }, { label: 'W6', v: 100 },
+    ];
+    const categoryBreakdown = [
+      { label: 'Braids', pct: 38 }, { label: 'Massage', pct: 24 }, { label: 'Nails', pct: 18 }, { label: 'Makeup', pct: 12 }, { label: 'Barber', pct: 8 },
+    ];
+    const topZones = [
+      { label: 'Bole', pct: 44 }, { label: 'CMC', pct: 26 }, { label: 'Old Airport', pct: 18 }, { label: 'Ayat', pct: 12 },
+    ];
+
+    return {
+      ...flags, section: s.section, toast: s.toast,
+      goDispatch: this.goDispatch, goVerification: this.goVerification, goDisputes: this.goDisputes, goEscrow: this.goEscrow, goZones: this.goZones, goAnalytics: this.goAnalytics,
+      bookings, activeCount, searchingCount, gmvToday,
+      verifications, verificationCount: verifications.length, hasNoVerifications,
+      disputes, disputeFilters, openDisputeCount,
+      payouts, pendingPayoutTotal, escrowHeld, commissionToday,
+      zones,
+      weeklyBars, categoryBreakdown, topZones,
+    };
+  }
+}
+</script>
+</body>
+</html>

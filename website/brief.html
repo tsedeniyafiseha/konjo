@@ -1,0 +1,1326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#31422f" />
+    <meta name="description" content="Technical Build Brief for Jelani and Addis Coders: Konjo at-home beauty, grooming and massage marketplace for Addis Ababa." />
+    <title>Konjo — Technical Build Brief · Addis Coders</title>
+    <link rel="icon" href="/assets/konjo-brand.png" type="image/png" />
+    <link rel="stylesheet" href="/site.css" />
+    <link rel="stylesheet" href="/brief.css" />
+    <script src="/brief.js" defer></script>
+  </head>
+  <body class="brief-body" data-lang="en">
+    <a class="skip-link" href="#brief-content">Skip to content</a>
+
+    <!-- Top Executive Nav Strip -->
+    <aside class="brief-topbar" aria-label="Executive Notice">
+      <div class="shell topbar-inner">
+        <div class="topbar-badge">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span class="t-badge">CONFIDENTIAL · TECHNICAL BUILD BRIEF</span>
+          <span class="sep" aria-hidden="true">/</span>
+          <span>Addis Coders & Jelani</span>
+        </div>
+        <div class="topbar-actions">
+          <div class="lang-switch" role="group" aria-label="Language selection">
+            <button type="button" class="lang-btn active" data-lang-choice="en" aria-pressed="true">EN</button>
+            <span class="sep" aria-hidden="true">|</span>
+            <button type="button" class="lang-btn" data-lang-choice="am" aria-pressed="false">አማርኛ</button>
+          </div>
+          <button type="button" class="action-btn print-btn" data-print-trigger title="Print or save as PDF">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <span>Print PDF</span>
+          </button>
+          <a class="action-btn portal-link" href="/" title="Go to Consumer & Pro Portal">
+            <span>Consumer Portal ↗</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Navigation Header -->
+    <header class="brief-header">
+      <div class="shell header-container">
+        <div class="header-branding">
+          <a class="brand-link" href="/brief" aria-label="Konjo Brief Home">
+            <span class="brand-crest" aria-hidden="true">
+              <img src="/assets/konjo-brand.png" alt="" />
+            </span>
+            <span class="brand-title">Konjo <small class="amharic-label">ቆንጆ</small></span>
+          </a>
+          <span class="doc-tag">Technical Build Brief · Draft v1</span>
+        </div>
+
+        <nav class="brief-nav" aria-label="Table of contents">
+          <a href="#overview">1. What Konjo Is</a>
+          <a href="#surfaces">2. Three Surfaces</a>
+          <a href="#flows">3. Core Flows</a>
+          <a href="#technical">4. Tech Guidance</a>
+          <a href="#timeline">5. Timeline & Team</a>
+          <a href="#handover">6. Handover</a>
+          <a href="#phase2">7. Phase 2</a>
+          <a href="#jelani-action" class="highlight-anchor">8. Action for Jelani</a>
+          <a href="#benchmark">Benchmark</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="brief-content">
+      <!-- Hero / Document Cover -->
+      <section class="brief-hero" id="overview">
+        <div class="shell brief-hero-grid">
+          <div class="brief-hero-copy">
+            <div class="meta-pills">
+              <span class="pill pill-gold">Addis Ababa, Ethiopia</span>
+              <span class="pill">Launch: November 2026</span>
+              <span class="pill pill-outline">Genna Season</span>
+            </div>
+            
+            <h1 class="brief-main-title">
+              Technical Build Brief
+              <span class="sub-lead">for Jelani, Addis Coders</span>
+            </h1>
+
+            <p class="hero-tagline" data-t-key="tagline">
+              At-home beauty, grooming and massage marketplace for Addis Ababa.
+            </p>
+
+            <div class="brief-metadata-card">
+              <div class="meta-row">
+                <span class="meta-label">Prepared By</span>
+                <span class="meta-value"><strong>Addis Alemayehou</strong> (Funding & Advisory)</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Business Owners</span>
+                <span class="meta-value"><strong>Tati &amp; Sara</strong> (Founders &amp; Operating Team)</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Target Audience</span>
+                <span class="meta-value">Expats, Diaspora, &amp; Professionals across Bole, Old Airport, CMC &amp; Ayat</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Target Launch</span>
+                <span class="meta-value">November 2026 (Genna / Holiday Diaspora Season)</span>
+              </div>
+            </div>
+
+            <div class="hero-cta-group">
+              <a href="#jelani-action" class="btn btn-primary">Respond to Brief &amp; Cost Build ↓</a>
+              <a href="#flows" class="btn btn-secondary">Explore Core Flows</a>
+              <button type="button" class="btn btn-ghost" data-print-trigger>Download Printable Brief</button>
+            </div>
+          </div>
+
+          <figure class="brief-hero-visual">
+            <div class="visual-frame">
+              <img src="/assets/konjo-brand.png" alt="Konjo Brand Identity - Elegant serif wordmark with flowing ribbon line on sage background" />
+              <figcaption class="visual-caption">
+                <strong>Konjo (ቆንጆ)</strong> · Luxury in-home personal care, delivered directly to homes, hotels, and embassies in Addis Ababa.
+              </figcaption>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Quick Document Nav Ribbon (Sticky) -->
+      <div class="sticky-ribbon" data-sticky-ribbon>
+        <div class="shell ribbon-inner">
+          <span class="ribbon-title">Jump to section:</span>
+          <div class="ribbon-links">
+            <a href="#overview">1. Vision</a>
+            <a href="#surfaces">2. Surfaces</a>
+            <a href="#flows">3. Core Flows</a>
+            <a href="#technical">4. Stack</a>
+            <a href="#timeline">5. 10-Wk Plan</a>
+            <a href="#handover">6. Handover</a>
+            <a href="#phase2">7. Phase 2</a>
+            <a href="#jelani-action">8. Jelani Actions</a>
+            <a href="#benchmark">Tausi Benchmark</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1: What Konjo Is -->
+      <section class="doc-section shell" id="what-konjo-is">
+        <header class="section-header">
+          <span class="section-num">01</span>
+          <div>
+            <span class="section-kicker">Genesis &amp; Opportunity</span>
+            <h2>What Konjo Is</h2>
+          </div>
+        </header>
+
+        <div class="content-block intro-editorial">
+          <p class="lead-para">
+            A two-sided marketplace app tailored for Addis Ababa. Vetted beauty and wellness professionals (barbers, nail technicians, braiders, makeup artists, massage therapists) list themselves; clients book them to their home, hotel or office, pay seamlessly in-app, and rate the service.
+          </p>
+
+          <div class="tri-pillar-grid">
+            <article class="pillar-card">
+              <div class="pillar-icon">👑</div>
+              <h3>Founders &amp; Backing</h3>
+              <p>The business is owned and operated by two passionate founders, <strong>Tati and Sara</strong>. <strong>Addis Alemayehou</strong> is funding the build, tech infrastructure, and early go-to-market costs.</p>
+            </article>
+
+            <article class="pillar-card">
+              <div class="pillar-icon">📍</div>
+              <h3>Strategic Geographies</h3>
+              <p>Laser-focused on high-density, high-trust corridors in Addis Ababa: <strong>Bole</strong>, <strong>Old Airport</strong>, <strong>CMC</strong>, and <strong>Ayat</strong>. Capturing expats, returning diaspora, and local corporate professionals.</p>
+            </article>
+
+            <article class="pillar-card">
+              <div class="pillar-icon">🎓</div>
+              <h3>Addis Coders Partnership</h3>
+              <p>A student team designs and builds the complete product under Jelani’s direct technical supervision as a paid, milestone-based project. <strong>Konjo owns 100% of the code, data and IP; students gain a real, commercial product on their CVs + stipends.</strong></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: The Three Surfaces to Build -->
+      <section class="doc-section shell" id="surfaces">
+        <header class="section-header">
+          <span class="section-num">02</span>
+          <div>
+            <span class="section-kicker">System Architecture</span>
+            <h2>The Three Surfaces to Build</h2>
+          </div>
+        </header>
+
+        <div class="surface-intro">
+          <p>The product ecosystem consists of three interconnected surfaces engineered for distinct users: clients seeking effortless luxury care, professionals managing their craft and earnings, and administrators safeguarding quality and escrow.</p>
+        </div>
+
+        <!-- Interactive Surface Tabs -->
+        <div class="surface-tabs-wrapper" data-tabs-container>
+          <div class="tab-nav" role="tablist" aria-label="Surfaces">
+            <button class="tab-button active" role="tab" aria-selected="true" aria-controls="surface-client" id="tab-client" data-tab-target="surface-client">
+              <span class="tab-icon">📱</span>
+              <span class="tab-text">
+                <strong>Client App</strong>
+                <small>Android + Mobile Web</small>
+              </span>
+            </button>
+            <button class="tab-button" role="tab" aria-selected="false" aria-controls="surface-pro" id="tab-pro" data-tab-target="surface-pro">
+              <span class="tab-icon">💼</span>
+              <span class="tab-text">
+                <strong>Professional App</strong>
+                <small>Android Native</small>
+              </span>
+            </button>
+            <button class="tab-button" role="tab" aria-selected="false" aria-controls="surface-admin" id="tab-admin" data-tab-target="surface-admin">
+              <span class="tab-icon">🖥️</span>
+              <span class="tab-text">
+                <strong>Admin Panel</strong>
+                <small>Responsive Web</small>
+              </span>
+            </button>
+          </div>
+
+          <!-- Surface 1: Client App -->
+          <article class="surface-panel active" id="surface-client" role="tabpanel" aria-labelledby="tab-client">
+            <div class="surface-layout">
+              <div class="surface-features">
+                <div class="surface-badge">Primary Consumer Interface</div>
+                <h3>Client App <span class="platform-chip">Android + Mobile Web</span></h3>
+                <p class="surface-summary">Engineered for frictionless discovery, upfront transparency, and calm confidence when welcoming a therapist into one's private sanctuary.</p>
+
+                <ul class="feature-checklist">
+                  <li>
+                    <strong>Phone OTP Sign-up:</strong> Simple, passwordless authentication using Ethiopian mobile numbers with SMS OTP verification.
+                  </li>
+                  <li>
+                    <strong>Bilingual from Day 1:</strong> Full native toggle between English and Amharic (አማርኛ) across all strings.
+                  </li>
+                  <li>
+                    <strong>Category &amp; Zone Filtering:</strong> Browse Hair &amp; Braids, Nails, Barbering, Makeup, and Massage across Bole, Old Airport, CMC, and Ayat.
+                  </li>
+                  <li>
+                    <strong>Verified Pro Profiles:</strong> High-resolution portfolios, certified skill badges, transparent pricing, customer ratings, verified reviews, and live availability.
+                  </li>
+                  <li>
+                    <strong>Dynamic Zone-Based Booking:</strong> Select date, time slot, and precise destination address with auto-calculated zone travel fees.
+                  </li>
+                  <li>
+                    <strong>Ethiopian Payment Stack:</strong> Seamless in-app checkout via Telebirr, CBE Birr, or card (Chapa gateway for diaspora/USD cards); cash flag available for pilot testing.
+                  </li>
+                  <li>
+                    <strong>Lifecycle Management:</strong> Real-time booking status tracker, 1-click rescheduling, and clear cancellation rules.
+                  </li>
+                  <li>
+                    <strong>Dual-Dimension Rating:</strong> Separate ratings for <em>Technique (1-5★)</em> and <em>Professionalism (1-5★)</em> plus written feedback.
+                  </li>
+                  <li>
+                    <strong>Rebooking &amp; History:</strong> 1-tap rebooking of favourite professionals, itemized receipts, and booking archive.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Interactive Mockup for Client Surface -->
+              <div class="mockup-column">
+                <div class="phone-mockup">
+                  <div class="phone-speaker"></div>
+                  <div class="phone-screen client-screen">
+                    <div class="mock-status-bar">
+                      <span>09:41</span>
+                      <span>Telebirr 4G · 89%</span>
+                    </div>
+                    <div class="mock-app-header">
+                      <div>
+                        <small>Deliver to</small>
+                        <strong>Bole, Addis Ababa ▾</strong>
+                      </div>
+                      <span class="mock-avatar">KO</span>
+                    </div>
+
+                    <div class="mock-search-banner">
+                      <span>ቆንጆ · Care brought home</span>
+                    </div>
+
+                    <div class="mock-category-chips">
+                      <span class="chip active">Hair &amp; Braids</span>
+                      <span class="chip">Barber</span>
+                      <span class="chip">Massage</span>
+                      <span class="chip">Nails</span>
+                    </div>
+
+                    <div class="mock-pro-card">
+                      <div class="mock-pro-badge">Verified Pro · Bole</div>
+                      <h4>Hanna Tadesse</h4>
+                      <p>Master Braider &amp; Natural Hair Stylist</p>
+                      <div class="mock-pro-metrics">
+                        <span>★ 4.95 (142 reviews)</span>
+                        <span>Available Today</span>
+                      </div>
+                      <div class="mock-pro-action">
+                        <span class="price">1,200 ETB <small>+ 250 travel</small></span>
+                        <span class="btn-micro">Book</span>
+                      </div>
+                    </div>
+
+                    <div class="mock-floating-trust">
+                      <span>🛡️ Fayda ID Verified · SOS Protected</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="mockup-caption">Client App UI Preview (React Native / Expo)</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Surface 2: Professional App -->
+          <article class="surface-panel" id="surface-pro" role="tabpanel" aria-labelledby="tab-pro" hidden>
+            <div class="surface-layout">
+              <div class="surface-features">
+                <div class="surface-badge pro-badge">Service Provider Hub</div>
+                <h3>Professional App <span class="platform-chip">Android Native</span></h3>
+                <p class="surface-summary">A high-utility, dignified operating system for Ethiopian beauty and wellness artisans to manage schedules, verify safety, and grow transparent earnings.</p>
+
+                <ul class="feature-checklist">
+                  <li>
+                    <strong>Vetting &amp; Identity Onboarding:</strong> National Fayda ID upload, live front-camera selfie verification, portfolio photo uploads, and professional trade certifications.
+                  </li>
+                  <li>
+                    <strong>Service &amp; Price Catalog:</strong> Self-managed services, custom pricing tiers, duration estimates, active working hours, and preferred service zones.
+                  </li>
+                  <li>
+                    <strong>15-Minute Push Dispatch:</strong> High-priority push notifications with a 15-minute acceptance countdown before automatic reassignment to the next nearest pro.
+                  </li>
+                  <li>
+                    <strong>Visual Agenda &amp; Calendar:</strong> Daily, weekly, and monthly appointment schedules with clear client location details.
+                  </li>
+                  <li>
+                    <strong>Live Check-in &amp; Check-out:</strong> GPS-verified check-in upon arrival that initiates an authoritative session timer visible in real-time to the client.
+                  </li>
+                  <li>
+                    <strong>Earnings &amp; Weekly Payout Dashboard:</strong> Real-time ledger showing gross bookings, 18% Konjo platform fee deduction, travel allowances, and automatic weekly payouts to Telebirr or CBE bank account.
+                  </li>
+                  <li>
+                    <strong>Reputation &amp; Ratings:</strong> Detailed view of technique and professionalism scores, client testimonials, and performance metrics.
+                  </li>
+                  <li>
+                    <strong>Availability Toggle:</strong> Instant online/offline switch allowing professionals to pause incoming requests when off-duty.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Interactive Mockup for Pro Surface -->
+              <div class="mockup-column">
+                <div class="phone-mockup">
+                  <div class="phone-speaker"></div>
+                  <div class="phone-screen pro-screen">
+                    <div class="mock-status-bar">
+                      <span>14:02</span>
+                      <span>Ethio Telecom · 94%</span>
+                    </div>
+                    <div class="mock-app-header">
+                      <div>
+                        <small>Good afternoon</small>
+                        <strong>Tigist Assefa (Braider)</strong>
+                      </div>
+                      <span class="status-pill-online">● Online</span>
+                    </div>
+
+                    <div class="mock-active-job">
+                      <div class="job-status-tag">ACTIVE SESSION IN PROGRESS</div>
+                      <h4>Bole Olympia · Apt 4B</h4>
+                      <p>Box Braids (Medium) · Client: Sara K.</p>
+                      <div class="session-timer-box">
+                        <span class="timer-label">SESSION TIMER</span>
+                        <span class="timer-display">01:42:15</span>
+                      </div>
+                      <div class="job-actions">
+                        <span class="btn-micro btn-danger">🚨 SOS Help</span>
+                        <span class="btn-micro btn-success">Check Out</span>
+                      </div>
+                    </div>
+
+                    <div class="mock-earnings-mini">
+                      <div>
+                        <small>This Week Payout</small>
+                        <strong>18,450 ETB</strong>
+                      </div>
+                      <span class="payout-day">Telebirr · Friday</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="mockup-caption">Professional App UI Preview (React Native / Expo)</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Surface 3: Admin Panel -->
+          <article class="surface-panel" id="surface-admin" role="tabpanel" aria-labelledby="tab-admin" hidden>
+            <div class="surface-layout">
+              <div class="surface-features">
+                <div class="surface-badge admin-badge">Operations &amp; Governance</div>
+                <h3>Admin Panel <span class="platform-chip">Responsive Web Console</span></h3>
+                <p class="surface-summary">The control room for Tati, Sara, and operations staff to protect brand integrity, resolve disputes, arbitrate escrow, and scale Addis Ababa market coverage.</p>
+
+                <ul class="feature-checklist">
+                  <li>
+                    <strong>Professional Verification Queue:</strong> Review pending professional applications, inspect Fayda ID documents, verify certifications, inspect portfolios, approve, or reject.
+                  </li>
+                  <li>
+                    <strong>Marketplace Configuration:</strong> Live controls for category taxonomies, zone polygons (Bole, Old Airport, CMC, Ayat), travel fee rates, and platform commission (18%).
+                  </li>
+                  <li>
+                    <strong>Live Dispatch &amp; Booking Dashboard:</strong> Real-time visibility into all bookings across Addis Ababa with filtering by status, zone, professional, or client.
+                  </li>
+                  <li>
+                    <strong>Disputes, Refunds &amp; Manual Payouts:</strong> Comprehensive tooling to arbitrate complaints, issue partial/full refunds via Chapa/Telebirr, or execute emergency manual payouts.
+                  </li>
+                  <li>
+                    <strong>Merchandising &amp; Promos:</strong> Curate featured professionals, configure homepage banners, and manage discount promo codes for Genna launch campaigns.
+                  </li>
+                  <li>
+                    <strong>Targeted Push &amp; SMS Broadcasts:</strong> Broadcast announcements to all pros, specific zones, or client segments via Africa's Talking / Firebase.
+                  </li>
+                  <li>
+                    <strong>Financial &amp; Operational CSV Exports:</strong> 1-click downloads of bookings, platform revenue, pro earnings, and tax records.
+                  </li>
+                  <li>
+                    <strong>Immutable Audit Trail:</strong> Cryptographic-style chronological log of every administrative decision for fraud prevention and legal compliance.
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Interactive Mockup for Admin Surface -->
+              <div class="mockup-column">
+                <div class="admin-browser-mockup">
+                  <div class="browser-bar">
+                    <div class="browser-dots"><span></span><span></span><span></span></div>
+                    <div class="browser-address">https://admin.konjo.com/dashboard</div>
+                  </div>
+                  <div class="admin-mock-body">
+                    <div class="admin-metrics-row">
+                      <div class="metric-box">
+                        <small>Active Bookings</small>
+                        <strong>47 Live</strong>
+                      </div>
+                      <div class="metric-box">
+                        <small>Weekly Escrow</small>
+                        <strong>382,500 ETB</strong>
+                      </div>
+                      <div class="metric-box">
+                        <small>Net 18% Take</small>
+                        <strong>68,850 ETB</strong>
+                      </div>
+                    </div>
+
+                    <div class="admin-table-snippet">
+                      <div class="table-head">
+                        <span>Pro / Client</span>
+                        <span>Zone</span>
+                        <span>Status</span>
+                        <span>Action</span>
+                      </div>
+                      <div class="table-row">
+                        <span>Abebe K. → Dawit M.</span>
+                        <span>Old Airport</span>
+                        <span class="tag tag-active">In Progress</span>
+                        <span class="btn-table">Inspect</span>
+                      </div>
+                      <div class="table-row">
+                        <span>Selam B. (New App)</span>
+                        <span>Bole</span>
+                        <span class="tag tag-pending">Fayda ID Audit</span>
+                        <span class="btn-table approve">Approve</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="mockup-caption">Admin Web Console Preview (Next.js)</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Section 3: Core Flows Product Must Get Right -->
+      <section class="doc-section shell" id="flows">
+        <header class="section-header">
+          <span class="section-num">03</span>
+          <div>
+            <span class="section-kicker">Operating Mechanics</span>
+            <h2>Core Flows the Product Must Get Right</h2>
+          </div>
+        </header>
+
+        <p class="section-lead">
+          Three critical flows form the foundation of Konjo's trust, reliability, and business model. These require rigorous state management and zero-defect execution.
+        </p>
+
+        <!-- Subflow A: Booking Lifecycle Stepper -->
+        <article class="flow-card">
+          <div class="flow-badge">Flow 01 · State Machine</div>
+          <h3>The Complete Booking Lifecycle</h3>
+          <p class="flow-desc">Deterministic 6-stage lifecycle engineered to guarantee service fulfillment and prevent abandoned appointments.</p>
+
+          <div class="lifecycle-stepper" data-stepper>
+            <div class="step-node active" data-step="1">
+              <div class="node-circle">1</div>
+              <div class="node-content">
+                <h4>Client Books</h4>
+                <p>Client picks pro, time &amp; address. Funds locked in Konjo escrow via Telebirr, CBE Birr or card.</p>
+              </div>
+            </div>
+
+            <div class="step-connector"></div>
+
+            <div class="step-node" data-step="2">
+              <div class="node-circle">2</div>
+              <div class="node-content">
+                <h4>Pro Accepts</h4>
+                <p>Push notification alerts pro with <strong>15-minute countdown</strong>. If no acceptance, auto-reassigns to next nearest vetted pro.</p>
+              </div>
+            </div>
+
+            <div class="step-connector"></div>
+
+            <div class="step-node" data-step="3">
+              <div class="node-circle">3</div>
+              <div class="node-content">
+                <h4>Arrival &amp; Check-In</h4>
+                <p>Pro commences journey (travel fee forfeited if client cancels now). Upon arrival, pro checks in.</p>
+              </div>
+            </div>
+
+            <div class="step-connector"></div>
+
+            <div class="step-node" data-step="4">
+              <div class="node-circle">4</div>
+              <div class="node-content">
+                <h4>Service &amp; Timer</h4>
+                <p>Pro delivers treatment. Real-time session timer displays on both apps. Dual SOS monitoring active.</p>
+              </div>
+            </div>
+
+            <div class="step-connector"></div>
+
+            <div class="step-node" data-step="5">
+              <div class="node-circle">5</div>
+              <div class="node-content">
+                <h4>Check-Out &amp; Rating</h4>
+                <p>Pro checks out. Client rates technique (1-5★) &amp; professionalism (1-5★). Receipt issued.</p>
+              </div>
+            </div>
+
+            <div class="step-connector"></div>
+
+            <div class="step-node" data-step="6">
+              <div class="node-circle">6</div>
+              <div class="node-content">
+                <h4>Escrow Release</h4>
+                <p>Konjo deducts 18% commission. Remaining 82% + travel fee queued for pro's weekly Friday payout.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="stepper-controls">
+            <button type="button" class="btn btn-sm btn-outline" data-step-prev>← Previous Stage</button>
+            <span class="step-indicator" data-step-indicator>Stage 1 of 6: Client Books</span>
+            <button type="button" class="btn btn-sm btn-outline" data-step-next>Next Stage →</button>
+          </div>
+        </article>
+
+        <!-- Subflow B: Money & Escrow Calculator -->
+        <article class="flow-card">
+          <div class="flow-badge">Flow 02 · Financial Engine</div>
+          <h3>Escrow, Commission &amp; Cancellation Economics</h3>
+          <p class="flow-desc">
+            Client pays at booking. <strong>Funds are held by Konjo, not the professional, until check-out.</strong> Commission (18%) is deducted; pro’s share is settled weekly.
+          </p>
+
+          <div class="calculator-grid">
+            <div class="calc-inputs">
+              <h4 class="calc-box-title">Interactive Commission Calculator</h4>
+              
+              <div class="calc-field">
+                <label for="calc-service-price">
+                  <span>Service Base Price</span>
+                  <strong id="display-service-price">1,800 ETB</strong>
+                </label>
+                <input type="range" id="calc-service-price" min="400" max="6000" step="100" value="1800" />
+                <div class="range-labels">
+                  <span>400 ETB</span>
+                  <span>Average: 1,800 ETB</span>
+                  <span>6,000 ETB</span>
+                </div>
+              </div>
+
+              <div class="calc-field">
+                <label for="calc-zone">
+                  <span>Addis Ababa Coverage Zone</span>
+                </label>
+                <select id="calc-zone" class="calc-select">
+                  <option value="250" selected>Bole (Travel Fee: 250 ETB)</option>
+                  <option value="300">Old Airport (Travel Fee: 300 ETB)</option>
+                  <option value="400">CMC (Travel Fee: 400 ETB)</option>
+                  <option value="450">Ayat (Travel Fee: 450 ETB)</option>
+                </select>
+              </div>
+
+              <div class="policy-callout">
+                <h5>Strict Cancellation &amp; No-Show Rules</h5>
+                <ul>
+                  <li><strong>Free Cancellation:</strong> Before pro departs for the appointment (100% refunded to client).</li>
+                  <li><strong>Late Cancellation:</strong> Once pro has departed, the zone travel fee is forfeited to compensate the pro.</li>
+                  <li><strong>Client No-Show:</strong> 18% Konjo commission is non-refundable; pro receives compensation and travel fee.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="calc-results">
+              <h4 class="calc-box-title">Financial Ledger Breakdown</h4>
+
+              <div class="ledger-row highlight">
+                <span>Total Paid by Client at Booking:</span>
+                <strong id="calc-total-client">2,050 ETB</strong>
+              </div>
+
+              <div class="ledger-breakdown">
+                <div class="ledger-item">
+                  <span>Service Price (Gross):</span>
+                  <span id="calc-ledger-service">1,800 ETB</span>
+                </div>
+                <div class="ledger-item">
+                  <span>Zone Travel Fee (100% to Pro):</span>
+                  <span id="calc-ledger-travel">250 ETB</span>
+                </div>
+                <div class="ledger-divider"></div>
+                <div class="ledger-item fee">
+                  <span>Konjo Platform Commission (18%):</span>
+                  <span id="calc-ledger-commission">− 324 ETB</span>
+                </div>
+                <div class="ledger-item pro">
+                  <span>Pro Service Share (82%):</span>
+                  <span id="calc-ledger-pro-service">+ 1,476 ETB</span>
+                </div>
+                <div class="ledger-item pro">
+                  <span>Pro Travel Allowance:</span>
+                  <span id="calc-ledger-pro-travel">+ 250 ETB</span>
+                </div>
+                <div class="ledger-divider"></div>
+                <div class="ledger-total">
+                  <span>Pro Weekly Payout Entitlement:</span>
+                  <strong id="calc-total-pro">1,726 ETB</strong>
+                </div>
+              </div>
+
+              <div class="escrow-safe-badge">
+                <span>🔒 Escrow Secured: Held in Konjo Merchant Account until Check-Out</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Subflow C: Trust & Safety Architecture -->
+        <article class="flow-card">
+          <div class="flow-badge">Flow 03 · Trust &amp; Safety</div>
+          <h3>Trust &amp; Safety: Built for Peace of Mind</h3>
+          <p class="flow-desc">Because personal care takes place in private homes, hotels, and offices, safety is non-negotiable. Every feature was designed to reassure both clients and professionals.</p>
+
+          <div class="safety-grid">
+            <div class="safety-card">
+              <div class="safety-icon">🏛️</div>
+              <h4>Admin Vetting Gate</h4>
+              <p>No professional goes live autonomously. Tati &amp; Sara personally review National Fayda IDs, inspect background certificates, and review portfolios before granting active marketplace status.</p>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-icon">🪪</div>
+              <h4>First-Massage Fayda ID Gate</h4>
+              <p>Clients verify their phone number on sign-up. For their <strong>first in-home massage booking</strong>, clients must verify their National Fayda ID to protect therapists against vulnerability.</p>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-icon">🌸</div>
+              <h4>Female-Therapist-Only Option</h4>
+              <p>Clients can enforce a strict preference for female professionals. The backend matching algorithm filters exclusively for verified female therapists during initial booking and reassignment.</p>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-icon">⏱️</div>
+              <h4>Live Session Timer</h4>
+              <p>During all visits, a synchronized session timer runs on both devices. Eliminates billing ambiguity and provides real-time tracking of therapist arrival and completion.</p>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-icon">🚨</div>
+              <h4>Dual SOS Emergency Dispatch</h4>
+              <p>An omnipresent SOS button on both client and professional screens. One tap immediately alerts the Konjo admin console, sends emergency SMS alerts, and broadcasts exact live GPS coordinates.</p>
+            </div>
+
+            <div class="safety-card">
+              <div class="safety-icon">⭐</div>
+              <h4>3.0★ Auto-Hide Guardrail</h4>
+              <p>If a professional’s cumulative rating dips below 3.0 out of 5.0, their profile is instantly hidden from search results, pending an immediate formal review and interview by the founders.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Section 4: Technical Guidance -->
+      <section class="doc-section shell" id="technical">
+        <header class="section-header">
+          <span class="section-num">04</span>
+          <div>
+            <span class="section-kicker">Engineering Specifications</span>
+            <h2>Technical Guidance</h2>
+          </div>
+        </header>
+
+        <p class="section-lead">
+          Recommended architecture tailored for Addis Ababa's mobile network conditions, local payment rails, and high-performance cross-platform delivery.
+        </p>
+
+        <!-- Tech Stack Cards -->
+        <div class="tech-stack-grid">
+          <div class="tech-box">
+            <span class="tech-cat">Mobile Surfaces (Client &amp; Pro)</span>
+            <h4>React Native (Expo)</h4>
+            <p>Single cross-platform TypeScript codebase for the Android apps. Enables rapid iteration, OTA updates, and simple future compilation to iOS.</p>
+            <ul class="tech-tags">
+              <li>Expo SDK 52+</li>
+              <li>React Native</li>
+              <li>TypeScript</li>
+              <li>Offline-First State</li>
+            </ul>
+          </div>
+
+          <div class="tech-box">
+            <span class="tech-cat">Web Surfaces (Admin &amp; Mobile Web)</span>
+            <h4>Next.js (React)</h4>
+            <p>Server-rendered web experience for the desktop admin panel and responsive mobile web booking portal for diaspora clients without the Android app.</p>
+            <ul class="tech-tags">
+              <li>Next.js / React</li>
+              <li>Tailwind CSS</li>
+              <li>Server Actions</li>
+              <li>Role-Based Access</li>
+            </ul>
+          </div>
+
+          <div class="tech-box">
+            <span class="tech-cat">Backend Services &amp; Queues</span>
+            <h4>Node.js (NestJS) or Python (FastAPI)</h4>
+            <p>Clean, modular REST API with asynchronous queue workers for 15-minute assignment countdowns, escrow timers, and SMS/push dispatches.</p>
+            <ul class="tech-tags">
+              <li>Node.js / FastAPI</li>
+              <li>PostgreSQL</li>
+              <li>Redis (BullMQ / Celery)</li>
+              <li>Docker</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Integrations Grid -->
+        <div class="integrations-block">
+          <h3 class="subsection-title">Mandatory External Integrations</h3>
+          
+          <div class="integration-cards">
+            <div class="integration-item">
+              <div class="item-header">
+                <span class="icon">🇪🇹</span>
+                <strong>Telebirr &amp; CBE Birr</strong>
+              </div>
+              <p>Direct merchant integration for native mobile money payments and weekly batch payouts in Ethiopian Birr (ETB).</p>
+            </div>
+
+            <div class="integration-item">
+              <div class="item-header">
+                <span class="icon">💳</span>
+                <strong>Chapa Gateway</strong>
+              </div>
+              <p>Payment rail supporting international cards (Visa/Mastercard) in USD for diaspora visitors, plus local debit settlement.</p>
+            </div>
+
+            <div class="integration-item">
+              <div class="item-header">
+                <span class="icon">💬</span>
+                <strong>Africa's Talking / Ethio Telecom SMS</strong>
+              </div>
+              <p>High-priority SMS gateway for instant OTP phone verification, booking reminders, and emergency SOS alerts.</p>
+            </div>
+
+            <div class="integration-item">
+              <div class="item-header">
+                <span class="icon">🗺️</span>
+                <strong>Google Maps Platform</strong>
+              </div>
+              <p>Reverse geocoding, zone polygon boundary checks (Bole, Old Airport, CMC, Ayat), and travel fee calculations.</p>
+            </div>
+
+            <div class="integration-item">
+              <div class="item-header">
+                <span class="icon">🔔</span>
+                <strong>Firebase Cloud Messaging (FCM)</strong>
+              </div>
+              <p>Sub-second push notifications for pro job offers, client tracking updates, and appointment status alerts.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security & Performance Cards -->
+        <div class="sec-perf-grid">
+          <div class="sec-card">
+            <h4>🔒 Security &amp; Data Privacy</h4>
+            <ul>
+              <li><strong>Encryption at Rest:</strong> All sensitive PII (Fayda IDs, addresses, phone numbers) encrypted in PostgreSQL.</li>
+              <li><strong>Zero ID Client Visibility:</strong> Professional and client government IDs are strictly server-only for admin review; never rendered to peers.</li>
+              <li><strong>Zero Card Storage:</strong> Payment credentials tokenized through Chapa/Telebirr; never stored on Konjo servers.</li>
+              <li><strong>Anti-Abuse Protections:</strong> Rate-limiting on SMS OTP endpoints to eliminate SMS pumping attacks.</li>
+              <li><strong>Documented Deletion Procedure:</strong> Compliant account deletion and PII sanitization procedures documented in code.</li>
+            </ul>
+          </div>
+
+          <div class="sec-card">
+            <h4>⚡ Performance &amp; Local Conditions</h4>
+            <ul>
+              <li><strong>Mid-Range Android Optimization:</strong> Smooth 60fps performance on budget Android chipsets common in Addis Ababa.</li>
+              <li><strong>Slow 4G / 3G Resilience:</strong> Aggressive asset compression, optimistic UI states, and request retry mechanisms.</li>
+              <li><strong>Offline-Tolerant Booking:</strong> Drafts, addresses, and selections preserved locally across transient connection drops.</li>
+              <li><strong>Single i18n Dictionary:</strong> Unified Amharic &amp; English locale file maintained from Day 1 for immediate bilingual parity.</li>
+              <li><strong>Lean App Bundle Size:</strong> Strict tree-shaking keeping APK downloads small for low-bandwidth mobile downloads.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Team, Timeline and Money -->
+      <section class="doc-section shell" id="timeline">
+        <header class="section-header">
+          <span class="section-num">05</span>
+          <div>
+            <span class="section-kicker">Execution Plan</span>
+            <h2>Team, Timeline and Money</h2>
+          </div>
+        </header>
+
+        <p class="section-lead">
+          A disciplined 10-week sprint leading to a public launch in November 2026, aligned with the peak diaspora return for Genna (Ethiopian Christmas).
+        </p>
+
+        <!-- 10-Week Milestone Table -->
+        <div class="milestone-table-wrapper">
+          <table class="milestone-table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 14%;">Weeks</th>
+                <th scope="col" style="width: 26%;">Milestone</th>
+                <th scope="col" style="width: 60%;">Done Means (Deliverables &amp; Acceptance Criteria)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="week-badge">Weeks 1–2</span>
+                </td>
+                <td>
+                  <strong>Discovery &amp; Design</strong>
+                  <small>Figma &amp; Architecture</small>
+                </td>
+                <td>
+                  Clickable Figma prototype for all three surfaces (Client, Pro, Admin). Data model and OpenAPI specification reviewed and formally signed off by Tati, Sara, and Addis Alemayehou.
+                  <span class="tranche-tag">Tranche 1 Payment</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="week-badge">Weeks 3–7</span>
+                </td>
+                <td>
+                  <strong>Build Phase</strong>
+                  <small>Core Engineering</small>
+                </td>
+                <td>
+                  All three surfaces functional on staging environment. Payment sandbox (Telebirr, CBE Birr, Chapa) integrated. Test bookings executed end-to-end through every lifecycle state.
+                  <span class="tranche-tag">Tranche 2 Payment</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="week-badge">Weeks 8–9</span>
+                </td>
+                <td>
+                  <strong>Bole Pilot</strong>
+                  <small>Real-World Validation</small>
+                </td>
+                <td>
+                  Live in-market pilot with 20–30 vetted pros and friends-and-family clients in Bole. Real bookings, bug triage, load testing on slow 4G, and thorough security review completed.
+                </td>
+              </tr>
+              <tr class="launch-row">
+                <td>
+                  <span class="week-badge launch-badge">Week 10</span>
+                </td>
+                <td>
+                  <strong>Public Launch</strong>
+                  <small>Production Release</small>
+                </td>
+                <td>
+                  Google Play Store release live. Admin panel training delivered to Tati and Sara. Comprehensive handover package delivered.
+                  <span class="tranche-tag">Tranche 3 Payment</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Team & Budget Details -->
+        <div class="commercial-grid">
+          <div class="commercial-card">
+            <h3>Suggested Team Structure</h3>
+            <p>A balanced, high-velocity student squad under Jelani’s technical mentorship:</p>
+            <ul class="team-roster">
+              <li>
+                <strong>1× Lead Architect:</strong> Senior student or Addis Coders mentor leading system design, code reviews, and integration.
+              </li>
+              <li>
+                <strong>2× Mobile Developers:</strong> React Native / Expo developers dedicated to the Client and Pro Android apps.
+              </li>
+              <li>
+                <strong>1× Backend Developer:</strong> Node/Python engineer implementing database schemas, queues, and merchant APIs.
+              </li>
+              <li>
+                <strong>1× UI/UX Designer:</strong> Figma specialist crafting the design system, mobile wireframes, and admin layouts.
+              </li>
+              <li>
+                <strong>1× Part-Time QA Engineer:</strong> Device tester conducting automated testing and physical phone checks in Addis.
+              </li>
+              <li>
+                <strong>Technical Supervisor:</strong> Jelani (Technical Director &amp; Quality Arbiter).
+              </li>
+            </ul>
+          </div>
+
+          <div class="commercial-card">
+            <h3>Budget, IP &amp; Commercial Terms</h3>
+            <div class="commercial-points">
+              <div class="c-point">
+                <strong>Student Stipends &amp; Build Cost:</strong>
+                <p>The Addis Coders team will provide a cost proposal for the 10-week build (stipends, design assets, and tooling) plus a monthly figure for two retained students for post-launch maintenance &amp; Phase 2.</p>
+              </div>
+
+              <div class="c-point">
+                <strong>Three Tranche Disbursements:</strong>
+                <p>Payment released in three tranches tied strictly to verified milestones: <em>1. Design sign-off</em>, <em>2. Staging complete</em>, and <em>3. Production launch</em>.</p>
+              </div>
+
+              <div class="c-point">
+                <strong>Direct Infrastructure Billing:</strong>
+                <p>All third-party infrastructure (AWS hosting, SMS gateway credits, payment gateway transaction charges, Play Console fees) is paid directly by Konjo.</p>
+              </div>
+
+              <div class="c-point">
+                <strong>IP Ownership &amp; Attribution:</strong>
+                <p>Konjo (Tati, Sara &amp; Addis) retains 100% ownership of all source code, repositories, designs, and database records. Students sign standard IP assignment and confidentiality agreements. Addis Coders may publicly showcase Konjo as a case study once live.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Handover Package -->
+      <section class="doc-section shell" id="handover">
+        <header class="section-header">
+          <span class="section-num">06</span>
+          <div>
+            <span class="section-kicker">Deliverables</span>
+            <h2>Handover Package (Required at Launch)</h2>
+          </div>
+        </header>
+
+        <p class="section-lead">
+          Konjo requires a complete, institutional-grade engineering package at Week 10 to ensure seamless continuity, ownership, and maintenance.
+        </p>
+
+        <div class="handover-checklist-grid">
+          <div class="handover-item">
+            <span class="check-box">✓</span>
+            <div>
+              <strong>Konjo GitHub Organization</strong>
+              <p>All source code, commit history, and release tags housed in a Konjo-owned GitHub organization with CI/CD workflows.</p>
+            </div>
+          </div>
+
+          <div class="handover-item">
+            <span class="check-box">✓</span>
+            <div>
+              <strong>Architecture Diagrams &amp; OpenAPI Spec</strong>
+              <p>Visual system topology diagrams and fully documented OpenAPI / Swagger schemas for all internal endpoints.</p>
+            </div>
+          </div>
+
+          <div class="handover-item">
+            <span class="check-box">✓</span>
+            <div>
+              <strong>Database Schemas &amp; Seed Scripts</strong>
+              <p>PostgreSQL migration files, relational ER diagrams, and deterministic seed scripts for local development and testing.</p>
+            </div>
+          </div>
+
+          <div class="handover-item">
+            <span class="check-box">✓</span>
+            <div>
+              <strong>Docker Deployment &amp; Environment Guides</strong>
+              <p>Containerized Dockerfiles, docker-compose orchestration, environment variable inventories, and deployment runbooks.</p>
+            </div>
+          </div>
+
+          <div class="handover-item">
+            <span class="check-box">✓</span>
+            <div>
+              <strong>Admin User Guide</strong>
+              <p>A concise, practical handbook for Tati and Sara covering pro vetting, zone fee adjustments, refund issuance, and dispute arbitration.</p>
+            </div>
+          </div>
+
+          <div class="handover-item">
+            <span class="check-box">✓</span>
+            <div>
+              <strong>30-Minute Video Walkthrough</strong>
+              <p>A recorded screen walkthrough detailing codebase structure, state machines, deployment processes, and common failure modes.</p>
+            </div>
+          </div>
+
+          <div class="handover-item">
+            <span class="check-box">✓</span>
+            <div>
+              <strong>Known Issues &amp; Phase 2 Backlog</strong>
+              <p>An honest register of minor technical debt, known edge cases, and prioritized user stories for post-launch enhancement.</p>
+            </div>
+          </div>
+
+          <div class="handover-item">
+            <span class="check-box">✓</span>
+            <div>
+              <strong>Corporate Account Ownership</strong>
+              <p>All 3rd-party accounts (AWS, Firebase, Google Play Console, SMS provider, payment merchant accounts) registered exclusively to Konjo corporate credentials, never personal developer accounts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Phase 2 Horizon -->
+      <section class="doc-section shell" id="phase2">
+        <header class="section-header">
+          <span class="section-num">07</span>
+          <div>
+            <span class="section-kicker">Post-Launch Roadmap</span>
+            <h2>Phase 2 (After Launch, Not in Scope)</h2>
+          </div>
+        </header>
+
+        <p class="section-lead">
+          To protect the November 2026 Genna launch date, the following valuable initiatives are explicitly deferred to Phase 2:
+        </p>
+
+        <div class="phase2-grid">
+          <div class="p2-card">
+            <span class="p2-num">01</span>
+            <h4>iOS Native App</h4>
+            <p>Packaging and deploying the React Native codebase for Apple App Store to serve diaspora iPhone users.</p>
+          </div>
+
+          <div class="p2-card">
+            <span class="p2-num">02</span>
+            <h4>In-App Real-Time Chat</h4>
+            <p>Encrypted peer-to-peer messaging between client and professional for pre-arrival arrival instructions.</p>
+          </div>
+
+          <div class="p2-card">
+            <span class="p2-num">03</span>
+            <h4>Subscriptions &amp; Care Packages</h4>
+            <p>Recurring monthly grooming memberships (e.g. weekly blowouts, bi-weekly beard sculpting) with automated billing.</p>
+          </div>
+
+          <div class="p2-card">
+            <span class="p2-num">04</span>
+            <h4>Corporate &amp; Group Bookings</h4>
+            <p>Multi-person booking flows for bridal parties, diplomatic compound wellness days, and corporate grooming perks.</p>
+          </div>
+
+          <div class="p2-card">
+            <span class="p2-num">05</span>
+            <h4>Pro Bookkeeping Tool</h4>
+            <p>Integrated mobile tax, expense, and business analytics companion for beauty professionals to track their private clientele.</p>
+          </div>
+
+          <div class="p2-card">
+            <span class="p2-num">06</span>
+            <h4>Second City Expansion</h4>
+            <p>Expanding the platform footprint beyond Addis Ababa into secondary urban centers: Hawassa, Dire Dawa, and Bishoftu.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: What I Need from You, Jelani -->
+      <section class="doc-section shell" id="jelani-action">
+        <header class="section-header">
+          <span class="section-num">08</span>
+          <div>
+            <span class="section-kicker">Next Steps &amp; Response</span>
+            <h2>What I Need from You, Jelani</h2>
+          </div>
+        </header>
+
+        <div class="jelani-intro">
+          <p>
+            Addis Alemayehou has outlined 5 explicit deliverables required from Jelani and the Addis Coders leadership to greenlight the project and disburse Tranche 1:
+          </p>
+        </div>
+
+        <div class="deliverables-grid">
+          <div class="deliv-item">
+            <div class="deliv-num">1</div>
+            <div>
+              <h4>Commitment &amp; Start Date</h4>
+              <p>A definitive yes/no confirmation on accepting this build brief, accompanied by the earliest feasible team start date.</p>
+            </div>
+          </div>
+
+          <div class="deliv-item">
+            <div class="deliv-num">2</div>
+            <div>
+              <h4>Proposed Team &amp; Technical Lead</h4>
+              <p>Names, profiles, and designated roles for the student engineers, identifying the Lead Architect responsible for technical delivery.</p>
+            </div>
+          </div>
+
+          <div class="deliv-item">
+            <div class="deliv-num">3</div>
+            <div>
+              <h4>Costing for Build &amp; Maintenance</h4>
+              <p>The team’s cost proposal for the 10-week build (stipends, design tools) and a proposed monthly figure for two retained students for maintenance.</p>
+            </div>
+          </div>
+
+          <div class="deliv-item">
+            <div class="deliv-num">4</div>
+            <div>
+              <h4>Technical Recommendations</h4>
+              <p>Any suggested improvements, stack adjustments, or timeline optimizations proposed by the Addis Coders engineering leads.</p>
+            </div>
+          </div>
+
+          <div class="deliv-item">
+            <div class="deliv-num">5</div>
+            <div>
+              <h4>Founders Kick-Off Meeting</h4>
+              <p>Scheduling a 30-minute kick-off video conference with Tati, Sara, and Addis Alemayehou to walk through the flows and align on milestones.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Jelani Proposal Builder / Response Sandbox -->
+        <div class="proposal-sandbox-card">
+          <div class="sandbox-header">
+            <h3>Interactive Proposal &amp; Costing Calculator</h3>
+            <p>Use this tool to simulate student stipends, timeline estimates, and generate a draft response for Addis Alemayehou.</p>
+          </div>
+
+          <form class="proposal-form" id="jelani-proposal-form" novalidate>
+            <div class="form-row-2">
+              <label class="form-field">
+                <span>Earliest Start Date</span>
+                <input type="date" id="p-start-date" value="2026-10-01" required />
+              </label>
+
+              <label class="form-field">
+                <span>Designated Lead Architect</span>
+                <input type="text" id="p-lead-name" placeholder="e.g. Senior Mentor / Student Lead" value="Jelani / Senior Mentor" required />
+              </label>
+            </div>
+
+            <div class="form-row-3">
+              <label class="form-field">
+                <span>Student Stipend / Month (ETB or USD)</span>
+                <input type="number" id="p-stipend" value="35000" min="5000" step="1000" required />
+              </label>
+
+              <label class="form-field">
+                <span>Number of Full-Time Students</span>
+                <input type="number" id="p-students" value="5" min="2" max="10" required />
+              </label>
+
+              <label class="form-field">
+                <span>Post-Launch Retained Students</span>
+                <input type="number" id="p-retained" value="2" min="1" max="4" required />
+              </label>
+            </div>
+
+            <label class="form-field">
+              <span>Stack or Timeline Recommendations</span>
+              <textarea id="p-notes" rows="3" placeholder="e.g. Recommend Supabase/PostgreSQL with Expo Router for maximum velocity. Confident in meeting November 2026 Genna deadline.">Confirm Expo (React Native) + Next.js web console + Node/Postgres stack. We will lock clickable Figma prototypes by end of Week 2 for founders sign-off.</textarea>
+            </label>
+
+            <div class="calc-summary-panel">
+              <div class="summary-metric">
+                <small>Estimated 10-Week Build Stipends (2.5 mo)</small>
+                <strong id="p-total-build">437,500 ETB</strong>
+              </div>
+              <div class="summary-metric">
+                <small>Post-Launch Monthly Retainer (2 students)</small>
+                <strong id="p-monthly-retainer">70,000 ETB / mo</strong>
+              </div>
+              <div class="summary-metric">
+                <small>Recommended Kick-off Date</small>
+                <strong id="p-kickoff-date">Within 48 Hours</strong>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-primary" id="btn-generate-summary">Generate Formal Response Summary</button>
+              <a href="mailto:Addis@Konjo.com?cc=Tati@Konjo.com,Sara@Konjo.com&subject=Konjo%20Build%20Brief%20Response%20-%20Addis%20Coders" class="btn btn-outline" id="btn-email-addis">Email Addis &amp; Founders ↗</a>
+            </div>
+
+            <div class="proposal-output-box" id="proposal-output" hidden>
+              <h4>Generated Proposal Response:</h4>
+              <pre id="proposal-text"></pre>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Reference Point Benchmark: Tausi App Nairobi -->
+      <section class="doc-section shell" id="benchmark">
+        <header class="section-header">
+          <span class="section-num">09</span>
+          <div>
+            <span class="section-kicker">Industry Benchmark</span>
+            <h2>Reference Point: Tausi App (tausiapp.com Nairobi)</h2>
+          </div>
+        </header>
+
+        <p class="section-lead">
+          Addis Alemayehou recommends studying <strong>Tausi App in Nairobi (<a href="https://tausiapp.com" target="_blank" rel="noopener">tausiapp.com</a>)</strong> as the closest working market comparable. Below is an engineering teardown highlighting what Konjo should adopt and adapt for Addis Ababa.
+        </p>
+
+        <div class="benchmark-comparison-table-wrapper">
+          <table class="benchmark-table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 20%;">Dimension</th>
+                <th scope="col" style="width: 40%;">Tausi App (Nairobi, Kenya)</th>
+                <th scope="col" style="width: 40%;">Konjo Implementation (Addis Ababa, Ethiopia)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Primary Booking Model</strong></td>
+                <td>On-demand and scheduled beauty &amp; wellness appointments to homes/offices across Nairobi (Kilimani, Westlands, Karen).</td>
+                <td>Scheduled appointments focused on high-trust zones: <strong>Bole, Old Airport, CMC, Ayat</strong>. Expats, diaspora &amp; professionals.</td>
+              </tr>
+              <tr>
+                <td><strong>Payment Infrastructure</strong></td>
+                <td>M-Pesa integration with STK push, card payments via local Kenyan switch, escrow retention until service completion.</td>
+                <td><strong>Telebirr &amp; CBE Birr merchant APIs</strong> for domestic mobile money; <strong>Chapa gateway</strong> for international cards (USD/diaspora). Escrow held by Konjo until check-out.</td>
+              </tr>
+              <tr>
+                <td><strong>Cancellation Mechanics</strong></td>
+                <td>Graduated cancellation fee depending on therapist proximity; transportation fee compensation.</td>
+                <td><strong>Free cancellation before pro departs</strong>; zone travel fee forfeited once pro begins journey; 18% commission non-refundable on client no-show.</td>
+              </tr>
+              <tr>
+                <td><strong>Trust &amp; Personal Safety</strong></td>
+                <td>Therapist verification, customer rating system, emergency hotline support.</td>
+                <td><strong>Fayda National ID verification</strong> for pros &amp; first-time massage clients; <strong>Female-therapist-only filter</strong>; <strong>synchronized session timer</strong>; <strong>in-app dual SOS button with GPS dispatch</strong>; <strong>&lt; 3.0★ auto-hide</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Network Optimization</strong></td>
+                <td>Optimized for Kenyan 4G/Safaricom mobile networks.</td>
+                <td>Engineered specifically for <strong>mid-range Android chipsets and slow 4G/3G</strong> across Addis Ababa; <strong>bilingual Amharic/English i18n from Day 1</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="brief-footer">
+      <div class="shell footer-grid">
+        <div class="footer-col-main">
+          <span class="footer-logo">Konjo <small>ቆንጆ</small></span>
+          <p class="footer-tagline">
+            At-home beauty, grooming and massage marketplace for Addis Ababa.
+          </p>
+          <div class="footer-credits">
+            <span>Prepared by Addis Alemayehou</span>
+            <span>·</span>
+            <span>Business owned by Tati &amp; Sara</span>
+            <span>·</span>
+            <span>For Jelani &amp; Addis Coders</span>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Technical Brief</h4>
+          <a href="#overview">1. What Konjo Is</a>
+          <a href="#surfaces">2. Three Surfaces</a>
+          <a href="#flows">3. Core Flows</a>
+          <a href="#technical">4. Technical Stack</a>
+          <a href="#timeline">5. Timeline &amp; Team</a>
+          <a href="#jelani-action">8. Action for Jelani</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Portal Links</h4>
+          <a href="/">Consumer Homepage</a>
+          <a href="/#services">Services Overview</a>
+          <a href="/#professionals">Professional Onboarding</a>
+          <a href="mailto:Addis@Konjo.com">Addis Alemayehou</a>
+          <a href="mailto:HR@Konjo.com">HR &amp; Careers</a>
+        </div>
+      </div>
+
+      <div class="shell footer-copyright">
+        <span>© 2026 Konjo Technologies PLC. All rights reserved. Confidential document.</span>
+        <span>Target Launch: November 2026 · Addis Ababa, Ethiopia</span>
+      </div>
+    </footer>
+  </body>
+</html>

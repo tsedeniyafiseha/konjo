@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: konjo-api-preview
+    runtime: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm run backend:start
+    healthCheckPath: /ready
+    autoDeployTrigger: commit
+    envVars:
+      - key: KONJO_ENVIRONMENT
+        value: preview
+      - key: KONJO_API_HOST
+        value: 0.0.0.0
+      - key: KONJO_TRUSTED_PROXY_HOPS
+        value: "1"
+      - key: KONJO_AUTH_MODE
+        value: provider
+      - key: KONJO_PAYMENT_SANDBOX_CHECKOUT
+        value: "true"
+      - key: KONJO_ENABLE_PROFESSIONAL_MOCK_OTP
+        value: "true"
+      - key: KONJO_IN_PROCESS_JOBS
+        value: "true"
+      - key: KONJO_LOG_LEVEL
+        value: info
+      - key: KONJO_DATABASE_PATH
+        value: /tmp/konjo-preview.db
+      - key: KONJO_APPLICATION_UPLOAD_PATH
+        value: /tmp/konjo-preview-uploads
+      - key: KONJO_SUPABASE_URL
+        sync: false
+      - key: KONJO_SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: KONJO_SUPABASE_SECRET_KEY
+        sync: false
+      - key: KONJO_AUTH_PEPPER
+        sync: false
+      - key: KONJO_PAYMENT_WEBHOOK_SECRET
+        sync: false
+      - key: KONJO_WORKER_TOKEN
+        sync: false

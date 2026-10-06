@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"surface-tint":"#306761","surface-container":"#e4f1ed","on-primary-container":"#84bbb3","tertiary-container":"#663727","inverse-primary":"#99d1c9","on-secondary-fixed-variant":"#604100","outline":"#707977","on-primary-fixed":"#00201d","on-primary":"#ffffff","secondary-container":"#ffbe48","on-surface":"#131e1c","primary-fixed":"#b5ede5","primary":"#00342f","primary-fixed-dim":"#99d1c9","tertiary":"#4b2213","inverse-surface":"#273330","primary-container":"#0f4c46","on-secondary":"#ffffff","surface-container-lowest":"#ffffff","tertiary-fixed":"#ffdbd0","on-background":"#131e1c","on-surface-variant":"#404947","on-tertiary-container":"#e3a18c","surface-container-high":"#deebe7","on-tertiary-fixed-variant":"#6a3a2a","surface-dim":"#d0ddd9","error":"#ba1a1a","on-secondary-fixed":"#281900","secondary-fixed-dim":"#fcbb45","surface-container-highest":"#d9e5e2","surface":"#f0fcf8","inverse-on-surface":"#e7f3f0","surface-bright":"#f0fcf8","tertiary-fixed-dim":"#fbb6a0","background":"#f0fcf8","on-error":"#ffffff","outline-variant":"#bfc8c6","error-container":"#ffdad6","on-primary-fixed-variant":"#144f49","on-secondary-container":"#714e00","on-tertiary-fixed":"#341004","on-tertiary":"#ffffff","surface-container-low":"#eaf6f3","secondary-fixed":"#ffdeac","secondary":"#7e5700","surface-variant":"#d9e5e2","on-error-container":"#93000a"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1rem","space-xl":"2rem","margin":"1rem","space-xs":"0.25rem","space-lg":"1.5rem","space-md":"1rem","space-sm":"0.5rem"},"fontFamily":{"headline-sm":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-lg":["Inter"],"display":["Inter"],"label-md":["Inter"],"label-sm":["Inter"],"price-md":["Inter"],"price-lg":["Inter"],"headline-md":["Inter"]},"fontSize":{"headline-sm":["18px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-md":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"body-lg":["18px",{"lineHeight":"26px","letterSpacing":"-0.005em","fontWeight":"400"}],"body-sm":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"600"}],"display":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"label-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"price-md":["16px",{"lineHeight":"22px","letterSpacing":"-0.01em","fontWeight":"600"}],"price-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col flex-1 overflow-y-auto"><div class="h-16 px-space-md flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Konjo Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Uvciip7rThMzq6gg2kVv3IEGk03EgbdMyK7mXpxIW7dclBVcWb1i4y5CevvEKE8XYX96N1jgen5_v9_pGEAC_RoqywIi1TPUhH57fI0N-9NJ1NoR6Fj_aZQGv1NcFhTiFeVrN-DWVWL2TqeNvrBrfV0_hcedkClY-aDLYHdVPz-QCzWyS42nKRN_MSGNU93aT6Kvz8FS5rTMXXSV5eV50S3cT3CmGXAUe7ylZLCANPhS2Qq3f1ZD_s"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary tracking-tight">Konjo</span><span class="font-label-sm text-label-sm text-on-surface-variant">Operations HQ · Addis Ababa</span></div></div><nav class="flex-1 px-space-sm py-space-md flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-md rounded-xl shadow-sm"><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="operations-dispatch" href="#">Operations & Dispatch</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="specialist-verification-queue" href="#">Specialist Verification & Queue</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="escrow-telebirr-settlements" href="#">Escrow & Telebirr Settlements</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="bookings-disputes" href="#">Bookings & Disputes</a><a class="flex items-center px-space-md py-space-sm rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-label-md text-label-md" data-path="zone-pricing-rules" href="#">Zone & Pricing Rules</a><a aria-current="page" class="flex items-center px-space-md py-space-sm transition-colors bg-primary-container text-on-primary font-label-md rounded-xl shadow-sm" data-path="platform-analytics" href="#">Platform Analytics</a></nav></div><div class="p-space-sm bg-surface-container-low"><div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-lowest"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col flex-1 min-w-0"><div class="flex items-center justify-between"><span class="font-label-md text-label-md text-on-surface truncate font-semibold">Abebe K.</span><span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container">Super Admin</span></div><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary text-[14px]">verified</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Fayda Cleared · Addis</span></div></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative w-full"><span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-10 pr-space-md bg-surface-container-low text-on-surface placeholder-on-surface-variant rounded-xl font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Search specialists, bookings #KJ, Fayda FIN, phone..." type="search"/></div><div class="hidden xl:flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container-high whitespace-nowrap"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-sm text-label-sm text-on-surface">Addis Live: 42 Active Pros · 18 In-Transit</span></div></div><div class="flex items-center gap-space-md"><div class="hidden lg:flex items-center gap-space-xs bg-surface-container-low p-1 rounded-xl"><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">All Zones</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Bole</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">CMC</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Kazanchis</button><button class="px-space-sm py-1 rounded-lg font-label-sm text-label-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button">Old Airport</button></div><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-full bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-surface-tint"></span><span class="font-label-sm text-label-sm text-on-surface font-medium">Telebirr Live · 99.9%</span></div><div class="relative"><button class="w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary-container"></span></button></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="w-full pt-16 bg-background min-h-screen"><div class="flex flex-col w-full px-space-lg py-space-md gap-space-lg text-on-surface">
+<!-- Sub-Header & Controls Filter Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md pb-space-sm">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Executive Cockpit</span>
+<span class="text-outline-variant font-label-sm">/</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Addis Ababa Metropolitan Network</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Platform Analytics & Growth Telemetry</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Real-time performance tracking, Gross Merchandise Value (GMV), Telebirr retention cohort economics, and Addis Ababa sub-city liquidity.</p>
+</div>
+<!-- Quick Action / Date Selectors -->
+<div class="flex items-center flex-wrap gap-space-xs">
+<div class="flex items-center bg-surface-container-lowest px-3 py-1.5 rounded-xl shadow-sm gap-2">
+<span class="material-symbols-outlined text-[18px] text-surface-tint">calendar_today</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">March 2025 (Current)</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</div>
+<div class="flex items-center bg-surface-container-lowest px-3 py-1.5 rounded-xl shadow-sm gap-2">
+<span class="material-symbols-outlined text-[18px] text-surface-tint">share_location</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">All Addis Zones</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container-lowest hover:bg-surface-container-high transition-colors font-label-md text-label-md text-on-surface shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">table_view</span>
+<span>Export Raw CSV</span>
+</button>
+<button class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-primary-container hover:bg-primary text-on-primary transition-colors font-label-md text-label-md shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">download_for_offline</span>
+<span>Download Executive Report (PDF)</span>
+</button>
+</div>
+</div>
+<!-- Executive KPI Strip (4 Cards) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md">
+<!-- KPI 1: Gross Merchandise Value -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Gross Merchandise Value (GMV)</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">ETB</span>
+<span class="font-price-lg text-price-lg text-primary tracking-tight">2,480,500</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-primary-fixed/40 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">payments</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex items-center gap-1 text-primary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+24.8% MoM</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">vs Feb (ETB 1.98M)</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-container"></div>
+</div>
+<!-- KPI 2: Konjo Net Revenue -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Konjo Net Revenue</span>
+<span class="px-1.5 py-0.5 rounded bg-surface-container font-label-sm text-[10px] text-surface-tint font-bold">15.4% Take</span>
+</div>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">ETB</span>
+<span class="font-price-lg text-price-lg text-primary tracking-tight">382,000</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-secondary-fixed/50 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex items-center gap-1 text-primary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+28.2% MoM</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Escrow Fee Intact</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary"></div>
+</div>
+<!-- KPI 3: Completed Home Bookings -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Completed Home Bookings</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-price-lg text-price-lg text-primary tracking-tight">1,420</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">sessions</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-surface-tint">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<div class="flex items-center gap-1 text-primary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>98.6% Completion</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">0.4% Disp. Rate</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-0.5 bg-surface-tint"></div>
+</div>
+<!-- KPI 4: Active Verified Specialists -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Active Specialists</span>
+<span class="px-1.5 py-0.5 rounded-full bg-surface-container-low text-secondary font-label-sm text-[10px] font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">verified_user</span> Fayda
+            </span>
+</div>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-price-lg text-price-lg text-primary tracking-tight">64</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Active Pros</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs">
+<span class="font-label-sm text-label-sm text-primary font-medium">99.2% Biometric match</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-surface-container text-on-surface rounded-full font-medium">+18 queued</span>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-0.5 bg-outline-variant"></div>
+</div>
+</div>
+<!-- Main Analytics Grid: Section 1 (Revenue Velocity) & Diaspora Snapshot -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- Section 1: Revenue & Escrow Velocity (8 cols) -->
+<div class="xl:col-span-8 bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-sm gap-2">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Q1 Fiscal Progression</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Revenue & Escrow Settlement Trajectory</h2>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center gap-1">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">GMV Inflow</span>
+</div>
+<div class="flex items-center gap-1 ml-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Konjo 15.4%</span>
+</div>
+</div>
+</div>
+<!-- SVG Progression Visualization -->
+<div class="w-full h-44 my-space-xs relative flex flex-col justify-end">
+<svg class="w-full h-36 overflow-visible" fill="none" preserveaspectratio="none" viewbox="0 0 700 140">
+<defs>
+<lineargradient id="gmvGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0f4c46" stop-opacity="0.28"></stop>
+<stop offset="100%" stop-color="#0f4c46" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<line stroke="#e4f1ed" stroke-width="1" x1="0" x2="700" y1="130" y2="130"></line>
+<line stroke="#e4f1ed" stroke-dasharray="4" stroke-width="1" x1="0" x2="700" y1="90" y2="90"></line>
+<line stroke="#e4f1ed" stroke-dasharray="4" stroke-width="1" x1="0" x2="700" y1="45" y2="45"></line>
+<!-- GMV Area Fill -->
+<polygon fill="url(#gmvGradient)" points="50,110 320,70 650,20 650,130 50,130"></polygon>
+<!-- Line GMV -->
+<path d="M50 110 L320 70 L650 20" stroke="#0f4c46" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Line Net Fee -->
+<path d="M50 125 L320 112 L650 94" stroke="#7e5700" stroke-dasharray="3 3" stroke-linecap="round" stroke-width="2"></path>
+<!-- Points: January -->
+<circle class="shadow-sm" cx="50" cy="110" fill="#0f4c46" r="4.5"></circle>
+<circle cx="50" cy="125" fill="#7e5700" r="3.5"></circle>
+<!-- Points: February -->
+<circle class="shadow-sm" cx="320" cy="70" fill="#0f4c46" r="4.5"></circle>
+<circle cx="320" cy="112" fill="#7e5700" r="3.5"></circle>
+<!-- Points: March -->
+<circle class="shadow-sm" cx="650" cy="20" fill="#0f4c46" r="5"></circle>
+<circle cx="650" cy="94" fill="#7e5700" r="3.5"></circle>
+</svg>
+<!-- X-Axis Labels & Figures -->
+<div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm pt-1 px-4">
+<div class="flex flex-col">
+<span class="font-medium text-on-surface">January 2025</span>
+<span class="text-[11px] text-outline">ETB 1,410,000 GMV</span>
+</div>
+<div class="flex flex-col text-center">
+<span class="font-medium text-on-surface">February 2025</span>
+<span class="text-[11px] text-outline">ETB 1,987,500 GMV</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-medium text-primary font-semibold">March 2025 (Run Rate)</span>
+<span class="text-[11px] text-primary-container font-semibold">ETB 2,480,500 GMV</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Category Share Stacked Progress Breakdown -->
+<div class="pt-space-md">
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Departmental GMV Share Breakdown</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">100% Escrow Reconciled</span>
+</div>
+<!-- Composite Horizontal Bar -->
+<div class="h-3 w-full rounded-full bg-surface-container flex overflow-hidden p-0.5 gap-0.5">
+<div class="h-full bg-primary-container rounded-sm" style="width: 55%"></div>
+<div class="h-full bg-surface-tint rounded-sm" style="width: 25%"></div>
+<div class="h-full bg-secondary rounded-sm" style="width: 14%"></div>
+<div class="h-full bg-secondary-container rounded-sm" style="width: 6%"></div>
+</div>
+<!-- Metric Blocks Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm pt-space-sm">
+<div class="flex flex-col p-space-xs rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface truncate">Hair & Braids</span>
+</div>
+<span class="font-price-md text-price-md text-primary mt-1">ETB 1,364,275</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">55% platform share</span>
+</div>
+<div class="flex flex-col p-space-xs rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span>
+<span class="font-label-sm text-label-sm text-on-surface truncate">Massage & Bodywork</span>
+</div>
+<span class="font-price-md text-price-md text-primary mt-1">ETB 620,125</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">25% platform share</span>
+</div>
+<div class="flex flex-col p-space-xs rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface truncate">Bridal & Traditional</span>
+</div>
+<span class="font-price-md text-price-md text-primary mt-1">ETB 347,270</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">14% (Albaso & Melse)</span>
+</div>
+<div class="flex flex-col p-space-xs rounded-lg bg-surface-container-low">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface truncate">Nails & Skin</span>
+</div>
+<span class="font-price-md text-price-md text-primary mt-1">ETB 148,830</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">6% platform share</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 4: Diaspora Gifting Funnel (4 cols) -->
+<div class="xl:col-span-4 bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Foreign Inflow</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">public</span> USD · NBE FX
+          </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Diaspora Gifting Corridor</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Direct luxury home wellness gifts bought abroad for families in Addis Ababa.</p>
+<!-- Main USD Conversion Stat -->
+<div class="p-space-sm rounded-xl bg-surface-container-low my-space-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Completed Remittance Bookings</span>
+<span class="font-price-lg text-price-lg text-primary">112 Gift Sessions</span>
+</div>
+<div class="text-right flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary font-medium">$3,528 USD</span>
+<span class="font-label-sm text-[11px] text-outline">NBE Official Rate Clearing</span>
+</div>
+</div>
+<!-- Geography Tags -->
+<div class="flex flex-wrap gap-1.5 mb-space-sm">
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[11px] font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> United States (DMV & TX)
+          </span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[11px] font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-surface-tint"></span> UAE (Dubai & Abu Dhabi)
+          </span>
+<span class="px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-[11px] font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Europe (UK, Germany, Sweden)
+          </span>
+</div>
+<!-- Top Occasions Breakdown -->
+<div class="flex flex-col gap-space-xs pt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Top Gifting Occasions</span>
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-0.5">
+<span class="text-on-surface">Birthdays & Anniversaries</span>
+<span class="font-semibold text-primary">42% (47 gifts)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 42%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-0.5">
+<span class="text-on-surface">Mother's Day & Elder Pampering</span>
+<span class="font-semibold text-primary">36% (40 gifts)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-surface-tint rounded-full" style="width: 36%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-0.5">
+<span class="text-on-surface">Melse & Wedding Morning Prep</span>
+<span class="font-semibold text-primary">22% (25 gifts)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 22%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust note -->
+<div class="mt-space-md p-space-xs rounded-lg bg-surface-container flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0">shield</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Stripe USD settlement mapped directly to commercial local telebirr transfers. Zero chargebacks recorded.</span>
+</div>
+</div>
+</div>
+<!-- Analytics Section 2: Geographic Liquidity & Sub-City Performance Matrix -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-sm gap-2">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Spatial Dispatch Telemetry</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">Addis Ababa Sub-City Liquidity Matrix</h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Traffic Buffer: <strong class="text-primary font-medium">Standard +12% Rain Season active</strong></span>
+<button class="text-primary hover:text-primary-container font-label-sm text-label-sm font-semibold flex items-center gap-0.5">
+<span>Manage Zone Rules</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Responsive High Contrast Data Table -->
+<div class="overflow-x-auto w-full mt-1">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<th class="py-2.5 px-space-md rounded-l-lg font-semibold">Sub-City & Zone</th>
+<th class="py-2.5 px-space-md font-semibold text-center">Gross Bookings</th>
+<th class="py-2.5 px-space-md font-semibold">Zone GMV (ETB)</th>
+<th class="py-2.5 px-space-md font-semibold">Average Specialist Arrival</th>
+<th class="py-2.5 px-space-md font-semibold">Client Satisfaction</th>
+<th class="py-2.5 px-space-md rounded-r-lg font-semibold text-right">Zone Health Status</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<!-- Row 1: Bole -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-medium text-on-surface">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Bole</span>
+<span class="text-[11px] text-on-surface-variant">Atlas, Medhanialem, Rwanda, Olympia</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md text-center font-semibold text-on-surface">642</td>
+<td class="py-3 px-space-md">
+<div class="flex flex-col">
+<span class="font-price-md text-price-md text-primary">ETB 1,123,500</span>
+<span class="text-[11px] text-outline">45.3% of total volume</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-on-surface">18.2 min</span>
+<span class="font-label-sm text-[11px] text-primary-container bg-primary-fixed/50 px-1.5 py-0.2 rounded font-medium">Optimal</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-semibold text-on-surface">99.1%</span>
+<span class="text-[11px] text-outline">(636 ratings)</span>
+</div>
+</td>
+<td class="py-3 px-space-md text-right">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">High Liquidity</span>
+</td>
+</tr>
+<!-- Row 2: Kazanchis -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-medium text-on-surface">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-surface-tint"></div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Kazanchis</span>
+<span class="text-[11px] text-on-surface-variant">ECA, UNECA, Interluxury Corridor</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md text-center font-semibold text-on-surface">318</td>
+<td class="py-3 px-space-md">
+<div class="flex flex-col">
+<span class="font-price-md text-price-md text-primary">ETB 556,500</span>
+<span class="text-[11px] text-outline">22.4% of total volume</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-on-surface">21.0 min</span>
+<span class="font-label-sm text-[11px] text-primary-container bg-primary-fixed/50 px-1.5 py-0.2 rounded font-medium">Within SLA</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-semibold text-on-surface">98.8%</span>
+<span class="text-[11px] text-outline">(314 ratings)</span>
+</div>
+</td>
+<td class="py-3 px-space-md text-right">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">Equilibrium</span>
+</td>
+</tr>
+<!-- Row 3: CMC Michael -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-medium text-on-surface">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary"></div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">CMC Michael</span>
+<span class="text-[11px] text-on-surface-variant">Ayat, Summit, Tsehay Real Estate</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md text-center font-semibold text-on-surface">284</td>
+<td class="py-3 px-space-md">
+<div class="flex flex-col">
+<span class="font-price-md text-price-md text-primary">ETB 497,000</span>
+<span class="text-[11px] text-outline">20.0% of total volume</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-on-surface">24.5 min</span>
+<span class="font-label-sm text-[11px] text-secondary font-medium bg-secondary-fixed/40 px-1.5 py-0.2 rounded">Light Lag</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-semibold text-on-surface">99.4%</span>
+<span class="text-[11px] text-outline">(282 ratings)</span>
+</div>
+</td>
+<td class="py-3 px-space-md text-right">
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">Needs +4 Pros</span>
+</td>
+</tr>
+<!-- Row 4: Old Airport -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-md font-medium text-on-surface">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+<div class="flex flex-col">
+<span class="font-semibold text-primary">Old Airport</span>
+<span class="text-[11px] text-on-surface-variant">Bisrate Gabriel, Sarbet, South Africa Embassy</span>
+</div>
+</div>
+</td>
+<td class="py-3 px-space-md text-center font-semibold text-on-surface">176</td>
+<td class="py-3 px-space-md">
+<div class="flex flex-col">
+<span class="font-price-md text-price-md text-primary">ETB 303,500</span>
+<span class="text-[11px] text-outline">12.3% of total volume</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-2">
+<span class="font-semibold text-on-surface">22.1 min</span>
+<span class="font-label-sm text-[11px] text-primary-container bg-primary-fixed/50 px-1.5 py-0.2 rounded font-medium">Within SLA</span>
+</div>
+</td>
+<td class="py-3 px-space-md">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]">star</span>
+<span class="font-semibold text-on-surface">99.6%</span>
+<span class="text-[11px] text-outline">(175 ratings)</span>
+</div>
+</td>
+<td class="py-3 px-space-md text-right">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">Premium Basket</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Analytics Section 3: Unit Economics & Payment Settlement Health (3 Bento Cards) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card 1: Payment Settlement Mix -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Payment Rails</span>
+<span class="font-label-sm text-label-sm text-surface-tint font-medium flex items-center gap-0.5">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span> 100% Cashless
+          </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Channel Settlement Share</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Instant automatic escrow disbursement upon customer code sign-off.</p>
+<!-- Donut / Concentric Bar Breakdown -->
+<div class="mt-space-md flex flex-col gap-space-sm">
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span> Telebirr Direct Gateway
+              </span>
+<span class="font-semibold text-primary">82%</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 82%"></div>
+</div>
+<span class="font-label-sm text-[11px] text-outline mt-0.5 block">Zero-fee merchant route via Ethio Telecom API</span>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-surface-tint"></span> CBE Birr / Commercial Bank
+              </span>
+<span class="font-semibold text-primary">14%</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-surface-tint rounded-full" style="width: 14%"></div>
+</div>
+<span class="font-label-sm text-[11px] text-outline mt-0.5 block">Direct bank push integration</span>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="font-medium text-on-surface flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Diaspora Cards (Stripe / USD)
+              </span>
+<span class="font-semibold text-primary">4%</span>
+</div>
+<div class="w-full h-2.5 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 4%"></div>
+</div>
+<span class="font-label-sm text-[11px] text-outline mt-0.5 block">Overseas Visa / Mastercard</span>
+</div>
+</div>
+</div>
+<div class="pt-space-md border-t border-surface-container flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Settlement Failure Rate</span>
+<span class="font-semibold text-primary-container">0.08% (Immediate auto-retry)</span>
+</div>
+</div>
+<!-- Card 2: Specialist Cohort Retention -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Supply Stickiness</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">Low Churn</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Specialist Cohort Retention</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Longevity of independent beauty professionals onboarded via Fayda ID verification.</p>
+<!-- Cohort Blocks -->
+<div class="grid grid-cols-3 gap-space-xs mt-space-md">
+<div class="p-space-xs rounded-xl bg-surface-container-low flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Month 1</span>
+<span class="font-headline-md text-headline-md text-primary mt-1">96%</span>
+<span class="text-[10px] text-surface-tint font-medium">61 of 64 pros</span>
+</div>
+<div class="p-space-xs rounded-xl bg-surface-container-low flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Month 3</span>
+<span class="font-headline-md text-headline-md text-primary mt-1">91%</span>
+<span class="text-[10px] text-surface-tint font-medium">Steady base</span>
+</div>
+<div class="p-space-xs rounded-xl bg-surface-container-low flex flex-col items-center text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Month 6</span>
+<span class="font-headline-md text-headline-md text-secondary mt-1">87%</span>
+<span class="text-[10px] text-on-surface-variant">Industry lead</span>
+</div>
+</div>
+<div class="mt-space-md space-y-2">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-surface-tint text-[18px] shrink-0 mt-0.5">handshake</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Average monthly earnings per active specialist: <strong class="text-primary font-semibold">ETB 34,800</strong> (3.2x local salon standard salary).</p>
+</div>
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">verified</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Guaranteed ride-hail compensation bonus applied across all cross-zone dispatches.</p>
+</div>
+</div>
+</div>
+<div class="pt-space-md border-t border-surface-container flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>NPS by Specialists</span>
+<span class="font-semibold text-primary">+79 Net Promoter</span>
+</div>
+</div>
+<!-- Card 3: Unit Economics & Session Anatomy -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">Per-Unit Anatomy</span>
+<span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-primary font-medium">2.8 visits / mo</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Average Booking Waterfall</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Blended economics on the average completed home appointment.</p>
+<!-- Waterfall Box Breakdown -->
+<div class="mt-space-sm p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-medium">Gross Booking Price</span>
+<span class="font-price-md text-price-md text-primary">ETB 1,746</span>
+</div>
+<div class="pl-2 border-l-2 border-primary-container/30 flex flex-col gap-1.5 my-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>- Konjo Commission (15%)</span>
+<span class="text-secondary font-medium">- ETB 269</span>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>+ Travel & Gas Guarantee</span>
+<span class="text-surface-tint font-medium">+ ETB 185</span>
+</div>
+</div>
+<div class="pt-1 border-t border-surface-container-high flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-primary font-semibold block">Specialist Payout</span>
+<span class="font-label-sm text-[10px] text-outline">Direct Telebirr settlement</span>
+</div>
+<span class="font-price-md text-price-md text-primary font-bold">ETB 1,477</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-center justify-between px-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Customer Repeat Cadence:</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Every ~10.7 Days</span>
+</div>
+</div>
+<div class="pt-space-md border-t border-surface-container flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>CAC Payback Period</span>
+<span class="font-semibold text-primary-container">1.4 Bookings (Profitable)</span>
+</div>
+</div>
+</div>
+<!-- Real-time Live Auditing Footnote -->
+<div class="flex flex-col sm:flex-row items-center justify-between p-space-sm rounded-xl bg-surface-container-low text-on-surface-variant text-body-sm font-body-sm gap-2">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-surface-tint animate-pulse"></span>
+<span>Telemetry live synchronized with <strong>Addis Ababa Telebirr Payment Engine API v2.4</strong>.</span>
+</div>
+<div class="flex items-center gap-space-sm font-label-sm text-label-sm">
+<span>Last sync: <strong>Just now</strong></span>
+<span>·</span>
+<span>Fayda ID verification service status: <strong class="text-primary font-medium">Nominal (99.98%)</strong></span>
+</div>
+</div>
+</div></main></div></body></html>
