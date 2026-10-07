@@ -4,8 +4,10 @@ services:
     runtime: node
     region: frankfurt
     plan: free
-    buildCommand: npm ci
-    startCommand: npm run backend:start
+    # The API has no third-party runtime dependencies. Do not install the Expo
+    # mobile toolchain into the server image just to launch a Node-only service.
+    buildCommand: node --version
+    startCommand: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --env-file-if-exists=.env backend/src/server.ts
     healthCheckPath: /ready
     autoDeployTrigger: commit
     envVars:

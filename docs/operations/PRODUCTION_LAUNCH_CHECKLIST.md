@@ -31,6 +31,11 @@ professional OTP endpoint returned the documented six-digit code `247124`.
    Render warns that this Free instance can spin down after inactivity and add
    50 seconds or more to the first request. No production Render service has
    been created yet.
+   The preview deployment was refreshed from commit `2d84d68` on 7 October
+   2026 and passed Render's `/ready` health check. The Blueprint no longer runs
+   `npm ci`: the API uses Node built-ins only, so installing the Expo/Metro
+   mobile build toolchain in the server image added audit noise and attack
+   surface without providing a runtime dependency.
 2. **Chapa live**: switch to `CHAPA_LIVE_` keys once the merchant account is
    approved, register `https://<api>/v1/payments/webhooks/{telebirr|cbe|card}`
    and the webhook secret in the Chapa dashboard, enable Telebirr, CBE Birr and
