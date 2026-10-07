@@ -5,7 +5,7 @@
  * version a person accepted is stored with their acceptance. The public pages
  * at website/terms.html and website/privacy.html carry the same wording.
  */
-export const LEGAL_VERSION = '2026-09-29';
+export const LEGAL_VERSION = '2026-10-07';
 
 export type LegalLanguage = 'en' | 'am' | 'om';
 
@@ -34,39 +34,39 @@ export interface LegalLabels {
 export const legalLabels: Record<LegalLanguage, LegalLabels> = {
   en: {
     sheetTitle: 'Before you continue',
-    readPrompt: 'Read and accept the Terms & Conditions and the Privacy & Security policy.',
-    accepted: 'Terms & Conditions and Privacy & Security accepted.',
+    readPrompt: 'Confirm you are 18 or older, then read and accept the Terms & Conditions and the Privacy & Security policy.',
+    accepted: 'Age confirmed; Terms & Conditions and Privacy & Security accepted.',
     scrollHint: 'Scroll to the end to continue.',
-    accept: 'I understand and agree',
+    accept: 'I am 18+ and agree',
     close: 'Close',
-    lastUpdated: 'Last updated 29 September 2026',
+    lastUpdated: 'Last updated 7 October 2026',
     fallbackNote: null,
   },
   am: {
     sheetTitle: 'ከመቀጠልዎ በፊት',
-    readPrompt: 'የአገልግሎት ውሎችንና የግላዊነትና ደህንነት መመሪያን ያንብቡና ይቀበሉ።',
-    accepted: 'የአገልግሎት ውሎችና የግላዊነትና ደህንነት መመሪያ ተቀብለዋል።',
+    readPrompt: 'ዕድሜዎ 18 ወይም ከዚያ በላይ መሆኑን ያረጋግጡ፤ ከዚያም የአገልግሎት ውሎችንና የግላዊነትና ደህንነት መመሪያን ያንብቡና ይቀበሉ።',
+    accepted: 'ዕድሜዎ 18 ወይም ከዚያ በላይ መሆኑን አረጋግጠዋል፤ ውሎቹንና መመሪያውን ተቀብለዋል።',
     scrollHint: 'ለመቀጠል እስከ መጨረሻው ያንሸራትቱ።',
-    accept: 'ተረድቻለሁ እና እስማማለሁ',
+    accept: 'ዕድሜዬ 18+ ነው፤ እስማማለሁ',
     close: 'ዝጋ',
-    lastUpdated: 'የመጨረሻ ዝማኔ፡ መስከረም 19 ቀን 2019 ዓ.ም. (29 September 2026)',
+    lastUpdated: 'የመጨረሻ ዝማኔ፡ መስከረም 27 ቀን 2019 ዓ.ም. (7 October 2026)',
     fallbackNote: null,
   },
   om: {
     sheetTitle: 'Osoo itti hin fufin dura',
-    readPrompt: 'Haala Tajaajilaa fi Imaammata Iccitii fi Nageenyaa dubbisaa fudhadhaa.',
-    accepted: 'Haalli Tajaajilaa fi Imaammanni Iccitii fi Nageenyaa fudhatameera.',
+    readPrompt: 'Umriin keessan waggaa 18 ykn isaa ol taʼuu mirkaneessaa; Haala Tajaajilaa fi Imaammata Iccitii fi Nageenyaa dubbisaa fudhadhaa.',
+    accepted: 'Umriin waggaa 18+ mirkanaaʼeera; Haalli Tajaajilaa fi Imaammanni Iccitii fi Nageenyaa fudhatameera.',
     scrollHint: 'Itti fufuuf hanga dhumaatti gadi harkisaa.',
-    accept: 'Hubadheera, waliigaleera',
+    accept: 'Umriin koo 18+; waliigaleera',
     close: 'Cufi',
-    lastUpdated: 'Yeroo dhumaa kan haaromfame: 29 Fulbaana 2026',
+    lastUpdated: 'Yeroo dhumaa kan haaromfame: 7 Onkololeessa 2026',
     fallbackNote: 'Barreeffamni seeraa kun yeroo ammaa Afaan Ingiliffaatiin qofa argama.',
   },
 };
 
 const englishTerms: LegalDocument = {
   title: 'Terms & Conditions',
-  intro: 'These terms are an agreement between you and Konjo. Please read them. By pressing "I understand and agree" you accept these terms together with the Privacy & Security policy.',
+  intro: 'These terms are an agreement between you and Konjo. Please read them. By pressing "I am 18+ and agree" you confirm that you are at least 18 and accept these terms together with the Privacy & Security policy.',
   sections: [
     {
       heading: '1. What Konjo is',
@@ -139,7 +139,7 @@ const englishTerms: LegalDocument = {
     {
       heading: '10. Governing law and contact',
       paragraphs: [
-        'These terms are governed by the laws of the Federal Democratic Republic of Ethiopia. Contact: Info@Konjo.com, Konjo, Addis Ababa, Ethiopia.',
+        'These terms are governed by the laws of the Federal Democratic Republic of Ethiopia. Contact: info@konjoet.com, Konjo, Addis Ababa, Ethiopia.',
       ],
     },
   ],
@@ -181,13 +181,13 @@ const englishPrivacy: LegalDocument = {
     {
       heading: '5. Security',
       paragraphs: [
-        'Data travels over encrypted connections, sessions are stored in your phone’s secure storage, documents live in private storage, and access is restricted by role. No system is perfectly secure. Keep your password private and tell us at Info@Konjo.com if you believe your account has been misused. Konjo is not responsible for access that results from you sharing your sign-in details.',
+        'Data travels over encrypted connections, sessions are stored in your phone’s secure storage, documents live in private storage, and access is restricted by role. No system is perfectly secure. Keep your password private and tell us at info@konjoet.com if you believe your account has been misused. Konjo is not responsible for access that results from you sharing your sign-in details.',
       ],
     },
     {
       heading: '6. Your choices',
       paragraphs: [
-        'Delete your account from the app at any time. Turn location, notifications and camera access on or off in your phone settings. Email Info@Konjo.com to access, correct or export your data.',
+        'Delete your account from the app at any time. Turn location, notifications and camera access on or off in your phone settings. Email info@konjoet.com to access, correct or export your data.',
         'Konjo is for people aged 18 and over. We will post updates to this policy in the app and, for material changes, ask you to accept them again.',
       ],
     },
@@ -196,7 +196,7 @@ const englishPrivacy: LegalDocument = {
 
 const amharicTerms: LegalDocument = {
   title: 'የአገልግሎት ውሎች',
-  intro: 'እነዚህ ውሎች በእርስዎና በKonjo መካከል ያለ ስምምነት ናቸው። እባክዎ ያንብቧቸው። "ተረድቻለሁ እና እስማማለሁ" የሚለውን ሲጫኑ እነዚህን ውሎችና የግላዊነትና ደህንነት መመሪያን ይቀበላሉ።',
+  intro: 'እነዚህ ውሎች በእርስዎና በKonjo መካከል ያለ ስምምነት ናቸው። እባክዎ ያንብቧቸው። "ዕድሜዬ 18+ ነው፤ እስማማለሁ" የሚለውን ሲጫኑ ዕድሜዎ ቢያንስ 18 መሆኑን ያረጋግጣሉ እና እነዚህን ውሎችና የግላዊነትና ደህንነት መመሪያን ይቀበላሉ።',
   sections: [
     {
       heading: '1. Konjo ምንድን ነው',
@@ -269,7 +269,7 @@ const amharicTerms: LegalDocument = {
     {
       heading: '10. የሚገዛ ሕግና አድራሻ',
       paragraphs: [
-        'እነዚህ ውሎች በኢትዮጵያ ፌዴራላዊ ዲሞክራሲያዊ ሪፐብሊክ ሕጎች ይገዛሉ። አድራሻ፡ Info@Konjo.com፣ Konjo፣ አዲስ አበባ፣ ኢትዮጵያ።',
+        'እነዚህ ውሎች በኢትዮጵያ ፌዴራላዊ ዲሞክራሲያዊ ሪፐብሊክ ሕጎች ይገዛሉ። አድራሻ፡ info@konjoet.com፣ Konjo፣ አዲስ አበባ፣ ኢትዮጵያ።',
       ],
     },
   ],
@@ -311,13 +311,13 @@ const amharicPrivacy: LegalDocument = {
     {
       heading: '5. ደህንነት',
       paragraphs: [
-        'መረጃ በተመሰጠሩ ግንኙነቶች ይተላለፋል፣ ክፍለ ጊዜዎች በስልክዎ የደህንነት ማከማቻ ይቀመጣሉ፣ ሰነዶች በግል ማከማቻ ይኖራሉ፣ መዳረሻ በሚና ይገደባል። ምንም ሥርዓት ፍጹም ደህንነቱ የተጠበቀ አይደለም። የይለፍ ቃልዎን በሚስጥር ይያዙ፤ መለያዎ ያለአግባብ ተጠቅሟል ብለው ካመኑ በInfo@Konjo.com ያሳውቁን። የመግቢያ መረጃዎን በማጋራትዎ ለሚፈጠር መዳረሻ Konjo ኃላፊ አይደለም።',
+        'መረጃ በተመሰጠሩ ግንኙነቶች ይተላለፋል፣ ክፍለ ጊዜዎች በስልክዎ የደህንነት ማከማቻ ይቀመጣሉ፣ ሰነዶች በግል ማከማቻ ይኖራሉ፣ መዳረሻ በሚና ይገደባል። ምንም ሥርዓት ፍጹም ደህንነቱ የተጠበቀ አይደለም። የይለፍ ቃልዎን በሚስጥር ይያዙ፤ መለያዎ ያለአግባብ ተጠቅሟል ብለው ካመኑ በinfo@konjoet.com ያሳውቁን። የመግቢያ መረጃዎን በማጋራትዎ ለሚፈጠር መዳረሻ Konjo ኃላፊ አይደለም።',
       ],
     },
     {
       heading: '6. ምርጫዎችዎ',
       paragraphs: [
-        'መለያዎን በማንኛውም ጊዜ ከመተግበሪያው ይሰርዙ። አካባቢ፣ ማሳወቂያና ካሜራ መዳረሻን በስልክዎ ቅንብሮች ያብሩ ወይም ያጥፉ። መረጃዎን ለማግኘት፣ ለማስተካከል ወይም ለመላክ ወደ Info@Konjo.com ኢሜይል ይላኩ።',
+        'መለያዎን በማንኛውም ጊዜ ከመተግበሪያው ይሰርዙ። አካባቢ፣ ማሳወቂያና ካሜራ መዳረሻን በስልክዎ ቅንብሮች ያብሩ ወይም ያጥፉ። መረጃዎን ለማግኘት፣ ለማስተካከል ወይም ለመላክ ወደ info@konjoet.com ኢሜይል ይላኩ።',
         'Konjo ዕድሜያቸው 18 እና ከዚያ በላይ ለሆኑ ሰዎች ነው። የዚህን መመሪያ ዝማኔዎች በመተግበሪያው እናሳውቃለን፤ ለከፍተኛ ለውጦች እንደገና እንዲቀበሉ እንጠይቃለን።',
       ],
     },

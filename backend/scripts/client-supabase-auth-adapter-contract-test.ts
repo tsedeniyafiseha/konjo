@@ -18,6 +18,7 @@ import {
   SupabaseExternalSessionSource,
 } from '../../src/adapters/supabase/supabase-session-adapters.ts';
 import { SupabasePhoneAuthGateway } from '../../src/adapters/supabase/supabase-phone-auth-gateway.ts';
+import { normalizeNativeAuthPath } from '../../src/features/auth/auth-callback-url.ts';
 
 const identity: SupabaseAuthIdentity = {
   userId: 'client-1',
@@ -28,6 +29,27 @@ const identity: SupabaseAuthIdentity = {
   expiresAt: 2_000_000_000_000,
   authMethod: 'email_password',
 };
+
+{
+  assert.equal(
+    normalizeNativeAuthPath('konjoclient://client-email?mode=reset&code=one-time-code'),
+    '/client-email?mode=reset&code=one-time-code',
+  );
+  assert.equal(
+    normalizeNativeAuthPath('konjoclient:///client-email?mode=confirm&token_hash=email-hash&type=email'),
+    '/client-email?mode=confirm&token_hash=email-hash&type=email',
+  );
+  assert.equal(
+    normalizeNativeAuthPath('konjoclient://client-email?mode=reset#error=access_denied&error_code=otp_expired&error_description=Link+expired'),
+    '/client-email?mode=reset&error=access_denied&error_code=otp_expired&error_description=Link+expired',
+  );
+  assert.equal(
+    normalizeNativeAuthPath('konjoclient://client-email?mode=reset#access_token=secret&refresh_token=more-secret'),
+    '/client-email?mode=reset',
+    'Session credentials must never be copied into Expo Router state.',
+  );
+  assert.equal(normalizeNativeAuthPath('/client-email?mode=login'), '/client-email?mode=login');
+}
 
 {
   for (const value of ['912345678', '0912345678', '+251 912 345 678', '00251912345678']) {
@@ -67,6 +89,7 @@ function port(overrides: Partial<SupabaseAuthPort> = {}): SupabaseAuthPort {
     async restore() { return identity; },
     async signInWithGoogle() { return { ...identity, authMethod: 'google' }; },
     async requestPasswordReset() {},
+    async preparePasswordReset() {},
     async confirmPasswordReset() {},
     async requestPhoneOtp() {},
     async verifyPhoneOtp() { return { ...identity, phoneNumber: '+251912345678' }; },
@@ -81,16 +104,19 @@ function port(overrides: Partial<SupabaseAuthPort> = {}): SupabaseAuthPort {
   const calls: unknown[] = [];
   const auth = new SupabaseClientAuthGateway(port({
     async signInWithPassword(input) { calls.push(input); return identity; },
+    async preparePasswordReset(code, role, tokenHash) { calls.push({ prepare: true, code, role, tokenHash }); },
     async confirmPasswordReset(code, password, role, tokenHash) { calls.push({ code, password, role, tokenHash }); },
     async confirmEmail(code, tokenHash) { calls.push({ code, tokenHash }); return identity; },
   }));
   const session = await auth.signInWithEmail({ email: 'international@example.com', password: 'valid-client-password' });
   assert.equal(session.phoneNumber, undefined, 'Email-only clients do not need an Ethiopian phone.');
   await auth.confirmEmail('', 'email-token-hash');
+  await auth.preparePasswordReset('email-link-code', 'reset-token-hash');
   await auth.confirmPasswordReset('email-link-code', 'new-client-password', 'reset-token-hash');
   assert.deepEqual(calls, [
     { email: 'international@example.com', password: 'valid-client-password' },
     { code: '', tokenHash: 'email-token-hash' },
+    { prepare: true, code: 'email-link-code', role: 'client', tokenHash: 'reset-token-hash' },
     { code: 'email-link-code', password: 'new-client-password', role: 'client', tokenHash: 'reset-token-hash' },
   ]);
 }

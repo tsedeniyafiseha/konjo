@@ -4,7 +4,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import type { ReactNode } from 'react';
 import { useEffect, useState, useRef } from 'react';
-import { Pressable, ScrollView, Share, StyleSheet, Text, View, Platform } from 'react-native';
+import { Alert, Pressable, ScrollView, Share, StyleSheet, Text, View, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { KonjoIcon } from '@/components/ui/konjo-icon';
@@ -15,6 +15,7 @@ import { apiBaseUrl } from '@/services/api-client';
 import { useClientData } from '@/features/client/client-data-context';
 import { AvailabilityPill } from '@/features/home/home-discovery-sections';
 import { useClientCopy } from '@/localization/use-client-copy';
+import { openSupportEmail } from '@/features/support/support-links';
 import { fontFamilies, layout, palette, radii, spacing } from '@/theme/tokens';
 
 function ActionButton({
@@ -128,7 +129,7 @@ export function professionalProfileShareUrl(professionalId: string): string {
 export function ProfessionalProfileScreen() {
   const params = useLocalSearchParams<{ professionalId?: string }>();
   const professionalId = typeof params.professionalId === 'string' ? params.professionalId : undefined;
-  const { getProfessional, loadPortfolio, loadReviews, loading: discoveryLoading, refresh: refreshDiscovery } = useDiscovery();
+  const { blockProfessional, getProfessional, loadPortfolio, loadReviews, loading: discoveryLoading, refresh: refreshDiscovery } = useDiscovery();
   const professional = getProfessional(professionalId);
   // A newly approved professional may not be in the catalog loaded earlier:
   // ask for it once more before declaring them unavailable.
@@ -184,6 +185,32 @@ export function ProfessionalProfileScreen() {
     } catch (error) {
       if (__DEV__) console.error('Unable to share this professional profile.', error);
     }
+  };
+
+  const reportProfessional = () => {
+    void openSupportEmail(
+      t('reportProfessionalSubject').replace('{name}', professional.name),
+      t('reportProfessionalBody')
+        .replace('{name}', professional.name)
+        .replace('{id}', professional.id),
+    );
+  };
+
+  const confirmBlockProfessional = () => {
+    Alert.alert(
+      t('blockProfessionalTitle').replace('{name}', professional.firstName),
+      t('blockProfessionalBody'),
+      [
+        { text: t('blockProfessionalCancel'), style: 'cancel' },
+        {
+          text: t('blockProfessionalConfirm'),
+          style: 'destructive',
+          onPress: () => {
+            void blockProfessional(professional.id).then(() => router.replace('/browse' as Href));
+          },
+        },
+      ],
+    );
   };
 
   return (
@@ -267,6 +294,17 @@ export function ProfessionalProfileScreen() {
             </View>
 
             <Text style={styles.bio}>{professional.bio}</Text>
+
+            <View style={styles.safetyActions}>
+              <Pressable accessibilityRole="button" onPress={reportProfessional} style={styles.safetyAction}>
+                <KonjoIcon color={palette.olive} name={{ ios: 'exclamationmark.bubble', android: 'report', web: 'report' }} size={17} />
+                <Text style={styles.safetyActionLabel}>{t('reportProfessional')}</Text>
+              </Pressable>
+              <Pressable accessibilityRole="button" onPress={confirmBlockProfessional} style={styles.safetyAction}>
+                <KonjoIcon color={palette.error} name={{ ios: 'person.slash', android: 'block', web: 'block' }} size={17} />
+                <Text style={[styles.safetyActionLabel, styles.blockActionLabel]}>{t('blockProfessional')}</Text>
+              </Pressable>
+            </View>
 
             {professional.educationLevel || professional.languageSkills?.length || genderLabel(professional.gender, language) ? (
               <View style={styles.qualificationsCard}>
@@ -385,6 +423,20 @@ export function ProfessionalProfileScreen() {
                       <Text style={styles.reviewMeta}>
                         {review.time} · {review.service}
                       </Text>
+                      <Pressable
+                        accessibilityRole="button"
+                        hitSlop={8}
+                        onPress={() => {
+                          void openSupportEmail(
+                            t('reportReviewSubject'),
+                            t('reportReviewBody')
+                              .replace('{name}', professional.name)
+                              .replace('{reviewer}', review.name)
+                              .replace('{review}', review.text),
+                          );
+                        }}>
+                        <Text style={styles.reportReview}>{t('reportReview')}</Text>
+                      </Pressable>
                     </View>
                   ))}
                 </View>
@@ -544,6 +596,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: layout.horizontalPadding,
     paddingTop: spacing.lg,
   },
+  safetyActions: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm, paddingHorizontal: layout.horizontalPadding, paddingTop: spacing.md },
+  safetyAction: { alignItems: 'center', borderColor: palette.border, borderRadius: radii.pill, borderWidth: 1, flexDirection: 'row', gap: 6, minHeight: 40, paddingHorizontal: spacing.md },
+  safetyActionLabel: { color: palette.olive, fontFamily: fontFamilies.body.semibold, fontSize: 12 },
+  blockActionLabel: { color: palette.error },
   qualificationsCard: { backgroundColor: palette.surface, borderColor: palette.border, borderRadius: radii.sm, borderWidth: 1, gap: spacing.sm, marginHorizontal: layout.horizontalPadding, marginTop: spacing.md, padding: spacing.md },
   qualificationItem: { gap: 3 },
   qualificationLabel: { color: palette.textMuted, fontFamily: fontFamilies.body.semibold, fontSize: 10, letterSpacing: 0.6, textTransform: 'uppercase' },
@@ -729,6 +785,7 @@ const styles = StyleSheet.create({
     backgroundColor: palette.surface,
     padding: spacing.md,
   },
+  reportReview: { color: palette.olive, fontFamily: fontFamilies.body.semibold, fontSize: 12, marginTop: spacing.sm, textDecorationLine: 'underline' },
   reviewHeader: {
     flexDirection: 'row',
     alignItems: 'flex-start',

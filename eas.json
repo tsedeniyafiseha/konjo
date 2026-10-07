@@ -3,6 +3,21 @@
   "build": {
     "development": { "developmentClient": true, "distribution": "internal", "environment": "development" },
     "preview": { "distribution": "internal", "environment": "preview" },
+    "testflight": { "extends": "production", "environment": "preview" },
     "production": { "autoIncrement": true, "environment": "production" }
+  },
+  "submit": {
+    "testflight": {
+      "ios": {
+        "ascAppId": "6820140076",
+        "metadataPath": "./store.config.json"
+      }
+    },
+    "production": {
+      "ios": {
+        "ascAppId": "6820140076",
+        "metadataPath": "./store.config.json"
+      }
+    }
   }
 }

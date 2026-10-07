@@ -107,6 +107,12 @@ export const developmentClientAuthGateway: ClientAuthenticationGateway = {
     if (!validEmail(email)) throw new ClientAuthError('invalid_input', 'Enter a valid email address.');
     return { accepted: true, developmentToken: 'development-reset-token' };
   },
+  async preparePasswordReset(token) {
+    await wait(250);
+    if (token !== 'development-reset-token') {
+      throw new ClientAuthError('invalid_input', 'The reset token is not valid.');
+    }
+  },
   async confirmPasswordReset(token, password) {
     await wait(450);
     if (token !== 'development-reset-token' || password.length < 10) {
@@ -170,6 +176,9 @@ export const apiClientAuthGateway: ClientAuthenticationGateway = {
       throw toClientAuthError(error);
     }
   },
+  async preparePasswordReset() {
+    // The local API consumes its opaque token together with the new password.
+  },
   async confirmPasswordReset(token, password) {
     try {
       await apiRequest('/v1/auth/password-reset/confirm', {
@@ -192,6 +201,7 @@ export const unavailableClientAuthGateway: ClientAuthenticationGateway = {
   async updatePassword() { throw new ClientAuthError('service_unavailable', 'Password updates are temporarily unavailable.'); },
   async signInWithGoogle() { throw new ClientAuthError('service_unavailable', 'Google sign-in has not been configured.'); },
   async requestPasswordReset() { throw new ClientAuthError('service_unavailable', 'Password recovery is temporarily unavailable.'); },
+  async preparePasswordReset() { throw new ClientAuthError('service_unavailable', 'Password recovery is temporarily unavailable.'); },
   async confirmPasswordReset() { throw new ClientAuthError('service_unavailable', 'Password recovery is temporarily unavailable.'); },
 };
 

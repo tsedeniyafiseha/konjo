@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -13,7 +13,7 @@ interface LegalConsentSheetProps {
   onClose(): void;
 }
 
-const END_THRESHOLD = 24;
+const END_THRESHOLD = 48;
 
 /**
  * Full-screen sheet with the Terms & Conditions and the Privacy & Security
@@ -33,14 +33,37 @@ function SheetBody({ language, onAccept, onClose }: Omit<LegalConsentSheetProps,
   const { terms, privacy } = legalDocuments(language);
   const ethiopic = language === 'am';
   const [reachedEnd, setReachedEnd] = useState(false);
-  const [viewportHeight, setViewportHeight] = useState(0);
-  const [contentHeight, setContentHeight] = useState(0);
-  const fitsOnScreen = viewportHeight > 0 && contentHeight > 0 && contentHeight <= viewportHeight + END_THRESHOLD;
-  const canAccept = reachedEnd || fitsOnScreen;
+  const scrollMetrics = useRef({ contentHeight: 0, offsetY: 0, viewportHeight: 0 });
+
+  const unlockAtEnd = useCallback(() => {
+    const { contentHeight, offsetY, viewportHeight } = scrollMetrics.current;
+    if (
+      contentHeight > 0 &&
+      viewportHeight > 0 &&
+      Math.max(0, offsetY) + viewportHeight >= contentHeight - END_THRESHOLD
+    ) {
+      setReachedEnd(true);
+    }
+  }, []);
+
+  const onContentSizeChange = (_width: number, height: number) => {
+    scrollMetrics.current.contentHeight = height;
+    unlockAtEnd();
+  };
+
+  const onLayout = (event: LayoutChangeEvent) => {
+    scrollMetrics.current.viewportHeight = event.nativeEvent.layout.height;
+    unlockAtEnd();
+  };
 
   const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
-    if (contentOffset.y + layoutMeasurement.height >= contentSize.height - END_THRESHOLD) setReachedEnd(true);
+    scrollMetrics.current = {
+      contentHeight: contentSize.height,
+      offsetY: contentOffset.y,
+      viewportHeight: layoutMeasurement.height,
+    };
+    unlockAtEnd();
   };
 
   return (
@@ -51,10 +74,12 @@ function SheetBody({ language, onAccept, onClose }: Omit<LegalConsentSheetProps,
       </View>
       <ScrollView
         contentContainerStyle={styles.content}
-        onContentSizeChange={(_, height) => setContentHeight(height)}
-        onLayout={(event: LayoutChangeEvent) => setViewportHeight(event.nativeEvent.layout.height)}
+        onContentSizeChange={onContentSizeChange}
+        onLayout={onLayout}
+        onMomentumScrollEnd={onScroll}
         onScroll={onScroll}
-        scrollEventThrottle={64}
+        onScrollEndDrag={onScroll}
+        scrollEventThrottle={16}
         style={styles.scroll}
       >
         <Text style={[styles.updated, ethiopic && styles.ethiopic]}>{labels.lastUpdated}</Text>
@@ -64,8 +89,8 @@ function SheetBody({ language, onAccept, onClose }: Omit<LegalConsentSheetProps,
         <Document document={privacy} ethiopic={ethiopic} />
       </ScrollView>
       <View style={styles.footer}>
-        {!canAccept ? <Text style={[styles.hint, ethiopic && styles.ethiopic]}>{labels.scrollHint}</Text> : null}
-        <KonjoButton disabled={!canAccept} label={labels.accept} onPress={onAccept} variant="dark" />
+        {!reachedEnd ? <Text accessibilityLiveRegion="polite" style={[styles.hint, ethiopic && styles.ethiopic]}>{labels.scrollHint}</Text> : null}
+        <KonjoButton disabled={!reachedEnd} label={labels.accept} onPress={onAccept} variant="dark" />
       </View>
     </SafeAreaView>
   );

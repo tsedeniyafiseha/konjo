@@ -24,7 +24,7 @@ export function BookingMapFrame({ height, renderMap, status }: BookingMapFramePr
   return (
     <View style={[styles.frame, { height }]}>
       {renderMap(false)}
-      <MapStatus status={status} />
+      <MapStatusOverlay status={status} />
       {status === 'ready' ? (
         <Pressable accessibilityLabel="Expand map" accessibilityRole="button" hitSlop={8} onPress={() => setExpanded(true)} style={styles.expandButton}>
           <KonjoIcon color={palette.text} name={{ ios: 'arrow.up.left.and.arrow.down.right', android: 'open_in_full', web: 'open_in_full' }} size={18} />
@@ -34,7 +34,7 @@ export function BookingMapFrame({ height, renderMap, status }: BookingMapFramePr
         <SafeAreaView edges={['top', 'bottom']} style={styles.fullScreen}>
           <View style={styles.fullScreenMap}>
             {expanded ? renderMap(true) : null}
-            <MapStatus status={status} />
+            <MapStatusOverlay status={status} />
           </View>
           <Pressable accessibilityLabel="Close map" accessibilityRole="button" hitSlop={8} onPress={() => setExpanded(false)} style={styles.closeButton}>
             <KonjoIcon color={palette.text} name={{ ios: 'xmark', android: 'close', web: 'close' }} size={20} />
@@ -45,7 +45,7 @@ export function BookingMapFrame({ height, renderMap, status }: BookingMapFramePr
   );
 }
 
-function MapStatus({ status }: { status: BookingMapFrameProps['status'] }) {
+function MapStatusOverlay({ status }: { status: BookingMapFrameProps['status'] }) {
   if (status === 'ready') return null;
   return (
     <View pointerEvents="none" style={styles.statusOverlay}>

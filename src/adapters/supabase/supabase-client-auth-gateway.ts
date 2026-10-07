@@ -33,6 +33,7 @@ export interface SupabaseAuthPort {
   restore(): Promise<SupabaseAuthIdentity | null>;
   signInWithGoogle(): Promise<SupabaseAuthIdentity>;
   requestPasswordReset(email: string, role: 'client' | 'professional'): Promise<void>;
+  preparePasswordReset(token: string, role?: AccountRole, tokenHash?: string): Promise<void>;
   confirmPasswordReset(token: string, password: string, role?: AccountRole, tokenHash?: string): Promise<void>;
   requestPhoneOtp(
     phoneNumber: string,
@@ -177,6 +178,14 @@ export class SupabaseRoleAuthGateway implements ClientAuthenticationGateway {
       return { accepted: true };
     } catch (error) {
       throw authError(error, 'Password recovery is temporarily unavailable.');
+    }
+  }
+
+  async preparePasswordReset(token: string, tokenHash?: string): Promise<void> {
+    try {
+      await this.port.preparePasswordReset(token, this.role, tokenHash);
+    } catch (error) {
+      throw authError(error, 'The password reset link is invalid or expired.');
     }
   }
 

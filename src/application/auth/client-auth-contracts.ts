@@ -42,5 +42,6 @@ export interface ClientAuthenticationGateway {
   updatePassword(password: string): Promise<void>;
   signInWithGoogle(): Promise<AuthSession>;
   requestPasswordReset(email: string): Promise<ApiPasswordResetRequest>;
+  preparePasswordReset(token: string, tokenHash?: string): Promise<void>;
   confirmPasswordReset(token: string, password: string, tokenHash?: string): Promise<void>;
 }

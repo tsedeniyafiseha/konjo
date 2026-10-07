@@ -1028,10 +1028,13 @@ const created = await request<{ booking: ApiBooking; paymentIntent: null }>('/v1
 });
 expect(
   created.status === 201 &&
-    created.body.booking.total === service.price + Math.round(service.price * 0.18) &&
+    created.body.booking.total === service.price + Math.round(service.price * 0.18) - Math.round(service.price * 0.20) &&
+    created.body.booking.discountAmount === Math.round(service.price * 0.20) &&
+    created.body.booking.discountRateBps === 2000 &&
+    created.body.booking.discountReason === 'first_booking' &&
     created.body.booking.femaleOnly &&
     created.body.booking.paymentMethod === 'telebirr',
-  'Booking creation failed.',
+  `Booking creation failed (${created.status}): ${JSON.stringify(created.body)}`,
 );
 expect(
   created.body.paymentIntent === null,
@@ -1333,10 +1336,10 @@ const reservedAvailability = await request<{ availability: { available: boolean;
   `/v1/professionals/${professional.id}/availability?date=${futureWorkingDateKey(30)}&serviceId=${service.id}`,
 );
 expect(
-  reservedAvailability.status === 200 && !reservedAvailability.body.availability.available && reservedAvailability.body.availability.slots.length === 0,
-  'An accepted booking did not remove the professional availability slots.',
+  reservedAvailability.status === 200 && reservedAvailability.body.availability.available && reservedAvailability.body.availability.slots.length > 0,
+  'An accepted future booking incorrectly removed unrelated availability slots.',
 );
-const busyProfessionalBooking = await request<{ error: { code: string } }>('/v1/bookings', {
+const acceptedFutureBooking = await request<{ booking: ApiBooking }>('/v1/bookings', {
   method: 'POST',
   headers: authenticatedHeaders,
   body: JSON.stringify({
@@ -1348,21 +1351,23 @@ const busyProfessionalBooking = await request<{ error: { code: string } }>('/v1/
   }),
 });
 expect(
-  busyProfessionalBooking.status === 409 && busyProfessionalBooking.body.error.code === 'PROFESSIONAL_BUSY',
-  'A client could request another booking while the professional had an accepted booking.',
+  acceptedFutureBooking.status === 201,
+  'An accepted future booking incorrectly prevented another non-overlapping request.',
 );
-const earlyTravel = await request<{ error: { code: string } }>(
+const acceptedFutureBookingCleanup = await request<void>(`/v1/bookings/${acceptedFutureBooking.body.booking.id}`, {
+  method: 'DELETE', headers: authenticatedHeaders,
+});
+expect(acceptedFutureBookingCleanup.status === 204, 'Accepted-future availability test cleanup failed.');
+const startedTravel = await request<{ dashboard: ApiProfessionalDashboard }>(
   `/v1/professional/bookings/${created.body.booking.id}/travel`,
   { method: 'POST', headers: professionalHeaders },
 );
 expect(
-  earlyTravel.status === 409 && earlyTravel.body.error.code === 'BOOKING_NOT_STARTED',
-  'A professional could start travel before the scheduled appointment time.',
+  startedTravel.status === 200 && startedTravel.body.dashboard.jobs.some((job) => (
+    job.id === created.body.booking.id && job.status === 'on_the_way'
+  )),
+  `A professional could not start travel after acceptance and secured payment (${startedTravel.status}): ${JSON.stringify(startedTravel.body)}`,
 );
-
-// Advance this isolated SQLite fixture to its appointment start so the smoke
-// test can cover the remaining arrival/check-in/checkout flow without waiting.
-advanceBookingToStart(created.body.booking.id);
 
 for (const [action, expectedStatus] of [
   ['travel', 'on_the_way'],
@@ -1379,6 +1384,29 @@ for (const [action, expectedStatus] of [
     `Professional booking action ${action} failed.`,
   );
 }
+
+const activeVisitAvailability = await request<{ availability: { available: boolean; slots: string[] } }>(
+  `/v1/professionals/${professional.id}/availability?date=${futureWorkingDateKey(30)}&serviceId=${service.id}`,
+);
+expect(
+  activeVisitAvailability.status === 200 && !activeVisitAvailability.body.availability.available && activeVisitAvailability.body.availability.slots.length === 0,
+  'A professional on an active visit still exposed marketplace availability slots.',
+);
+const busyProfessionalBooking = await request<{ error: { code: string } }>('/v1/bookings', {
+  method: 'POST',
+  headers: authenticatedHeaders,
+  body: JSON.stringify({
+    ...primaryBookingInput,
+    requestId: `busy-professional-${Date.now()}`,
+    dateIso: futureWorkingDateKey(30),
+    time: '9:00 AM',
+    femaleOnly: false,
+  }),
+});
+expect(
+  busyProfessionalBooking.status === 409 && busyProfessionalBooking.body.error.code === 'PROFESSIONAL_BUSY',
+  'A client could request another booking while the professional was on an active visit.',
+);
 
 // On the way / on site: the professional's phone reports positions with an area label,
 // the client reads the latest one back, and strangers get nothing.
@@ -1450,7 +1478,10 @@ const completion = await request<{ dashboard: ApiProfessionalDashboard }>(
 );
 const trackingAfterCompletion = await request<{ tracking: ApiBookingTracking | null }>(`/v1/bookings/${created.body.booking.id}/tracking`, { headers: authenticatedHeaders });
 expect(trackingAfterCompletion.status === 200 && trackingAfterCompletion.body.tracking === null, 'Tracking was not cleared after checkout.');
-const expectedNetEarnings = created.body.booking.total - Math.round(created.body.booking.servicePrice * 0.18);
+const expectedCommission = Math.round(
+  created.body.booking.servicePrice * created.body.booking.commissionRateBps / 10_000,
+) - (created.body.booking.discountAmount ?? 0);
+const expectedNetEarnings = created.body.booking.total - expectedCommission;
 expect(completion.status === 200 && completion.body.dashboard.weekEarnings === 0, 'Checkout released earnings before final payment.');
 const finalPayment = await request<{ paymentIntent: ApiPaymentIntent }>(`/v1/bookings/${created.body.booking.id}/payment`, {
   method: 'POST', headers: authenticatedHeaders,

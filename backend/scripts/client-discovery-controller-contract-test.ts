@@ -246,6 +246,36 @@ function gateway(overrides: Partial<DiscoveryGateway> = {}): DiscoveryGateway {
   ]);
 }
 
+{
+  let stored: readonly string[] = ['hanan'];
+  const storage = {
+    async read() { return stored; },
+    async write(professionalIds: readonly string[]) { stored = professionalIds; },
+  };
+  const restoredController = new DiscoveryController(
+    gateway({ configured: false }),
+    fallback,
+    undefined,
+    { blockedProfessionalsStorage: storage },
+  );
+  await restoredController.refresh();
+  assert.equal(restoredController.getProfessional('hanan'), undefined);
+  assert.deepEqual(restoredController.getSnapshot().professionals, []);
+
+  stored = [];
+  const blockingController = new DiscoveryController(
+    gateway({ configured: false }),
+    fallback,
+    undefined,
+    { blockedProfessionalsStorage: storage },
+  );
+  await blockingController.refresh();
+  await blockingController.blockProfessional('hanan');
+  assert.deepEqual(stored, ['hanan']);
+  assert.equal(blockingController.getProfessional('hanan'), undefined);
+  assert.deepEqual(blockingController.getSnapshot().professionals, []);
+}
+
 assert.equal(professionalLanguageMatchScore({ languageSkills: apiProfessional.languageSkills, languages: apiProfessional.languages }, 'en'), 3);
 assert.equal(professionalLanguageMatchScore({ languageSkills: apiProfessional.languageSkills, languages: apiProfessional.languages }, 'am'), 4);
 assert.equal(professionalLanguageMatchScore({ languages: ['English'] }, 'en'), 1);

@@ -109,7 +109,7 @@ contactForm?.addEventListener('submit', async (event) => {
     contactForm.reset();
     setStatus(status, 'Thank you. Your message has been sent to the Konjo team.', 'success');
   } catch (error) {
-    setStatus(status, error instanceof Error ? error.message : 'We could not send your message. Please try again or email Info@Konjo.com.', 'error');
+    setStatus(status, error instanceof Error ? error.message : 'We could not send your message. Please try again or email info@konjoet.com.', 'error');
   } finally {
     button.disabled = false;
     button.removeAttribute('aria-busy');

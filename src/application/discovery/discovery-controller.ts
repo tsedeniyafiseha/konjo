@@ -64,6 +64,12 @@ const INITIAL_RETRY_DELAY_MS = 5_000;
 export interface DiscoveryControllerOptions {
   /** Delay before the first automatic retry after a failed catalog load. */
   retryDelayMs?: number;
+  blockedProfessionalsStorage?: BlockedProfessionalsStorage;
+}
+
+export interface BlockedProfessionalsStorage {
+  read(): Promise<readonly string[]>;
+  write(professionalIds: readonly string[]): Promise<void>;
 }
 const MAX_RETRY_DELAY_MS = 60_000;
 
@@ -98,6 +104,9 @@ export class DiscoveryController {
   private retryTimer: ReturnType<typeof setTimeout> | null = null;
   private readonly initialRetryDelayMs: number;
   private retryDelayMs: number;
+  private readonly blockedProfessionalsStorage: BlockedProfessionalsStorage | null;
+  private readonly blockedProfessionalIds = new Set<string>();
+  private blockedProfessionalsLoaded = false;
 
   constructor(
     gateway: DiscoveryGateway,
@@ -110,6 +119,7 @@ export class DiscoveryController {
     this.logger = logger;
     this.initialRetryDelayMs = options.retryDelayMs ?? INITIAL_RETRY_DELAY_MS;
     this.retryDelayMs = this.initialRetryDelayMs;
+    this.blockedProfessionalsStorage = options.blockedProfessionalsStorage ?? null;
     this.snapshot = {
       professionals: fallback.professionals,
       categories: fallback.categories,
@@ -125,18 +135,41 @@ export class DiscoveryController {
   };
 
   getProfessional(professionalId: string | undefined): Professional | undefined {
+    if (!professionalId || this.blockedProfessionalIds.has(professionalId)) return undefined;
     return this.snapshot.professionals.find((professional) => professional.id === professionalId);
   }
 
   refresh(): Promise<void> {
-    if (!this.gateway.configured) return Promise.resolve();
     if (this.refreshPromise) return this.refreshPromise;
 
-    this.publish({ ...this.snapshot, loading: true });
-    this.refreshPromise = this.loadCatalog().finally(() => {
+    if (!this.blockedProfessionalsStorage) {
+      if (!this.gateway.configured) return Promise.resolve();
+      this.publish({ ...this.snapshot, loading: true });
+      this.refreshPromise = this.loadCatalog().finally(() => {
+        this.refreshPromise = null;
+      });
+      return this.refreshPromise;
+    }
+
+    if (this.gateway.configured) this.publish({ ...this.snapshot, loading: true });
+    this.refreshPromise = this.loadBlockedProfessionalsAndCatalog().finally(() => {
       this.refreshPromise = null;
     });
     return this.refreshPromise;
+  }
+
+  async blockProfessional(professionalId: string): Promise<void> {
+    if (!professionalId || this.blockedProfessionalIds.has(professionalId)) return;
+    this.blockedProfessionalIds.add(professionalId);
+    this.publish({
+      ...this.snapshot,
+      professionals: this.snapshot.professionals.filter((professional) => professional.id !== professionalId),
+    });
+    try {
+      await this.blockedProfessionalsStorage?.write([...this.blockedProfessionalIds]);
+    } catch (error) {
+      this.logger.error('Unable to persist the blocked professional.', error);
+    }
   }
 
   async getAvailableSlots(input: ProfessionalAvailabilityInput): Promise<readonly string[]> {
@@ -189,7 +222,9 @@ export class DiscoveryController {
       ]);
       this.clearRetry();
       this.publish({
-        professionals: professionals.map((professional) => this.toProfessional(professional)),
+        professionals: professionals
+          .filter((professional) => !this.blockedProfessionalIds.has(professional.id))
+          .map((professional) => this.toProfessional(professional)),
         categories: categories.map((category) => ({
           id: category.slug,
           label: category.name,
@@ -202,6 +237,28 @@ export class DiscoveryController {
       this.publish({ ...this.snapshot, loading: false });
       this.scheduleRetry();
     }
+  }
+
+  private async loadBlockedProfessionalsAndCatalog(): Promise<void> {
+    if (!this.blockedProfessionalsLoaded) {
+      try {
+        const stored = await this.blockedProfessionalsStorage?.read() ?? [];
+        for (const professionalId of stored) {
+          if (professionalId) this.blockedProfessionalIds.add(professionalId);
+        }
+        this.publish({
+          ...this.snapshot,
+          professionals: this.snapshot.professionals.filter(
+            (professional) => !this.blockedProfessionalIds.has(professional.id),
+          ),
+        });
+      } catch (error) {
+        this.logger.error('Unable to load blocked professionals.', error);
+      } finally {
+        this.blockedProfessionalsLoaded = true;
+      }
+    }
+    if (this.gateway.configured) await this.loadCatalog();
   }
 
   // A failed load (API down, no network) must not leave the catalog empty until

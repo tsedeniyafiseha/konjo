@@ -17,6 +17,7 @@ interface DiscoveryContextValue {
   getAvailableSlots: (input: ProfessionalAvailabilityInput) => Promise<readonly string[]>;
   loadPortfolio: (professionalId: string) => Promise<readonly string[]>;
   loadReviews: (professionalId: string) => Promise<readonly ProfessionalReview[]>;
+  blockProfessional: (professionalId: string) => Promise<void>;
   refresh: () => Promise<void>;
 }
 
@@ -67,6 +68,10 @@ export function DiscoveryProvider({ children, controller }: DiscoveryProviderPro
   );
 
   const refresh = useCallback(() => controller.refresh(), [controller]);
+  const blockProfessional = useCallback(
+    (professionalId: string) => controller.blockProfessional(professionalId),
+    [controller],
+  );
 
   const value = useMemo<DiscoveryContextValue>(() => ({
     professionals: snapshot.professionals,
@@ -76,12 +81,14 @@ export function DiscoveryProvider({ children, controller }: DiscoveryProviderPro
     getAvailableSlots,
     loadPortfolio,
     loadReviews,
+    blockProfessional,
     refresh,
   }), [
     getAvailableSlots,
     getProfessional,
     loadPortfolio,
     loadReviews,
+    blockProfessional,
     refresh,
     snapshot.categories,
     snapshot.loading,

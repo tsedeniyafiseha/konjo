@@ -20,12 +20,10 @@ import { useAuthSession } from './session-context';
 import { fontFamilies, palette, radii, spacing } from '@/theme/tokens';
 
 /**
- * Client account entry. Clients register and sign in with email + password and
- * are signed in immediately after registering ("Confirm email" is disabled in
- * Supabase Auth). Password-reset links are delivered by email and land back on
- * this screen (web: same browser, native: the konjoclient:// deep link). The
- * check-email / confirm modes remain only as a fallback should confirmation be
- * re-enabled later.
+ * Client account entry. Clients register and sign in with email + password.
+ * Supabase requires email confirmation before a new account can sign in.
+ * Confirmation and password-reset links return to this screen (web: the same
+ * browser, native: the konjoclient:// deep link) to finish the PKCE exchange.
  */
 const PASSWORD_MIN_LENGTH = 10;
 const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
@@ -72,16 +70,62 @@ export function ClientAuthLandingScreen() {
 }
 
 type Mode = 'signup' | 'login' | 'forgot' | 'reset' | 'confirm' | 'check-email';
+type Copy = ReturnType<typeof usePublicClientCopy>['t'];
+
+const AUTH_ERROR_COPY: Readonly<Record<string, Parameters<Copy>[0]>> = {
+  bad_code_verifier: 'authLinkExpired',
+  captcha_failed: 'authCaptchaFailed',
+  email_address_invalid: 'invalidSignupEmail',
+  email_address_not_authorized: 'authEmailDeliveryUnavailable',
+  email_exists: 'emailAlreadyRegistered',
+  email_not_confirmed: 'emailNotConfirmed',
+  email_provider_disabled: 'authEmailProviderDisabled',
+  flow_state_expired: 'authLinkExpired',
+  flow_state_not_found: 'authLinkExpired',
+  identity_already_exists: 'emailAlreadyRegistered',
+  invalid_credentials: 'invalidLoginCredentials',
+  otp_expired: 'authLinkExpired',
+  over_email_send_rate_limit: 'authEmailRateLimited',
+  over_request_rate_limit: 'authRequestRateLimited',
+  request_timeout: 'authRequestTimedOut',
+  same_password: 'samePassword',
+  unexpected_failure: 'authServiceUnavailable',
+  user_already_exists: 'emailAlreadyRegistered',
+  user_banned: 'accountUnavailable',
+  validation_failed: 'invalidSignupEmail',
+  weak_password: 'weakSignupPassword',
+};
+
+function userFacingAuthError(failure: unknown, mode: Mode, t: Copy): string {
+  if (!(failure instanceof ClientAuthError)) return failure instanceof Error ? failure.message : t('continueError');
+  const copyKey = failure.providerCode ? AUTH_ERROR_COPY[failure.providerCode] : undefined;
+  if (copyKey) return t(copyKey);
+  if (failure.code === 'service_unavailable') {
+    return mode === 'forgot' ? t('resetRequestFailed') : t('authServiceUnavailable');
+  }
+  return failure.message || t('continueError');
+}
+
 function TextAction({ label, onPress, disabled, ethiopic }: { label: string; onPress: () => void; disabled: boolean; ethiopic?: boolean }) {
   return <Pressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={styles.textButton}><Text style={[styles.textButtonStrong, ethiopic && styles.ethiopicSemibold]}>{label}</Text></Pressable>;
 }
 
-type EmailAuthParams = { mode?: string; code?: string; token?: string; token_hash?: string; type?: string; error_description?: string };
+type EmailAuthParams = {
+  mode?: string;
+  code?: string;
+  token?: string;
+  token_hash?: string;
+  type?: string;
+  error?: string;
+  error_code?: string;
+  error_description?: string;
+};
 export function ClientEmailAuthScreen() {
   const params = useLocalSearchParams<EmailAuthParams>();
   // Native email links may update an already-mounted route. A new callback
   // must open its confirmation/reset form, not leave the old login form visible.
-  return <ClientEmailForm key={`${params.mode ?? ''}:${params.code ?? params.token_hash ?? params.token ?? ''}`} params={params} />;
+  const callbackKey = params.code ?? params.token_hash ?? params.token ?? params.error_code ?? params.error ?? params.error_description ?? '';
+  return <ClientEmailForm key={`${params.mode ?? ''}:${callbackKey}`} params={params} />;
 }
 
 function initialModeFor(params: EmailAuthParams): Mode {
@@ -90,6 +134,13 @@ function initialModeFor(params: EmailAuthParams): Mode {
   if (params.mode === 'login') return 'login';
   if (params.mode === 'forgot') return 'forgot';
   return 'signup';
+}
+
+function callbackErrorFor(params: EmailAuthParams, t: Copy): string | null {
+  const copyKey = params.error_code ? AUTH_ERROR_COPY[params.error_code] : undefined;
+  if (copyKey) return t(copyKey);
+  if (params.error || params.error_description) return t('authLinkExpired');
+  return null;
 }
 
 function ClientEmailForm({ params }: { params: EmailAuthParams }) {
@@ -106,13 +157,18 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
   const [consentOpen, setConsentOpen] = useState(false);
   const legal = legalLabels[isAmharic ? 'am' : 'en'];
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(params.error_description ?? null);
+  const [error, setError] = useState<string | null>(() => callbackErrorFor(params, t));
   const [message, setMessage] = useState<string | null>(null);
+  const [lastResetEmail, setLastResetEmail] = useState<string | null>(null);
   const [developmentToken, setDevelopmentToken] = useState('');
+  const [preparingReset, setPreparingReset] = useState(false);
+  const [resetReady, setResetReady] = useState(false);
   const pending = useRef(false);
   const autoConfirmed = useRef(false);
+  const resetPreparation = useRef<Promise<void> | null>(null);
   const callbackCode = params.code ?? params.token ?? developmentToken;
   const hasCallback = Boolean(params.code || params.token || params.token_hash);
+  const invalidCallback = (mode === 'reset' || mode === 'confirm') && !hasCallback && !developmentToken;
   const validEmail = EMAIL_PATTERN.test(email.trim());
   const ethiopic = isAmharic ? styles.ethiopicRegular : undefined;
 
@@ -123,7 +179,7 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
     setError(null);
     setMessage(null);
     try { await action(); }
-    catch (failure) { setError(failure instanceof Error ? failure.message : t('continueError')); }
+    catch (failure) { setError(userFacingAuthError(failure, mode, t)); }
     finally { pending.current = false; setLoading(false); }
   }
 
@@ -131,6 +187,7 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
     setMode(next);
     setError(null);
     setMessage(null);
+    setLastResetEmail(null);
     setPassword('');
     setConfirmation('');
   }
@@ -159,6 +216,31 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Exchange the short-lived, single-use PKCE code as soon as the recovery
+  // link opens. Waiting until the user has chosen a password can let the code
+  // expire and produces Supabase's "invalid flow state" error.
+  useEffect(() => {
+    if (mode !== 'reset' || (!hasCallback && !developmentToken)) return;
+    if (!resetPreparation.current) {
+      setError(null);
+      setPreparingReset(true);
+      resetPreparation.current = auth.preparePasswordReset(callbackCode, params.token_hash);
+    }
+
+    let active = true;
+    void resetPreparation.current
+      .then(() => {
+        if (active) setResetReady(true);
+      })
+      .catch((failure: unknown) => {
+        if (active) setError(userFacingAuthError(failure, 'reset', t));
+      })
+      .finally(() => {
+        if (active) setPreparingReset(false);
+      });
+    return () => { active = false; };
+  }, [auth, callbackCode, developmentToken, hasCallback, mode, params.token_hash, t]);
+
   function submit() {
     void run(async () => {
       if (mode === 'confirm') {
@@ -170,8 +252,10 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
       }
       if (mode !== 'reset' && !validEmail) throw new Error(t('invalidSignupEmail'));
       if (mode === 'forgot') {
-        const result = await auth.requestPasswordReset(email.trim().toLowerCase());
-        setMessage(t('resetEmailSentBody'));
+        const resetEmail = email.trim().toLowerCase();
+        const result = await auth.requestPasswordReset(resetEmail);
+        setLastResetEmail(resetEmail);
+        setMessage(t('resetEmailSentBody').replace('{email}', resetEmail));
         if (result.developmentToken) setDevelopmentToken(result.developmentToken);
         return;
       }
@@ -184,7 +268,7 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
       }
       validateNewPassword();
       if (mode === 'reset') {
-        if (!hasCallback && !developmentToken) throw new Error(t('confirmationFailed'));
+        if (!resetReady) throw new Error(t('authLinkExpired'));
         await auth.confirmPasswordReset(callbackCode, password, params.token_hash);
         await signOut();
         changeMode('login');
@@ -211,7 +295,7 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
     void run(async () => {
       if (!validEmail) throw new Error(t('invalidSignupEmail'));
       await auth.resendEmailConfirmation(email.trim().toLowerCase());
-      setMessage(t('confirmationResent'));
+      setMessage(t('confirmationResent').replace('{email}', email.trim().toLowerCase()));
     });
   }
 
@@ -228,8 +312,8 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
     'check-email': t('checkEmailBody').replace('{email}', email.trim() || t('emailAddress').toLowerCase()),
   };
   const wrongRole = session && session.role !== 'client' && mode !== 'confirm' && mode !== 'reset';
-  const needsPassword = mode === 'signup' || mode === 'login' || mode === 'reset';
-  const confirming = mode === 'confirm' && loading;
+  const needsPassword = mode === 'signup' || mode === 'login' || (mode === 'reset' && resetReady);
+  const checkingCallback = (mode === 'confirm' && loading) || preparingReset;
   const primaryLabel = mode === 'signup' ? t('createAccount')
     : mode === 'login' ? t('signIn')
     : mode === 'forgot' ? t('sendResetInstructions')
@@ -244,7 +328,7 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
       {wrongRole ? <>
         <Text style={[styles.subtitle, ethiopic]}>{t('wrongRoleClient').replace('{role}', session.role)}</Text>
         <KonjoButton label={t('logOut')} loading={loading} onPress={() => void run(signOut)} />
-      </> : confirming ? (
+      </> : checkingCallback ? (
         <View style={styles.confirming}><ActivityIndicator color={palette.olive} /><Text style={[styles.subtitle, ethiopic]}>{t('connecting')}</Text></View>
       ) : <>
         {mode === 'signup' && <Field label={t('fullName')} value={fullName} onChangeText={setFullName} placeholder={t('fullNamePlaceholder')} autoComplete="name" textContentType="name" editable={!loading} ethiopic={isAmharic} />}
@@ -262,14 +346,17 @@ function ClientEmailForm({ params }: { params: EmailAuthParams }) {
         </Pressable>}
         {mode === 'signup' && <LegalConsentSheet language={isAmharic ? 'am' : 'en'} onAccept={() => { setAcceptedTerms(true); setConsentOpen(false); }} onClose={() => setConsentOpen(false)} visible={consentOpen} />}
         {mode === 'signup' && <LegalLinks align="left" color={palette.olive} language={isAmharic ? 'am' : 'en'} />}
-        {mode !== 'check-email' && <KonjoButton label={primaryLabel} loading={loading} variant="dark" onPress={submit} />}
-        {(mode === 'check-email' || (mode === 'confirm' && !loading)) && <TextAction ethiopic={isAmharic} label={t('resendConfirmation')} disabled={loading} onPress={resendConfirmation} />}
-        {mode === 'login' && <TextAction ethiopic={isAmharic} label={t('forgotPassword')} disabled={loading} onPress={() => changeMode('forgot')} />}
-        {mode === 'forgot' && developmentToken && <TextAction label="Development only: open reset form" disabled={loading} onPress={() => changeMode('reset')} />}
-        {(mode === 'forgot' || mode === 'reset' || mode === 'confirm') && <TextAction ethiopic={isAmharic} label={t('backToSignIn')} disabled={loading} onPress={() => changeMode('login')} />}
-        {(mode === 'login' || mode === 'signup' || mode === 'check-email') && <TextAction ethiopic={isAmharic} label={mode === 'login' ? `${t('newToKonjo')} ${t('createAccount')}` : `${t('alreadyRegistered')} ${t('signIn')}`} disabled={loading} onPress={() => changeMode(mode === 'login' ? 'signup' : 'login')} />}
+        {invalidCallback && !error && <Text accessibilityRole="alert" style={[styles.error, ethiopic]}>{t('authLinkExpired')}</Text>}
         {error && <Text accessibilityRole="alert" style={[styles.error, ethiopic]}>{error}</Text>}
         {message && <Text accessibilityLiveRegion="polite" style={[styles.success, ethiopic]}>{message}</Text>}
+        {mode !== 'check-email' && !invalidCallback && (mode !== 'reset' || resetReady) && <KonjoButton label={primaryLabel} loading={loading} variant="dark" onPress={submit} />}
+        {mode === 'check-email' && <TextAction ethiopic={isAmharic} label={t('resendConfirmation')} disabled={loading} onPress={resendConfirmation} />}
+        {mode === 'login' && <TextAction ethiopic={isAmharic} label={t('forgotPassword')} disabled={loading} onPress={() => changeMode('forgot')} />}
+        {mode === 'forgot' && developmentToken && <TextAction label="Development only: open reset form" disabled={loading} onPress={() => changeMode('reset')} />}
+        {mode === 'forgot' && lastResetEmail && <TextAction ethiopic={isAmharic} label={t('correctEmailAddress')} disabled={loading} onPress={() => { setEmail(''); setLastResetEmail(null); setMessage(null); }} />}
+        {mode === 'reset' && <TextAction ethiopic={isAmharic} label={t('requestNewResetLink')} disabled={loading} onPress={() => changeMode('forgot')} />}
+        {(mode === 'forgot' || mode === 'reset' || mode === 'confirm') && <TextAction ethiopic={isAmharic} label={t('backToSignIn')} disabled={loading} onPress={() => changeMode('login')} />}
+        {(mode === 'login' || mode === 'signup' || mode === 'check-email') && <TextAction ethiopic={isAmharic} label={mode === 'login' ? `${t('newToKonjo')} ${t('createAccount')}` : `${t('alreadyRegistered')} ${t('signIn')}`} disabled={loading} onPress={() => changeMode(mode === 'login' ? 'signup' : 'login')} />}
       </>}
     </View>
   </AuthShell>;

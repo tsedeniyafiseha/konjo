@@ -3,7 +3,7 @@ import { Linking, Platform } from 'react-native';
 import { apiBaseUrl } from '@/services/api-client';
 
 /** Where people can reach Konjo. Configured per deployment; the email always has a value. */
-export const supportEmail = (process.env.EXPO_PUBLIC_SUPPORT_EMAIL ?? '').trim() || 'Info@Konjo.com';
+export const supportEmail = (process.env.EXPO_PUBLIC_SUPPORT_EMAIL ?? '').trim() || 'info@konjoet.com';
 export const supportPhone = (process.env.EXPO_PUBLIC_SUPPORT_PHONE ?? '').trim() || null;
 
 /** Public legal pages served by the web app or, failing that, by the API's website routes. */

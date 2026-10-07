@@ -87,7 +87,7 @@ export class SqliteMarketplaceReadRepository implements MarketplaceReadStore {
       `).get(row.id) as unknown as { available: number } | undefined;
       const activeBooking = this.database.prepare(`
         SELECT 1 FROM bookings
-        WHERE professional_id = ? AND status IN ('accepted', 'on_the_way', 'in_progress')
+        WHERE professional_id = ? AND status IN ('on_the_way', 'in_progress')
         LIMIT 1
       `).get(row.id);
       const ratings = this.database.prepare(`

@@ -1,10 +1,22 @@
 # Production launch checklist
 
-## Status on 2026-09-26: what is left before launch
+## Status on 2026-10-07: what is left before launch
 
 Everything below the line is the full gate list. These are the concrete items
 still open after the end-to-end work of 2026-09-23 to 2026-09-26; each needs
 an account, a secret or a decision from the Konjo team rather than more code.
+The Apple-specific audit, payment decision, review notes and evidence checklist
+are in [`APPLE_APP_REVIEW_READINESS.md`](./APPLE_APP_REVIEW_READINESS.md).
+The physical-iPhone test sequence is in
+[`TESTFLIGHT_RELEASE_CANDIDATE_PLAN.md`](./TESTFLIGHT_RELEASE_CANDIDATE_PLAN.md),
+and the prepared store copy is in
+[`APP_STORE_LISTING_DRAFT.md`](./APP_STORE_LISTING_DRAFT.md).
+
+Verified 7 October 2026 after the first TestFlight upload: the preview API
+`/health` and `/ready` endpoints returned HTTP 200, the connected Supabase
+schema and service-role access passed the read-only preflight, the public
+privacy, terms and account-deletion URLs returned HTTP 200, and the preview
+professional OTP endpoint returned the documented six-digit code `247124`.
 
 1. **Hosting for the API** with a public HTTPS domain. Set
    `KONJO_PUBLIC_API_URL`, `KONJO_PUBLIC_WEB_URL`, `EXPO_PUBLIC_API_BASE_URL`
@@ -13,14 +25,33 @@ an account, a secret or a decision from the Konjo team rather than more code.
    private `KONJO_PAYMENT_WEBHOOK_SECRET` and `KONJO_WORKER_TOKEN`, and a
    scheduler calling `POST /v1/internal/jobs/run`. The API refuses to start in
    production with test keys, HTTP URLs or the sandbox flag.
+   Verified 7 October 2026: Render workspace `My Workspace` is on the Hobby
+   plan, `konjo-api-preview` uses a Free instance, current and projected monthly
+   charges are `$0.00`, and the build-pipeline monthly spend limit is `$0`.
+   Render warns that this Free instance can spin down after inactivity and add
+   50 seconds or more to the first request. No production Render service has
+   been created yet.
 2. **Chapa live**: switch to `CHAPA_LIVE_` keys once the merchant account is
    approved, register `https://<api>/v1/payments/webhooks/{telebirr|cbe|card}`
    and the webhook secret in the Chapa dashboard, enable Telebirr, CBE Birr and
    cards on the merchant, then run one controlled live payment. Verify-on-return
    is already in place for the app, webhooks are the source of truth.
-3. **Push to closed apps**: upload `google-services.json` (FCM V1) and APNs
-   credentials to EAS, then `eas build --profile production`. The EAS project
-   id is already in `app.json`. Expo Go cannot receive push.
+   Verified 7 October 2026: the Chapa merchant is still in **Test Mode** and
+   the dashboard says compliance is due. The verification workflow requires
+   Business Information, Business Contact, Documents & Verification, and
+   Contact Person. The account holder must review and submit that sensitive
+   business information before Chapa can issue live access.
+   Apple In-App Purchase is intentionally not used: the booking buys a physical,
+   in-person service consumed outside the app. Apple Pay is optional, is not
+   listed by Chapa, and Ethiopia is not currently an Apple Pay market.
+3. **Push to closed apps**: Android configuration was completed on 7 October
+   2026. Firebase project `konjo-134d4` contains the Android app
+   `com.tsedeniya.konjoclient`; `GOOGLE_SERVICES_JSON` is an EAS file variable
+   in development, preview and production; and the Firebase service account is
+   assigned to that package for FCM V1 in EAS. The downloaded private key was
+   removed after upload. The Apple APNs key was configured in EAS on 7 October
+   2026. Remaining: make native builds and prove closed-app delivery on physical
+   Android and iPhone devices. Expo Go cannot receive push.
 4. **Supabase**: enable leaked-password protection in Auth settings (the
    advisor still reports it off). All migrations through
    `202609230010_production_hardening` are applied to the live project.
@@ -45,6 +76,12 @@ an account, a secret or a decision from the Konjo team rather than more code.
    Verified 2026-09-26: the API smoke test covers report → client read →
    label carry-over → clear-on-checkout; the live database has
    `booking_tracking` in the realtime publication with full replica identity.
+9. **Client authentication email**: Resend custom SMTP is connected,
+   `konjoet.com` is Verified, a recovery email has been delivered, and Supabase
+   **Confirm email** is enabled. Launch remains blocked until fresh client
+   signup, confirmation, login, and password recovery pass end to end on a
+   physical phone. Follow
+   [`CLIENT_EMAIL_AUTH.md`](./CLIENT_EMAIL_AUTH.md).
 
 ### Security review 2026-09-26 (backend + app audit) — what was fixed in code
 
@@ -64,22 +101,21 @@ an account, a secret or a decision from the Konjo team rather than more code.
   and `RECORD_AUDIO` blocked, admin console limited to web/dev builds,
   `professional-email` and `+not-found` routes, https-only API in release,
   tappable Terms/Privacy links, hosted `/privacy`, `/terms`,
-  `/delete-account` pages (drafts — legal review needed), professional
+  `/delete-account` pages (prepared for publishing; formal legal review still
+  recommended), professional
   in-app account deletion, real support contacts (`EXPO_PUBLIC_SUPPORT_EMAIL`),
   no sample professionals/jobs in real builds, no stock avatar, review status
   bound to the application.
 
 ### Still expected from the Konjo team before submission
 
-1. **Branding assets**: real app icon (`assets/images/icon.png` 1024²,
-   `assets/expo.icon`, Android adaptive foreground/background/monochrome,
-   `favicon.png`). The current ones are the Expo template icons.
-2. **Legal text**: have a lawyer review `website/privacy.html`,
-   `website/terms.html` and `website/delete-account.html`; fill in the company
-   registration details and retention periods; host them under the public
-   domain and paste the URLs into both store listings.
+1. **Branding assets**: completed on 7 October 2026. The iOS, Android adaptive,
+   monochrome, and web favicon assets now use Konjo branding.
+2. **Legal text**: the public drafts no longer contain placeholders and use
+   `info@konjoet.com`. Formal review by an Ethiopian lawyer is still
+   recommended before launch; paste the public URLs into both store listings.
 3. **Support**: confirm `EXPO_PUBLIC_SUPPORT_EMAIL` (defaults to
-   Info@Konjo.com) and optionally `EXPO_PUBLIC_SUPPORT_PHONE`; the inbox must be
+   `info@konjoet.com`) and optionally `EXPO_PUBLIC_SUPPORT_PHONE`; the inbox must be
    monitored.
 4. **Google Play**: background-location declaration with a short video of the
    "I'm on my way" flow, foreground-service justification, Data safety form
@@ -136,6 +172,9 @@ adapter or runbook is not evidence that the hosted control is operating.
 - [ ] SMS/OTP, push, Fayda, maps/geocoding, Chapa merchant methods (Telebirr,
   CBE Birr and cards), Chapa refunds, and payout production accounts are
   certified and end-to-end tested.
+- [ ] Resend shows the sending domain as Verified; Supabase Confirm email is
+  enabled; client signup, confirmation, login, and password recovery pass with
+  real delivery evidence.
 - [ ] Payment acceptance, duplicate callbacks, cancellation, no-show,
   administrator refund, completion, and payout reconciliation are exercised.
 - [ ] Emergency escalation contacts and the customer SOS fallback are approved.
@@ -173,39 +212,70 @@ What the Konjo team has to do, in order:
 
 1. **Apple Developer Program** membership (organisation account, $99/year).
    Enrol with the company's D-U-N-S number; individual enrolment is faster but
-   shows a person's name on the store.
-2. **App Store Connect record**: create the app with bundle id
-   `com.tsedeniya.konjoclient`, name "Konjo", primary language English,
-   category Lifestyle (secondary Health & Fitness or Beauty is not a category;
-   use Lifestyle), age rating questionnaire (no objectionable content, 4+ unless
-   the massage category changes the answer).
-3. **Credentials**: run `eas credentials -p ios` once with the Apple account to
-   create the distribution certificate, provisioning profile and the **APNs
-   key** (needed for push through expo-notifications). Keep the APNs key in EAS.
+   shows a person's name on the store. Checked 7 October 2026: the signed-in
+   Apple ID `tsedeniyafisehaw@gmail.com` is an App Store Connect Admin on team
+   `54SD6P7N7S`, but Apple Developer shows **Access Unavailable** and offers
+   “Join the Apple Developer Program.” The membership is enrolled as an
+   Individual, so Apple does not permit additional App Store Connect users to
+   receive Certificates, Identifiers & Profiles access. Completed 7 October
+   2026: the Account Holder performed the one-time setup herself without sharing
+   her password or two-factor code. EAS now stores the Distribution Certificate,
+   active App Store provisioning profile, APNs key, and an App Store Connect API
+   key with the least-privilege `APP_MANAGER` role.
+2. **App Store Connect record**: created on 7 October 2026 as
+   **Konjo: Beauty & Wellness**, bundle ID `com.tsedeniya.konjoclient`, SKU
+   `konjo-client-ios-2026`, Apple ID `6820140076`. The exact store name `Konjo`
+   was already in use; the installed app name remains `Konjo`. Primary language
+   is English (U.S.). Category, age rating, listing copy and screenshots remain
+   to be completed from the tested release content.
+3. **Credentials**: completed 7 October 2026. The Distribution Certificate and
+   active App Store provisioning profile expire 7 October 2027. The APNs key and
+   App Store Connect submission key are stored in EAS.
 4. **Environment for the build**: set `KONJO_IOS_BUNDLE_IDENTIFIER`,
    `KONJO_EAS_PROJECT_ID`, `EXPO_PUBLIC_API_BASE_URL` (https production API),
    `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`,
    `CARTO_BASEMAPS_API_KEY` and `EXPO_PUBLIC_SUPPORT_EMAIL` as EAS environment
    variables for the `production` environment (`eas env:create`). The config
    refuses a production build without the bundle id and project id.
-5. **Branding**: replace `assets/images/icon.png` (still the Expo template
-   chevron) and `assets/expo.icon` with the Konjo icon, 1024×1024, no alpha,
-   no rounded corners; Apple rejects placeholder icons. Replace the Android
-   adaptive icons at the same time.
-6. **Build and TestFlight**: `eas build --platform ios --profile production`
-   then `eas submit --platform ios` (or upload from the EAS page). Install via
-   TestFlight on a real iPhone and run one full booking: client books,
+   Completed 7 October 2026 for the bundle/project identifiers, Firebase file,
+   Supabase client URL/publishable key, native confirmation/reset redirects,
+   CARTO key, website URL and support email. `EXPO_PUBLIC_API_BASE_URL` remains
+   intentionally unset until the real production API is deployed. Mock OTP is
+   explicitly false in the production EAS environment.
+5. **Branding**: completed on 7 October 2026. The iOS icon, Android adaptive
+   foreground/background/monochrome icons, and web favicon use Konjo branding.
+6. **Build and TestFlight**: the `testflight` profile makes an App Store build
+   using the EAS `preview` environment, while `production` remains reserved for
+   the real production backend. Run
+   `eas build --platform ios --profile testflight --auto-submit` for the internal
+   testing build. Install via TestFlight on a real iPhone and run one full booking: client books,
    professional accepts, deposit via Chapa checkout, travel with background
    location, check out, final payment, payout.
+   First upload completed 7 October 2026: version `1.0.0`, build `1`, EAS build
+   `e5be1e18-3e2b-4efd-9c33-3d23f5d8b195`; App Store Connect status is
+   **Ready to Test** in the internal `Team (Expo)` group. Internal invitations
+   were sent to `konjoserve@gmail.com` and `tsedeniyafisehaw@gmail.com` on
+   7 October 2026; delivery of the TestFlight invitation was confirmed in the
+   tester inbox. App Store Connect currently reports zero sessions and zero
+   crashes because neither invited tester has installed and opened the build
+   yet. EAS reports the iOS store build as `FINISHED`, SDK 57, version `1.0.0`
+   build `1`. Complete the real-iPhone test pass before promoting another build
+   toward App Review.
 7. **Store listing**: screenshots for 6.7" and 6.5" iPhones (at least the
    home, booking calendar, live map and professional dashboard), subtitle,
    description in English (Amharic optional), keywords, support URL, marketing
    URL, and the **privacy policy URL** (host `website/privacy.html`).
-8. **App Privacy questionnaire** (data collection): Contact info (name, phone,
-   email), User content (photos for professionals), Identifiers (user id),
-   Location (precise; used for app functionality and shared with the client
-   during a visit), Purchases (payment info is handled by Chapa, not the app),
-   Diagnostics none. Mark nothing as used for tracking.
+   Draft English metadata, categories, public URLs and manual-release settings
+   were validated and synced to App Store Connect on 7 October 2026 from
+   `store.config.json`. Screenshots, copyright owner, age rating, review
+   credentials and final approval of the wording remain open.
+8. **App Privacy questionnaire**: declare Contact Info, User Content,
+   Identifiers, Precise Location, Purchase History, Payment Info and Other
+   Financial Info for their real purposes. Konjo does not receive full client
+   card or wallet credentials from Chapa, but it stores the selected payment
+   channel and professional payout details. Inspect the final archive's Xcode
+   privacy report; do not assume Diagnostics is empty. Mark nothing as tracking
+   unless the final SDK/provider audit says otherwise.
 9. **Review notes** (App Review Information): a client test phone number and a
    professional test account with their SMS codes available during review, a
    sentence explaining that payments are for in-person beauty services (Apple
@@ -214,8 +284,12 @@ What the Konjo team has to do, in order:
    with the client only between tapping I'm on my way and I've arrived; the
    client sees it on a map; sharing stops automatically." Attach a 30-second
    screen recording of that flow.
-10. **Sign in with Apple** is not required: the app signs in with phone number
-    and password only, with no third-party social login.
-11. After approval, enable **phased release** and keep `eas update` for
+10. **Sign in with Apple** is not required: clients use Konjo-owned
+    email/password authentication and professionals use Konjo-owned phone/OTP,
+    with no third-party social login. Revisit this before adding Google,
+    Facebook or another social login.
+11. **Compliance**: complete the EU Digital Services Act trader declaration and
+    verify the business contact details and all current Apple agreements.
+12. After approval, enable **phased release** and keep `eas update` for
     JavaScript-only fixes; native changes (new permissions, plugins) need a new
     build and review.

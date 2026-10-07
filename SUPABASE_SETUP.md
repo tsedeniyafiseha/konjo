@@ -138,7 +138,12 @@ Provider-mode trust and safety is also Postgres-authoritative. SOS creation lock
 
 The provider-mode operations console now uses Postgres for its summary, filtered bookings, professionals, payouts, revenue, audit history, zones, disputes, quality flags, safety incidents, and broadcasts. Catalog, commission, zone, promotion, broadcast, professional state, CSV export-audit, and refund commands commit their state and immutable audit together. Administrator refunds lock payment and earning state, reject payout-claimed earnings, balance release/retained-fee reversals, emit `PaymentRefunded`, and remain idempotent.
 
-Client signup is phone-primary and passwordless. The registration form captures a contact email, but Supabase creates and confirms the Auth identity through a six-digit phone OTP; no email confirmation link is sent. The contact email is copied from protected Auth metadata into the client profile. Existing clients sign in and recover access through phone OTP, so legacy email sign-in, confirmation, forgot-password, and reset-password URLs redirect to the SMS recovery screen. Recovery explicitly disables implicit user creation so an unknown or mistyped phone number cannot create an account. Google sign-in remains hidden until provider credentials are configured.
+Client signup, sign-in, and password recovery use email and password through
+Supabase Auth. Confirmation and recovery links return to the client email
+screen through allow-listed native or web callbacks. Professional
+authentication remains phone based, with the temporary registration OTP mock
+documented separately. Google sign-in remains hidden until provider
+credentials are configured.
 
 The professional document pipeline now supports image-only government ID, front-camera selfie, portfolio photos, and JPG/PNG/WebP/PDF certificates with Expo SDK 57. It rejects empty, incompatible, or larger-than-10-MB files before upload, writes each object below `<professional-user-id>/<document-kind>/`, and then creates its review record. If the record insert fails, the client removes the uploaded object. Owners can remove pending/rejected submissions, while approved evidence is immutable to the owner at both the table and Storage policy layers. Active ID/selfie records are database-unique to close multi-device races. A live upload requires a Supabase-authenticated account whose private `profiles.account_role` is `professional`; an approved public profile is intentionally not required during onboarding.
 
@@ -187,10 +192,11 @@ live in the Supabase dashboard and must be configured once per project:
      `http://localhost:8081/client-email**`, `https://<production-host>/client-email**`
      and `konjoclient://client-email**` for the native builds.
    Links that point somewhere not on this list silently fall back to the Site URL.
-2. **Authentication → Providers → Email**: turn *Confirm email* **off**. Clients
-   are signed in immediately after registering; no confirmation email is sent.
-   (The `/client-email` screen still handles a confirmation link if this is ever
-   re-enabled.)
+2. **Authentication → Providers → Email**: production must have *Confirm email*
+   **on** so an account cannot claim an address it does not own. It may remain
+   off only during controlled setup while custom SMTP is being verified. The
+   `/client-email` screen handles the confirmation callback and check-email
+   state.
 3. **Project Settings → Authentication → SMTP**: connect a custom SMTP provider
    before launch. Supabase's built-in sender is limited to a few emails per hour
    and only delivers to members of the Supabase organisation, so real clients
@@ -201,3 +207,7 @@ live in the Supabase dashboard and must be configured once per project:
 `EXPO_PUBLIC_EMAIL_CONFIRM_REDIRECT_URL` and `EXPO_PUBLIC_PASSWORD_RESET_REDIRECT_URL`
 in `.env` hold the native deep links; the web app derives its own redirect
 from the current origin.
+
+The current Resend/Supabase configuration, remaining production gates, and
+acceptance procedure are recorded in
+[`docs/operations/CLIENT_EMAIL_AUTH.md`](./docs/operations/CLIENT_EMAIL_AUTH.md).

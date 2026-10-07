@@ -179,12 +179,12 @@ What is not in the repository, and must be supplied once per Expo account:
 1. `eas init` in the project (or copy the project id from expo.dev) and set
    `KONJO_EAS_PROJECT_ID=<uuid>` in `.env`. Without it the app never asks for
    notification permission and never registers a token.
-2. Android: create a Firebase project with an Android app whose package name is
-   `com.tsedeniya.konjoclient` (or whatever `KONJO_ANDROID_PACKAGE` is set to),
-   download `google-services.json` to the project root, and set
-   `GOOGLE_SERVICES_JSON=./google-services.json`. Then upload the Firebase
-   service-account key as the FCM V1 credential: `eas credentials` → Android →
-   Google Service Account → FCM V1. Keep the service-account JSON out of git.
+2. Android: completed on 7 October 2026. Firebase project `konjo-134d4` has an
+   Android app for `com.tsedeniya.konjoclient`. The public
+   `google-services.json` is kept locally at the project root, excluded from
+   git, and stored in EAS as the `GOOGLE_SERVICES_JSON` file variable for all
+   three build environments. The Firebase service-account key is assigned in
+   EAS as the package's FCM V1 credential; its downloaded copy was deleted.
 3. iOS: set `KONJO_IOS_BUNDLE_IDENTIFIER` and let `eas credentials` (iOS → Push
    Notifications) create the APNs key. Requires a paid Apple developer account.
 4. Rebuild the native project so the Firebase plugin is applied:

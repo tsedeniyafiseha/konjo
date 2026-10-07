@@ -42,6 +42,28 @@ async function exchangeEmailLink(code: string, tokenHash: string | undefined, ty
   return data.session;
 }
 
+async function resolvePasswordRecoverySession(
+  code: string,
+  role: 'client' | 'professional',
+  tokenHash?: string,
+): Promise<Session> {
+  const client = requireClient();
+  return emailProof.resolve(
+    `reset:${tokenHash ?? code}`,
+    () => exchangeEmailLink(code, tokenHash, 'recovery'),
+    isActiveSession,
+    async (session) => {
+      const identity = await identityFromSession(client, session);
+      if (identity.role !== role) {
+        await client.auth.signOut();
+        emailProof.clear();
+        throw operationError(`This is not a ${role} account. Use the correct account recovery page.`, true);
+      }
+      return session;
+    },
+  );
+}
+
 function platformRedirect(configured: string | undefined, role: 'client' | 'professional', mode: 'confirm' | 'reset'): string {
   // A native app deep link cannot handle a reset started in the web app.
   if (configured && (Platform.OS !== 'web' || /^https?:\/\//i.test(configured))) return configured;
@@ -184,20 +206,22 @@ export const supabaseAuthPort: SupabaseAuthPort = {
     if (error) throw operationError(error.message, error.status !== undefined && error.status < 500);
   },
 
+  async preparePasswordReset(code: string, role = 'client', tokenHash?: string) {
+    passwordRecoveryInProgress = true;
+    try {
+      await resolvePasswordRecoverySession(code, role, tokenHash);
+    } finally {
+      passwordRecoveryInProgress = false;
+    }
+  },
+
   async confirmPasswordReset(code: string, password: string, role = 'client', tokenHash?: string) {
     const client = requireClient();
     passwordRecoveryInProgress = true;
     try {
-      await emailProof.resolve(`reset:${tokenHash ?? code}`, () => exchangeEmailLink(code, tokenHash, 'recovery'), isActiveSession, async (session) => {
-        const identity = await identityFromSession(client, session);
-        if (identity.role !== role) {
-          await client.auth.signOut();
-          emailProof.clear();
-          throw operationError(`This is not a ${role} account. Use the correct account recovery page.`, true);
-        }
-        const { error } = await client.auth.updateUser({ password });
-        if (error) throw operationError(error.message, error.status !== undefined && error.status < 500, error.code);
-      });
+      await resolvePasswordRecoverySession(code, role, tokenHash);
+      const { error } = await client.auth.updateUser({ password });
+      if (error) throw operationError(error.message, error.status !== undefined && error.status < 500, error.code);
       const { error: signOutError } = await client.auth.signOut();
       if (signOutError) throw operationError(signOutError.message);
       emailProof.clear();
