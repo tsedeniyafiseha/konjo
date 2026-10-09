@@ -47,7 +47,7 @@ must be reviewed before implementation.
 | Account deletion | Client and professional settings call `DELETE /v1/me`; Supabase migrations scrub PII and enqueue private asset cleanup. | Implemented; retest in the release build. |
 | Company-owned authentication | Clients use Konjo email/password through Supabase; professionals use Konjo phone/OTP. There is no Google/Facebook/social login. | Sign in with Apple is not required under Guideline 4.8 while this remains true. |
 | Location disclosure | `app.json` explains address pinning and professional background sharing; the sharing window is tied to “I'm on my way” through arrival/end. | Good design; needs physical-iPhone evidence. |
-| User safety | In-app profile/review reporting, account-level server blocking, booking enforcement, SOS wording and an auditable administrator moderation queue exist. | Apply migration `202610080001_content_moderation_and_blocking.sql`, deploy the API and retest the complete flow. |
+| User safety | In-app profile/review reporting, account-level server blocking, booking enforcement, SOS wording and an auditable administrator moderation queue exist. | Migration `202610080001_content_moderation_and_blocking.sql` and API commit `bd19123` were deployed on 9 October 2026. Complete the release-build two-account test for final evidence. |
 | Privacy/legal pages | `website/privacy.html`, `website/terms.html` and `website/delete-account.html` exist with Konjo contact information. | Must be publicly reachable and legally approved. |
 | Release guardrails | Production startup rejects mock professional OTP, sandbox checkout, test Chapa keys and non-HTTPS origins. | Good; prove the deployed host is actually using production mode. |
 

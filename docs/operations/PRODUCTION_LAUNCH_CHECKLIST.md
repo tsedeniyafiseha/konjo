@@ -88,14 +88,16 @@ professional OTP endpoint returned the documented six-digit code `247124`.
    physical phone. Follow
    [`CLIENT_EMAIL_AUTH.md`](./CLIENT_EMAIL_AUTH.md).
 10. **User-generated-content moderation**: implemented in code on 8 October
-    2026. Profile and review reports now use an in-app form and a persistent
-    moderation queue; professional blocks are stored per client account and
-    enforced again when a booking is quoted; administrators can dismiss a
-    report, hide a reported review, or suspend a reported professional with an
-    audit record. Apply migration
-    `202610080001_content_moderation_and_blocking.sql` to the hosted Supabase
-    project, deploy the matching API, then prove report, block, cross-device
-    restore and admin resolution in the release build.
+    2026 and deployed on 9 October 2026. Profile and review reports now use an
+    in-app form and a persistent moderation queue; professional blocks are
+    stored per client account and enforced again when a booking is quoted;
+    administrators can dismiss a report, hide a reported review, or suspend a
+    reported professional with an audit record. Migration
+    `202610080001_content_moderation_and_blocking.sql` is recorded on the hosted
+    Supabase project, and Render is live on API commit `bd19123`; an
+    unauthenticated route probe returned the expected HTTP 401.
+    Remaining evidence: prove report, block, cross-device restore and admin
+    resolution with two accounts in the release build.
 
 ### Security review 2026-09-26 (backend + app audit) — what was fixed in code
 
