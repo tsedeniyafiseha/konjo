@@ -122,6 +122,27 @@ export interface OperationalLogger {
   error(event: string, details?: Readonly<Record<string, unknown>>): void;
 }
 
+export type MockProfessionalRegistrationFailure = 'phone_in_use' | 'provider_unavailable';
+
+export class MockProfessionalRegistrationError extends Error {
+  readonly failure: MockProfessionalRegistrationFailure;
+
+  constructor(failure: MockProfessionalRegistrationFailure, message: string) {
+    super(message);
+    this.name = 'MockProfessionalRegistrationError';
+    this.failure = failure;
+  }
+}
+
+export interface MockProfessionalSessionTokens {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface ProfessionalMockAuthentication {
+  register(phoneNumber: string): Promise<MockProfessionalSessionTokens>;
+}
+
 export interface AccountAssetCleaner {
   deletePrivateAssets(userId: string, role: Exclude<ApiAccountRole, 'admin'>): Promise<void>;
 }

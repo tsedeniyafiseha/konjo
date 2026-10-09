@@ -73,7 +73,9 @@ import { EmptyProfessionalPortfolioRepository } from '../adapters/empty-professi
 import { EmptyAccountAssetCleaner } from '../adapters/empty-account-asset-cleaner.ts';
 import { SupabaseAccountAssetCleaner } from '../adapters/supabase-account-asset-cleaner.ts';
 import { SupabaseReadinessProbe } from '../adapters/supabase-readiness-probe.ts';
+import { SupabaseProfessionalMockAuth } from '../adapters/supabase-professional-mock-auth.ts';
 import { SearchAddresses } from '../application/search-addresses.ts';
+import type { ProfessionalMockAuthentication } from '../application/ports.ts';
 import { backendConfig, type BackendConfig } from '../config.ts';
 import { KonjoDatabase } from '../database.ts';
 import { chapaKeyMode } from '../adapters/chapa-key-mode.ts';
@@ -122,6 +124,8 @@ export interface BackendDependencies {
   adminExportAudit: RecordAdminExportAudit;
   /** Address search for saved addresses; null until a Google Geocoding key is configured. */
   addressSearch: SearchAddresses | null;
+  /** Development-only Supabase account bridge used after the fixed preview OTP. */
+  professionalMockAuth: ProfessionalMockAuthentication | null;
 }
 
 export function createBackendDependencies(config: BackendConfig = backendConfig): BackendDependencies {
@@ -341,6 +345,14 @@ export function createBackendDependencies(config: BackendConfig = backendConfig)
     // Konjo). Plug a provider into SearchAddresses here; the app hides the
     // address search box while this is null.
     addressSearch: null as SearchAddresses | null,
+    professionalMockAuth: config.professionalMockOtpEnabled &&
+      config.supabaseUrl && config.supabaseSecretKey && config.supabasePublishableKey
+      ? new SupabaseProfessionalMockAuth(
+        config.supabaseUrl,
+        config.supabaseSecretKey,
+        config.supabasePublishableKey,
+      )
+      : null,
     adminExportAudit: new RecordAdminExportAudit(
       supabaseAdminOperations ?? database.adminAuditStore,
       randomIdGenerator,

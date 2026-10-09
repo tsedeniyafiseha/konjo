@@ -12,6 +12,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
+import '@/global.css';
 import '@/features/location/live-location-reporter';
 
 import { clientDependencies } from '@/bootstrap/client-composition-root';

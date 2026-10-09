@@ -10,7 +10,7 @@ import { KonjoIcon } from '@/components/ui/konjo-icon';
 import { useClientData } from '@/features/client/client-data-context';
 import { useDiscovery } from '@/features/discovery/discovery-context';
 import { useClientCopy } from '@/localization/use-client-copy';
-import { fontFamilies, layout, palette, radii, spacing } from '@/theme/tokens';
+import { fontFamilies, layout, palette, spacing } from '@/theme/tokens';
 
 export function FavouritesScreen() {
   const { t } = useClientCopy();

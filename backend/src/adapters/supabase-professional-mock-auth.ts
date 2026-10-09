@@ -1,23 +1,13 @@
 import { randomBytes } from 'node:crypto';
 
+import {
+  MockProfessionalRegistrationError,
+  type MockProfessionalSessionTokens,
+  type ProfessionalMockAuthentication,
+} from '../application/ports.ts';
 import { supabaseServiceHeaders } from './supabase-service-headers.ts';
 
-export type MockProfessionalRegistrationFailure = 'phone_in_use' | 'provider_unavailable';
-
-export class MockProfessionalRegistrationError extends Error {
-  readonly failure: MockProfessionalRegistrationFailure;
-
-  constructor(failure: MockProfessionalRegistrationFailure, message: string) {
-    super(message);
-    this.name = 'MockProfessionalRegistrationError';
-    this.failure = failure;
-  }
-}
-
-export interface MockProfessionalSessionTokens {
-  accessToken: string;
-  refreshToken: string;
-}
+export { MockProfessionalRegistrationError } from '../application/ports.ts';
 
 interface AdminUserResponse {
   id?: unknown;
@@ -36,7 +26,7 @@ interface PasswordSessionResponse {
  * used only long enough to mint the session; the app immediately replaces it
  * with the password selected by the professional.
  */
-export class SupabaseProfessionalMockAuth {
+export class SupabaseProfessionalMockAuth implements ProfessionalMockAuthentication {
   private readonly baseUrl: string;
   private readonly secretKey: string;
   private readonly publishableKey: string;

@@ -27,7 +27,7 @@ import {
   PROFESSIONAL_MOCK_OTP_LIFETIME_MS,
 } from '../../shared/mock-professional-otp.ts';
 import { InvalidAddressQueryError } from './application/search-addresses.ts';
-import { GeocodingError } from './application/ports.ts';
+import { GeocodingError, MockProfessionalRegistrationError } from './application/ports.ts';
 import type { ProfessionalApplicationInput } from './application/contracts.ts';
 import { IdentityVerificationError, OtpDeliveryError, PaymentProviderError } from './application/ports.ts';
 import { OtpRequestRateLimitedError } from './application/request-otp.ts';
@@ -42,10 +42,6 @@ import {
   verifySecret,
 } from './security.ts';
 import { storeApplicationFiles } from './uploads.ts';
-import {
-  MockProfessionalRegistrationError,
-  SupabaseProfessionalMockAuth,
-} from './adapters/supabase-professional-mock-auth.ts';
 
 type JsonRecord = Record<string, unknown>;
 
@@ -93,6 +89,7 @@ const {
   verifyBookingPayment,
   paymentKeyMode,
   professionalPayouts,
+  professionalMockAuth,
   professionalPortfolio,
   professionalReads,
   professionalSelfService,
@@ -108,14 +105,6 @@ const {
   verifyIdentity,
   verifyOtp,
 } = createBackendDependencies();
-const professionalMockAuth = config.professionalMockOtpEnabled &&
-  config.supabaseUrl && config.supabaseSecretKey && config.supabasePublishableKey
-  ? new SupabaseProfessionalMockAuth(
-    config.supabaseUrl,
-    config.supabaseSecretKey,
-    config.supabasePublishableKey,
-  )
-  : null;
 const requestsByAddress = new Map<string, { count: number; resetsAt: number }>();
 const publicSubmissionsByAddress = new Map<string, { count: number; resetsAt: number }>();
 const professionalMockOtpChallenges = new Map<string, { phoneNumber: string; expiresAt: number }>();
