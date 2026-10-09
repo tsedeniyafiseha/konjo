@@ -57,9 +57,15 @@ professional OTP endpoint returned the documented six-digit code `247124`.
    removed after upload. The Apple APNs key was configured in EAS on 7 October
    2026. Remaining: make native builds and prove closed-app delivery on physical
    Android and iPhone devices. Expo Go cannot receive push.
-4. **Supabase**: enable leaked-password protection in Auth settings (the
-   advisor still reports it off). All migrations through
-   `202609230010_production_hardening` are applied to the live project.
+4. **Supabase**: on 9 October 2026 the Auth minimum password length was raised
+   from 6 to 10 characters to match the client and API, the production Site URL
+   was corrected from `http://localhost:8081` to `https://konjoet.com`, and
+   `https://konjoet.com/**` was added to the redirect allow-list. Email
+   confirmation remains enabled. Leaked-password protection is still off
+   because Supabase exposes that control only on Pro; decide whether to upgrade
+   before launch and record the decision. All migrations through
+   `202610080001_content_moderation_and_blocking` are applied to the live
+   project.
 5. **SMS**: production `SMSETHIOPIA_API_KEY` and the Supabase Auth SMS hook
    secret on the hosted API.
 6. **Play Store**: signing key, listing, privacy policy and data-safety form;
@@ -168,8 +174,9 @@ adapter or runbook is not evidence that the hosted control is operating.
 - [ ] Public Expo configuration contains only publishable values.
 - [ ] HTTPS, managed encryption, key rotation, allowed origins, and Supabase
   Auth redirect URLs are verified from a release build.
-- [ ] Supabase Auth leaked-password protection is enabled. The current connected
-  project still reports this control as disabled in the security advisor.
+- [ ] Supabase Auth leaked-password protection is enabled, or the owner has
+  accepted the residual risk. The current Free plan does not expose this
+  control; the 10-character server-side minimum is enabled.
 - [ ] The load balancer uses `/health` for liveness and `/ready` for traffic
   readiness; a failed Supabase check removes the instance from service.
 
@@ -199,7 +206,10 @@ adapter or runbook is not evidence that the hosted control is operating.
 
 ## Release quality
 
-- [ ] CI quality gates pass from the exact release commit.
+- [ ] CI quality gates pass from the exact release commit. GitHub Quality runs
+  6 and 7 passed on 9 October 2026 after the Expo 57 CSS/type fix, architecture
+  dependency correction, Node 24 action upgrades and Ubuntu 24.04 pin. Repeat
+  this evidence check on the final release commit.
 - [ ] Android device, slow-network, offline recovery, accessibility, English,
   and Amharic layout matrices pass on supported targets.
 - [ ] Supabase migrations, generated types, security advisor, RLS tests, and

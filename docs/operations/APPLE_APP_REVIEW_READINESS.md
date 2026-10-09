@@ -51,6 +51,13 @@ must be reviewed before implementation.
 | Privacy/legal pages | `website/privacy.html`, `website/terms.html` and `website/delete-account.html` exist with Konjo contact information. | Must be publicly reachable and legally approved. |
 | Release guardrails | Production startup rejects mock professional OTP, sandbox checkout, test Chapa keys and non-HTTPS origins. | Good; prove the deployed host is actually using production mode. |
 
+Repository quality evidence was restored on 9 October 2026. GitHub Quality
+runs 6 and 7 completed successfully; the latest run used Node 24-compatible
+GitHub actions on a pinned Ubuntu 24.04 runner with no annotations. The current
+preview Render service was manually refreshed to commit `9c672d8` and its
+`/ready` health check returned HTTP 200. This is preview evidence only and does
+not satisfy the production-hosting gate below.
+
 ## Submission blockers
 
 Do not submit to App Review until every P0 item below has dated evidence.
