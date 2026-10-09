@@ -17,6 +17,7 @@ import {
 import { useBooking } from '@/features/booking/booking-context';
 import { bookingPaymentMethods } from '@/features/booking/data';
 import { bookingService, BookingServiceError } from '@/features/booking/booking-service';
+import { onlinePaymentsEnabled } from '@/features/booking/payment-mode';
 import { parseLocalDateKey } from '@/features/booking/date-utils';
 import { useClientData } from '@/features/client/client-data-context';
 import { useClientAccount } from '@/features/client/account/client-account-context';
@@ -218,7 +219,7 @@ export function BookingPaymentScreen() {
             ) : null}
 
             <View accessibilityRole="radiogroup" style={styles.paymentList}>
-              {bookingPaymentMethods.filter((method) => method.id !== 'cash').map((method) => {
+              {bookingPaymentMethods.filter((method) => onlinePaymentsEnabled ? method.id !== 'cash' : method.id === 'cash').map((method) => {
                 const selected = method.id === draft.paymentMethod;
                 const descriptionKeys: Record<typeof method.id, ClientCopyKey> = {
                   telebirr: 'mobileMoney',
@@ -281,7 +282,7 @@ export function BookingPaymentScreen() {
                 size={16}
               />
               <Text style={styles.securityCopy}>
-                {t('paymentSecurity')}
+                {t(onlinePaymentsEnabled ? 'paymentSecurity' : 'cashDueNotice')}
               </Text>
             </View>
 

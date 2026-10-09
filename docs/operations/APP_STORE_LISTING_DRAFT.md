@@ -90,10 +90,9 @@ Feedback email: `info@konjoet.com`
 ## App Review notes draft
 
 > Konjo is a marketplace for physical, in-person beauty, grooming and wellness
-> services delivered at the client's address in Addis Ababa, Ethiopia. Payments
-> are exclusively for services performed outside the app. Konjo therefore uses
-> Chapa-hosted Telebirr, CBE Birr and card checkout and does not sell digital
-> content or app functionality.
+> services delivered at the client's address in Addis Ababa, Ethiopia. Version
+> 1 accepts cash paid directly to the professional after the physical service.
+> Konjo does not sell digital content or app functionality.
 >
 > Client review account: [production review email] / [password]
 > Professional review account: [production review phone] / [password or stable
@@ -105,8 +104,8 @@ Feedback email: `info@konjoet.com`
 > then view the professional's trip. Sharing stops at arrival, booking end,
 > cancellation, sign-out or account deletion.
 >
-> Chapa checkout: [final reviewer-safe instructions]. No real charge is
-> required for review.
+> Payment testing: choose Cash. No card, wallet or real charge is required for
+> review.
 >
 > Support: info@konjoet.com
 

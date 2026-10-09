@@ -64,6 +64,7 @@ import {
 import { systemClientAccountRuntime } from '@/features/client/account/client-account-runtime';
 import { secureClientAccountCache } from '@/features/client/account/client-account-store';
 import { bookingTimeSlots } from '@/features/booking/data';
+import { onlinePaymentsEnabled } from '@/features/booking/payment-mode';
 import {
   professionals as developmentProfessionals,
   serviceCategories as developmentCategories,
@@ -220,6 +221,7 @@ export function createClientDependencies(): ClientDependencies {
       secureBookingDraftStorage,
       bookingRequestIdGenerator,
       clientLogger,
+      onlinePaymentsEnabled ? 'online' : 'cash',
     ),
     createClientAccountController: (initialLanguage) => new ClientAccountController(
       secureClientAccountCache,

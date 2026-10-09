@@ -9,6 +9,10 @@ function operationalLogLevel(value: string | undefined): 'info' | 'error' | 'sil
   return value === 'error' || value === 'silent' ? value : 'info';
 }
 
+function paymentMode(value: string | undefined): 'cash_only' | 'chapa' {
+  return value === 'cash_only' ? 'cash_only' : 'chapa';
+}
+
 const deploymentEnvironment = process.env.KONJO_ENVIRONMENT?.trim().toLowerCase();
 const apiHost = process.env.KONJO_API_HOST?.trim() || '127.0.0.1';
 const apiPort = positiveInteger(process.env.KONJO_API_PORT || process.env.PORT, 4000);
@@ -42,6 +46,7 @@ export const backendConfig = {
   faydaVerificationUrl: process.env.KONJO_FAYDA_VERIFICATION_URL?.trim() || null,
   faydaVerificationToken: process.env.KONJO_FAYDA_VERIFICATION_TOKEN?.trim() || null,
   paymentWebhookSecret: process.env.KONJO_PAYMENT_WEBHOOK_SECRET?.trim() || 'konjo-local-payment-webhook-secret',
+  paymentMode: paymentMode(process.env.KONJO_PAYMENT_MODE),
   chapaSecretKey: process.env.KONJO_CHAPA_SECRET_KEY?.trim() || null,
   chapaPublicKey: process.env.KONJO_CHAPA_PUBLIC_KEY?.trim() || null,
   chapaEncryptionKey: process.env.KONJO_CHAPA_ENCRYPTION_KEY?.trim() || null,

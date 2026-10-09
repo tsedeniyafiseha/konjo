@@ -89,11 +89,11 @@ export function createBackendDependencies(config: BackendConfig = backendConfig)
   if (config.production && config.professionalMockOtpEnabled) {
     throw new Error('KONJO_ENABLE_PROFESSIONAL_MOCK_OTP must be disabled in production.');
   }
-  if (config.production && (config.authMode !== 'provider' || config.paymentSandboxCheckout || !config.chapaSecretKey ||
-    chapaKeyMode(config.chapaSecretKey) === 'test' ||
+  if (config.production && (config.authMode !== 'provider' || config.paymentSandboxCheckout ||
+    (config.paymentMode === 'chapa' && (!config.chapaSecretKey || chapaKeyMode(config.chapaSecretKey) === 'test')) ||
     !config.publicApiUrl.startsWith('https://') || !config.publicWebUrl.startsWith('https://') ||
     config.paymentWebhookSecret === 'konjo-local-payment-webhook-secret')) {
-    throw new Error('Production requires provider authentication, HTTPS URLs, a live Chapa key and a private webhook secret, with sandbox checkout disabled.');
+    throw new Error('Production requires provider authentication, HTTPS URLs, a private webhook secret, sandbox checkout disabled, and live Chapa credentials when Chapa payments are enabled.');
   }
   if (config.production && [...config.allowedOrigins].some((origin) => !origin.startsWith('https://'))) {
     throw new Error('KONJO_ALLOWED_ORIGINS must list only https:// origins in production.');

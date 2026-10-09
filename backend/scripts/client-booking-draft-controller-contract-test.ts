@@ -54,6 +54,16 @@ function memoryStorage(initial: Readonly<Record<string, BookingDraft>> = {}) {
 }
 
 {
+  const onlineDraft = { ...storedDraft, paymentMethod: 'card' as const };
+  const { storage } = memoryStorage({ 'client-1': onlineDraft });
+  const controller = new BookingDraftController(storage, { generate: () => 'cash-booking-request' }, undefined, 'cash');
+  await controller.setUser('client-1');
+  assert.deepEqual(controller.getSnapshot(), { draft: { ...onlineDraft, paymentMethod: 'cash' }, receipt: null });
+  await controller.startBooking('professional-cash', 0, null);
+  assert.equal(controller.getSnapshot().draft?.paymentMethod, 'cash');
+}
+
+{
   const { drafts, storage } = memoryStorage();
   let generated = 0;
   const controller = new BookingDraftController(storage, {

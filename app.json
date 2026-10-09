@@ -20,6 +20,9 @@
         "CFBundleAllowMixedLocalizations": true
       },
       "bundleIdentifier": "com.tsedeniya.konjoclient",
+      "associatedDomains": [
+        "applinks:konjoet.com"
+      ],
       "privacyManifests": {
         "NSPrivacyTracking": false,
         "NSPrivacyTrackingDomains": [],
@@ -167,6 +170,28 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.tsedeniya.konjoclient",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "konjoet.com",
+              "pathPrefix": "/client-email"
+            },
+            {
+              "scheme": "https",
+              "host": "konjoet.com",
+              "pathPrefix": "/professional-email"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ],
       "blockedPermissions": [
         "android.permission.SYSTEM_ALERT_WINDOW",
         "android.permission.RECORD_AUDIO"

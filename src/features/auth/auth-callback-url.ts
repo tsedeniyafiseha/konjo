@@ -20,9 +20,13 @@ const AUTH_CALLBACK_PARAMETERS = new Set([
 export function normalizeNativeAuthPath(path: string): string {
   try {
     const url = new URL(path, 'konjoclient://app');
-    if (url.protocol !== 'konjoclient:') return path;
+    const isCustomScheme = url.protocol === 'konjoclient:';
+    const isVerifiedWebLink = url.protocol === 'https:' && url.hostname === 'konjoet.com';
+    if (!isCustomScheme && !isVerifiedWebLink) return path;
 
-    const route = (url.hostname || url.pathname).replace(/^\/+/, '').split('/')[0];
+    const route = (isCustomScheme ? url.hostname || url.pathname : url.pathname)
+      .replace(/^\/+/, '')
+      .split('/')[0];
     if (!AUTH_CALLBACK_ROUTES.has(route)) return path;
 
     const normalized = new URLSearchParams();

@@ -3,7 +3,7 @@
   "build": {
     "development": { "developmentClient": true, "distribution": "internal", "environment": "development" },
     "preview": { "distribution": "internal", "environment": "preview" },
-    "testflight": { "extends": "production", "environment": "preview" },
+    "testflight": { "extends": "production", "environment": "production" },
     "production": { "autoIncrement": true, "environment": "production" }
   },
   "submit": {

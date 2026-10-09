@@ -7,6 +7,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
   const bundleIdentifier = process.env.KONJO_IOS_BUNDLE_IDENTIFIER;
   const googleServicesFile = process.env.GOOGLE_SERVICES_JSON;
   const apiBaseUrl = process.env.EXPO_PUBLIC_API_BASE_URL?.trim();
+  const paymentMode = process.env.EXPO_PUBLIC_PAYMENT_MODE?.trim();
   // CARTO Basemaps key for the in-app MapLibre map. Published to the app as the
   // full style URL only; never logged. Restrict the key to the app in CARTO.
   const cartoBasemapsApiKey = process.env.CARTO_BASEMAPS_API_KEY?.trim() || null;
@@ -20,6 +21,9 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     }
     if (process.env.EXPO_PUBLIC_ENABLE_PROFESSIONAL_MOCK_OTP === 'true') {
       throw new Error('Production native builds cannot enable the professional mock OTP.');
+    }
+    if (paymentMode !== 'cash_only' && paymentMode !== 'chapa_live') {
+      throw new Error('Production native builds require EXPO_PUBLIC_PAYMENT_MODE=cash_only or chapa_live.');
     }
     if (process.env.EAS_BUILD_PLATFORM === 'android' && (!androidPackage || !googleServicesFile)) {
       throw new Error('Android production builds require KONJO_ANDROID_PACKAGE and GOOGLE_SERVICES_JSON.');

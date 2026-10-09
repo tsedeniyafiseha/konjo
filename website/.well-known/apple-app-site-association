@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "54SD6P7N7S.com.tsedeniya.konjoclient"
+        ],
+        "components": [
+          {
+            "/": "/client-email*",
+            "comment": "Client email confirmation and password recovery"
+          },
+          {
+            "/": "/professional-email*",
+            "comment": "Professional email confirmation and password recovery"
+          }
+        ]
+      }
+    ]
+  }
+}

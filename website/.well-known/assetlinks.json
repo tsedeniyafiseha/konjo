@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tsedeniya.konjoclient",
+      "sha256_cert_fingerprints": [
+        "EE:42:B3:02:78:1A:87:3F:45:E8:F4:21:44:43:F6:BF:EB:35:B8:04:0F:25:83:32:BA:CB:8E:01:6D:1E:AA:D8"
+      ]
+    }
+  }
+]

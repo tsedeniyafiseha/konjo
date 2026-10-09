@@ -36,6 +36,14 @@ const identity: SupabaseAuthIdentity = {
     '/client-email?mode=reset&code=one-time-code',
   );
   assert.equal(
+    normalizeNativeAuthPath('https://konjoet.com/client-email?mode=reset&code=one-time-code'),
+    '/client-email?mode=reset&code=one-time-code',
+  );
+  assert.equal(
+    normalizeNativeAuthPath('https://attacker.example/client-email?mode=reset&code=stolen'),
+    'https://attacker.example/client-email?mode=reset&code=stolen',
+  );
+  assert.equal(
     normalizeNativeAuthPath('konjoclient:///client-email?mode=confirm&token_hash=email-hash&type=email'),
     '/client-email?mode=confirm&token_hash=email-hash&type=email',
   );

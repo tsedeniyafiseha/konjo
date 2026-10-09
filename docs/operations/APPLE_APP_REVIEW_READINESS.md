@@ -191,8 +191,8 @@ Replace every bracketed value before submission:
 > Konjo is a marketplace for in-person beauty, grooming and wellness services
 > delivered at the client's address in Addis Ababa, Ethiopia. Payments in this
 > app are exclusively for physical services performed outside the app. Konjo
-> therefore uses Chapa-hosted Telebirr, CBE Birr and card checkout and does not
-> sell digital content or app functionality.
+> accepts cash paid directly to the professional after the physical service and
+> does not sell digital content or app functionality.
 >
 > Client review account: [email] / [password]. Professional review account:
 > [phone] / [verification method or fixed review code]. Both accounts are
@@ -204,8 +204,8 @@ Replace every bracketed value before submission:
 > only for the active trip and stops when the professional taps “I've arrived,”
 > when the booking ends, or on sign-out. A demonstration video is attached.
 >
-> Chapa checkout opens a provider-hosted page. Use [review payment method and
-> exact non-monetary test instructions]. No real charge is required for review.
+> To test payment selection, choose Cash. No card, wallet or real charge is
+> required for review.
 > Support contact: [name, email, phone].
 
 Never submit the current preview mock-code or sandbox-payment instructions as

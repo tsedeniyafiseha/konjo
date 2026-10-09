@@ -35,6 +35,7 @@ export class BookingDraftController {
   private readonly storage: BookingDraftStorage;
   private readonly requestIds: BookingRequestIdGenerator;
   private readonly logger: BookingDraftControllerLogger;
+  private readonly paymentMode: 'online' | 'cash';
   private userId: string | null = null;
   private loadVersion = 0;
   private mutationVersion = 0;
@@ -44,10 +45,12 @@ export class BookingDraftController {
     storage: BookingDraftStorage,
     requestIds: BookingRequestIdGenerator,
     logger: BookingDraftControllerLogger = silentLogger,
+    paymentMode: 'online' | 'cash' = 'online',
   ) {
     this.storage = storage;
     this.requestIds = requestIds;
     this.logger = logger;
+    this.paymentMode = paymentMode;
   }
 
   readonly getSnapshot = (): BookingDraftSnapshot => this.snapshot;
@@ -72,7 +75,10 @@ export class BookingDraftController {
         mutationVersion !== this.mutationVersion ||
         userId !== this.userId
       ) return;
-      this.publish({ draft: draft?.paymentMethod === 'cash' ? { ...draft, paymentMethod: 'telebirr' } : draft, receipt: null });
+      const paymentMethod = this.paymentMode === 'cash'
+        ? 'cash'
+        : draft?.paymentMethod === 'cash' ? 'telebirr' : draft?.paymentMethod;
+      this.publish({ draft: draft && paymentMethod ? { ...draft, paymentMethod } : draft, receipt: null });
     } catch (error) {
       this.logger.error('Unable to initialize the booking draft.', error);
     }
@@ -97,7 +103,7 @@ export class BookingDraftController {
       dateIso: null,
       time: null,
       addressId: defaultAddressId,
-      paymentMethod: 'telebirr',
+      paymentMethod: this.paymentMode === 'cash' ? 'cash' : 'telebirr',
     };
     this.publish({ draft, receipt: null });
     return this.persist(draft);

@@ -96,12 +96,12 @@ async function rememberedConsent(bookingId: string): Promise<boolean | null> {
 async function locationDisclosure(bookingId: string): Promise<boolean> {
   const remembered = await rememberedConsent(bookingId);
   if (remembered !== null) return remembered;
-  const message = 'Konjo uses your location while you are travelling to a booking so the client can follow your progress and Konjo can support booking safety, including while Konjo is in the background as you navigate. Location sharing stops when you arrive or the booking ends. You can decline and still manage the booking.';
+  const message = 'Konjo collects and shares your precise location with the client during an active trip so they can follow your progress and Konjo can support booking safety. Sharing continues when the app is in the background or your phone is locked, and stops when you arrive or the booking ends. On the next system screen, you can allow or deny location access.';
   const allowed = Platform.OS === 'web'
     ? typeof window !== 'undefined' && window.confirm('Share your location while you travel? Keep Konjo open on the way. Sharing stops when you arrive or the booking is cancelled.')
-    : await new Promise<boolean>((resolve) => Alert.alert('Share location during this visit?', message,
-      [{ text: 'Not now', style: 'cancel', onPress: () => resolve(false) }, { text: 'Continue', onPress: () => resolve(true) }],
-      { cancelable: true, onDismiss: () => resolve(false) }));
+    : await new Promise<boolean>((resolve) => Alert.alert('Location sharing during this visit', message,
+      [{ text: 'Continue', onPress: () => resolve(true) }],
+      { cancelable: false }));
   consentForVisit = { bookingId, allowed };
   if (allowed && Platform.OS !== 'web') {
     try { await SecureStore.setItemAsync(CONSENT_KEY, JSON.stringify({ bookingId, allowed })); } catch { /* asked again next launch */ }

@@ -2225,7 +2225,10 @@ async function route(request: IncomingMessage, response: ServerResponse) {
       const addressZone = textField(body, 'addressZone', { maxLength: 80 });
       const addressDetail = textField(body, 'addressDetail', { maxLength: 500 });
       const paymentMethod = textField(body, 'paymentMethod', { maxLength: 20 });
-      if (paymentMethod === 'cash' && config.authMode === 'provider') {
+      if (config.paymentMode === 'cash_only' && paymentMethod !== 'cash') {
+        throw new HttpError(400, 'PAYMENT_METHOD_UNAVAILABLE', 'Online payment is not available yet. Choose cash and pay the professional after the service.');
+      }
+      if (config.paymentMode === 'chapa' && paymentMethod === 'cash' && config.authMode === 'provider') {
         throw new HttpError(400, 'ONLINE_DEPOSIT_REQUIRED', 'Choose Telebirr, CBE Birr or card for the 50% deposit.');
       }
       const addressId = textField(body, 'addressId', { optional: true, maxLength: 100 });
