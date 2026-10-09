@@ -264,7 +264,9 @@ What the Konjo team has to do, in order:
    `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`,
    `CARTO_BASEMAPS_API_KEY` and `EXPO_PUBLIC_SUPPORT_EMAIL` as EAS environment
    variables for the `production` environment (`eas env:create`). The config
-   refuses a production build without the bundle id and project id.
+   refuses a production build without the bundle id, project id and an HTTPS
+   API URL, and refuses production builds that enable the professional mock
+   OTP.
    Completed 7 October 2026 for the bundle/project identifiers, Firebase file,
    Supabase client URL/publishable key, native confirmation/reset redirects,
    CARTO key, website URL and support email. `EXPO_PUBLIC_API_BASE_URL` remains

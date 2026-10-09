@@ -49,7 +49,7 @@ must be reviewed before implementation.
 | Location disclosure | `app.json` explains address pinning and professional background sharing; the sharing window is tied to “I'm on my way” through arrival/end. | Good design; needs physical-iPhone evidence. |
 | User safety | In-app profile/review reporting, account-level server blocking, booking enforcement, SOS wording and an auditable administrator moderation queue exist. | Migration `202610080001_content_moderation_and_blocking.sql` and API commit `bd19123` were deployed on 9 October 2026. Complete the release-build two-account test for final evidence. |
 | Privacy/legal pages | `website/privacy.html`, `website/terms.html` and `website/delete-account.html` exist with Konjo contact information. | Must be publicly reachable and legally approved. |
-| Release guardrails | Production startup rejects mock professional OTP, sandbox checkout, test Chapa keys and non-HTTPS origins. | Good; prove the deployed host is actually using production mode. |
+| Release guardrails | Production startup rejects mock professional OTP, sandbox checkout, test Chapa keys and non-HTTPS origins. EAS production builds also reject a missing/non-HTTPS API URL or enabled mock professional OTP. | Good; prove the deployed host is actually using production mode. |
 
 Repository quality evidence was restored on 9 October 2026. GitHub Quality
 runs 6 and 7 completed successfully; the latest run used Node 24-compatible
