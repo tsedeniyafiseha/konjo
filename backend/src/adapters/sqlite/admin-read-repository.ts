@@ -15,6 +15,7 @@ import type {
   ApiProfessionalApplication,
   ApiProfessionalQualityFlag,
   ApiSafetyIncident,
+  ApiContentReport,
 } from '../../../../shared/api-contracts.ts';
 import type {
   AdminBookingFilters,
@@ -35,6 +36,8 @@ import {
   toApiBookingDispute,
   toApiProfessionalQualityFlag,
   toApiSafetyIncident,
+  type ContentReportRow,
+  toApiContentReport,
 } from './trust-safety-records.ts';
 
 export class SqliteAdminReadRepository implements AdminReadStore {
@@ -57,6 +60,7 @@ export class SqliteAdminReadRepository implements AdminReadStore {
       capturedPaymentAmount: scalar("SELECT COALESCE(SUM(amount), 0) AS value FROM payment_intents WHERE status = 'captured'"),
       openQualityFlags: scalar("SELECT COUNT(*) AS value FROM professional_quality_flags WHERE status = 'open'"),
       openSafetyIncidents: scalar("SELECT COUNT(*) AS value FROM safety_incidents WHERE status = 'open'"),
+      openContentReports: scalar("SELECT COUNT(*) AS value FROM content_reports WHERE status = 'open'"),
     };
   }
 
@@ -279,6 +283,16 @@ export class SqliteAdminReadRepository implements AdminReadStore {
       SELECT * FROM safety_incidents ORDER BY created_at DESC
     `).all() as unknown as SafetyIncidentRow[];
     return rows.map(toApiSafetyIncident);
+  }
+
+  listContentReports(): ReadonlyArray<ApiContentReport> {
+    const rows = this.database.prepare(`
+      SELECT report.*, professional.display_name AS professional_name
+      FROM content_reports report
+      JOIN professionals professional ON professional.id = report.professional_id
+      ORDER BY report.created_at DESC
+    `).all() as unknown as ContentReportRow[];
+    return rows.map(toApiContentReport);
   }
 
   listBroadcasts(): ReadonlyArray<ApiAdminBroadcast> {

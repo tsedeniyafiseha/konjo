@@ -5,7 +5,9 @@ import type {
   ResolveQualityFlagStoreInput,
   ResolveSafetyIncidentStoreInput,
   TrustSafetyResolutionResult,
+  ResolveContentReportStoreInput,
 } from './contracts.ts';
+import type { ApiContentReportReason, ApiContentReportTarget } from '../../../shared/api-contracts.ts';
 import type { Clock, IdGenerator, TrustSafetyCommandStore } from './ports.ts';
 
 export class ManageTrustSafety {
@@ -23,6 +25,37 @@ export class ManageTrustSafety {
     return await this.store.openSafetyIncident({
       ...input,
       incidentId: this.ids.next(),
+      occurredAt: this.clock.now().toISOString(),
+    });
+  }
+
+  async createContentReport(
+    reportedById: string,
+    targetType: ApiContentReportTarget,
+    targetId: string,
+    reason: ApiContentReportReason,
+    details: string,
+  ) {
+    return await this.store.createContentReport({
+      reportId: this.ids.next(),
+      reportedById,
+      targetType,
+      targetId,
+      reason,
+      details,
+      occurredAt: this.clock.now().toISOString(),
+    });
+  }
+
+  listBlockedProfessionals(clientId: string) {
+    return this.store.listBlockedProfessionals(clientId);
+  }
+
+  async setProfessionalBlocked(clientId: string, professionalId: string, blocked: boolean): Promise<boolean> {
+    return await this.store.setProfessionalBlocked({
+      clientId,
+      professionalId,
+      blocked,
       occurredAt: this.clock.now().toISOString(),
     });
   }
@@ -79,6 +112,24 @@ export class ManageTrustSafety {
       adminId,
       disputeId,
       status,
+      resolution,
+      occurredAt: this.clock.now().toISOString(),
+    });
+  }
+
+  async resolveContentReport(
+    adminId: string,
+    reportId: string,
+    status: ResolveContentReportStoreInput['status'],
+    action: ResolveContentReportStoreInput['action'],
+    resolution: string,
+  ): Promise<TrustSafetyResolutionResult['contentReport'] | null> {
+    return await this.store.resolveContentReport({
+      auditId: this.ids.next(),
+      adminId,
+      reportId,
+      status,
+      action,
       resolution,
       occurredAt: this.clock.now().toISOString(),
     });

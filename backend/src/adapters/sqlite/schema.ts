@@ -112,6 +112,25 @@ export function migrateSqliteSchema(database: DatabaseSync): void {
       CHECK (longitude IS NULL OR longitude BETWEEN -180 AND 180),
       CHECK (accuracy_meters IS NULL OR accuracy_meters >= 0)
     );
+    CREATE TABLE IF NOT EXISTS professional_blocks (
+      client_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      professional_id TEXT NOT NULL REFERENCES professionals(id) ON DELETE CASCADE,
+      created_at TEXT NOT NULL,
+      PRIMARY KEY (client_id, professional_id)
+    );
+    CREATE TABLE IF NOT EXISTS content_reports (
+      id TEXT PRIMARY KEY,
+      reported_by_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      target_type TEXT NOT NULL CHECK (target_type IN ('professional', 'review')),
+      target_id TEXT NOT NULL,
+      professional_id TEXT NOT NULL REFERENCES professionals(id) ON DELETE CASCADE,
+      reason TEXT NOT NULL CHECK (reason IN ('harassment', 'inappropriate_content', 'fraud_or_spam', 'safety_concern', 'other')),
+      details TEXT NOT NULL DEFAULT '',
+      status TEXT NOT NULL DEFAULT 'open' CHECK (status IN ('open', 'resolved', 'dismissed')),
+      resolution TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL,
+      resolved_at TEXT
+    );
     CREATE TABLE IF NOT EXISTS otp_challenges (
       id TEXT PRIMARY KEY,
       phone_number TEXT NOT NULL,
@@ -319,6 +338,7 @@ export function migrateSqliteSchema(database: DatabaseSync): void {
       professionalism_rating INTEGER NOT NULL CHECK (professionalism_rating BETWEEN 1 AND 5),
       tags_json TEXT NOT NULL DEFAULT '[]',
       review_text TEXT NOT NULL DEFAULT '',
+      visible INTEGER NOT NULL DEFAULT 1 CHECK (visible IN (0, 1)),
       created_at TEXT NOT NULL
     );
     CREATE TABLE IF NOT EXISTS professional_quality_flags (
@@ -452,6 +472,10 @@ export function migrateSqliteSchema(database: DatabaseSync): void {
     CREATE INDEX IF NOT EXISTS booking_disputes_status_idx ON booking_disputes(status, created_at);
     CREATE INDEX IF NOT EXISTS admin_broadcasts_created_idx ON admin_broadcasts(created_at);
     CREATE INDEX IF NOT EXISTS safety_incidents_status_idx ON safety_incidents(status, created_at);
+    CREATE INDEX IF NOT EXISTS content_reports_status_idx ON content_reports(status, created_at);
+    CREATE UNIQUE INDEX IF NOT EXISTS content_reports_one_open_target_idx
+      ON content_reports(reported_by_id, target_type, target_id) WHERE status = 'open';
+    CREATE INDEX IF NOT EXISTS professional_blocks_client_idx ON professional_blocks(client_id, created_at);
     CREATE INDEX IF NOT EXISTS otp_challenges_phone_created_idx ON otp_challenges(phone_number, created_at);
     CREATE INDEX IF NOT EXISTS password_reset_tokens_user_idx ON password_reset_tokens(user_id);
     CREATE INDEX IF NOT EXISTS bookings_client_id_idx ON bookings(client_id);
@@ -570,6 +594,10 @@ export function migrateSqliteSchema(database: DatabaseSync): void {
   }
   if (!bookingColumnNames.has('client_request_id')) {
     database.exec('ALTER TABLE bookings ADD COLUMN client_request_id TEXT');
+  }
+  const bookingReviewColumns = new Set((database.prepare('PRAGMA table_info(booking_reviews)').all() as unknown as Array<{ name: string }>).map((column) => column.name));
+  if (!bookingReviewColumns.has('visible')) {
+    database.exec('ALTER TABLE booking_reviews ADD COLUMN visible INTEGER NOT NULL DEFAULT 1 CHECK (visible IN (0, 1))');
   }
   if (!bookingColumnNames.has('cancellation_policy')) {
     database.exec('ALTER TABLE bookings ADD COLUMN cancellation_policy TEXT');

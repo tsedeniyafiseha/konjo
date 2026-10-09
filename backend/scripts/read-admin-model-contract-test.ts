@@ -13,6 +13,7 @@ const summary = {
   capturedPaymentAmount: 6,
   openQualityFlags: 7,
   openSafetyIncidents: 8,
+  openContentReports: 9,
 };
 const settings = {
   commissionRateBps: 1800,
@@ -73,6 +74,10 @@ const store: AdminReadStore = {
     calls.push({ operation: 'safety-incidents' });
     return [];
   },
+  listContentReports() {
+    calls.push({ operation: 'content-reports' });
+    return [];
+  },
   listBroadcasts() {
     calls.push({ operation: 'broadcasts' });
     return [];
@@ -93,6 +98,7 @@ assert.deepEqual(reads.listZones(), []);
 assert.deepEqual(reads.listDisputes(), []);
 assert.deepEqual(reads.listQualityFlags(), []);
 assert.deepEqual(reads.listSafetyIncidents(), []);
+assert.deepEqual(reads.listContentReports(), []);
 assert.deepEqual(reads.listBroadcasts(), []);
 assert.deepEqual(calls, [
   { operation: 'summary' },
@@ -108,6 +114,7 @@ assert.deepEqual(calls, [
   { operation: 'disputes' },
   { operation: 'quality-flags' },
   { operation: 'safety-incidents' },
+  { operation: 'content-reports' },
   { operation: 'broadcasts' },
 ]);
 

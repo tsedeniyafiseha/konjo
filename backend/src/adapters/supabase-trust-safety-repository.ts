@@ -3,6 +3,10 @@ import type {
   OpenBookingDisputeStoreInput,
   OpenSafetyIncidentResult,
   OpenSafetyIncidentStoreInput,
+  CreateContentReportResult,
+  CreateContentReportStoreInput,
+  ResolveContentReportStoreInput,
+  SetProfessionalBlockStoreInput,
   ResolveBookingDisputeStoreInput,
   ResolveQualityFlagStoreInput,
   ResolveSafetyIncidentStoreInput,
@@ -32,6 +36,22 @@ export class SupabaseTrustSafetyRepository implements TrustSafetyCommandStore {
     return await this.rpc('open_safety_incident', this.input(input)) as OpenSafetyIncidentResult;
   }
 
+  async createContentReport(input: CreateContentReportStoreInput): Promise<CreateContentReportResult> {
+    return await this.rpc('create_content_report', this.input(input)) as CreateContentReportResult;
+  }
+
+  async listBlockedProfessionals(clientId: string): Promise<ReadonlyArray<string>> {
+    const result = await this.rpc('list_client_blocked_professionals', { p_client_id: clientId });
+    if (!Array.isArray(result) || result.some((item) => typeof item !== 'string')) {
+      throw new SupabaseTrustSafetyError('Supabase returned an invalid blocked-professionals list.');
+    }
+    return result as string[];
+  }
+
+  async setProfessionalBlocked(input: SetProfessionalBlockStoreInput): Promise<boolean> {
+    return await this.rpc('set_client_professional_block', this.input(input)) === true;
+  }
+
   async openBookingDispute(
     input: OpenBookingDisputeStoreInput,
   ): Promise<TrustSafetyResolutionResult['dispute'] | null> {
@@ -54,6 +74,12 @@ export class SupabaseTrustSafetyRepository implements TrustSafetyCommandStore {
     input: ResolveBookingDisputeStoreInput,
   ): Promise<TrustSafetyResolutionResult['dispute'] | null> {
     return await this.rpc('resolve_booking_dispute', this.input(input)) as TrustSafetyResolutionResult['dispute'] | null;
+  }
+
+  async resolveContentReport(
+    input: ResolveContentReportStoreInput,
+  ): Promise<TrustSafetyResolutionResult['contentReport'] | null> {
+    return await this.rpc('resolve_content_report', this.input(input)) as TrustSafetyResolutionResult['contentReport'] | null;
   }
 
   private input(value: object): JsonRecord {

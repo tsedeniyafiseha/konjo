@@ -68,7 +68,7 @@ import {
   professionals as developmentProfessionals,
   serviceCategories as developmentCategories,
 } from '@/features/discovery/data';
-import { apiDiscoveryGateway } from '@/features/discovery/discovery-gateway';
+import { apiBlockedProfessionalsGateway, apiDiscoveryGateway } from '@/features/discovery/discovery-gateway';
 import { secureBlockedProfessionalsStorage } from '@/features/discovery/blocked-professionals-store';
 import {
   clientBookingGateway,
@@ -238,7 +238,10 @@ export function createClientDependencies(): ClientDependencies {
         timeSlots: bookingTimeSlots,
       },
       clientLogger,
-      { blockedProfessionalsStorage: secureBlockedProfessionalsStorage },
+      {
+        blockedProfessionalsStorage: secureBlockedProfessionalsStorage,
+        blockedProfessionalsGateway: apiDiscoveryGateway.configured ? apiBlockedProfessionalsGateway : undefined,
+      },
     ),
     createClientDataController: () => new ClientDataController(
       clientBookingGateway,

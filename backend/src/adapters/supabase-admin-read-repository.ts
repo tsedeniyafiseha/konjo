@@ -14,6 +14,7 @@ import type {
   ApiProfessionalApplication,
   ApiProfessionalQualityFlag,
   ApiSafetyIncident,
+  ApiContentReport,
 } from '../../../shared/api-contracts.ts';
 import type { AdminBookingFilters, AdminReadStore, AdminRevenueRow } from '../application/ports.ts';
 
@@ -87,6 +88,10 @@ export class SupabaseAdminReadRepository implements AdminReadStore {
 
   async listSafetyIncidents(): Promise<ReadonlyArray<ApiSafetyIncident>> {
     return await this.arrayRpc('list_admin_safety_incidents', {});
+  }
+
+  async listContentReports(): Promise<ReadonlyArray<ApiContentReport>> {
+    return await this.arrayRpc('list_admin_content_reports', {});
   }
 
   async listBroadcasts(): Promise<ReadonlyArray<ApiAdminBroadcast>> {

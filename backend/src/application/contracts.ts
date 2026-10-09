@@ -25,6 +25,9 @@ import type {
   ApiProfessionalPayoutMethod,
   ApiPromotion,
   ApiSafetyIncident,
+  ApiContentReport,
+  ApiContentReportReason,
+  ApiContentReportTarget,
   ApiServiceCategory,
 } from '../../../shared/api-contracts.ts';
 
@@ -383,6 +386,38 @@ export type OpenSafetyIncidentResult =
   | { result: 'not_found' }
   | { result: 'not_active' };
 
+export interface CreateContentReportStoreInput {
+  reportId: string;
+  reportedById: string;
+  targetType: ApiContentReportTarget;
+  targetId: string;
+  reason: ApiContentReportReason;
+  details: string;
+  occurredAt: string;
+}
+
+export type CreateContentReportResult =
+  | { result: 'created'; report: ApiContentReport }
+  | { result: 'existing'; report: ApiContentReport }
+  | { result: 'not_found' };
+
+export interface SetProfessionalBlockStoreInput {
+  clientId: string;
+  professionalId: string;
+  blocked: boolean;
+  occurredAt: string;
+}
+
+export interface ResolveContentReportStoreInput {
+  auditId: string;
+  adminId: string;
+  reportId: string;
+  status: Extract<ApiContentReport['status'], 'resolved' | 'dismissed'>;
+  action: 'none' | 'hide_review' | 'suspend_professional';
+  resolution: string;
+  occurredAt: string;
+}
+
 export interface OpenBookingDisputeStoreInput {
   disputeId: string;
   clientId: string;
@@ -419,6 +454,7 @@ export interface ResolveBookingDisputeStoreInput {
 
 export interface TrustSafetyResolutionResult {
   safetyIncident?: ApiSafetyIncident;
+  contentReport?: ApiContentReport;
   qualityFlag?: ApiProfessionalQualityFlag;
   dispute?: ApiBookingDispute;
 }

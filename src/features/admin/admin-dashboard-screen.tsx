@@ -480,10 +480,16 @@ function DisputesSection({
   data,
   onRefund,
   onResolve,
+  onResolveContentReport,
 }: {
   data: AdminDashboardData;
   onRefund(disputeId: string, bookingId: string): void;
   onResolve(disputeId: string): void;
+  onResolveContentReport(
+    reportId: string,
+    status: 'resolved' | 'dismissed',
+    action: 'none' | 'hide_review' | 'suspend_professional',
+  ): void;
 }) {
   const [filter, setFilter] = useState<'open' | 'resolved' | 'all'>('open');
   const bookings = new Map(data.bookings.map((booking) => [booking.id, booking]));
@@ -526,6 +532,44 @@ function DisputesSection({
           );
         })}
         {!disputes.length ? <Empty>No disputes in this view.</Empty> : null}
+      </Table>
+
+      <Text style={styles.sectionHeading}>Content reports</Text>
+      <Text style={styles.pageSubtitle}>Reports submitted inside the app are retained here for auditable moderation.</Text>
+      <Table columns={[["Target", 0.8], ["Professional", 1], ["Reason", 1], ["Details", 1.5], ["Status", 0.8], ["", 1.5]]}>
+        {data.contentReports.map((report) => {
+          const open = report.status === 'open';
+          return (
+            <View key={report.id} style={styles.row}>
+              <Cell flex={0.8} strong>{report.targetType === 'review' ? 'Review' : 'Profile'}</Cell>
+              <Cell flex={1}>{report.professionalName}</Cell>
+              <Cell flex={1}>{report.reason.replaceAll('_', ' ')}</Cell>
+              <Cell flex={1.5}>{report.details || 'No additional details'}</Cell>
+              <Cell flex={0.8}>
+                {open
+                  ? <Pill bg={c.dangerSoft} color={c.danger} label="Open" />
+                  : <Pill bg={c.headerRow} color={c.secondary} label={report.status === 'dismissed' ? 'Dismissed' : 'Resolved'} />}
+              </Cell>
+              <View style={[styles.actionsCell, { flex: 1.5 }]}>
+                {open ? (
+                  <>
+                    <LinkAction
+                      danger
+                      label={report.targetType === 'review' ? 'Hide review' : 'Suspend'}
+                      onPress={() => onResolveContentReport(
+                        report.id,
+                        'resolved',
+                        report.targetType === 'review' ? 'hide_review' : 'suspend_professional',
+                      )}
+                    />
+                    <LinkAction label="Dismiss" onPress={() => onResolveContentReport(report.id, 'dismissed', 'none')} />
+                  </>
+                ) : null}
+              </View>
+            </View>
+          );
+        })}
+        {!data.contentReports.length ? <Empty>No content reports.</Empty> : null}
       </Table>
     </View>
   );
@@ -903,7 +947,8 @@ export function AdminDashboardScreen() {
   const applicationName = (professionalId: string) => (
     data?.applications.find((item) => item.userId === professionalId)?.application.profile.displayName ?? 'Professional'
   );
-  const openDisputes = data?.disputes.filter((dispute) => dispute.status === 'open').length ?? 0;
+  const openDisputes = (data?.disputes.filter((dispute) => dispute.status === 'open').length ?? 0) +
+    (data?.contentReports.filter((report) => report.status === 'open').length ?? 0);
 
   return (
     <View style={styles.shell}>
@@ -992,6 +1037,18 @@ export function AdminDashboardScreen() {
                   }, 'Refund issued and dispute resolved');
                 }}
                 onResolve={(disputeId) => { void run(disputeId, () => adminService.resolveDispute(disputeId, 'resolved', 'Resolved by Konjo operations.', token), 'Dispute marked resolved'); }}
+                onResolveContentReport={(reportId, status, action) => {
+                  const resolution = status === 'dismissed'
+                    ? 'Reviewed by Konjo operations; no policy violation found.'
+                    : action === 'hide_review'
+                      ? 'Reported review hidden after moderation.'
+                      : 'Reported professional suspended pending further review.';
+                  void run(
+                    reportId,
+                    () => adminService.resolveContentReport(reportId, status, action, resolution, token),
+                    status === 'dismissed' ? 'Content report dismissed' : 'Moderation action completed',
+                  );
+                }}
               />
             ) : null}
             {section === 'escrow' ? (

@@ -67,7 +67,7 @@ export class SqliteProfessionalReadRepository implements ProfessionalReadStore {
     `).all(professionalId, new Date(Date.parse(earningsSince) - 23 * 24 * 60 * 60 * 1000).toISOString()) as unknown as Array<BookingRow & { client_name: string }>;
     const ratings = this.database.prepare(`
       SELECT COUNT(*) AS count, AVG((technique_rating + professionalism_rating) / 2.0) AS average_rating
-      FROM booking_reviews WHERE professional_id = ?
+      FROM booking_reviews WHERE professional_id = ? AND visible = 1
     `).get(professionalId) as unknown as { count: number; average_rating: number | null };
     const baseline = this.database.prepare('SELECT rating_baseline, review_count_baseline FROM professionals WHERE id = ?')
       .get(professionalId) as unknown as { rating_baseline: number; review_count_baseline: number };

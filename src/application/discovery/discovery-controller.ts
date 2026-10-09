@@ -11,6 +11,7 @@ import type {
   ProfessionalReview,
   ServiceCategory,
 } from './discovery-contracts';
+import type { AuthSession } from '../auth/session-controller';
 
 function relativeDayLabel(iso: string): string {
   const days = Math.max(0, Math.floor((Date.now() - Date.parse(iso)) / 86_400_000));
@@ -23,6 +24,7 @@ function relativeDayLabel(iso: string): string {
 
 function reviewFromApi(review: ApiProfessionalReview): ProfessionalReview {
   return {
+    id: review.id,
     name: review.clientName,
     zone: review.tags.slice(0, 2).join(' · '),
     rating: review.averageRating.toFixed(1),
@@ -65,11 +67,17 @@ export interface DiscoveryControllerOptions {
   /** Delay before the first automatic retry after a failed catalog load. */
   retryDelayMs?: number;
   blockedProfessionalsStorage?: BlockedProfessionalsStorage;
+  blockedProfessionalsGateway?: BlockedProfessionalsGateway;
 }
 
 export interface BlockedProfessionalsStorage {
   read(): Promise<readonly string[]>;
   write(professionalIds: readonly string[]): Promise<void>;
+}
+
+export interface BlockedProfessionalsGateway {
+  list(accessToken: string): Promise<readonly string[]>;
+  block(professionalId: string, accessToken: string): Promise<void>;
 }
 const MAX_RETRY_DELAY_MS = 60_000;
 
@@ -105,8 +113,10 @@ export class DiscoveryController {
   private readonly initialRetryDelayMs: number;
   private retryDelayMs: number;
   private readonly blockedProfessionalsStorage: BlockedProfessionalsStorage | null;
+  private readonly blockedProfessionalsGateway: BlockedProfessionalsGateway | null;
   private readonly blockedProfessionalIds = new Set<string>();
   private blockedProfessionalsLoaded = false;
+  private accessToken: string | null = null;
 
   constructor(
     gateway: DiscoveryGateway,
@@ -120,6 +130,7 @@ export class DiscoveryController {
     this.initialRetryDelayMs = options.retryDelayMs ?? INITIAL_RETRY_DELAY_MS;
     this.retryDelayMs = this.initialRetryDelayMs;
     this.blockedProfessionalsStorage = options.blockedProfessionalsStorage ?? null;
+    this.blockedProfessionalsGateway = options.blockedProfessionalsGateway ?? null;
     this.snapshot = {
       professionals: fallback.professionals,
       categories: fallback.categories,
@@ -133,6 +144,15 @@ export class DiscoveryController {
     this.listeners.add(listener);
     return () => this.listeners.delete(listener);
   };
+
+  async setSession(session: AuthSession | null): Promise<void> {
+    const accessToken = session?.source === 'api' ? session.accessToken ?? null : null;
+    if (this.accessToken === accessToken && this.blockedProfessionalsLoaded) return;
+    this.accessToken = accessToken;
+    this.blockedProfessionalIds.clear();
+    this.blockedProfessionalsLoaded = false;
+    await this.refresh();
+  }
 
   getProfessional(professionalId: string | undefined): Professional | undefined {
     if (!professionalId || this.blockedProfessionalIds.has(professionalId)) return undefined;
@@ -160,6 +180,9 @@ export class DiscoveryController {
 
   async blockProfessional(professionalId: string): Promise<void> {
     if (!professionalId || this.blockedProfessionalIds.has(professionalId)) return;
+    if (this.blockedProfessionalsGateway && this.accessToken) {
+      await this.blockedProfessionalsGateway.block(professionalId, this.accessToken);
+    }
     this.blockedProfessionalIds.add(professionalId);
     this.publish({
       ...this.snapshot,
@@ -243,7 +266,12 @@ export class DiscoveryController {
     if (!this.blockedProfessionalsLoaded) {
       try {
         const stored = await this.blockedProfessionalsStorage?.read() ?? [];
-        for (const professionalId of stored) {
+        let blocked = stored;
+        if (this.blockedProfessionalsGateway && this.accessToken) {
+          blocked = await this.blockedProfessionalsGateway.list(this.accessToken);
+          await this.blockedProfessionalsStorage?.write(blocked);
+        }
+        for (const professionalId of blocked) {
           if (professionalId) this.blockedProfessionalIds.add(professionalId);
         }
         this.publish({

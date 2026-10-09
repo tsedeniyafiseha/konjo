@@ -13,6 +13,7 @@ import type {
   ApiProfessionalApplication,
   ApiProfessionalQualityFlag,
   ApiSafetyIncident,
+  ApiContentReport,
   ApiServiceCategory,
   ApiAdminPlatformSettings,
 } from '../../../shared/api-contracts';
@@ -35,13 +36,14 @@ export interface AdminDashboardData {
   broadcasts: readonly ApiAdminBroadcast[];
   qualityFlags: readonly ApiProfessionalQualityFlag[];
   safetyIncidents: readonly ApiSafetyIncident[];
+  contentReports: readonly ApiContentReport[];
   categories: readonly ApiServiceCategory[];
   settings: ApiAdminPlatformSettings;
 }
 
 export const adminService = {
   async loadDashboard(token: string): Promise<AdminDashboardData> {
-    const [summary, applications, professionals, bookings, payouts, auditLogs, zones, promotions, disputes, broadcasts, qualityFlags, safetyIncidents, categories, settings, pendingPayouts] = await Promise.all([
+    const [summary, applications, professionals, bookings, payouts, auditLogs, zones, promotions, disputes, broadcasts, qualityFlags, safetyIncidents, contentReports, categories, settings, pendingPayouts] = await Promise.all([
       apiRequest<{ summary: ApiAdminSummary }>('/v1/admin/summary', { token }),
       apiRequest<{ applications: ApiAdminProfessionalApplication[] }>(
         '/v1/admin/professional-applications?status=pending',
@@ -57,6 +59,7 @@ export const adminService = {
       apiRequest<{ broadcasts: ApiAdminBroadcast[] }>('/v1/admin/broadcasts', { token }),
       apiRequest<{ qualityFlags: ApiProfessionalQualityFlag[] }>('/v1/admin/quality-flags', { token }),
       apiRequest<{ safetyIncidents: ApiSafetyIncident[] }>('/v1/admin/safety-incidents', { token }),
+      apiRequest<{ contentReports: ApiContentReport[] }>('/v1/admin/content-reports', { token }),
       apiRequest<{ categories: ApiServiceCategory[] }>('/v1/admin/categories', { token }),
       apiRequest<{ settings: ApiAdminPlatformSettings }>('/v1/admin/settings/commission', { token }),
       apiRequest<{ pending: ApiAdminPendingPayout[] }>('/v1/admin/payouts/pending', { token }),
@@ -79,6 +82,7 @@ export const adminService = {
       broadcasts: broadcasts.broadcasts,
       qualityFlags: qualityFlags.qualityFlags,
       safetyIncidents: safetyIncidents.safetyIncidents,
+      contentReports: contentReports.contentReports,
       categories: categories.categories,
       settings: settings.settings,
       pendingPayouts: pendingPayouts.pending,
@@ -270,5 +274,19 @@ export const adminService = {
       { method: 'POST', token, body: { resolution } },
     );
     return response.safetyIncident;
+  },
+
+  async resolveContentReport(
+    reportId: string,
+    status: 'resolved' | 'dismissed',
+    action: 'none' | 'hide_review' | 'suspend_professional',
+    resolution: string,
+    token: string,
+  ) {
+    const response = await apiRequest<{ contentReport: ApiContentReport }>(
+      `/v1/admin/content-reports/${encodeURIComponent(reportId)}/resolve`,
+      { method: 'POST', token, body: { status, action, resolution } },
+    );
+    return response.contentReport;
   },
 };

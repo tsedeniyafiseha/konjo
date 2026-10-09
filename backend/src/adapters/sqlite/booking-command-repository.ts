@@ -93,6 +93,11 @@ export class SqliteBookingCommandRepository implements BookingCommandStore, Book
   private resolveQuote(
     input: CreateBookingCommandInput,
   ): { quote: BookingQuote; reason: null } | { quote: null; reason: BookingQuoteFailureReason } {
+    if (this.database.prepare(`
+      SELECT 1 FROM professional_blocks WHERE client_id = ? AND professional_id = ?
+    `).get(input.clientId, input.professionalId)) {
+      return { quote: null, reason: 'professional_unavailable' };
+    }
     const professional = this.database.prepare(`
       SELECT services_json, female_only_eligible
       FROM professionals

@@ -37,6 +37,7 @@ import type {
   ApiServiceCategory,
   ApiServiceZone,
   ApiSafetyIncident,
+  ApiContentReport,
   ApiUser,
   ApiAddressCandidate,
 } from '../../../shared/api-contracts.ts';
@@ -63,6 +64,10 @@ import type {
   OpenBookingDisputeStoreInput,
   OpenSafetyIncidentResult,
   OpenSafetyIncidentStoreInput,
+  CreateContentReportResult,
+  CreateContentReportStoreInput,
+  ResolveContentReportStoreInput,
+  SetProfessionalBlockStoreInput,
   QueueProfessionalPayoutStoreInput,
   RescheduleBookingResult,
   RescheduleBookingStoreInput,
@@ -370,6 +375,7 @@ export interface AdminReadStore {
   listDisputes(): ReadonlyArray<ApiBookingDispute> | Promise<ReadonlyArray<ApiBookingDispute>>;
   listQualityFlags(): ReadonlyArray<ApiProfessionalQualityFlag> | Promise<ReadonlyArray<ApiProfessionalQualityFlag>>;
   listSafetyIncidents(): ReadonlyArray<ApiSafetyIncident> | Promise<ReadonlyArray<ApiSafetyIncident>>;
+  listContentReports(): ReadonlyArray<ApiContentReport> | Promise<ReadonlyArray<ApiContentReport>>;
   listBroadcasts(): ReadonlyArray<ApiAdminBroadcast> | Promise<ReadonlyArray<ApiAdminBroadcast>>;
 }
 
@@ -441,10 +447,14 @@ export interface ProfessionalPayoutCommandStore {
 
 export interface TrustSafetyCommandStore {
   openSafetyIncident(input: OpenSafetyIncidentStoreInput): OpenSafetyIncidentResult | Promise<OpenSafetyIncidentResult>;
+  createContentReport(input: CreateContentReportStoreInput): CreateContentReportResult | Promise<CreateContentReportResult>;
+  listBlockedProfessionals(clientId: string): ReadonlyArray<string> | Promise<ReadonlyArray<string>>;
+  setProfessionalBlocked(input: SetProfessionalBlockStoreInput): boolean | Promise<boolean>;
   openBookingDispute(input: OpenBookingDisputeStoreInput): TrustSafetyResolutionResult['dispute'] | null | Promise<TrustSafetyResolutionResult['dispute'] | null>;
   resolveSafetyIncident(input: ResolveSafetyIncidentStoreInput): TrustSafetyResolutionResult['safetyIncident'] | null | Promise<TrustSafetyResolutionResult['safetyIncident'] | null>;
   resolveQualityFlag(input: ResolveQualityFlagStoreInput): TrustSafetyResolutionResult['qualityFlag'] | null | Promise<TrustSafetyResolutionResult['qualityFlag'] | null>;
   resolveBookingDispute(input: ResolveBookingDisputeStoreInput): TrustSafetyResolutionResult['dispute'] | null | Promise<TrustSafetyResolutionResult['dispute'] | null>;
+  resolveContentReport(input: ResolveContentReportStoreInput): TrustSafetyResolutionResult['contentReport'] | null | Promise<TrustSafetyResolutionResult['contentReport'] | null>;
 }
 
 export interface AdminRefundStore {

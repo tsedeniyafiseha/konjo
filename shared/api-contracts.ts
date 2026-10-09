@@ -379,6 +379,7 @@ export interface ApiAdminSummary {
   capturedPaymentAmount: number;
   openQualityFlags: number;
   openSafetyIncidents: number;
+  openContentReports: number;
 }
 
 export type ApiProfessionalDocumentKind =
@@ -514,6 +515,29 @@ export interface ApiSafetyIncident {
   longitude: number | null;
   accuracyMeters: number | null;
   status: 'open' | 'resolved';
+  resolution: string;
+  createdAt: string;
+  resolvedAt: string | null;
+}
+
+export type ApiContentReportTarget = 'professional' | 'review';
+export type ApiContentReportReason =
+  | 'harassment'
+  | 'inappropriate_content'
+  | 'fraud_or_spam'
+  | 'safety_concern'
+  | 'other';
+
+export interface ApiContentReport {
+  id: string;
+  reportedById: string;
+  targetType: ApiContentReportTarget;
+  targetId: string;
+  professionalId: string;
+  professionalName: string;
+  reason: ApiContentReportReason;
+  details: string;
+  status: 'open' | 'resolved' | 'dismissed';
   resolution: string;
   createdAt: string;
   resolvedAt: string | null;

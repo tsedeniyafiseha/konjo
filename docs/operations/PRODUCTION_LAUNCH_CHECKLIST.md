@@ -87,6 +87,15 @@ professional OTP endpoint returned the documented six-digit code `247124`.
    signup, confirmation, login, and password recovery pass end to end on a
    physical phone. Follow
    [`CLIENT_EMAIL_AUTH.md`](./CLIENT_EMAIL_AUTH.md).
+10. **User-generated-content moderation**: implemented in code on 8 October
+    2026. Profile and review reports now use an in-app form and a persistent
+    moderation queue; professional blocks are stored per client account and
+    enforced again when a booking is quoted; administrators can dismiss a
+    report, hide a reported review, or suspend a reported professional with an
+    audit record. Apply migration
+    `202610080001_content_moderation_and_blocking.sql` to the hosted Supabase
+    project, deploy the matching API, then prove report, block, cross-device
+    restore and admin resolution in the release build.
 
 ### Security review 2026-09-26 (backend + app audit) — what was fixed in code
 
@@ -127,6 +136,8 @@ professional OTP endpoint returned the documented six-digit code `247124`.
    (location incl. background, government ID photos, name/phone/email,
    payment info, push tokens), and the account-deletion URL
    (`/delete-account`).
+   Also attach test evidence for the in-app content-report and account-level
+   block flow after the `202610080001` migration is live.
 5. **Apple**: App Privacy questionnaire (same categories), support URL,
    marketing URL, demo account credentials for review (a client and a
    professional), and screenshots.

@@ -84,6 +84,7 @@ export const professionals: readonly Professional[] = [
     portfolio: ['Cornrows', 'Box braids', 'Shuruba', 'Silk press'],
     reviewsList: [
       {
+        id: 'review-hanan-meron',
         name: 'Meron G.',
         zone: 'Bole Atlas',
         rating: '5.0',
@@ -92,6 +93,7 @@ export const professionals: readonly Professional[] = [
         service: 'Box braids',
       },
       {
+        id: 'review-hanan-almaz',
         name: 'Almaz W.',
         zone: 'CMC Michael',
         rating: '5.0',
@@ -148,6 +150,7 @@ export const professionals: readonly Professional[] = [
     portfolio: [],
     reviewsList: [
       {
+        id: 'review-meaza-sara',
         name: 'Sara K.',
         zone: 'Old Airport',
         rating: '5.0',

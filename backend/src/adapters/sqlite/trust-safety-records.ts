@@ -2,6 +2,7 @@ import type {
   ApiBookingDispute,
   ApiProfessionalQualityFlag,
   ApiSafetyIncident,
+  ApiContentReport,
 } from '../../../../shared/api-contracts.ts';
 
 export interface BookingDisputeRow {
@@ -36,6 +37,21 @@ export interface SafetyIncidentRow {
   longitude: number | null;
   accuracy_meters: number | null;
   status: 'open' | 'resolved';
+  resolution: string;
+  created_at: string;
+  resolved_at: string | null;
+}
+
+export interface ContentReportRow {
+  id: string;
+  reported_by_id: string;
+  target_type: ApiContentReport['targetType'];
+  target_id: string;
+  professional_id: string;
+  professional_name: string;
+  reason: ApiContentReport['reason'];
+  details: string;
+  status: ApiContentReport['status'];
   resolution: string;
   created_at: string;
   resolved_at: string | null;
@@ -77,6 +93,23 @@ export function toApiSafetyIncident(row: SafetyIncidentRow): ApiSafetyIncident {
     latitude: row.latitude,
     longitude: row.longitude,
     accuracyMeters: row.accuracy_meters,
+    status: row.status,
+    resolution: row.resolution,
+    createdAt: row.created_at,
+    resolvedAt: row.resolved_at,
+  };
+}
+
+export function toApiContentReport(row: ContentReportRow): ApiContentReport {
+  return {
+    id: row.id,
+    reportedById: row.reported_by_id,
+    targetType: row.target_type,
+    targetId: row.target_id,
+    professionalId: row.professional_id,
+    professionalName: row.professional_name,
+    reason: row.reason,
+    details: row.details,
     status: row.status,
     resolution: row.resolution,
     createdAt: row.created_at,

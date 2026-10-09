@@ -4,6 +4,10 @@ import type {
   OpenBookingDisputeStoreInput,
   OpenSafetyIncidentResult,
   OpenSafetyIncidentStoreInput,
+  CreateContentReportResult,
+  CreateContentReportStoreInput,
+  ResolveContentReportStoreInput,
+  SetProfessionalBlockStoreInput,
   ResolveBookingDisputeStoreInput,
   ResolveQualityFlagStoreInput,
   ResolveSafetyIncidentStoreInput,
@@ -17,9 +21,11 @@ import {
   type BookingDisputeRow,
   type ProfessionalQualityFlagRow,
   type SafetyIncidentRow,
+  type ContentReportRow,
   toApiBookingDispute,
   toApiProfessionalQualityFlag,
   toApiSafetyIncident,
+  toApiContentReport,
 } from './trust-safety-records.ts';
 import { SqliteUnitOfWork } from './unit-of-work.ts';
 
@@ -97,6 +103,64 @@ export class SqliteTrustSafetyCommandRepository implements TrustSafetyCommandSto
         .get(input.incidentId) as unknown as SafetyIncidentRow;
       return { result: 'created', incident: toApiSafetyIncident(row) };
     });
+  }
+
+  createContentReport(input: CreateContentReportStoreInput): CreateContentReportResult {
+    return this.unitOfWork.run(() => {
+      const reporter = this.database.prepare("SELECT 1 FROM users WHERE id = ? AND role = 'client'")
+        .get(input.reportedById);
+      if (!reporter) return { result: 'not_found' };
+      const target = input.targetType === 'professional'
+        ? this.database.prepare('SELECT id AS professional_id FROM professionals WHERE id = ?').get(input.targetId)
+        : this.database.prepare('SELECT professional_id FROM booking_reviews WHERE id = ? AND visible = 1').get(input.targetId);
+      const professionalId = (target as { professional_id?: string } | undefined)?.professional_id;
+      if (!professionalId) return { result: 'not_found' };
+      const existing = this.contentReport(
+        "WHERE report.reported_by_id = ? AND report.target_type = ? AND report.target_id = ? AND report.status = 'open'",
+        input.reportedById,
+        input.targetType,
+        input.targetId,
+      );
+      if (existing) return { result: 'existing', report: toApiContentReport(existing) };
+      this.database.prepare(`
+        INSERT INTO content_reports (
+          id, reported_by_id, target_type, target_id, professional_id, reason,
+          details, status, resolution, created_at, resolved_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, 'open', '', ?, NULL)
+      `).run(
+        input.reportId,
+        input.reportedById,
+        input.targetType,
+        input.targetId,
+        professionalId,
+        input.reason,
+        input.details,
+        input.occurredAt,
+      );
+      return { result: 'created', report: toApiContentReport(this.contentReport('WHERE report.id = ?', input.reportId)!) };
+    });
+  }
+
+  listBlockedProfessionals(clientId: string): ReadonlyArray<string> {
+    return (this.database.prepare(`
+      SELECT professional_id FROM professional_blocks WHERE client_id = ? ORDER BY created_at
+    `).all(clientId) as unknown as Array<{ professional_id: string }>).map((row) => row.professional_id);
+  }
+
+  setProfessionalBlocked(input: SetProfessionalBlockStoreInput): boolean {
+    const client = this.database.prepare("SELECT 1 FROM users WHERE id = ? AND role = 'client'").get(input.clientId);
+    const professional = this.database.prepare('SELECT 1 FROM professionals WHERE id = ?').get(input.professionalId);
+    if (!client || !professional) return false;
+    if (input.blocked) {
+      this.database.prepare(`
+        INSERT INTO professional_blocks (client_id, professional_id, created_at)
+        VALUES (?, ?, ?) ON CONFLICT(client_id, professional_id) DO NOTHING
+      `).run(input.clientId, input.professionalId, input.occurredAt);
+    } else {
+      this.database.prepare('DELETE FROM professional_blocks WHERE client_id = ? AND professional_id = ?')
+        .run(input.clientId, input.professionalId);
+    }
+    return true;
   }
 
   openBookingDispute(input: OpenBookingDisputeStoreInput): TrustSafetyResolutionResult['dispute'] | null {
@@ -206,6 +270,44 @@ export class SqliteTrustSafetyCommandRepository implements TrustSafetyCommandSto
         .get(input.disputeId) as unknown as BookingDisputeRow;
       return toApiBookingDispute(row);
     });
+  }
+
+  resolveContentReport(input: ResolveContentReportStoreInput): TrustSafetyResolutionResult['contentReport'] | null {
+    return this.unitOfWork.run(() => {
+      const report = this.contentReport("WHERE report.id = ? AND report.status = 'open'", input.reportId);
+      if (!report) return null;
+      if (input.action === 'hide_review') {
+        if (report.target_type !== 'review') return null;
+        this.database.prepare('UPDATE booking_reviews SET visible = 0 WHERE id = ?').run(report.target_id);
+      }
+      if (input.action === 'suspend_professional') {
+        this.database.prepare('UPDATE professionals SET suspended = 1, hidden = 1 WHERE id = ?').run(report.professional_id);
+      }
+      this.database.prepare(`
+        UPDATE content_reports SET status = ?, resolution = ?, resolved_at = ?
+        WHERE id = ? AND status = 'open'
+      `).run(input.status, input.resolution, input.occurredAt, input.reportId);
+      this.insertAudit(
+        input.auditId,
+        input.adminId,
+        'content_report.resolved',
+        'content_report',
+        input.reportId,
+        { status: input.status, action: input.action, targetType: report.target_type, targetId: report.target_id },
+        input.occurredAt,
+      );
+      return toApiContentReport(this.contentReport('WHERE report.id = ?', input.reportId)!);
+    });
+  }
+
+  private contentReport(where: string, ...parameters: string[]): ContentReportRow | null {
+    return (this.database.prepare(`
+      SELECT report.*, professional.display_name AS professional_name
+      FROM content_reports report
+      JOIN professionals professional ON professional.id = report.professional_id
+      ${where}
+      LIMIT 1
+    `).get(...parameters) as unknown as ContentReportRow | undefined) ?? null;
   }
 
   private insertAudit(

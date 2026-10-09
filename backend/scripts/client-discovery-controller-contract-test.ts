@@ -276,6 +276,42 @@ function gateway(overrides: Partial<DiscoveryGateway> = {}): DiscoveryGateway {
   assert.deepEqual(blockingController.getSnapshot().professionals, []);
 }
 
+{
+  let stored: readonly string[] = [];
+  const remoteBlocks: string[] = ['hanan'];
+  const remoteBlockCalls: Array<{ professionalId: string; token: string }> = [];
+  const storage = {
+    async read() { return stored; },
+    async write(professionalIds: readonly string[]) { stored = professionalIds; },
+  };
+  const remoteController = new DiscoveryController(gateway(), fallback, undefined, {
+    blockedProfessionalsStorage: storage,
+    blockedProfessionalsGateway: {
+      async list(token) {
+        assert.equal(token, 'client-token');
+        return remoteBlocks;
+      },
+      async block(professionalId, token) {
+        remoteBlockCalls.push({ professionalId, token });
+      },
+    },
+  });
+  await remoteController.setSession({
+    userId: 'client-1', role: 'client', source: 'api', authMethod: 'email_password',
+    accessToken: 'client-token', expiresAt: Date.now() + 60_000,
+  });
+  assert.equal(remoteController.getProfessional('hanan'), undefined, 'server-side blocks hide profiles on a new device');
+  assert.deepEqual(stored, ['hanan'], 'the account block list refreshes the local cache');
+
+  remoteBlocks.length = 0;
+  await remoteController.setSession({
+    userId: 'client-2', role: 'client', source: 'api', authMethod: 'email_password',
+    accessToken: 'second-token', expiresAt: Date.now() + 60_000,
+  });
+  await remoteController.blockProfessional('hanan');
+  assert.deepEqual(remoteBlockCalls, [{ professionalId: 'hanan', token: 'second-token' }]);
+}
+
 assert.equal(professionalLanguageMatchScore({ languageSkills: apiProfessional.languageSkills, languages: apiProfessional.languages }, 'en'), 3);
 assert.equal(professionalLanguageMatchScore({ languageSkills: apiProfessional.languageSkills, languages: apiProfessional.languages }, 'am'), 4);
 assert.equal(professionalLanguageMatchScore({ languages: ['English'] }, 'en'), 1);

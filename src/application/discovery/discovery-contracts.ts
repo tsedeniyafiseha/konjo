@@ -15,6 +15,7 @@ export interface ProfessionalService {
 }
 
 export interface ProfessionalReview {
+  id: string;
   name: string;
   zone: string;
   rating: string;

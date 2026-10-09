@@ -3,6 +3,10 @@ import { DatabaseSync } from 'node:sqlite';
 
 import { configureSqlite, migrateSqliteSchema } from '../src/adapters/sqlite/schema.ts';
 import { seedSqliteReferenceData } from '../src/adapters/sqlite/seed-data.ts';
+import { SqliteDomainEventOutbox } from '../src/adapters/sqlite/domain-event-outbox.ts';
+import { SqliteTrustSafetyCommandRepository } from '../src/adapters/sqlite/trust-safety-command-repository.ts';
+import { SqliteUnitOfWork } from '../src/adapters/sqlite/unit-of-work.ts';
+import { SqliteAdminReadRepository } from '../src/adapters/sqlite/admin-read-repository.ts';
 
 const database = new DatabaseSync(':memory:');
 const seededAt = '2026-09-18T12:00:00.000Z';
@@ -37,6 +41,51 @@ try {
     SELECT available, updated_at FROM professional_availability WHERE professional_id = 'hanan'
   `).get() as { available: number; updated_at: string };
   assert.deepEqual({ ...availability }, { available: 1, updated_at: seededAt });
+
+  database.prepare(`
+    INSERT INTO users (id, role, email, full_name, phone_number, password_hash, created_at)
+    VALUES ('client-moderation', 'client', 'moderation@example.com', 'Moderation Client', NULL, 'hash', ?)
+  `).run(seededAt);
+  database.prepare(`
+    INSERT INTO administrators (id, email, full_name, password_hash, created_at)
+    VALUES ('admin-moderation', 'admin@example.com', 'Moderation Admin', 'hash', ?)
+  `).run(seededAt);
+  const unitOfWork = new SqliteUnitOfWork(database);
+  const moderation = new SqliteTrustSafetyCommandRepository(
+    database,
+    new SqliteDomainEventOutbox(database, unitOfWork),
+    unitOfWork,
+  );
+  const created = moderation.createContentReport({
+    reportId: 'report-1',
+    reportedById: 'client-moderation',
+    targetType: 'professional',
+    targetId: 'hanan',
+    reason: 'safety_concern',
+    details: 'The messages felt unsafe.',
+    occurredAt: seededAt,
+  });
+  assert.equal(created.result, 'created');
+  assert.equal(moderation.createContentReport({
+    reportId: 'report-duplicate',
+    reportedById: 'client-moderation',
+    targetType: 'professional',
+    targetId: 'hanan',
+    reason: 'other',
+    details: '',
+    occurredAt: seededAt,
+  }).result, 'existing');
+  assert.equal(moderation.setProfessionalBlocked({
+    clientId: 'client-moderation', professionalId: 'hanan', blocked: true, occurredAt: seededAt,
+  }), true);
+  assert.deepEqual(moderation.listBlockedProfessionals('client-moderation'), ['hanan']);
+  const resolved = moderation.resolveContentReport({
+    auditId: 'audit-report-1', adminId: 'admin-moderation', reportId: 'report-1',
+    status: 'resolved', action: 'suspend_professional', resolution: 'Account suspended for review.', occurredAt: seededAt,
+  });
+  assert.equal(resolved?.status, 'resolved');
+  assert.equal((database.prepare("SELECT suspended FROM professionals WHERE id = 'hanan'").get() as { suspended: number }).suspended, 1);
+  assert.equal(new SqliteAdminReadRepository(database).listContentReports().length, 1);
 } finally {
   database.close();
 }

@@ -65,7 +65,7 @@ export class SqliteBookingReviewRepository implements BookingReviewStore {
       const ratings = this.database.prepare(`
         SELECT COUNT(*) AS count,
           AVG((technique_rating + professionalism_rating) / 2.0) AS average_rating
-        FROM booking_reviews WHERE professional_id = ?
+        FROM booking_reviews WHERE professional_id = ? AND visible = 1
       `).get(booking.professional_id) as unknown as { count: number; average_rating: number };
       const professional = this.database.prepare(`
         SELECT rating_baseline, review_count_baseline FROM professionals WHERE id = ?

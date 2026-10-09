@@ -9,6 +9,8 @@ import type {
   ApiBookingPaymentMethod,
   ApiBookingStatus,
   ApiClientPreferredLanguage,
+  ApiContentReportReason,
+  ApiContentReportTarget,
   ApiDevicePlatform,
   ApiErrorResponse,
   ApiNotificationPreferences,
@@ -1464,6 +1466,36 @@ async function route(request: IncomingMessage, response: ServerResponse) {
     return;
   }
 
+  if (method === 'GET' && url.pathname === '/v1/admin/content-reports') {
+    authenticatedAdmin(request);
+    sendJson(response, 200, { contentReports: await adminReads.listContentReports() });
+    return;
+  }
+
+  const adminContentReportMatch = url.pathname.match(/^\/v1\/admin\/content-reports\/([^/]+)\/resolve$/);
+  if (method === 'POST' && adminContentReportMatch) {
+    const { user } = authenticatedAdmin(request);
+    const body = await readJson(request);
+    const status = textField(body, 'status', { maxLength: 20 });
+    const action = textField(body, 'action', { maxLength: 30 });
+    const resolution = textField(body, 'resolution', { maxLength: 1000 });
+    if ((status !== 'resolved' && status !== 'dismissed') ||
+      (action !== 'none' && action !== 'hide_review' && action !== 'suspend_professional') ||
+      !resolution || resolution.length < 5) {
+      throw new HttpError(400, 'INVALID_RESOLUTION', 'Enter a valid content-report decision and resolution.');
+    }
+    const contentReport = await trustSafety.resolveContentReport(
+      user.id,
+      adminContentReportMatch[1],
+      status,
+      action,
+      resolution,
+    );
+    if (!contentReport) throw new HttpError(409, 'CONTENT_REPORT_NOT_OPEN', 'The content report is not open or the action does not match its target.');
+    sendJson(response, 200, { contentReport });
+    return;
+  }
+
   const adminSafetyIncidentMatch = url.pathname.match(/^\/v1\/admin\/safety-incidents\/([^/]+)\/resolve$/);
   if (method === 'POST' && adminSafetyIncidentMatch) {
     const { user } = authenticatedAdmin(request);
@@ -2023,6 +2055,55 @@ async function route(request: IncomingMessage, response: ServerResponse) {
     }
     response.statusCode = 204;
     response.end();
+    return;
+  }
+
+  if (method === 'GET' && url.pathname === '/v1/client/blocked-professionals') {
+    const { user } = authenticatedUser(request);
+    if (user.role !== 'client') throw new HttpError(403, 'FORBIDDEN', 'A client account is required.');
+    sendJson(response, 200, { professionalIds: await trustSafety.listBlockedProfessionals(user.id) });
+    return;
+  }
+
+  const blockedProfessionalMatch = url.pathname.match(/^\/v1\/client\/blocked-professionals\/([^/]+)$/);
+  if (blockedProfessionalMatch && (method === 'PUT' || method === 'DELETE')) {
+    const { user } = authenticatedUser(request);
+    if (user.role !== 'client') throw new HttpError(403, 'FORBIDDEN', 'A client account is required.');
+    const professionalId = decodeURIComponent(blockedProfessionalMatch[1]);
+    if (!isUuid(professionalId)) throw new HttpError(400, 'INVALID_PROFESSIONAL', 'Choose a valid professional.');
+    const updated = await trustSafety.setProfessionalBlocked(user.id, professionalId, method === 'PUT');
+    if (!updated) throw new HttpError(404, 'PROFESSIONAL_NOT_FOUND', 'The professional could not be found.');
+    response.statusCode = 204;
+    response.end();
+    return;
+  }
+
+  if (method === 'POST' && url.pathname === '/v1/content-reports') {
+    const { user } = authenticatedUser(request);
+    if (user.role !== 'client') throw new HttpError(403, 'FORBIDDEN', 'A client account is required.');
+    const body = await readJson(request);
+    const targetType = textField(body, 'targetType', { maxLength: 20 });
+    const targetId = textField(body, 'targetId', { maxLength: 80 });
+    const reason = textField(body, 'reason', { maxLength: 40 });
+    const details = textField(body, 'details', { maxLength: 1000 }) ?? '';
+    const validTarget = targetType === 'professional' || targetType === 'review';
+    const validReason = reason === 'harassment' || reason === 'inappropriate_content' ||
+      reason === 'fraud_or_spam' || reason === 'safety_concern' || reason === 'other';
+    if (!validTarget || !targetId || !isUuid(targetId) || !validReason) {
+      throw new HttpError(400, 'INVALID_CONTENT_REPORT', 'Choose what happened and try again.');
+    }
+    const result = await trustSafety.createContentReport(
+      user.id,
+      targetType as ApiContentReportTarget,
+      targetId,
+      reason as ApiContentReportReason,
+      details,
+    );
+    if (result.result === 'not_found') throw new HttpError(404, 'REPORT_TARGET_NOT_FOUND', 'This content is no longer available.');
+    sendJson(response, result.result === 'created' ? 201 : 200, {
+      contentReport: result.report,
+      duplicate: result.result === 'existing',
+    });
     return;
   }
 

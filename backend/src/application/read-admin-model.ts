@@ -69,6 +69,10 @@ export class ReadAdminModel {
     return this.store.listSafetyIncidents();
   }
 
+  listContentReports() {
+    return this.store.listContentReports();
+  }
+
   listBroadcasts() {
     return this.store.listBroadcasts();
   }

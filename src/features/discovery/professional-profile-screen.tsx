@@ -4,7 +4,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import type { ReactNode } from 'react';
 import { useEffect, useState, useRef } from 'react';
-import { Alert, Pressable, ScrollView, Share, StyleSheet, Text, View, Platform } from 'react-native';
+import { Alert, KeyboardAvoidingView, Modal, Pressable, ScrollView, Share, StyleSheet, Text, TextInput, View, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { KonjoIcon } from '@/components/ui/konjo-icon';
@@ -15,8 +15,10 @@ import { apiBaseUrl } from '@/services/api-client';
 import { useClientData } from '@/features/client/client-data-context';
 import { AvailabilityPill } from '@/features/home/home-discovery-sections';
 import { useClientCopy } from '@/localization/use-client-copy';
-import { openSupportEmail } from '@/features/support/support-links';
+import { useAuthSession } from '@/features/auth/session-context';
+import { contentModerationService } from '@/features/safety/content-moderation-service';
 import { fontFamilies, layout, palette, radii, spacing } from '@/theme/tokens';
+import type { ApiContentReportReason, ApiContentReportTarget } from '../../../shared/api-contracts';
 
 function ActionButton({
   label,
@@ -142,6 +144,12 @@ export function ProfessionalProfileScreen() {
   const [selectedServiceIndex, setSelectedServiceIndex] = useState(0);
   const { favouriteIds, toggleFavourite } = useClientData();
   const { language, t } = useClientCopy();
+  const { session } = useAuthSession();
+  const [reportTarget, setReportTarget] = useState<{ type: ApiContentReportTarget; id: string } | null>(null);
+  const [reportReason, setReportReason] = useState<ApiContentReportReason | null>(null);
+  const [reportDetails, setReportDetails] = useState('');
+  const [reportBusy, setReportBusy] = useState(false);
+  const [reportError, setReportError] = useState('');
   const favorited = professional ? favouriteIds.has(professional.id) : false;
   const onVisit = professional?.onVisit === true;
   const acceptingBookings = professional?.acceptingBookings !== false && !onVisit;
@@ -187,13 +195,36 @@ export function ProfessionalProfileScreen() {
     }
   };
 
-  const reportProfessional = () => {
-    void openSupportEmail(
-      t('reportProfessionalSubject').replace('{name}', professional.name),
-      t('reportProfessionalBody')
-        .replace('{name}', professional.name)
-        .replace('{id}', professional.id),
-    );
+  const openReport = (type: ApiContentReportTarget, id: string) => {
+    setReportReason(null);
+    setReportDetails('');
+    setReportError('');
+    setReportTarget({ type, id });
+  };
+
+  const closeReport = () => {
+    if (!reportBusy) setReportTarget(null);
+  };
+
+  const submitReport = async () => {
+    if (!reportTarget || !reportReason || !session?.accessToken || reportBusy) return;
+    setReportBusy(true);
+    setReportError('');
+    try {
+      await contentModerationService.report({
+        targetType: reportTarget.type,
+        targetId: reportTarget.id,
+        reason: reportReason,
+        details: reportDetails.trim(),
+      }, session.accessToken);
+      setReportTarget(null);
+      Alert.alert(t('reportSuccessTitle'), t('reportSuccessBody'));
+    } catch (error) {
+      if (__DEV__) console.error('Unable to submit content report.', error);
+      setReportError(t('reportFailed'));
+    } finally {
+      setReportBusy(false);
+    }
   };
 
   const confirmBlockProfessional = () => {
@@ -206,7 +237,12 @@ export function ProfessionalProfileScreen() {
           text: t('blockProfessionalConfirm'),
           style: 'destructive',
           onPress: () => {
-            void blockProfessional(professional.id).then(() => router.replace('/browse' as Href));
+            void blockProfessional(professional.id)
+              .then(() => router.replace('/browse' as Href))
+              .catch((error) => {
+                if (__DEV__) console.error('Unable to block professional.', error);
+                Alert.alert(t('blockProfessional'), t('reportFailed'));
+              });
           },
         },
       ],
@@ -296,7 +332,7 @@ export function ProfessionalProfileScreen() {
             <Text style={styles.bio}>{professional.bio}</Text>
 
             <View style={styles.safetyActions}>
-              <Pressable accessibilityRole="button" onPress={reportProfessional} style={styles.safetyAction}>
+              <Pressable accessibilityRole="button" onPress={() => openReport('professional', professional.id)} style={styles.safetyAction}>
                 <KonjoIcon color={palette.olive} name={{ ios: 'exclamationmark.bubble', android: 'report', web: 'report' }} size={17} />
                 <Text style={styles.safetyActionLabel}>{t('reportProfessional')}</Text>
               </Pressable>
@@ -426,15 +462,7 @@ export function ProfessionalProfileScreen() {
                       <Pressable
                         accessibilityRole="button"
                         hitSlop={8}
-                        onPress={() => {
-                          void openSupportEmail(
-                            t('reportReviewSubject'),
-                            t('reportReviewBody')
-                              .replace('{name}', professional.name)
-                              .replace('{reviewer}', review.name)
-                              .replace('{review}', review.text),
-                          );
-                        }}>
+                        onPress={() => openReport('review', review.id)}>
                         <Text style={styles.reportReview}>{t('reportReview')}</Text>
                       </Pressable>
                     </View>
@@ -466,6 +494,61 @@ export function ProfessionalProfileScreen() {
           <Text style={styles.bookingArrow}>→</Text>
         </Pressable>
       </SafeAreaView>
+
+      <Modal animationType="fade" onRequestClose={closeReport} transparent visible={reportTarget !== null}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.reportBackdrop}>
+          <Pressable accessibilityRole="button" onPress={closeReport} style={StyleSheet.absoluteFill} />
+          <View accessibilityViewIsModal style={styles.reportSheet}>
+            <Text accessibilityRole="header" style={styles.reportTitle}>{t('reportTitle')}</Text>
+            <Text style={styles.reportPrompt}>{t('reportPrompt')}</Text>
+            <View style={styles.reportReasons}>
+              {([
+                ['harassment', t('reportHarassment')],
+                ['inappropriate_content', t('reportInappropriate')],
+                ['fraud_or_spam', t('reportFraud')],
+                ['safety_concern', t('reportSafety')],
+                ['other', t('reportOther')],
+              ] as const).map(([reason, label]) => (
+                <Pressable
+                  accessibilityRole="radio"
+                  accessibilityState={{ checked: reportReason === reason }}
+                  key={reason}
+                  onPress={() => setReportReason(reason)}
+                  style={[styles.reportReason, reportReason === reason && styles.reportReasonSelected]}>
+                  <Text style={[styles.reportReasonLabel, reportReason === reason && styles.reportReasonLabelSelected]}>{label}</Text>
+                </Pressable>
+              ))}
+            </View>
+            <Text style={styles.reportDetailsLabel}>{t('reportDetails')}</Text>
+            <TextInput
+              accessibilityLabel={t('reportDetails')}
+              editable={!reportBusy}
+              maxLength={1000}
+              multiline
+              onChangeText={setReportDetails}
+              placeholder={t('reportDetailsPlaceholder')}
+              placeholderTextColor={palette.textMuted}
+              style={styles.reportInput}
+              textAlignVertical="top"
+              value={reportDetails}
+            />
+            {reportError ? <Text accessibilityRole="alert" style={styles.reportError}>{reportError}</Text> : null}
+            <View style={styles.reportButtons}>
+              <Pressable accessibilityRole="button" disabled={reportBusy} onPress={closeReport} style={styles.reportCancelButton}>
+                <Text style={styles.reportCancelLabel}>{t('blockProfessionalCancel')}</Text>
+              </Pressable>
+              <Pressable
+                accessibilityRole="button"
+                accessibilityState={{ disabled: !reportReason || reportBusy }}
+                disabled={!reportReason || reportBusy}
+                onPress={() => { void submitReport(); }}
+                style={[styles.reportSubmitButton, (!reportReason || reportBusy) && styles.reportSubmitDisabled]}>
+                <Text style={styles.reportSubmitLabel}>{reportBusy ? '…' : t('reportSubmit')}</Text>
+              </Pressable>
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+      </Modal>
     </View>
   );
 }
@@ -910,6 +993,114 @@ const styles = StyleSheet.create({
     marginTop: spacing.lg,
   },
   notFoundButtonLabel: {
+    color: palette.white,
+    fontFamily: fontFamilies.body.bold,
+    fontSize: 14,
+  },
+  reportBackdrop: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(20, 27, 20, 0.52)',
+  },
+  reportSheet: {
+    width: '100%',
+    maxWidth: layout.contentMaxWidth,
+    alignSelf: 'center',
+    borderTopLeftRadius: radii.lg,
+    borderTopRightRadius: radii.lg,
+    backgroundColor: palette.surface,
+    paddingHorizontal: layout.horizontalPadding,
+    paddingTop: spacing.lg,
+    paddingBottom: spacing.xl,
+  },
+  reportTitle: {
+    color: palette.text,
+    fontFamily: fontFamilies.display.medium,
+    fontSize: 26,
+  },
+  reportPrompt: {
+    color: palette.textSecondary,
+    fontFamily: fontFamilies.body.regular,
+    fontSize: 14,
+    marginTop: spacing.xs,
+  },
+  reportReasons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.xs,
+    marginTop: spacing.md,
+  },
+  reportReason: {
+    minHeight: 40,
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: palette.border,
+    borderRadius: radii.pill,
+    paddingHorizontal: spacing.md,
+  },
+  reportReasonSelected: {
+    borderColor: palette.olive,
+    backgroundColor: palette.sageSoft,
+  },
+  reportReasonLabel: {
+    color: palette.textSecondary,
+    fontFamily: fontFamilies.body.semibold,
+    fontSize: 12,
+  },
+  reportReasonLabelSelected: { color: palette.oliveDark },
+  reportDetailsLabel: {
+    color: palette.text,
+    fontFamily: fontFamilies.body.semibold,
+    fontSize: 13,
+    marginTop: spacing.md,
+  },
+  reportInput: {
+    minHeight: 92,
+    borderWidth: 1,
+    borderColor: palette.border,
+    borderRadius: radii.sm,
+    color: palette.text,
+    fontFamily: fontFamilies.body.regular,
+    fontSize: 14,
+    lineHeight: 20,
+    marginTop: spacing.xs,
+    padding: spacing.sm,
+  },
+  reportError: {
+    color: palette.error,
+    fontFamily: fontFamilies.body.medium,
+    fontSize: 12,
+    marginTop: spacing.sm,
+  },
+  reportButtons: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+    marginTop: spacing.md,
+  },
+  reportCancelButton: {
+    minHeight: 48,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: palette.border,
+    borderRadius: radii.sm,
+  },
+  reportCancelLabel: {
+    color: palette.text,
+    fontFamily: fontFamilies.body.semibold,
+    fontSize: 14,
+  },
+  reportSubmitButton: {
+    minHeight: 48,
+    flex: 1.4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: radii.sm,
+    backgroundColor: palette.olive,
+  },
+  reportSubmitDisabled: { opacity: 0.45 },
+  reportSubmitLabel: {
     color: palette.white,
     fontFamily: fontFamilies.body.bold,
     fontSize: 14,

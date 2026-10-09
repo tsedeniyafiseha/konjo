@@ -8,6 +8,7 @@ import type {
   ServiceCategory,
   ProfessionalReview,
 } from '@/application/discovery/discovery-contracts';
+import { useAuthSession } from '@/features/auth/session-context';
 
 interface DiscoveryContextValue {
   professionals: readonly Professional[];
@@ -28,11 +29,16 @@ interface DiscoveryProviderProps extends PropsWithChildren {
 const DiscoveryContext = createContext<DiscoveryContextValue | null>(null);
 
 export function DiscoveryProvider({ children, controller }: DiscoveryProviderProps) {
+  const { session } = useAuthSession();
   const snapshot = useSyncExternalStore(
     controller.subscribe,
     controller.getSnapshot,
     controller.getSnapshot,
   );
+
+  useEffect(() => {
+    void controller.setSession(session);
+  }, [controller, session]);
 
   useEffect(() => {
     // Ratings and availability change while the app is in the background.
@@ -41,7 +47,6 @@ export function DiscoveryProvider({ children, controller }: DiscoveryProviderPro
   }, [controller]);
 
   useEffect(() => {
-    void controller.refresh();
     // Approvals and availability switches happen while the app is open, so the
     // catalog also refreshes on its own every couple of minutes.
     const interval = setInterval(() => { void controller.refresh(); }, 120_000);

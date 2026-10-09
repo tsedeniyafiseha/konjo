@@ -93,7 +93,7 @@ export class SqliteMarketplaceReadRepository implements MarketplaceReadStore {
       const ratings = this.database.prepare(`
         SELECT COUNT(*) AS count,
           COALESCE(AVG((technique_rating + professionalism_rating) / 2.0), 0) AS rating
-        FROM booking_reviews WHERE professional_id = ?
+        FROM booking_reviews WHERE professional_id = ? AND visible = 1
       `).get(row.id) as unknown as { count: number; rating: number };
       const reviewCount = row.review_count_baseline + ratings.count;
       const rating = reviewCount === 0
