@@ -1,6 +1,6 @@
 # Konjo TestFlight release-candidate plan
 
-Updated: 7 October 2026
+Updated: 9 October 2026
 
 ## Current internal build
 
@@ -11,10 +11,12 @@ Updated: 7 October 2026
 - TestFlight group: `Team (Expo)`
 - Internal testers: `konjoserve@gmail.com`, `tsedeniyafisehaw@gmail.com`
 - Environment: preview only
-- Professional registration code: `247124`
+- Professional registration code: `247124` (historical build 1 only)
 
-Build 1 uses the preview Render API, mock professional OTP, and sandbox
-payment. It must not be submitted to App Review.
+Build 1 uses the old preview Render API, mock professional OTP, and sandbox
+payment. It must not be submitted to App Review. On 9 October 2026 the EAS
+preview environment was changed to the Supabase Edge API and real SMS; those
+values apply only to a new build. Chapa is still in test mode.
 
 ## Install
 
@@ -71,7 +73,7 @@ with a short description of what was expected.
 ### 3. Professional registration
 
 - [ ] Enter a valid Ethiopian mobile number not used by another Konjo role.
-- [ ] Use preview verification code `247124` within five minutes.
+- [ ] Receive and enter the SMS Ethiopia code within its validity window.
 - [ ] All name, contact, password, profile, payout and service fields remain
       visible above the keyboard and the form scrolls to the focused field.
 - [ ] Camera and photo-library permissions have clear context.
@@ -111,7 +113,8 @@ with a short description of what was expected.
 - [ ] Reschedule and cancellation paths update both users.
 - [ ] Report, block and SOS flows show the correct confirmation and admin data.
 - [ ] Client and professional account deletion complete from inside the app.
-- [ ] Slow network, airplane mode and Render cold start show recoverable errors.
+- [ ] Slow network and airplane mode show recoverable errors; Supabase Edge
+      cold invocation does not break authentication or booking.
 - [ ] No secrets, raw provider messages, stack traces, or developer controls are
       visible in the release build.
 

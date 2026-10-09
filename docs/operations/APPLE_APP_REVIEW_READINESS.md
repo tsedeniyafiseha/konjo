@@ -1,6 +1,6 @@
 # Apple App Review readiness
 
-Audit date: 7 October 2026
+Audit date: 9 October 2026
 
 This document records the App Store decision for Konjo and the evidence that
 must exist before submission. It cannot guarantee approval: Apple makes the
@@ -53,10 +53,12 @@ must be reviewed before implementation.
 
 Repository quality evidence was restored on 9 October 2026. GitHub Quality
 runs 6 and 7 completed successfully; the latest run used Node 24-compatible
-GitHub actions on a pinned Ubuntu 24.04 runner with no annotations. The current
-preview Render service was manually refreshed to commit `9c672d8` and its
-`/ready` health check returned HTTP 200. This is preview evidence only and does
-not satisfy the production-hosting gate below.
+GitHub actions on a pinned Ubuntu 24.04 runner with no annotations. The
+production-compatible API now runs on Supabase Edge Functions. Health/readiness,
+public catalogue, authenticated user/admin routes, the Vault-backed Cron call
+and private website-submission storage were verified live. EAS preview and
+production point to that endpoint; a new native build is still required because
+existing TestFlight builds retain their embedded environment.
 
 ## Submission blockers
 
@@ -86,21 +88,18 @@ Do not submit to App Review until every P0 item below has dated evidence.
    version `1.0.0`, build `1`, EAS build
    `e5be1e18-3e2b-4efd-9c33-3d23f5d8b195`. App Store Connect processed it to
    **Ready to Submit** and assigned it to the internal `Team (Expo)` group.
-   This build deliberately uses the EAS `preview` environment and preview
-   Render backend; it is for internal testing, not App Review.
+   This existing build deliberately uses the former preview Render backend and
+   mock OTP; it is for internal testing, not App Review. The later EAS
+   environment cutover does not modify an already-built binary.
    `konjoserve@gmail.com` and `tsedeniyafisehaw@gmail.com` were invited as
    internal testers on 7 October 2026.
-3. **Use a real production backend.** `render.yaml` defines
-   `konjo-api-preview` on the free plan with
-   `KONJO_PAYMENT_SANDBOX_CHECKOUT=true`,
-   `KONJO_ENABLE_PROFESSIONAL_MOCK_OTP=true`, and database/upload paths under
-   `/tmp`. It is suitable for previews only. It is not an App Review backend
-   and must not be presented as production.
-4. **Deploy the production API over HTTPS** with provider auth, durable
-   Supabase/Postgres and Storage, mock OTP off, sandbox checkout off, a live
-   worker/scheduler, production secrets, and an availability plan that keeps
-   the review backend reachable. Apple requires backend services to be live
-   during review.
+3. **Production backend — completed 9 October 2026.** Supabase Edge Functions,
+   Postgres, private Storage and Vault-backed Cron now own the production API.
+   Mock OTP and sandbox checkout are off. Keep the Supabase project reachable
+   for the full review window and monitor Edge/Cron failures.
+4. **Build the Supabase-connected release candidate.** Existing TestFlight
+   build 1 still contains the former preview environment. Create and fully test
+   a new build after all remaining payment/provider gates are closed.
 5. **Certify Chapa live payments.** Activate the merchant and run controlled
    Telebirr, CBE Birr and card scenarios: success, failure, abandonment,
    duplicate webhook, retry, deposit, final balance and cancellation.
@@ -108,9 +107,10 @@ Do not submit to App Review until every P0 item below has dated evidence.
    and payout accounting, but the operations runbook states that Chapa refund
    execution and payout transport remain outstanding. Do not display or tell a
    customer that money was refunded until the provider confirms it.
-7. **Replace mock professional OTP.** Configure the live SMS Ethiopia key and
-   Supabase hook, then prove signup, resend, invalid-code, expired-code and
-   recovery cases on a physical iPhone.
+7. **Professional OTP configuration is complete; evidence remains.** The SMS
+   Ethiopia key and signed Supabase hook are active and mock OTP is off in EAS.
+   Prove signup, resend, invalid-code, expired-code and recovery cases on a
+   physical iPhone before submission.
 8. **Complete client email auth evidence.** On a release build, prove signup,
    email confirmation, login, nonexistent-user errors, password-reset deep
    link, expired link and reused link.

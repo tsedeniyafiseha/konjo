@@ -74,59 +74,16 @@ import { EmptyAccountAssetCleaner } from '../adapters/empty-account-asset-cleane
 import { SupabaseAccountAssetCleaner } from '../adapters/supabase-account-asset-cleaner.ts';
 import { SupabaseReadinessProbe } from '../adapters/supabase-readiness-probe.ts';
 import { SupabaseProfessionalMockAuth } from '../adapters/supabase-professional-mock-auth.ts';
+import { SupabaseWebsiteSubmissionRepository } from '../adapters/supabase-website-submission-repository.ts';
 import { SearchAddresses } from '../application/search-addresses.ts';
 import type { ProfessionalMockAuthentication } from '../application/ports.ts';
 import { backendConfig, type BackendConfig } from '../config.ts';
 import { KonjoDatabase } from '../database.ts';
 import { chapaKeyMode } from '../adapters/chapa-key-mode.ts';
+import type { BackendDependencies } from './backend-dependencies.ts';
+import { storeApplicationFiles } from '../uploads.ts';
 
-export interface BackendDependencies {
-  config: BackendConfig;
-  database: KonjoDatabase;
-  logger: ReturnType<typeof createStructuredLogger>;
-  readiness: CheckReadiness;
-  passwordResets: PasswordResetManager;
-  verifyIdentity: VerifyIdentity;
-  backgroundJobs: BackgroundJobProcessor;
-  requestOtp: RequestOtpHandler;
-  verifyOtp: VerifyOtpHandler;
-  createBooking: CreateBookingHandler;
-  initiateBookingPayment: InitiateBookingPaymentHandler;
-  cancelBooking: CancelBookingHandler;
-  archiveBooking: ArchiveBookingHandler;
-  domainEventDeadLetters: DomainEventDeadLetterManager;
-  rescheduleBooking: RescheduleBookingHandler;
-  transitionProfessionalBooking: TransitionProfessionalBookingHandler;
-  bookingTracking: BookingTrackingHandler;
-  submitBookingReview: SubmitBookingReviewHandler;
-  processPaymentWebhook: ProcessPaymentWebhookHandler;
-  verifyBookingPayment: VerifyBookingPaymentHandler;
-  /** Which Chapa environment the configured key belongs to; null without a key. */
-  paymentKeyMode: 'test' | 'live' | null;
-  professionalPayouts: ManageProfessionalPayouts;
-  trustSafety: ManageTrustSafety;
-  adminCatalog: ManageAdminCatalog;
-  adminPayouts: ManageAdminPayouts;
-  adminProfessionals: ManageAdminProfessionals;
-  adminReads: ReadAdminModel;
-  sessions: SessionManager;
-  accounts: AccountAuthenticator;
-  accessTokenAuthenticator: AccessTokenAuthenticator;
-  clientAccounts: ManageClientAccount;
-  clientAddresses: ManageClientAddresses;
-  clientPreferences: ManageClientPreferences;
-  clientReads: ReadClientModel;
-  marketplaceReads: ReadMarketplace;
-  professionalSelfService: ManageProfessionalSelfService;
-  professionalReads: ReadProfessionalModel;
-  professionalPortfolio: ReadProfessionalPortfolio;
-  submitProfessionalApplication: SubmitProfessionalApplicationHandler;
-  adminExportAudit: RecordAdminExportAudit;
-  /** Address search for saved addresses; null until a Google Geocoding key is configured. */
-  addressSearch: SearchAddresses | null;
-  /** Development-only Supabase account bridge used after the fixed preview OTP. */
-  professionalMockAuth: ProfessionalMockAuthentication | null;
-}
+export type { BackendDependencies } from './backend-dependencies.ts';
 
 export function createBackendDependencies(config: BackendConfig = backendConfig): BackendDependencies {
   if (config.production && config.professionalMockOtpEnabled) {
@@ -222,6 +179,10 @@ export function createBackendDependencies(config: BackendConfig = backendConfig)
   const readinessProbe = config.authMode === 'provider'
     ? new SupabaseReadinessProbe(config.supabaseUrl!, config.supabaseSecretKey!)
     : database.readinessProbe;
+  const supabaseWebsiteSubmissions = config.authMode === 'provider'
+    ? new SupabaseWebsiteSubmissionRepository(config.supabaseUrl!, config.supabaseSecretKey!)
+    : null;
+  const websiteSubmissions = supabaseWebsiteSubmissions ?? database.websiteSubmissionStore;
   const sessions = new SessionManager(
     database.sessionStore,
     sessionTokenSecurity,
@@ -273,7 +234,13 @@ export function createBackendDependencies(config: BackendConfig = backendConfig)
   });
   return {
     config,
-    database,
+    database: {
+      websiteSubmissionStore: websiteSubmissions,
+      close: () => database.close(),
+    },
+    websiteApplicationFiles: supabaseWebsiteSubmissions ?? {
+      store: (applicationId, files) => storeApplicationFiles(config.applicationUploadPath, applicationId, files),
+    },
     logger,
     readiness: new CheckReadiness(readinessProbe),
     accessTokenAuthenticator,

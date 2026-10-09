@@ -12,30 +12,17 @@ The physical-iPhone test sequence is in
 and the prepared store copy is in
 [`APP_STORE_LISTING_DRAFT.md`](./APP_STORE_LISTING_DRAFT.md).
 
-Verified 7 October 2026 after the first TestFlight upload: the preview API
-`/health` and `/ready` endpoints returned HTTP 200, the connected Supabase
-schema and service-role access passed the read-only preflight, the public
-privacy, terms and account-deletion URLs returned HTTP 200, and the preview
-professional OTP endpoint returned the documented six-digit code `247124`.
+The first TestFlight build from 7 October 2026 used the former Render/mock-OTP
+preview. On 9 October 2026 the EAS environments were cut over to Supabase Edge
+and real SMS; a new binary is required to use those values. The public privacy,
+terms and account-deletion URLs return HTTP 200.
 
-1. **Hosting for the API** with a public HTTPS domain. Set
-   `KONJO_PUBLIC_API_URL`, `KONJO_PUBLIC_WEB_URL`, `EXPO_PUBLIC_API_BASE_URL`
-   and `EXPO_PUBLIC_WEB_URL` to it, `NODE_ENV=production`,
-   `KONJO_AUTH_MODE=provider`, `KONJO_PAYMENT_SANDBOX_CHECKOUT=false`, a
-   private `KONJO_PAYMENT_WEBHOOK_SECRET` and `KONJO_WORKER_TOKEN`, and a
-   scheduler calling `POST /v1/internal/jobs/run`. The API refuses to start in
-   production with test keys, HTTP URLs or the sandbox flag.
-   Verified 7 October 2026: Render workspace `My Workspace` is on the Hobby
-   plan, `konjo-api-preview` uses a Free instance, current and projected monthly
-   charges are `$0.00`, and the build-pipeline monthly spend limit is `$0`.
-   Render warns that this Free instance can spin down after inactivity and add
-   50 seconds or more to the first request. No production Render service has
-   been created yet.
-   The preview deployment was refreshed from commit `2d84d68` on 7 October
-   2026 and passed Render's `/ready` health check. The Blueprint no longer runs
-   `npm ci`: the API uses Node built-ins only, so installing the Expo/Metro
-   mobile build toolchain in the server image added audit noise and attack
-   surface without providing a runtime dependency.
+1. **API hosting — completed on Supabase 9 October 2026.** The shared HTTP
+   contract runs in the Supabase `api` Edge Function. EAS preview and production
+   point to its HTTPS URL, mock OTP is off, and Supabase Cron invokes the
+   protected worker every minute using Vault. Health/readiness, public catalogue,
+   authenticated user/admin reads, Cron HTTP 200 and private website-submission
+   storage were verified live. Render is no longer in the mobile API path.
 2. **Chapa live**: switch to `CHAPA_LIVE_` keys once the merchant account is
    approved, register `https://<api>/v1/payments/webhooks/{telebirr|cbe|card}`
    and the webhook secret in the Chapa dashboard, enable Telebirr, CBE Birr and
@@ -63,11 +50,13 @@ professional OTP endpoint returned the documented six-digit code `247124`.
    `https://konjoet.com/**` was added to the redirect allow-list. Email
    confirmation remains enabled. Leaked-password protection is still off
    because Supabase exposes that control only on Pro; decide whether to upgrade
-   before launch and record the decision. All migrations through
-   `202610080001_content_moderation_and_blocking` are applied to the live
-   project.
-5. **SMS**: production `SMSETHIOPIA_API_KEY` and the Supabase Auth SMS hook
-   secret on the hosted API.
+   before launch and record the decision. The live project includes the content
+   moderation migration plus `202610090001_supabase_edge_worker_cron` and
+   `202610090002_website_submissions`.
+5. **SMS configuration — completed; delivery evidence remains.** The SMS
+   Ethiopia API key and signed Supabase Auth Send SMS Hook are active. Preview
+   mock OTP is off. Run signup, resend, invalid/expired code and recovery tests
+   on physical devices; each delivery can consume SMS Ethiopia balance.
 6. **Play Store**: signing key, listing, privacy policy and data-safety form;
    the package is `com.tsedeniya.konjoclient`, version `1.0.0`.
 7. **Web app** (optional, for shareable profile links): deploy the
@@ -100,7 +89,7 @@ professional OTP endpoint returned the documented six-digit code `247124`.
     administrators can dismiss a report, hide a reported review, or suspend a
     reported professional with an audit record. Migration
     `202610080001_content_moderation_and_blocking.sql` is recorded on the hosted
-    Supabase project, and Render is live on API commit `bd19123`; an
+    Supabase project and the Supabase Edge API; an
     unauthenticated route probe returned the expected HTTP 401.
     Remaining evidence: prove report, block, cross-device restore and admin
     resolution with two accounts in the release build.
@@ -269,14 +258,15 @@ What the Konjo team has to do, in order:
    OTP.
    Completed 7 October 2026 for the bundle/project identifiers, Firebase file,
    Supabase client URL/publishable key, native confirmation/reset redirects,
-   CARTO key, website URL and support email. `EXPO_PUBLIC_API_BASE_URL` remains
-   intentionally unset until the real production API is deployed. Mock OTP is
-   explicitly false in the production EAS environment.
+   CARTO key, website URL and support email. Completed 9 October 2026:
+   `EXPO_PUBLIC_API_BASE_URL` points to the Supabase Edge API in preview and
+   production, and mock OTP is false in both environments.
 5. **Branding**: completed on 7 October 2026. The iOS icon, Android adaptive
    foreground/background/monochrome icons, and web favicon use Konjo branding.
 6. **Build and TestFlight**: the `testflight` profile makes an App Store build
-   using the EAS `preview` environment, while `production` remains reserved for
-   the real production backend. Run
+   using the EAS `preview` environment. Preview and production now use the same
+   Supabase API, but do not submit a build until Chapa is live and the complete
+   provider flow is verified. Run
    `eas build --platform ios --profile testflight --auto-submit` for the internal
    testing build. Install via TestFlight on a real iPhone and run one full booking: client books,
    professional accepts, deposit via Chapa checkout, travel with background

@@ -6,13 +6,16 @@ project_id = "konjo-client"
 enable_signup = true
 enable_confirmations = true
 
-# Hosted Supabase Auth calls this Edge Function whenever it needs to deliver a
-# phone OTP. The signing secret is supplied only by the deployment shell and is
-# never committed to source control.
-[auth.hook.send_sms]
-enabled = true
-uri = "https://uikwhmkkfidckcejllrk.supabase.co/functions/v1/send-sms"
-secrets = "env(SEND_SMS_HOOK_SECRET)"
+# The hosted Send SMS Hook is enabled in the Supabase dashboard and points to
+# /functions/v1/send-sms. Its signing secret intentionally stays in the hosted
+# Auth configuration and Edge Function secret store rather than in this file,
+# so unrelated function deployments never need the secret locally.
 
 [functions.send-sms]
+verify_jwt = false
+
+# This function owns authentication per route because the API intentionally
+# contains public catalogue/readiness routes and signed provider webhooks in
+# addition to endpoints protected by a Supabase user access token.
+[functions.api]
 verify_jwt = false

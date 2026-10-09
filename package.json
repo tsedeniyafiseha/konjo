@@ -106,6 +106,7 @@
     "backend:supabase-trust-safety-contracts": "node backend/scripts/supabase-trust-safety-adapter-contract-test.ts",
     "backend:supabase-admin-read-contracts": "node backend/scripts/supabase-admin-read-adapter-contract-test.ts",
     "backend:supabase-admin-operations-contracts": "node backend/scripts/supabase-admin-operations-adapter-contract-test.ts",
+    "backend:supabase-website-submission-contracts": "node backend/scripts/supabase-website-submission-adapter-contract-test.ts",
     "backend:admin-export-audit-contracts": "node backend/scripts/record-admin-export-audit-contract-test.ts",
     "backend:client-read-contracts": "node backend/scripts/read-client-model-contract-test.ts",
     "backend:professional-read-contracts": "node backend/scripts/read-professional-model-contract-test.ts",

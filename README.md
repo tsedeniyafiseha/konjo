@@ -1,6 +1,6 @@
 # Konjo
 
-Konjo is an Expo SDK 57 marketplace for booking verified at-home beauty and wellness professionals. This workspace contains the client, professional, and administrator surfaces plus the Node API, SQLite development adapters, and Supabase/Postgres production adapters.
+Konjo is an Expo SDK 57 marketplace for booking verified at-home beauty and wellness professionals. This workspace contains the client, professional, and administrator surfaces, a local Node/SQLite development API, and the production Supabase Edge Functions/Postgres/Storage backend.
 
 ## Local development
 
@@ -21,7 +21,7 @@ Konjo is an Expo SDK 57 marketplace for booking verified at-home beauty and well
 
 Expo can open the project in a development build, Android emulator, iOS simulator, or web browser. Provider mode requires the server-only Supabase secret described in [SUPABASE_SETUP.md](./SUPABASE_SETUP.md); never place that secret in an `EXPO_PUBLIC_` variable.
 
-The API also serves the public Konjo website at `http://127.0.0.1:4000`. Professional applications are stored under the private backend data directory and can optionally be delivered to `HR@Konjo.com` through the server-only Resend settings in `.env.example`. General and partnership messages route to the configured Info and founder inboxes.
+The local API also serves the public Konjo website at `http://127.0.0.1:4000`. In provider mode, website contact messages and professional applications are stored in Supabase Postgres and attachments are stored in the private `website-professional-applications` bucket. Optional email delivery still uses the server-only Resend settings in `.env.example`.
 
 ## Quality gates
 
@@ -50,3 +50,4 @@ The contract runner discovers every package script ending in `-contracts`, so ne
 - [Account deletion runbook](./docs/operations/ACCOUNT_DELETION.md)
 - [Incident response runbook](./docs/operations/INCIDENT_RESPONSE.md)
 - [Production launch checklist](./docs/operations/PRODUCTION_LAUNCH_CHECKLIST.md)
+- [Supabase production backend](./docs/operations/SUPABASE_PRODUCTION_BACKEND.md)

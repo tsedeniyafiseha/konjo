@@ -32,7 +32,7 @@ import type { ProfessionalApplicationInput } from './application/contracts.ts';
 import { IdentityVerificationError, OtpDeliveryError, PaymentProviderError } from './application/ports.ts';
 import { OtpRequestRateLimitedError } from './application/request-otp.ts';
 import { AccessTokenAuthenticationUnavailableError } from './application/authenticate-access-token.ts';
-import { createBackendDependencies } from './bootstrap/composition-root.ts';
+import type { BackendDependencies } from './bootstrap/backend-dependencies.ts';
 import { sendEmail } from './email.ts';
 import { parseMultipart } from './multipart.ts';
 import {
@@ -41,7 +41,6 @@ import {
   normalizeEmail,
   verifySecret,
 } from './security.ts';
-import { storeApplicationFiles } from './uploads.ts';
 
 type JsonRecord = Record<string, unknown>;
 
@@ -60,6 +59,12 @@ class HttpError extends Error {
     this.code = code;
   }
 }
+
+const backendDependencyKey = Symbol.for('konjo.backend.dependencies');
+const injectedDependencies = (globalThis as unknown as { [backendDependencyKey]: BackendDependencies })[backendDependencyKey];
+const nodeCompositionPath = './bootstrap/' + 'composition-root.ts';
+const dependencies = injectedDependencies ??
+  (await import(nodeCompositionPath) as { createBackendDependencies(): BackendDependencies }).createBackendDependencies();
 
 const {
   accessTokenAuthenticator,
@@ -104,7 +109,8 @@ const {
   bookingTracking,
   verifyIdentity,
   verifyOtp,
-} = createBackendDependencies();
+  websiteApplicationFiles,
+} = dependencies;
 const requestsByAddress = new Map<string, { count: number; resetsAt: number }>();
 const publicSubmissionsByAddress = new Map<string, { count: number; resetsAt: number }>();
 const professionalMockOtpChallenges = new Map<string, { phoneNumber: string; expiresAt: number }>();
@@ -663,7 +669,7 @@ async function route(request: IncomingMessage, response: ServerResponse) {
     const recipient = topic === 'careers' ? config.careersEmail : topic === 'partnerships' ? config.founderEmail : config.contactEmail;
     const messageId = randomUUID();
     const submittedAt = new Date().toISOString();
-    database.websiteSubmissionStore.createContactMessage({
+    await database.websiteSubmissionStore.createContactMessage({
       id: messageId,
       fullName,
       email,
@@ -731,12 +737,12 @@ async function route(request: IncomingMessage, response: ServerResponse) {
     const applicationId = randomUUID();
     let storedFiles;
     try {
-      storedFiles = await storeApplicationFiles(config.applicationUploadPath, applicationId, payload.files);
+      storedFiles = await websiteApplicationFiles.store(applicationId, payload.files);
     } catch {
       throw new HttpError(400, 'INVALID_ATTACHMENTS', 'One or more attachments are not valid.');
     }
     const submittedAt = new Date().toISOString();
-    database.websiteSubmissionStore.createProfessionalApplication({
+    await database.websiteSubmissionStore.createProfessionalApplication({
       id: applicationId,
       fullName,
       email,
@@ -2619,7 +2625,14 @@ async function route(request: IncomingMessage, response: ServerResponse) {
   throw new HttpError(404, 'NOT_FOUND', 'The requested resource was not found.');
 }
 
-const server = createServer(async (request, response) => {
+/**
+ * Platform-neutral Node HTTP handler.
+ *
+ * The local Node entry point passes real IncomingMessage/ServerResponse
+ * objects. Supabase Edge Functions pass small compatible adapters so the same
+ * reviewed routing and validation code can run without a second API contract.
+ */
+export async function handleHttpRequest(request: IncomingMessage, response: ServerResponse): Promise<void> {
   const correlationId = requestId(request);
   const startedAt = Date.now();
   response.setHeader('X-Request-Id', correlationId);
@@ -2648,7 +2661,11 @@ const server = createServer(async (request, response) => {
     });
     sendJson(response, 500, errorBody('INTERNAL_ERROR', 'The request could not be completed.'));
   }
-});
+}
+
+const isNodeEntrypoint = Boolean(process.argv[1]) &&
+  resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+const server = isNodeEntrypoint ? createServer(handleHttpRequest) : null;
 
 // Runs the worker immediately after something a person is waiting on (a new
 // request, an acceptance, a cancellation) so push notifications go out within
@@ -2693,14 +2710,14 @@ const backgroundTimer = config.inProcessJobs
   : null;
 backgroundTimer?.unref();
 
-server.listen(config.port, config.host, () => {
+server?.listen(config.port, config.host, () => {
   logger.info('api_listening', { host: config.host, port: config.port });
 });
 
 let shuttingDown = false;
 
 function shutdown() {
-  if (shuttingDown) return;
+  if (shuttingDown || !server) return;
   shuttingDown = true;
   if (backgroundTimer) clearInterval(backgroundTimer);
   server.close((error) => {
@@ -2713,5 +2730,7 @@ function shutdown() {
   });
 }
 
-process.on('SIGINT', shutdown);
-process.on('SIGTERM', shutdown);
+if (server) {
+  process.on('SIGINT', shutdown);
+  process.on('SIGTERM', shutdown);
+}

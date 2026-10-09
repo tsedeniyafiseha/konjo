@@ -1,5 +1,10 @@
 const menuButton = document.querySelector('[data-menu-button]');
 const menu = document.querySelector('[data-menu]');
+const konjoApiBaseUrl = 'https://uikwhmkkfidckcejllrk.supabase.co/functions/v1/api';
+
+function konjoApiUrl(path) {
+  return `${konjoApiBaseUrl}${path}`;
+}
 
 menuButton?.addEventListener('click', () => {
   const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
@@ -76,7 +81,7 @@ applicationForm?.addEventListener('submit', async (event) => {
   button.setAttribute('aria-busy', 'true');
   setStatus(status, 'Sending your application…', 'pending');
   try {
-    const response = await fetch('/v1/public/professional-applications', { method: 'POST', body: new FormData(applicationForm) });
+    const response = await fetch(konjoApiUrl('/v1/public/professional-applications'), { method: 'POST', body: new FormData(applicationForm) });
     if (!response.ok) throw new Error(await errorMessage(response));
     applicationForm.reset();
     applicationForm.querySelectorAll('[data-file-label]').forEach((label, index) => { label.textContent = index === 0 ? 'Choose file' : 'Choose files'; });
@@ -100,7 +105,7 @@ contactForm?.addEventListener('submit', async (event) => {
   setStatus(status, 'Sending your message…', 'pending');
   try {
     const formData = new FormData(contactForm);
-    const response = await fetch('/v1/public/contact', {
+    const response = await fetch(konjoApiUrl('/v1/public/contact'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(Object.fromEntries(formData.entries())),

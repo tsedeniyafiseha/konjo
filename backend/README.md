@@ -1,6 +1,6 @@
 # Konjo API foundation
 
-This backend supports a deterministic local mode using Node's built-in HTTP, crypto, and SQLite modules, plus provider mode with Supabase Auth and Postgres-backed professional onboarding. Local data is stored in `backend/data/konjo.db`; provider mode requires server-only Supabase credentials and never exposes them to Expo.
+This backend supports a deterministic local mode using Node's built-in HTTP, crypto, and SQLite modules. Production runs the same HTTP contract in a Supabase Edge Function, with Supabase Auth, Postgres, private Storage and Cron. Local data is stored in `backend/data/konjo.db`; provider credentials remain server-side and are never exposed to Expo.
 
 Run it with:
 
@@ -15,6 +15,18 @@ EXPO_PUBLIC_API_BASE_URL=http://127.0.0.1:4000 npm run web
 ```
 
 For an Android emulator, use `http://10.0.2.2:4000`. A physical device needs the computer's LAN address. `EXPO_PUBLIC_API_BASE_URL` is safe to expose because it is only a public endpoint; provider secrets must stay on the backend.
+
+Preview and production EAS builds use:
+
+```text
+https://uikwhmkkfidckcejllrk.supabase.co/functions/v1/api
+```
+
+The hosted `api` function has JWT verification disabled at the gateway because
+the same function contains public catalogue routes and signed payment webhooks.
+Protected routes still resolve and authorize the Supabase bearer token inside
+the application handler. Supabase Cron invokes the worker route once per minute
+using a token held in Vault.
 
 Implemented endpoints:
 

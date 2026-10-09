@@ -11,6 +11,11 @@ export interface StoredApplicationFile {
   size: number;
 }
 
+export interface PreparedApplicationFile {
+  metadata: StoredApplicationFile;
+  data: Buffer;
+}
+
 const permittedTypes = new Map<string, ReadonlyArray<string>>([
   ['application/pdf', ['.pdf']],
   ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', ['.docx']],
@@ -37,6 +42,25 @@ function safeExtension(file: MultipartFile): string {
   return extension;
 }
 
+export function prepareApplicationFiles(
+  files: ReadonlyArray<MultipartFile>,
+): ReadonlyArray<PreparedApplicationFile> {
+  return files.map((file, index) => {
+    const extension = safeExtension(file);
+    const storedName = `${file.fieldName}-${index + 1}${extension}`;
+    return {
+      data: file.data,
+      metadata: {
+        fieldName: file.fieldName,
+        originalName: file.fileName.slice(0, 180),
+        storedName,
+        mimeType: file.mimeType,
+        size: file.data.length,
+      },
+    };
+  });
+}
+
 export async function storeApplicationFiles(
   baseDirectory: string,
   applicationId: string,
@@ -44,19 +68,9 @@ export async function storeApplicationFiles(
 ): Promise<ReadonlyArray<StoredApplicationFile>> {
   const directory = join(baseDirectory, applicationId);
   await mkdir(directory, { recursive: true, mode: 0o700 });
-  const stored: StoredApplicationFile[] = [];
-
-  for (const [index, file] of files.entries()) {
-    const extension = safeExtension(file);
-    const storedName = `${file.fieldName}-${index + 1}${extension}`;
-    await writeFile(join(directory, storedName), file.data, { mode: 0o600 });
-    stored.push({
-      fieldName: file.fieldName,
-      originalName: file.fileName.slice(0, 180),
-      storedName,
-      mimeType: file.mimeType,
-      size: file.data.length,
-    });
+  const prepared = prepareApplicationFiles(files);
+  for (const file of prepared) {
+    await writeFile(join(directory, file.metadata.storedName), file.data, { mode: 0o600 });
   }
-  return stored;
+  return prepared.map((file) => file.metadata);
 }
