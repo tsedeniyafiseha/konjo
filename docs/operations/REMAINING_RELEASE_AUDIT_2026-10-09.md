@@ -6,72 +6,47 @@ release decision record, not a guarantee of store approval.
 
 ## Decision
 
-**Do not submit the current build to Apple App Review or Google Play review.**
-The mobile source is substantially closer to release, but the public website
-has an active privacy/security defect and the only TestFlight build predates
-the production migration.
+**The code is a release candidate; do not select it for final store review
+until the two fresh build-2 binaries pass the physical-device test matrix.**
+The website and mobile API now use the protected Supabase Edge API, payments
+are intentionally cash-only for version 1, and new store builds were started
+from release commit `9584fce`.
 
 ## P0 — block submission
 
-### 1. Secure or disable the legacy website registration system
+### 1. Website migration — completed
 
-The live `konjoet.com` site is not built from this repository's `website/`
-directory. Its compiled JavaScript connects directly to a separate, legacy
-Supabase project.
+Read-only verification on 9 October 2026 confirmed that the deployed client
+and professional forms call the current Supabase Edge API at
+`/v1/public/contact` and `/v1/public/professional-applications`. The former
+legacy Supabase browser client is no longer present in those bundles. Privacy,
+Terms, and account-deletion links are live, and Universal Link/App Link
+association files are served as JSON from `/.well-known/`.
 
-Read-only verification on 9 October 2026 found:
+No existing rows in the mobile Supabase project were deleted or rewritten.
 
-- anonymous users can read rows from both the legacy `clients` and
-  `professionals` tables;
-- the client form uploads identity documents and stores an email plus a public
-  document URL;
-- the professional form stores name, phone, home location, portfolio URLs,
-  national-ID URL, and certificate URL;
-- a client-side administrator password is present in public JavaScript; and
-- the administrator bundle performs database operations using the public
-  anonymous client. Write access was not tested because that would alter live
-  data.
+### 2. Produce and test a current native release candidate — building
 
-Required response:
+Version `1.0.0` build `2` is building from commit `9584fce` for both stores:
 
-1. Temporarily disable `/register/client` and `/register/professional`, or
-   replace them with the current Edge API-backed forms.
-2. Deny anonymous reads and writes on every legacy table and storage bucket.
-3. Rotate the exposed administrator password and remove password-only,
-   client-side administration.
-4. Move identity uploads to private storage with short-lived signed review
-   links.
-5. Review access logs and determine whether notification to affected people or
-   authorities is legally required.
-6. Fix the homepage footer: its Privacy Policy and Terms links currently point
-   to `#`, although the legal pages themselves exist.
+- Android build `4a31cb73-4719-409f-a8b6-1a76366e76a2`;
+- iOS build `3dbb6f3d-c68d-46a2-946e-7631357d3db1`.
 
-Do not upload only `website/site.js` over the live site. The deployed site is a
-different compiled application and would not load that file.
+When iOS completes, upload that exact archive to TestFlight. Both invited
+testers must install build 2 and complete the release test matrix. Build 1 is
+obsolete and must not be submitted for review.
 
-### 2. Produce and test a current native release candidate
+### 3. Payment launch decision — completed for version 1
 
-The current TestFlight archive is version `1.0.0` build `1`, created from
-commit `02eecf6`. Current `main` is commit `db250c7`, nine commits later, with
-the Supabase Edge migration, store safeguards, moderation, and auth fixes. The
-old binary still contains the former Render/mock environment.
+Production and preview are set to `cash_only`. The released client offers only
+cash payment to the professional after the in-person service, and the API
+rejects online-payment methods while this mode is active. Chapa's draft
+classification was corrected to **Personal Services → Health And Beauty
+Spas**, but merchant approval is no longer a version-1 submission dependency.
 
-App Store Connect currently shows one build, two internal testers, zero
-sessions, and zero crashes. A new binary is required after all P0 fixes, then
-both invited testers must install and complete the release test matrix.
-
-### 3. Finish payment-provider production approval
-
-Chapa remains in Test Mode and merchant compliance is incomplete. Before store
-submission, complete merchant verification and prove the real provider flow,
-including success, failure, abandonment, duplicate callback, retry, deposit,
-final balance, cancellation, refund execution, and payout transport.
-
-The draft Chapa compliance form currently classifies the business as **Digital
-Products → Apps**. That conflicts with Konjo's store-review position that it is
-a marketplace for physical, in-person services. Change it to the accurate
-physical-service classification accepted by Chapa (likely Personal Services)
-before submitting the merchant application.
+Do not enable `chapa_live` until merchant approval and the real provider flow
+have passed success, failure, abandonment, duplicate callback, retry,
+cancellation, refund, and payout testing.
 
 Apple In-App Purchase, StoreKit, Google Play Billing, and Sign in with Apple
 are **not** required for the current product:
@@ -84,23 +59,24 @@ are **not** required for the current product:
 Re-audit those decisions if the app later sells digital features or adds
 Google/Facebook login.
 
-### 4. Complete background-location review evidence
+### 4. Complete background-location review evidence — code complete
 
 Background location is a core professional-trip feature, but it is a sensitive
 Google Play permission. Before upload:
 
-- use a prominent in-app disclosure immediately before the runtime request;
-- make the disclosure explicitly state that Konjo collects location to share
-  active-trip progress even when the app is in the background or not in use;
+- use the implemented prominent in-app disclosure immediately before the
+  runtime request;
+- keep its exact explanation that Konjo collects and shares precise active-trip
+  location while the app is in the background or the phone is locked;
 - record a short video showing the disclosure, consent and denial paths, the
   live-trip feature, and automatic stop behavior;
 - complete Play Console's Location Permissions declaration; and
 - keep the privacy policy and listing description consistent with the exact
   released behavior.
 
-The current implementation requests permission only after an in-app
-disclosure and stops sharing on arrival, booking end, sign-out, expiry, or
-authorization failure. The wording still needs its final Play-policy pass.
+The implementation requests permission only after the disclosure and stops
+sharing on arrival, booking end, sign-out, expiry, or authorization failure.
+The remaining item is a real-device evidence video and the Play Console form.
 
 ### 5. Create and configure the Google Play developer account
 
@@ -129,9 +105,11 @@ the internal-distribution APK.
   manual approval, a private phone, or a real charge.
 - Upload real device screenshots from the final release build. Current design
   exports are not release evidence.
-- Complete age rating/content rating, app access instructions, ads declaration
-  (no ads), target audience (18+), support details, copyright, categories, EU
-  trader status, and current agreements.
+- Complete Google content rating, app access instructions, ads declaration (no
+  ads), target audience (18+), EU trader status, and current agreements. Apple
+  copyright, categories, listing copy, URLs, release strategy, and the
+  least-restrictive accurate age questionnaire are now stored in
+  `store.config.json`.
 - Prove client signup, email confirmation, login, password reset, expired and
   reused recovery links, plus professional OTP signup, resend, invalid code,
   and expired code.
@@ -156,8 +134,8 @@ Other scanner findings were manually triaged:
 - notification permission is requested at runtime and denial is handled;
 - report, block, moderation, and administrative resolution exist;
 - no advertising or analytics SDK was found in the release dependency list;
-- custom-scheme deep links work, but verified Universal Links/App Links remain
-  recommended hardening; and
+- verified Universal Links/App Links are configured in the app and live
+  website association files; and
 - R8/resource shrinking is a future Android quality requirement, not the
   immediate October 2026 submission blocker.
 
@@ -177,15 +155,16 @@ Other scanner findings were manually triaged:
 
 ## Release order
 
-1. Contain the legacy website exposure.
+1. ~~Replace the legacy website data path.~~ Completed 9 October 2026; the
+   deployed forms now use the protected Supabase Edge endpoints.
 2. ~~Remove Render after disconnecting its Blueprint.~~ Completed 9 October
    2026.
-3. Finish Chapa production approval and payment operations.
+3. ~~Choose a review-safe payment mode.~~ Cash-only completed for version 1.
 4. Create the Google Play Organization account and app record.
-5. Finalize background-location wording and store evidence.
-6. Build new iOS TestFlight and Android internal/AAB candidates from the same
-   release commit.
-7. Complete physical-device and two-account testing.
-8. Finish store forms, screenshots, reviewer access, and review notes.
+5. Record the background-location evidence video and complete its declaration.
+6. Wait for the iOS and Android build-2 candidates from commit `9584fce`.
+7. Provision stable reviewer access and complete physical-device/two-account
+   testing.
+8. Finish store privacy forms, screenshots, app access, and review notes.
 9. Submit the exact build that passed the release test matrix.
 

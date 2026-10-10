@@ -203,6 +203,21 @@
     },
     "plugins": [
       "expo-router",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          },
+          "ios": {
+            "enableSceneSupport": true,
+            "privacyManifestAggregationEnabled": true
+          }
+        }
+      ],
       "@maplibre/maplibre-react-native",
       [
         "expo-splash-screen",
