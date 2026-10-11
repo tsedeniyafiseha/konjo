@@ -228,7 +228,12 @@
           "resizeMode": "contain"
         }
       ],
-      "expo-secure-store",
+      [
+        "expo-secure-store",
+        {
+          "faceIDPermission": false
+        }
+      ],
       "expo-sqlite",
       [
         "expo-image-picker",
@@ -244,6 +249,7 @@
           "locationWhenInUsePermission": "Konjo uses your location to pin your address for a home visit and, if you trigger SOS, to share where you are with the safety team.",
           "locationAlwaysAndWhenInUsePermission": "Konjo uses your location while you are travelling to a booking so the client can follow your progress, including when Konjo is in the background while you navigate. Sharing stops when you arrive or the booking ends.",
           "locationAlwaysPermission": "Konjo uses your location while you are travelling to a booking so the client can follow your progress, including when Konjo is in the background while you navigate. Sharing stops when you arrive or the booking ends.",
+          "motionUsagePermission": false,
           "isAndroidBackgroundLocationEnabled": true,
           "isIosBackgroundLocationEnabled": true,
           "isAndroidForegroundServiceEnabled": true
@@ -272,7 +278,8 @@
           "color": "#3F6B3A",
           "defaultChannel": "bookings"
         }
-      ]
+      ],
+      "./plugins/with-location-only-background-mode"
     ],
     "experiments": {
       "typedRoutes": true,
