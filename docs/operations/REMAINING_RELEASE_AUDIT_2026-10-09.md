@@ -95,30 +95,36 @@ was created as **Konjo: Beauty & Wellness**, app type **App**, price **Free**,
 default language **English (United States)**, package
 `com.tsedeniya.konjoclient`, Play app ID `4975048077116437921`.
 
-The remaining Play Console setup tasks are the privacy policy, sign-in details,
-ads declaration, content rating, target audience, Data safety, government-app,
-financial-features and health declarations, category/contact details, Store
+On 11 October 2026, the privacy policy, stable client/professional reviewer
+access, ads declaration, IARC content rating, 18+ target audience, Data Safety,
+government-app, financial-features and health declarations were completed and
+saved. The dashboard reports **9 of 11** app-information tasks complete. The
+changes remain in Publishing overview and were not sent for review. Data Safety
+declares no third-party sharing, encryption in transit, account deletion, and
+the exact collected types in `STORE_SUBMISSION_ANSWERS.md`, including optional
+files/documents and ephemeral address-search queries.
+
+The remaining Play Console setup tasks are category/contact details, the Store
 Listing, Play App Signing and the signed AAB upload. Upload Android build 6's
-AAB—not the internal-distribution APK. Because this is a new personal account,
-production access also requires a closed test with at least 12 continuously
-opted-in testers for at least 14 days; the console currently reports 0 opted-in
-testers.
+AAB—not the internal-distribution APK. The background-location declaration and
+video also remain. Because this is a new personal account, production access
+requires a closed test with at least 12 continuously opted-in testers for at
+least 14 days; the console currently reports 0 opted-in testers.
 
 ## P1 — required store forms and evidence
 
-- Apple App Privacy and Google Data Safety answers must match the final binary
-  and providers: name, email, phone, physical address, precise/background
-  location, identity and portfolio photos, user content/reviews/support,
-  account/device/push identifiers, purchase history, selected payment method,
-  and professional payout/earnings data.
+- Apple App Privacy was published and Google Data Safety was saved on 11
+  October 2026. Revalidate both against the final binary and providers before
+  submission or after any dependency, permission, payment, or provider change.
 - Google account deletion needs both the working in-app path and
   `https://konjoet.com/delete-account`; Apple needs the in-app deletion path.
 - Supply stable client and professional reviewer accounts that do not require
   manual approval, a private phone, or a real charge.
 - Upload real device screenshots from the final release build. Current design
   exports are not release evidence.
-- Complete Google content rating, app access instructions, ads declaration (no
-  ads), target audience (18+), EU trader status, and current agreements. Apple
+- Google content rating, app access, no-ads, 18+ target audience, government,
+  financial and health declarations are complete. Complete EU trader status
+  and current agreements. Apple
   copyright, categories, listing copy, URLs, release strategy, and the
   least-restrictive accurate age questionnaire are now stored in
   `store.config.json`.
@@ -173,8 +179,9 @@ Other scanner findings were manually triaged:
 2. ~~Remove Render after disconnecting its Blueprint.~~ Completed 9 October
    2026.
 3. ~~Choose a review-safe payment mode.~~ Cash-only completed for version 1.
-4. ~~Create the Google Play Personal account and app record.~~ Completed
-   11 October 2026. Finish the Play setup forms and start the required
+4. ~~Create the Google Play Personal account and app record; complete the nine
+   policy/declaration tasks.~~ Completed 11 October 2026. Finish category/contact,
+   Store Listing, AAB/background-location evidence, then start the required
    12-tester/14-day closed test.
 5. Record the background-location evidence video and complete its declaration.
 6. ~~Create the final iOS and Android candidates.~~ Completed 11 October 2026;
@@ -184,7 +191,8 @@ Other scanner findings were manually triaged:
    11 October 2026; App Store Connect has the stable client account, Kiki's
    approved professional account and the reviewer contact. Complete the
    physical-device/two-account testing.
-8. Finish Apple App Privacy, both stores' remaining declarations, screenshots,
-   Google app access and review evidence.
+8. ~~Publish Apple App Privacy and save Google reviewer access/policy
+   declarations.~~ Completed 11 October 2026 without submitting either app for
+   review. Finish screenshots, remaining listing metadata and review evidence.
 9. Submit the exact build that passed the release test matrix.
 

@@ -132,11 +132,12 @@ Do not submit to App Review until every P0 item below has dated evidence.
 Console checkpoint, 11 October 2026: iOS build 8 is attached to version 1.0.0,
 and App Review Information is saved with stable client and Kiki professional
 access plus the verified reviewer contact. The version was not added for
-review. App Privacy still shows **Get Started**, and the primary iPhone media
-set shows `0 of 10 App Screenshots`.
+review. App Privacy was published on 11 October 2026 with 13 linked data types,
+no tracking, and the public privacy/deletion URLs. The primary iPhone media set
+still shows `0 of 10 App Screenshots`.
 
-1. Complete the App Privacy questionnaire from the release archive and the
-   live provider configuration. The likely declarations are:
+1. **App Privacy — completed and published 11 October 2026.** The disclosure
+   was completed from the release archive and live provider configuration:
    - Contact Info: name, email address and phone number — app functionality.
    - Precise Location — app functionality; not tracking; shared with the
      booking participant only during the documented travel window.
@@ -149,7 +150,7 @@ set shows `0 of 10 App Screenshots`.
      declare financial information conservatively until that field is removed.
    - Other Financial Info: professional earnings and payout history — app
      functionality.
-   - Tracking: No, unless the final archive or a future SDK introduces
+   - Tracking: No. Re-audit before adding any SDK that introduces
      cross-company advertising or tracking.
 2. Upload real screenshots showing the release UI, not mock data or developer
    controls. Include the client home/discovery, booking/payment summary, live

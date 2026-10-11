@@ -63,10 +63,14 @@ the public site before selecting the build for review.
    on physical devices; each delivery can consume SMS Ethiopia balance.
 6. **Play Store**: the Personal developer account is active, its private
    contact email/phone are verified, and Policy status reports no account
-   issues. Create the app, enable Play
-   App Signing, add its SHA-256 certificate to `assetlinks.json`, upload the
-   AAB, and complete listing, Data safety, background-location declaration/video
-   and account-deletion URL. A new personal account must then run a closed test
+   issues. The app record exists and 9 of 11 app-information tasks are complete:
+   privacy policy, reviewer access, ads, content rating, target audience, Data
+   Safety, government-app, financial-features, and health declarations. The
+   completed changes are saved in Publishing overview and have not been sent
+   for review. Finish category/contact details and the Store Listing, enable
+   Play App Signing, add its SHA-256 certificate to `assetlinks.json`, upload
+   the AAB, and complete the background-location declaration/video. A new
+   personal account must then run a closed test
    with at least 12 continuously opted-in testers for 14 days before applying
    for production access. Package `com.tsedeniya.konjoclient`, version `1.0.0`.
 7. **Web app** (optional, for shareable profile links): deploy the
@@ -138,16 +142,15 @@ the public site before selecting the build for review.
 3. **Support**: confirm `EXPO_PUBLIC_SUPPORT_EMAIL` (defaults to
    `info@konjoet.com`) and optionally `EXPO_PUBLIC_SUPPORT_PHONE`; the inbox must be
    monitored.
-4. **Google Play**: background-location declaration with a short video of the
-   "I'm on my way" flow, foreground-service justification, Data safety form
-   (location incl. background, government ID photos, name/phone/email,
-   payment info, push tokens), and the account-deletion URL
-   (`/delete-account`).
+4. **Google Play**: Data Safety and the account-deletion URL were completed and
+   saved on 11 October 2026. Finish category/contact details, the Store Listing,
+   and the background-location declaration with a short video of the "I'm on
+   my way" flow plus foreground-service justification.
    Also attach test evidence for the in-app content-report and account-level
    block flow after the `202610080001` migration is live.
-5. **Apple**: App Privacy questionnaire (same categories), support URL,
-   marketing URL, demo account credentials for review (a client and a
-   professional), and screenshots.
+5. **Apple**: App Privacy and both demo accounts were completed on 11 October
+   2026. Finish support/marketing/listing metadata, age rating, DSA trader
+   status, agreements, release screenshots, and the physical-device evidence.
 6. **Secrets on the host**: `KONJO_PAYMENT_WEBHOOK_SECRET`, `KONJO_AUTH_PEPPER`,
    `KONJO_WORKER_TOKEN` (all ≥32 random chars), `KONJO_ENVIRONMENT=production`,
    `KONJO_TRUSTED_PROXY_HOPS` matching the load balancer, and

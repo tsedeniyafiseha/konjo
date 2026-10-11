@@ -28,6 +28,12 @@ email/phone, and review contact; do not infer those fields from the repository.
 
 ## Apple App Privacy
 
+**Console status, 11 October 2026:** published in App Store Connect. The
+published disclosure contains the 13 data types below. Every type is linked to
+the user's identity, used for app functionality, and not used for tracking.
+The privacy-policy and privacy-choices URLs are
+`https://konjoet.com/privacy` and `https://konjoet.com/delete-account`.
+
 Answer **Yes, we collect data from this app**. For every type below select
 **linked to the user**, **not used for tracking**, and **App Functionality** as
 the purpose unless the final App Store Connect form requires a more specific
@@ -57,6 +63,11 @@ analytics SDK.
 
 ## Google Play Data safety
 
+**Console status, 11 October 2026:** completed and saved to Publishing
+overview. Google Play shows 9 of 11 app-information tasks complete. These
+changes have **not** been sent for review. The two remaining dashboard setup
+tasks are category/contact details and the Store Listing.
+
 Top-level answers:
 
 - Does the app collect or share required user data types? **Yes**.
@@ -74,15 +85,18 @@ Declare these collected types:
 | Google data type | Required? | Purpose |
 | --- | --- | --- |
 | Personal info — Name | Required for account use | App functionality, account management |
-| Personal info — Email address | Required for client accounts; optional for professionals | App functionality, account management |
-| Personal info — Phone number | Required for professionals; optional for email-only clients | App functionality, account management, fraud prevention/security |
-| Personal info — Address | Required only when requesting an at-home booking | App functionality |
+| Personal info — Email address | Optional across the combined client/professional app | App functionality, account management |
+| Personal info — Phone number | Optional across the combined client/professional app | App functionality, account management, fraud prevention/security |
+| Personal info — Address | Optional until requesting an at-home booking | App functionality |
 | Personal info — User IDs | Required for signed-in use | App functionality, account management, fraud prevention/security |
-| Financial info — Payment info | Required for professionals who supply settlement details | App functionality |
+| Personal info — Other info | Optional professional profile and application details | App functionality |
+| Financial info — User payment info | Optional professional settlement details | App functionality |
 | Financial info — Purchase history | Required when a user books or provides a service | App functionality, fraud prevention/security |
 | Financial info — Other financial info | Required for professional earnings/payout records | App functionality |
 | Location — Precise location | Optional permission; required only for address pinning, SOS with location, or active-trip sharing | App functionality, fraud prevention/security |
-| Photos and videos | Required for professional verification; optional for other users unless identity evidence is requested | App functionality, fraud prevention/security |
+| Photos and videos — Photos | Optional until a professional uploads verification/portfolio media or a user supplies identity evidence | App functionality, fraud prevention/security |
+| Files and docs | Optional professional CV, certificate, or supporting-document upload | App functionality, fraud prevention/security |
+| App activity — In-app search history | Optional; address-search queries are processed ephemerally | App functionality |
 | App activity — Other user-generated content | Optional until the user writes a review, report, support request, note, or instructions | App functionality, fraud prevention/security |
 | Device or other IDs | Optional; collected when push notifications are enabled | App functionality |
 | App info and performance — Diagnostics | Collected only when a technical request or error is sent to Konjo infrastructure | App functionality, fraud prevention/security |
@@ -187,12 +201,14 @@ These cannot be truthfully completed from source code alone:
    cash completion, report/block, and account deletion.
 3. The Android background-location video and final screenshots from the exact
    release candidate.
-4. Apple age-rating answers, DSA trader status, agreements, App Privacy
-   publication, and final App Review submission in the account owner's UI.
-5. Google app creation, real-Android-device verification, the required
-   12-tester/14-day closed test, Play declarations, production-access
-   application, and rollout. The Personal account, contact verification and
-   registration payment are already complete.
+4. Apple screenshots, age-rating answers, DSA trader status, current
+   agreements, build selection, and final App Review submission in the account
+   owner's UI. App Privacy was published on 11 October 2026.
+5. Google category/contact details, Store Listing, signed AAB upload,
+   background-location declaration/video, real-device verification, the
+   required 12-tester/14-day closed test, production-access application, and
+   rollout. The Personal account and nine policy/declaration tasks are already
+   complete; their pending changes have not been sent for review.
 
 Do not mark the release ready to submit until these evidence items are dated
 and attached to the exact build selected in each store.
