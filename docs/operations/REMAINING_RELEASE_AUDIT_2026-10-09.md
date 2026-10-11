@@ -40,9 +40,9 @@ The final version `1.0.0` candidates finished successfully:
 The iOS archive was uploaded to App Store Connect through EAS submission
 `f5584c29-078e-479e-9ad9-f6a0b976ab9f`. Build 7 failed Apple's upload
 processing with error 90683 because `NSMotionUsageDescription` was missing;
-build 8 restores it and its signed IPA was inspected before upload. Both
-invited testers must install build 8 after Apple finishes processing it and
-complete the release test matrix. Earlier iOS builds 1 through 7 and Android
+build 8 restores it, its signed IPA was inspected before upload, and Apple
+processing completed successfully. Both invited testers must install build 8
+and complete the release test matrix. Earlier iOS builds 1 through 7 and Android
 builds 1 through 5 are obsolete and must not be submitted for review.
 
 ### 3. Payment launch decision — completed for version 1

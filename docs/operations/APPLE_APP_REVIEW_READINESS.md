@@ -106,8 +106,8 @@ Do not submit to App Review until every P0 item below has dated evidence.
    2026.** The uploaded build includes automatic cash-due setup, the unblocked
    professional travel flow, cash-only settings, synchronized in-app legal
    copy, honest cash-method wording, and minimized iOS permissions. Use iOS
-   `1.0.0 (8)` and Android `1.0.0 (6)`. Apple processing and release-device
-   testing remain.
+   `1.0.0 (8)` and Android `1.0.0 (6)`. Apple processing is complete; physical
+   release-device testing remains.
 5. **Keep online payments disabled for version 1.** Chapa merchant activation,
    provider refunds and payout transport are post-launch work. They are not App
    Review dependencies while no online method is shown or accepted.

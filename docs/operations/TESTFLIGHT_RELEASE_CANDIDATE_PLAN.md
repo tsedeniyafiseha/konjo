@@ -8,7 +8,7 @@ Updated: 11 October 2026
 - Bundle ID: `com.tsedeniya.konjoclient`
 - Version/build: `1.0.0 (8)`
 - EAS build: `1d95f927-a415-4bc1-978c-ddcbcd55cae6` (finished)
-- EAS submission: `f5584c29-078e-479e-9ad9-f6a0b976ab9f` (uploaded; Apple processing)
+- EAS submission: `f5584c29-078e-479e-9ad9-f6a0b976ab9f` (uploaded; Apple processing complete)
 - TestFlight group: `Team (Expo)`
 - Internal testers: `konjoserve@gmail.com`, `tsedeniyafisehaw@gmail.com`
 - Environment: production Supabase Edge API
