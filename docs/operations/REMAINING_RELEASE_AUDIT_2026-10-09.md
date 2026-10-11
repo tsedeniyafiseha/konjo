@@ -88,13 +88,12 @@ The remaining item is a real-device evidence video and the Play Console form.
 
 ### 5. Create and configure the Google Play developer account
 
-The signed-in Google account has not created a Play Console developer account;
-it is still at the account-type selection screen. For a commercial Konjo
-business, use an Organization account and complete the required organization
-verification (including a D-U-N-S number). Do not select Personal merely to
-avoid verification. A newly created Personal account would also require a
-closed test with at least 12 continuously opted-in testers for 14 days before
-production access.
+The owner confirmed that Google Play will use an Individual/Personal developer
+account. The browser is now on the personal registration path, which does not
+require a D-U-N-S number. Complete the public developer email, private Google
+contact details, identity and real-Android-device verification, and the USD 25
+fee. Because this is a new personal account, run a closed test with at least 12
+continuously opted-in testers for 14 days before applying for production access.
 
 After account creation, add the app with package
 `com.tsedeniya.konjoclient`, configure Play App Signing, and upload an AAB—not
@@ -169,7 +168,8 @@ Other scanner findings were manually triaged:
 2. ~~Remove Render after disconnecting its Blueprint.~~ Completed 9 October
    2026.
 3. ~~Choose a review-safe payment mode.~~ Cash-only completed for version 1.
-4. Create the Google Play Organization account and app record.
+4. Create the Google Play Personal account and app record, then start the
+   required 12-tester/14-day closed test.
 5. Record the background-location evidence video and complete its declaration.
 6. ~~Create the final iOS and Android candidates from commit `f7b5e65`.~~
    Completed 11 October 2026; iOS build 7 was uploaded to App Store Connect the

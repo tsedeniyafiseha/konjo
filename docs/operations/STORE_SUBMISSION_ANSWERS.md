@@ -22,9 +22,9 @@ mode, or backend provider changes.
 | Intended audience | Adults, 18 and over |
 
 The public privacy policy, terms, and deletion pages were verified live on 11
-October 2026. Enter the exact legal developer name, D-U-N-S organization name,
-public business phone, and review contact from the account owner; do not infer
-those fields from the repository.
+October 2026. Apple and Google use individual developer accounts, so no D-U-N-S
+number is required. Enter the account owner's exact legal name, public developer
+email/phone, and review contact; do not infer those fields from the repository.
 
 ## Apple App Privacy
 
@@ -179,7 +179,8 @@ same location and cash instructions.
 
 These cannot be truthfully completed from source code alone:
 
-1. Exact legal organization/D-U-N-S details and the public business phone.
+1. The individual account owner's exact legal/contact details and public
+   developer phone.
 2. A stable approved professional review account and password.
 3. Release-build testing on physical iPhone and Android devices for email
    confirmation/recovery, push, camera/photos, background location, booking,
@@ -188,8 +189,9 @@ These cannot be truthfully completed from source code alone:
    release candidate.
 5. Apple age-rating answers, DSA trader status, agreements, App Privacy
    publication, and final App Review submission in the account owner's UI.
-6. Google developer-account verification, the USD 25 registration action if
-   the account does not yet exist, Play declarations, and final rollout.
+6. Google personal developer-account verification, the USD 25 registration
+   action, real-Android-device verification, the required 12-tester/14-day
+   closed test, Play declarations, production-access application, and rollout.
 
 Do not mark the release ready to submit until these evidence items are dated
 and attached to the exact build selected in each store.

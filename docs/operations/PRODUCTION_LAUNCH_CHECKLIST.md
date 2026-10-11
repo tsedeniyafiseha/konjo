@@ -57,12 +57,14 @@ the public site before selecting the build for review.
    Ethiopia API key and signed Supabase Auth Send SMS Hook are active. Preview
    mock OTP is off. Run signup, resend, invalid/expired code and recovery tests
    on physical devices; each delivery can consume SMS Ethiopia balance.
-6. **Play Store**: finish organization registration (D-U-N-S, public phone and
-   email, business document and USD 25 fee), create the app, enable Play App
-   Signing, add its SHA-256 certificate to `assetlinks.json`, upload the AAB,
-   and complete listing, Data safety, background-location declaration/video
-   and account-deletion URL. Package `com.tsedeniya.konjoclient`, version
-   `1.0.0`.
+6. **Play Store**: finish the individual developer registration (public
+   developer email, private Google contact email/phone, identity and real
+   Android-device verification, and USD 25 fee), create the app, enable Play
+   App Signing, add its SHA-256 certificate to `assetlinks.json`, upload the
+   AAB, and complete listing, Data safety, background-location declaration/video
+   and account-deletion URL. A new personal account must then run a closed test
+   with at least 12 continuously opted-in testers for 14 days before applying
+   for production access. Package `com.tsedeniya.konjoclient`, version `1.0.0`.
 7. **Web app** (optional, for shareable profile links): deploy the
    `npm run web:export` output under `EXPO_PUBLIC_WEB_URL`; until then the share
    button sends the `konjoclient://` deep link.
@@ -231,18 +233,15 @@ passes every check except the local CocoaPods one, which EAS cloud builds do not
 
 What the Konjo team has to do, in order:
 
-1. **Apple Developer Program** membership (organisation account, $99/year).
-   Enrol with the company's D-U-N-S number; individual enrolment is faster but
-   shows a person's name on the store. Checked 7 October 2026: the signed-in
-   Apple ID `tsedeniyafisehaw@gmail.com` is an App Store Connect Admin on team
-   `54SD6P7N7S`, but Apple Developer shows **Access Unavailable** and offers
-   “Join the Apple Developer Program.” The membership is enrolled as an
-   Individual, so Apple does not permit additional App Store Connect users to
-   receive Certificates, Identifiers & Profiles access. Completed 7 October
-   2026: the Account Holder performed the one-time setup herself without sharing
-   her password or two-factor code. EAS now stores the Distribution Certificate,
-   active App Store provisioning profile, APNs key, and an App Store Connect API
-   key with the least-privilege `APP_MANAGER` role.
+1. **Apple Developer Program**: the membership is an Individual account. The
+   signed-in Apple ID `tsedeniyafisehaw@gmail.com` is an App Store Connect Admin
+   on team `54SD6P7N7S`; Apple does not permit additional App Store Connect
+   users on an Individual membership to receive Certificates, Identifiers &
+   Profiles access. Completed 7 October 2026: the Account Holder performed the
+   one-time setup herself without sharing her password or two-factor code. EAS
+   now stores the Distribution Certificate, active App Store provisioning
+   profile, APNs key, and an App Store Connect API key with the least-privilege
+   `APP_MANAGER` role. No D-U-N-S number is required for this enrollment.
 2. **App Store Connect record**: created on 7 October 2026 as
    **Konjo: Beauty & Wellness**, bundle ID `com.tsedeniya.konjoclient`, SKU
    `konjo-client-ios-2026`, Apple ID `6820140076`. The exact store name `Konjo`
