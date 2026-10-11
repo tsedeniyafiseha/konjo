@@ -6,9 +6,9 @@ Updated: 11 October 2026
 
 - App Store name: **Konjo: Beauty & Wellness**
 - Bundle ID: `com.tsedeniya.konjoclient`
-- Version/build: `1.0.0 (7)`
-- EAS build: `9c659a05-9941-49cd-be53-b05b75309f57` (finished)
-- EAS submission: `afaba338-f996-4734-8673-00257655be95` (uploaded; Apple processing)
+- Version/build: `1.0.0 (8)`
+- EAS build: `1d95f927-a415-4bc1-978c-ddcbcd55cae6` (finished)
+- EAS submission: `f5584c29-078e-479e-9ad9-f6a0b976ab9f` (uploaded; Apple processing)
 - TestFlight group: `Team (Expo)`
 - Internal testers: `konjoserve@gmail.com`, `tsedeniyafisehaw@gmail.com`
 - Environment: production Supabase Edge API
@@ -19,13 +19,16 @@ Updated: 11 October 2026
 Builds 1 and 2 must not be submitted to App Review. Build 1 used the old
 preview environment. Build 2 failed iOS signing after Universal Links were
 added. Associated Domains is now enabled on the Apple identifier and the new
-active provisioning profile is used by build 7. Chapa is deliberately disabled
-in build 7; version 1 is cash-only.
+active provisioning profile is used by build 8. Build 7 failed Apple's upload
+processing with error 90683 after `NSMotionUsageDescription` was removed even
+though Expo Location still links Core Motion APIs. Build 8 restores that
+required purpose string. Chapa is deliberately disabled in build 8; version 1
+is cash-only.
 
 ## Install
 
 Each tester must install Apple's TestFlight app, open the invitation email on
-the iPhone, accept the invitation, and install Konjo build 7. Record the iPhone
+the iPhone, accept the invitation, and install Konjo build 8. Record the iPhone
 model and iOS version below before testing.
 
 | Tester | Device / iOS | Invitation accepted | Build installed |
@@ -41,7 +44,7 @@ email or phone number that belongs to an existing role.
 | Role | Test identity | Result |
 | --- | --- | --- |
 | Client | `appreview.client@konjoet.com`; password is in macOS Keychain under `Konjo App Review Client` | Ready |
-| Professional | Approved reviewer identity pending owner confirmation | [ ] |
+| Professional | Approved `kiki` account; password is in macOS Keychain under `Konjo App Review Professional` | Ready |
 | Admin | Existing authorized administrator | [ ] |
 
 Never commit passwords, email-link tokens, payment credentials, identity

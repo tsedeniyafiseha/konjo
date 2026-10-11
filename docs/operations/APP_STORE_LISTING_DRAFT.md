@@ -77,7 +77,7 @@ Beta description:
 > tracking, notifications, cancellation, reviews, safety tools and account
 > deletion.
 
-What to test for iOS build `1.0.0 (7)`:
+What to test for iOS build `1.0.0 (8)`:
 
 > This is the production release candidate using the Supabase Edge API and
 > cash-only payment. Use the supplied pre-approved professional review account;
@@ -98,8 +98,8 @@ Feedback email: `info@konjoet.com`
 >
 > Client review account: appreview.client@konjoet.com / [password stored in the
 > account owner's macOS Keychain as “Konjo App Review Client”]
-> Professional review account: [production review phone] / [password or stable
-> reviewer OTP procedure]
+> Professional review account: approved `kiki` phone/password stored in macOS
+> Keychain as `Konjo App Review Professional`
 >
 > Both accounts are preapproved and require no manual action. To test live
 > location, sign in as the professional, open the assigned booking and tap

@@ -7,10 +7,10 @@ release decision record, not a guarantee of store approval.
 ## Decision
 
 **The code is a release candidate; do not select it for final store review
-until the final iOS build 7 and Android build 6 pass the physical-device test matrix.**
+until the final iOS build 8 and Android build 6 pass the physical-device test matrix.**
 The website and mobile API now use the protected Supabase Edge API, payments
-are intentionally cash-only for version 1, and final store builds were produced
-from release commit `f7b5e65`.
+are intentionally cash-only for version 1. Android build 6 was produced from
+release commit `f7b5e65`; corrected iOS build 8 was produced from `acb1a7a`.
 
 ## P0 — block submission
 
@@ -32,17 +32,18 @@ Universal Links were added because the older provisioning profile did not yet
 contain Associated Domains. The Apple capability was enabled and a new active
 profile (`S75Q6J32JL`) was generated on 10 October 2026.
 
-The final version `1.0.0` candidates finished successfully from commit
-`f7b5e65`:
+The final version `1.0.0` candidates finished successfully:
 
 - Android build 6: `7b0b6603-9283-40a6-af23-309f5b2332c6`;
-- iOS build 7: `9c659a05-9941-49cd-be53-b05b75309f57`.
+- iOS build 8: `1d95f927-a415-4bc1-978c-ddcbcd55cae6`.
 
-The iOS archive was uploaded successfully to App Store Connect through EAS
-submission `afaba338-f996-4734-8673-00257655be95`. Both invited testers must
-install build 7 after Apple finishes processing it and complete the release
-test matrix. Earlier iOS builds 1 through 6 and Android builds 1 through 5 are
-obsolete and must not be submitted for review.
+The iOS archive was uploaded to App Store Connect through EAS submission
+`f5584c29-078e-479e-9ad9-f6a0b976ab9f`. Build 7 failed Apple's upload
+processing with error 90683 because `NSMotionUsageDescription` was missing;
+build 8 restores it and its signed IPA was inspected before upload. Both
+invited testers must install build 8 after Apple finishes processing it and
+complete the release test matrix. Earlier iOS builds 1 through 7 and Android
+builds 1 through 5 are obsolete and must not be submitted for review.
 
 ### 3. Payment launch decision — completed for version 1
 
@@ -171,9 +172,9 @@ Other scanner findings were manually triaged:
 4. Create the Google Play Personal account and app record, then start the
    required 12-tester/14-day closed test.
 5. Record the background-location evidence video and complete its declaration.
-6. ~~Create the final iOS and Android candidates from commit `f7b5e65`.~~
-   Completed 11 October 2026; iOS build 7 was uploaded to App Store Connect the
-   same day and the signed Android build 6 AAB is ready for Play Console.
+6. ~~Create the final iOS and Android candidates.~~ Completed 11 October 2026;
+   corrected iOS build 8 was uploaded to App Store Connect the same day and the
+   signed Android build 6 AAB is ready for Play Console.
 7. Provision stable reviewer access and complete physical-device/two-account
    testing.
 8. Finish store privacy forms, screenshots, app access, and review notes.

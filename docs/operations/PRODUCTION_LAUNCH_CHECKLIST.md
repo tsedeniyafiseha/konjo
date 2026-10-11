@@ -12,11 +12,15 @@ The physical-iPhone test sequence is in
 and the prepared store copy is in
 [`APP_STORE_LISTING_DRAFT.md`](./APP_STORE_LISTING_DRAFT.md).
 
-Final candidates were built from commit `f7b5e65` with Supabase Edge, cash-only
-configuration, and minimized iOS permission declarations. iOS `1.0.0 (7)`, EAS
-build `9c659a05-9941-49cd-be53-b05b75309f57`, was uploaded successfully through
-submission `afaba338-f996-4734-8673-00257655be95`; Android `1.0.0 (6)`, EAS
-build `7b0b6603-9283-40a6-af23-309f5b2332c6`, produced the signed Play Store AAB.
+The Android candidate was built from commit `f7b5e65`; the corrected iOS
+candidate was built from commit `acb1a7a`. Both use Supabase Edge and cash-only
+configuration. iOS `1.0.0 (8)`, EAS build
+`1d95f927-a415-4bc1-978c-ddcbcd55cae6`, was uploaded through submission
+`f5584c29-078e-479e-9ad9-f6a0b976ab9f`; Android `1.0.0 (6)`, EAS build
+`7b0b6603-9283-40a6-af23-309f5b2332c6`, produced the signed Play Store AAB.
+Apple rejected build 7 during upload processing because Expo Location links
+Core Motion APIs and its `NSMotionUsageDescription` had been removed. Build 8
+restores the required purpose string; its signed IPA was inspected before upload.
 The public privacy, terms and account-deletion URLs return HTTP 200. The
 11 October cash-only privacy and terms text is published and was verified on
 the public site before selecting the build for review.
@@ -57,9 +61,9 @@ the public site before selecting the build for review.
    Ethiopia API key and signed Supabase Auth Send SMS Hook are active. Preview
    mock OTP is off. Run signup, resend, invalid/expired code and recovery tests
    on physical devices; each delivery can consume SMS Ethiopia balance.
-6. **Play Store**: finish the individual developer registration (public
-   developer email, private Google contact email/phone, identity and real
-   Android-device verification, and USD 25 fee), create the app, enable Play
+6. **Play Store**: the Personal developer account is active, its private
+   contact email/phone are verified, and Policy status reports no account
+   issues. Create the app, enable Play
    App Signing, add its SHA-256 certificate to `assetlinks.json`, upload the
    AAB, and complete listing, Data safety, background-location declaration/video
    and account-deletion URL. A new personal account must then run a closed test
@@ -266,9 +270,9 @@ What the Konjo team has to do, in order:
    production, and mock OTP is false in both environments.
 5. **Branding**: completed on 7 October 2026. The iOS icon, Android adaptive
    foreground/background/monochrome icons, and web favicon use Konjo branding.
-6. **Build and TestFlight**: production iOS build `1.0.0 (7)`, EAS build
-   `9c659a05-9941-49cd-be53-b05b75309f57`, was uploaded successfully through
-   EAS submission `afaba338-f996-4734-8673-00257655be95`. Production Android
+6. **Build and TestFlight**: production iOS build `1.0.0 (8)`, EAS build
+   `1d95f927-a415-4bc1-978c-ddcbcd55cae6`, was uploaded through EAS submission
+   `f5584c29-078e-479e-9ad9-f6a0b976ab9f`. Production Android
    build `1.0.0 (6)` is EAS build `7b0b6603-9283-40a6-af23-309f5b2332c6`.
    Install these exact builds on real iPhone and Android phones. Run one full booking: client
    requests, professional accepts, travels with background location, arrives,

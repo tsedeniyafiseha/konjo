@@ -130,8 +130,9 @@ Replace the three `OWNER INPUT` values before submission:
 > credentials.
 >
 > Client account: `appreview.client@konjoet.com` / password in the account
-> owner's secure credential record. Professional account: OWNER INPUT PHONE /
-> password in the account owner's secure credential record. Both accounts are
+> owner's secure credential record. Professional account: the approved `kiki`
+> phone/password stored in macOS Keychain as `Konjo App Review Professional`.
+> Both accounts are
 > pre-approved and must work without email confirmation, SMS delivery, manual
 > approval, or a real payment during review.
 >
@@ -181,17 +182,17 @@ These cannot be truthfully completed from source code alone:
 
 1. The individual account owner's exact legal/contact details and public
    developer phone.
-2. A stable approved professional review account and password.
-3. Release-build testing on physical iPhone and Android devices for email
+2. Release-build testing on physical iPhone and Android devices for email
    confirmation/recovery, push, camera/photos, background location, booking,
    cash completion, report/block, and account deletion.
-4. The Android background-location video and final screenshots from the exact
+3. The Android background-location video and final screenshots from the exact
    release candidate.
-5. Apple age-rating answers, DSA trader status, agreements, App Privacy
+4. Apple age-rating answers, DSA trader status, agreements, App Privacy
    publication, and final App Review submission in the account owner's UI.
-6. Google personal developer-account verification, the USD 25 registration
-   action, real-Android-device verification, the required 12-tester/14-day
-   closed test, Play declarations, production-access application, and rollout.
+5. Google app creation, real-Android-device verification, the required
+   12-tester/14-day closed test, Play declarations, production-access
+   application, and rollout. The Personal account, contact verification and
+   registration payment are already complete.
 
 Do not mark the release ready to submit until these evidence items are dated
 and attached to the exact build selected in each store.

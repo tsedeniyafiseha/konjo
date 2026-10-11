@@ -58,12 +58,14 @@ GitHub actions on a pinned Ubuntu 24.04 runner with no annotations. The
 production-compatible API now runs on Supabase Edge Functions. Health/readiness,
 public catalogue, authenticated user/admin routes, the Vault-backed Cron call
 and private website-submission storage were verified live. EAS preview and
-production point to that endpoint. The final permission-minimized candidates
-were built from release commit `f7b5e65`: iOS `1.0.0 (7)`, EAS build
-`9c659a05-9941-49cd-be53-b05b75309f57`, was uploaded to App Store Connect
-through submission `afaba338-f996-4734-8673-00257655be95`; Android `1.0.0 (6)`,
-EAS build `7b0b6603-9283-40a6-af23-309f5b2332c6`, produced the signed Play
-Store AAB.
+production point to that endpoint. The Android candidate was built from
+release commit `f7b5e65`. The corrected iOS candidate was built from commit
+`acb1a7a`: iOS `1.0.0 (8)`, EAS build
+`1d95f927-a415-4bc1-978c-ddcbcd55cae6`, was uploaded to App Store Connect
+through submission `f5584c29-078e-479e-9ad9-f6a0b976ab9f`; Android `1.0.0 (6)`,
+EAS build `7b0b6603-9283-40a6-af23-309f5b2332c6`, produced the signed Play Store
+AAB. Build 7 failed Apple's upload processing with error 90683 because
+`NSMotionUsageDescription` was absent while Expo Location linked Core Motion.
 
 ## Submission blockers
 
@@ -89,9 +91,9 @@ Do not submit to App Review until every P0 item below has dated evidence.
    `6820140076`. The exact name `Konjo` was unavailable in App Store Connect;
    the on-device app name remains `Konjo`. The Apple ID is configured in the
    `testflight` and `production` EAS Submit profiles.
-   Final version `1.0.0 (7)`, EAS build
-   `9c659a05-9941-49cd-be53-b05b75309f57`, was uploaded successfully through
-   EAS submission `afaba338-f996-4734-8673-00257655be95`. It uses Supabase,
+   Final version `1.0.0 (8)`, EAS build
+   `1d95f927-a415-4bc1-978c-ddcbcd55cae6`, was uploaded through EAS submission
+   `f5584c29-078e-479e-9ad9-f6a0b976ab9f`. It uses Supabase,
    automatic cash-due setup and cash-only payments. SMS Ethiopia delivery is
    pending, so the review account must already be verified and approved.
    `konjoserve@gmail.com` and `tsedeniyafisehaw@gmail.com` were invited as
@@ -104,7 +106,7 @@ Do not submit to App Review until every P0 item below has dated evidence.
    2026.** The uploaded build includes automatic cash-due setup, the unblocked
    professional travel flow, cash-only settings, synchronized in-app legal
    copy, honest cash-method wording, and minimized iOS permissions. Use iOS
-   `1.0.0 (7)` and Android `1.0.0 (6)`. Apple processing and release-device
+   `1.0.0 (8)` and Android `1.0.0 (6)`. Apple processing and release-device
    testing remain.
 5. **Keep online payments disabled for version 1.** Chapa merchant activation,
    provider refunds and payout transport are post-launch work. They are not App
@@ -199,7 +201,8 @@ Replace every bracketed value before submission:
 >
 > Client review account: appreview.client@konjoet.com / [password stored in the
 > account owner's macOS Keychain as “Konjo App Review Client”]. Professional review account:
-> [phone] / [verification method or fixed review code]. Both accounts are
+> approved `kiki` phone/password stored in macOS Keychain as “Konjo App Review
+> Professional”. Both accounts are
 > preconfigured and require no manual approval.
 >
 > To test live location, sign in as the professional, open the assigned booking
@@ -220,7 +223,7 @@ make that path explicit, stable and restricted to the supplied review account.
 
 - [x] The Account Holder completed the one-time Apple signing and APNs setup
   in EAS; no Apple password or two-factor code was shared.
-- [x] App record exists and build `1.0.0 (7)` was uploaded successfully for
+- [x] App record exists and build `1.0.0 (8)` was uploaded successfully for
   bundle ID `com.tsedeniya.konjoclient`.
 - [ ] Production API and worker remain reachable for the entire review window.
 - [x] Version 1 is cash-only; Chapa is disabled and is not a review dependency.

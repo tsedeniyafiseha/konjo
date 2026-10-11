@@ -73,7 +73,7 @@ provider credit.
 Chapa remains in Test Mode and is disabled for version 1. Do not enable any
 online method until merchant activation, live webhooks, refund execution and
 payout transport have been proven. Production build 3 already embeds the
-Supabase/cash-only environment; final iOS build 7 and Android build 6 are
+Supabase/cash-only environment; final iOS build 8 and Android build 6 are
 required for the 11 October cash-workflow, legal-copy, and permission fixes.
 
 ## Website cutover
