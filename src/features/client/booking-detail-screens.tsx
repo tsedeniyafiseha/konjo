@@ -391,7 +391,7 @@ export function BookingTrackingScreen() {
             </View>
 
             {paymentSummary ? <View style={styles.appointmentCard}>
-              <Text style={styles.appointmentAddress}>{paymentSummary.fullyPaid ? t('paymentReceived') : t('splitPaymentExplanation')}</Text>
+              <Text style={styles.appointmentAddress}>{paymentSummary.fullyPaid ? t('paymentReceived') : booking.paymentMethod === 'cash' ? t('cashDueNotice') : t('splitPaymentExplanation')}</Text>
               <Text style={styles.appointmentMeta}>{t('totalPaid')}: ETB {paymentSummary.paidAmount.toLocaleString()} · {t('balanceDue')}: ETB {paymentSummary.outstandingAmount.toLocaleString()}</Text>
               {booking.extraAmount ? (
                 <Text style={styles.appointmentMeta}>

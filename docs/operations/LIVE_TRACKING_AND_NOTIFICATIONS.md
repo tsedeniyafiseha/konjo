@@ -4,6 +4,11 @@ Updated 22 September 2026. This describes the implemented flow and remaining
 release requirements. Automated checks do not certify live money movement,
 native background behavior, or store approval.
 
+> Version 1 release note (11 October 2026): production and preview are
+> cash-only. The Chapa sections below document a future activation path and are
+> not enabled in the store release. Clients pay professionals in cash after the
+> physical service; no Chapa checkout, refund or payout is part of App Review.
+
 ## Booking and Chapa payment flow
 
 Konjo integrates **Chapa API v2** (https://docs.chapa.global/docs/v2), keys

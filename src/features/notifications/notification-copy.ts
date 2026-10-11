@@ -30,18 +30,18 @@ const copy: Record<string, Copy> = {
   booking_accepted: {
     en: {
       title: 'Booking accepted',
-      body: 'Your professional accepted the booking. Complete payment to confirm the visit.',
-      bodyWithAmounts: 'Your professional accepted the booking. Total ETB {total} including ETB {travelFee} travel fee. Pay the 50% deposit to confirm the visit.',
+      body: 'Your professional accepted the booking. Pay them in cash after the service.',
+      bodyWithAmounts: 'Your professional accepted the booking. Pay ETB {total}, including ETB {travelFee} travel fee, in cash after the service.',
     },
     am: {
       title: 'ቦታ ማስያዣው ተቀባይነት አግኝቷል',
-      body: 'ባለሙያዎ ቦታ ማስያዣውን ተቀብለዋል። ጉብኝቱን ለማረጋገጥ ክፍያውን ያጠናቅቁ።',
-      bodyWithAmounts: 'ባለሙያዎ ቦታ ማስያዣውን ተቀብለዋል። ጠቅላላ ETB {total} (የጉዞ ክፍያ ETB {travelFee} ጨምሮ)። ጉብኝቱን ለማረጋገጥ የ50% ተቀማጭ ይክፈሉ።',
+      body: 'ባለሙያዎ ቦታ ማስያዣውን ተቀብለዋል። ከአገልግሎቱ በኋላ በጥሬ ገንዘብ ይክፈሏቸው።',
+      bodyWithAmounts: 'ባለሙያዎ ቦታ ማስያዣውን ተቀብለዋል። ETB {total} (ETB {travelFee} የጉዞ ክፍያን ጨምሮ) ከአገልግሎቱ በኋላ በጥሬ ገንዘብ ይክፈሉ።',
     },
     om: {
       title: 'Beellamni fudhatameera',
-      body: 'Ogeessi keessan beellama fudhateera. Daawwannaa mirkaneessuuf kaffaltii xumuraa.',
-      bodyWithAmounts: 'Ogeessi keessan beellama fudhateera. Waliigala ETB {total}, kaffaltii imalaa ETB {travelFee} dabalatee. Daawwannaa mirkaneessuuf 50% kaffalaa.',
+      body: 'Ogeessi keessan beellama fudhateera. Tajaajila booda maallaqa harkaan kaffalaa.',
+      bodyWithAmounts: 'Ogeessi keessan beellama fudhateera. Tajaajila booda ETB {total}, kaffaltii imalaa ETB {travelFee} dabalatee, maallaqa harkaan kaffalaa.',
     },
   },
   booking_on_the_way: {

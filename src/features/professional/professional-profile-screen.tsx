@@ -14,6 +14,7 @@ import { PortfolioGrid } from '@/features/professional/documents/portfolio-grid'
 import { professionalPortfolioCopy } from '@/features/professional/registration/professional-portfolio-copy';
 import { localizedSpecialtyName } from '@/features/professional/registration/professional-onboarding-labels';
 import { useProfessionalCopy } from '@/localization/use-professional-copy';
+import { onlinePaymentsEnabled } from '@/features/booking/payment-mode';
 import { fontFamilies, professionalPalette, spacing } from '@/theme/tokens';
 
 interface ProfileRowProps {
@@ -110,7 +111,7 @@ export function ProfessionalProfileScreen() {
         <ProfileRow href={'/pro/portfolio' as Href} icon={{ ios: 'photo.on.rectangle', android: 'photo_library', web: 'photo_library' }} label={t('portfolioRow')} />
         <ProfileRow href={'/pro/documents' as Href} icon={{ ios: 'shield', android: 'shield', web: 'shield' }} label={t('identityRow')} status={reviewStatusLabel} />
         <ProfileRow href={'/pro/zones' as Href} icon={{ ios: 'mappin', android: 'location_on', web: 'location_on' }} label={t('zonesRow')} />
-        <ProfileRow href={'/pro/payout' as Href} icon={{ ios: 'calendar', android: 'account_balance_wallet', web: 'account_balance_wallet' }} label={t('payoutRow')} />
+        {onlinePaymentsEnabled ? <ProfileRow href={'/pro/payout' as Href} icon={{ ios: 'calendar', android: 'account_balance_wallet', web: 'account_balance_wallet' }} label={t('payoutRow')} /> : null}
         <ProfileRow href={'/pro/language' as Href} icon={{ ios: 'globe', android: 'language', web: 'language' }} label={t('languageRow')} />
         <ProfileRow href={'/pro/help' as Href} icon={{ ios: 'questionmark.circle', android: 'help_outline', web: 'help_outline' }} label={t('helpRow')} last />
       </View>

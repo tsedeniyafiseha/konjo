@@ -1,6 +1,6 @@
 # Apple App Review readiness
 
-Audit date: 9 October 2026
+Audit date: 11 October 2026
 
 This document records the App Store decision for Konjo and the evidence that
 must exist before submission. It cannot guarantee approval: Apple makes the
@@ -9,8 +9,9 @@ review decision and may ask for additional evidence.
 ## Payment decision
 
 **Do not add Apple In-App Purchase, StoreKit, RevenueCat, or Apple Pay for the
-current Konjo booking flow. Keep the Chapa-hosted Telebirr, CBE Birr and card
-checkout.**
+current Konjo booking flow. Version 1 is cash-only: the client pays the
+professional after the physical service. The Chapa integration remains disabled
+until merchant activation, refunds and payout transport have been certified.**
 
 Konjo sells an at-home beauty, grooming or wellness appointment performed by a
 professional in the physical world. Apple App Review Guideline 3.1.3(e) says
@@ -41,15 +42,15 @@ must be reviewed before implementation.
 
 | Review area | Repository evidence | Status |
 | --- | --- | --- |
-| Physical-service checkout | `backend/src/adapters/payment-gateway.ts` creates a Chapa hosted checkout; the app opens the returned `checkoutUrl`. | Correct model; live certification still required. |
+| Physical-service payment | Production and preview use `cash_only`; accepting a cash booking creates the cash-due record automatically and completion records collection. | Correct for version 1; Chapa is not exposed. |
 | No digital-purchase SDK | `package.json` has no StoreKit, RevenueCat or React Native IAP dependency. | Correct for current product. |
-| Payment credentials | `website/privacy.html` says card and wallet credentials are entered with Chapa and are not stored by Konjo. | Correct only if verified against the live Chapa flow. |
+| Payment credentials | The app and public legal pages state that version 1 is cash-only and collects no client card or wallet credentials. | Aligned with the release configuration. |
 | Account deletion | Client and professional settings call `DELETE /v1/me`; Supabase migrations scrub PII and enqueue private asset cleanup. | Implemented; retest in the release build. |
 | Company-owned authentication | Clients use Konjo email/password through Supabase; professionals use Konjo phone/OTP. There is no Google/Facebook/social login. | Sign in with Apple is not required under Guideline 4.8 while this remains true. |
 | Location disclosure | `app.json` explains address pinning and professional background sharing; the sharing window is tied to “I'm on my way” through arrival/end. | Good design; needs physical-iPhone evidence. |
 | User safety | In-app profile/review reporting, account-level server blocking, booking enforcement, SOS wording and an auditable administrator moderation queue exist. | Migration `202610080001_content_moderation_and_blocking.sql` and API commit `bd19123` were deployed on 9 October 2026. Complete the release-build two-account test for final evidence. |
-| Privacy/legal pages | `website/privacy.html`, `website/terms.html` and `website/delete-account.html` exist with Konjo contact information. | Must be publicly reachable and legally approved. |
-| Release guardrails | Production startup rejects mock professional OTP, sandbox checkout, test Chapa keys and non-HTTPS origins. EAS production builds also reject a missing/non-HTTPS API URL or enabled mock professional OTP. | Good; prove the deployed host is actually using production mode. |
+| Privacy/legal pages | `website/privacy.html`, `website/terms.html` and `website/delete-account.html` exist with Konjo contact information. | Public URLs returned HTTP 200; obtain formal legal approval. |
+| Release guardrails | Production uses the Supabase Edge API, real SMS, HTTPS-only origins, and cash-only payments. EAS production rejects a missing/non-HTTPS API URL or enabled mock professional OTP. | Deployed; continue monitoring during review. |
 
 Repository quality evidence was restored on 9 October 2026. GitHub Quality
 runs 6 and 7 completed successfully; the latest run used Node 24-compatible
@@ -57,8 +58,9 @@ GitHub actions on a pinned Ubuntu 24.04 runner with no annotations. The
 production-compatible API now runs on Supabase Edge Functions. Health/readiness,
 public catalogue, authenticated user/admin routes, the Vault-backed Cron call
 and private website-submission storage were verified live. EAS preview and
-production point to that endpoint; a new native build is still required because
-existing TestFlight builds retain their embedded environment.
+production point to that endpoint. Version `1.0.0 (3)` was built from commit
+`84ba45c` and uploaded successfully to App Store Connect; the cash-flow/legal
+corrections made on 11 October require replacement build `4` before review.
 
 ## Submission blockers
 
@@ -84,43 +86,35 @@ Do not submit to App Review until every P0 item below has dated evidence.
    `6820140076`. The exact name `Konjo` was unavailable in App Store Connect;
    the on-device app name remains `Konjo`. The Apple ID is configured in the
    `testflight` and `production` EAS Submit profiles.
-   The first internal TestFlight archive was built and uploaded the same day:
-   version `1.0.0`, build `1`, EAS build
-   `e5be1e18-3e2b-4efd-9c33-3d23f5d8b195`. App Store Connect processed it to
-   **Ready to Submit** and assigned it to the internal `Team (Expo)` group.
-   This existing build deliberately uses the former preview Render backend and
-   mock OTP; it is for internal testing, not App Review. The later EAS
-   environment cutover does not modify an already-built binary.
+   Version `1.0.0 (3)`, EAS build
+   `a60c14ac-0f7b-4c4f-88d4-adb395d371e9`, was uploaded successfully through
+   EAS submission `51b0d134-ba8d-45a8-b700-60540fe84478`. It uses Supabase,
+   real SMS and cash-only payments. A replacement build is required for the
+   11 October cash-workflow and legal-copy corrections.
    `konjoserve@gmail.com` and `tsedeniyafisehaw@gmail.com` were invited as
    internal testers on 7 October 2026.
 3. **Production backend — completed 9 October 2026.** Supabase Edge Functions,
    Postgres, private Storage and Vault-backed Cron now own the production API.
    Mock OTP and sandbox checkout are off. Keep the Supabase project reachable
    for the full review window and monitor Edge/Cron failures.
-4. **Build the Supabase-connected release candidate.** Existing TestFlight
-   build 1 still contains the former preview environment. Create and fully test
-   a new build after all remaining payment/provider gates are closed.
-5. **Certify Chapa live payments.** Activate the merchant and run controlled
-   Telebirr, CBE Birr and card scenarios: success, failure, abandonment,
-   duplicate webhook, retry, deposit, final balance and cancellation.
-6. **Finish real refunds and payouts.** The current repository records refund
-   and payout accounting, but the operations runbook states that Chapa refund
-   execution and payout transport remain outstanding. Do not display or tell a
-   customer that money was refunded until the provider confirms it.
-7. **Professional OTP configuration is complete; evidence remains.** The SMS
+4. **Build replacement release candidate `1.0.0 (4)`.** Build 3 is uploaded,
+   but build 4 must include automatic cash-due setup, the unblocked professional
+   travel flow, cash-only settings, and synchronized legal copy.
+5. **Keep online payments disabled for version 1.** Chapa merchant activation,
+   provider refunds and payout transport are post-launch work. They are not App
+   Review dependencies while no online method is shown or accepted.
+6. **Professional OTP configuration is complete; evidence remains.** The SMS
    Ethiopia key and signed Supabase hook are active and mock OTP is off in EAS.
    Prove signup, resend, invalid-code, expired-code and recovery cases on a
    physical iPhone before submission.
-8. **Complete client email auth evidence.** On a release build, prove signup,
+7. **Complete client email auth evidence.** On a release build, prove signup,
    email confirmation, login, nonexistent-user errors, password-reset deep
    link, expired link and reused link.
-9. **Configure APNs and test push.** Create the Apple push credential in EAS
-   and prove closed-app delivery and cold-start navigation on a physical
-   iPhone.
-10. **Run a release-candidate journey on two accounts.** A client and approved
-    professional must complete request, acceptance, deposit, background travel,
-    arrival, checkout, final payment, receipt, payout status, report/block and
-    account deletion.
+8. **Test APNs delivery.** The Apple push credential is configured in EAS;
+   prove closed-app delivery and cold-start navigation on a physical iPhone.
+9. **Run a release-candidate journey on two accounts.** A client and approved
+   professional must complete request, acceptance, background travel, arrival,
+   checkout, cash receipt, review, report/block and account deletion.
 
 ### P0 — App Store Connect submission data
 
@@ -133,9 +127,9 @@ Do not submit to App Review until every P0 item below has dated evidence.
      content — app functionality, fraud prevention and support as applicable.
    - Identifiers: user ID and device/push identifier — app functionality.
    - Purchases: purchase history — app functionality.
-   - Payment Info: declare it. Konjo does not receive full client card or wallet
-     credentials from Chapa, but the app stores the selected payment channel
-     and collects professional payout account details.
+   - Payment Info: clients do not provide electronic payment credentials in
+     version 1. Professional settlement-account details are still collected;
+     declare financial information conservatively until that field is removed.
    - Other Financial Info: professional earnings and payout history — app
      functionality.
    - Tracking: No, unless the final archive or a future SDK introduces
@@ -155,8 +149,8 @@ Do not submit to App Review until every P0 item below has dated evidence.
    phone, or create a real payment. Preconfigure deterministic reviewer access
    that uses the same production authorization rules.
 6. Confirm all required Apple agreements are current. If the app itself is
-   free and has no IAP, Konjo does not need to add IAP products merely to take
-   Chapa payments for physical services.
+   free and has no IAP, Konjo does not need to add IAP products for cash paid
+   after physical services.
 
 ## Test sequence
 
@@ -169,7 +163,7 @@ Follow this order; a simulator alone cannot validate Konjo.
    location and push are not considered proven here.
 3. Install a development or internal build on a physical iPhone. Test camera,
    photo selection, deep links, “Always” location, background/locked-device
-   travel, notifications, maps and the Chapa return path.
+   travel, notifications, maps and the cash completion path.
 4. Create the production EAS build and upload it to TestFlight. Run the full
    two-account release-candidate journey against the production-configured
    review backend.
@@ -194,7 +188,8 @@ Replace every bracketed value before submission:
 > accepts cash paid directly to the professional after the physical service and
 > does not sell digital content or app functionality.
 >
-> Client review account: [email] / [password]. Professional review account:
+> Client review account: appreview.client@konjoet.com / [password stored in the
+> account owner's macOS Keychain as “Konjo App Review Client”]. Professional review account:
 > [phone] / [verification method or fixed review code]. Both accounts are
 > preconfigured and require no manual approval.
 >
@@ -216,11 +211,10 @@ make that path explicit, stable and restricted to the supplied review account.
 
 - [x] The Account Holder completed the one-time Apple signing and APNs setup
   in EAS; no Apple password or two-factor code was shared.
-- [x] App record exists and is configured for bundle ID
-  `com.tsedeniya.konjoclient`; verify the first uploaded archive reports the
-  same bundle ID before testing.
+- [x] App record exists and build `1.0.0 (3)` was uploaded successfully for
+  bundle ID `com.tsedeniya.konjoclient`.
 - [ ] Production API and worker remain reachable for the entire review window.
-- [ ] Chapa live certification, refund execution and payout transport pass.
+- [x] Version 1 is cash-only; Chapa is disabled and is not a review dependency.
 - [ ] SMS, email confirmation/recovery, APNs and deep links pass on iPhone.
 - [ ] Background location starts and stops exactly as disclosed.
 - [ ] Account deletion removes/scrubs the documented data and private assets.

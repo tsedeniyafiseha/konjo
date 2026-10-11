@@ -26,7 +26,7 @@ const english = {
   decline: 'Decline', accept: 'Accept', confirmAccept: 'Confirm accept',
   onMyWayUnlocks: 'On my way unlocks {time}', awaitingDeposit: 'Awaiting 50% deposit', finishOtherVisit: 'Finish your visit with {name} first',
   onMyWay: 'I’m on my way', startWork: 'Start work', arrived: 'I’ve arrived', checkOut: 'Check out',
-  startWorkTimer: 'Start work — start timer', checkOutRequest: 'Check out — request final payment',
+  startWorkTimer: 'Start work — start timer', checkOutRequest: 'Check out — record cash payment',
   travelFeeLabel: 'Travel fee (0–{cap} ETB):', travelFeeAccessibility: 'Travel fee in ETB',
   travelFeeNone: 'No travel fee. The client pays the service price only.',
   travelFeeAdded: 'ETB {fee} is added to the client’s total. They can cancel for free until you set off.',
@@ -34,8 +34,8 @@ const english = {
   checkoutQuestion: 'Did {name} take any extra services?', extrasLabel: 'Extra services (ETB, optional):', extrasAccessibility: 'Extra services amount in ETB',
   extrasNoteAccessibility: 'What the extra services were', extrasNotePlaceholder: 'What was added, e.g. two extra rows of braids',
   extrasInvalid: 'Enter a whole number of birr up to 100,000, or leave it empty.',
-  extrasNone: 'No extras. The client pays the remaining ETB {amount}.',
-  extrasAdded: 'ETB {amount} plus Konjo’s ETB {fee} service fee is added to the client’s final payment, ETB {total} in total. You receive the full ETB {amount}.',
+  extrasNone: 'No extras. The client pays ETB {amount} in cash after the service.',
+  extrasAdded: 'ETB {amount} plus the ETB {fee} service fee is added to the cash total, ETB {total}.',
   travelSuffix: ' · +ETB {fee} travel', extrasSuffix: ' · +ETB {amount} extras',
 
   rescheduleTitle: 'New time requested', rescheduleBody: '{name} asked to move this visit to {when}. Your booking keeps its current time until you answer.',
@@ -53,7 +53,7 @@ const english = {
   // Earnings
   earningsTitle: 'Earnings', thisWeekEyebrow: 'THIS WEEK', payoutProcessing: 'Payout being processed', payoutsGoTo: 'Payouts go to',
   addPayoutInProfile: 'Add a payout method in your profile',
-  commissionNote: 'Clients pay Konjo. After each visit is checked out, the Konjo team sends your net earnings to the payout method above. The platform commission is already deducted.',
+  commissionNote: 'For version 1, clients pay you directly in cash after the service. Konjo records the completed booking total; no in-app payout is sent.',
   payoutHistory: 'Payout history', loadingPayouts: 'Loading payouts…',
   noPayouts: 'No payouts yet. Completed visits appear here once Konjo prepares a payout.',
   payoutPaid: 'Paid', payoutRef: ' · ref {reference}', payoutQueued: 'Being processed by Konjo', payoutFailed: 'Payment failed · contact support',
@@ -76,7 +76,7 @@ const english = {
   sosSend: 'Send SOS', sosSentTitle: 'SOS sent', sosSentWithLocation: 'The alert and your location were shared.', sosSentNoLocation: 'The alert was sent without location.',
   sosFailedTitle: 'SOS not sent', sosFailedBody: 'Call local emergency services if you are in immediate danger.',
   noShowTitle: 'Record client no-show?',
-  noShowBody: 'This cancels the visit. The travel fee and {rate}% service commission are retained under Konjo policy; the remaining prepaid amount is refunded.',
+  noShowBody: 'This cancels the visit and records that the client was not present. Konjo has not collected an online payment, so no automatic refund is created.',
   keepBooking: 'Keep booking', recordNoShow: 'Record no-show',
 
   // Profile
@@ -99,7 +99,7 @@ const english = {
   // Services
   servicesTitle: 'Services & pricing', popular: '★ Popular', removeService: 'Remove {name}', durationLabel: 'DURATION', hoursValue: '{hours} hours',
   yourPrice: 'YOUR PRICE (ETB)', changePrice: 'Change price', changePriceAccessibility: 'Change the price of {name}', addNewService: '+ Add a new service',
-  servicesInfo: 'Prices include your supplies and equipment. Change a price here and clients see it from their next booking. Prices are never changed on a booking that is already made; if a client takes extra services during a visit, you add the amount when you check out and it joins their final payment.',
+  servicesInfo: 'Prices include your supplies and equipment. Change a price here and clients see it from their next booking. Prices never change on an existing booking; extra services added at checkout join the cash total due after the visit.',
   newPriceBody: 'New price in ETB. Clients who already booked keep the price they saw.', newPriceAccessibility: 'New price in ETB',
   priceInvalid: 'Enter a whole number between 50 and 100,000.', savePrice: 'Save price',
   removeServiceTitle: 'Remove service?', removeServiceBody: '{name} will no longer be available for new bookings.', keepService: 'Keep service',
@@ -122,17 +122,17 @@ const english = {
 
   // Payout
   payoutTitle: 'Payout account', payoutMethodEyebrow: 'PAYOUT METHOD', notSetYet: 'Not set yet',
-  payoutDescription: 'Clients pay Konjo; after each completed visit the Konjo team sends your earnings here. The platform commission is already deducted.',
+  payoutDescription: 'This account is not used for client cash payments in version 1. It is retained only for approved future settlements or adjustments.',
   changePayout: 'Change payout method', addPayout: 'Add payout method', payoutHistoryEyebrow: 'PAYOUT HISTORY',
 
   // Help
   helpTitle: 'Help & support', emergencyTitle: 'In an emergency during a visit',
   emergencyText: 'Use the SOS button on the job screen: it alerts Konjo support with your live location. For immediate danger, call the police first.',
   callSupport: 'Call support · {phone}', emailSupport: 'Email support · {email}', reportSafety: 'Report a safety issue', faqEyebrow: 'FREQUENTLY ASKED',
-  faq1Q: 'When and how are weekly payouts sent?',
-  faq1A: 'Konjo pays your completed visits to the payout account on your profile, usually within a week of the client’s final payment. Each payment shows in Earnings with a reference.',
+  faq1Q: 'How am I paid in version 1?',
+  faq1A: 'The client pays you directly in cash after the service. Konjo records the completed booking total; no weekly in-app payout is sent in version 1.',
   faq2Q: 'What happens if a client cancels last minute?',
-  faq2A: 'If the client cancels after you set off, your travel fee is kept for you. Cancellations before that refund the client in full and the visit simply disappears from your list.',
+  faq2A: 'If the client cancels before you set off, no payment is due in the app. After travel starts, contact Konjo support about any travel-fee dispute.',
   faq3Q: 'How do I add a new zone or service?',
   faq3A: 'Open Profile, then Services & pricing or Home zones & travel. Changes apply to new bookings right away.',
   safetyEmailSubject: 'Safety issue report from a Konjo professional', safetyEmailBody: 'Please describe what happened, when, and the booking involved:\n',
@@ -143,8 +143,8 @@ const english = {
   specialtyLocked: 'Your approved specialty can only be changed by Konjo support.', aboutYou: 'ABOUT YOU', displayName: 'Display name', emailOptional: 'Email (optional)',
   introduction: 'Introduction', yearsExperience: 'Years of experience', educationLevel: 'Highest education level', gender: 'Gender',
   genderHelp: 'Shown on your public profile so clients can filter and choose a professional they are comfortable with.',
-  genderFemale: 'Female', genderMale: 'Male', genderUnspecified: 'Prefer not to say', howPaid: 'How Konjo pays you',
-  payoutHelp: 'Clients pay Konjo. After each completed visit the Konjo team sends your earnings here.',
+  genderFemale: 'Female', genderMale: 'Male', genderUnspecified: 'Prefer not to say', howPaid: 'Settlement account',
+  payoutHelp: 'Client bookings are cash-only in version 1. This account is retained for approved future settlements or adjustments.',
   telebirr: 'Telebirr', cbeBirr: 'CBE Birr', bankAccount: 'Bank account', accountHolder: 'Account holder name', bankName: 'Bank name', accountNumber: 'Account number', mobileNumber: 'Mobile number',
   languagesYouSpeak: 'Languages you speak', baseLocation: 'BASE LOCATION', baseLocationHint: 'Where you are based. Clients see this on your profile.',
   workingDaysHours: 'WORKING DAYS & HOURS', workingHint: 'Tap a start or end time to change it.', startTime: '{day} start time', endTime: '{day} end time', dayOff: 'Day off',
@@ -205,7 +205,7 @@ const amharic: ProfessionalCopy = {
 
   earningsTitle: 'ገቢ', thisWeekEyebrow: 'በዚህ ሳምንት', payoutProcessing: 'ክፍያ በሂደት ላይ', payoutsGoTo: 'ክፍያዎች የሚላኩት ወደ',
   addPayoutInProfile: 'በመገለጫዎ ውስጥ የክፍያ ዘዴ ያክሉ',
-  commissionNote: 'ደንበኞች ለKonjo ይከፍላሉ። እያንዳንዱ ጉብኝት ከተጠናቀቀ በኋላ የKonjo ቡድን የተጣራ ገቢዎን ከላይ ወዳለው የክፍያ ዘዴ ይልካል። የመድረኩ ኮሚሽን አስቀድሞ ተቀንሷል።',
+  commissionNote: 'በስሪት 1 ደንበኞች ከአገልግሎቱ በኋላ ለእርስዎ በቀጥታ በጥሬ ገንዘብ ይከፍላሉ። Konjo የተጠናቀቀውን ጠቅላላ መጠን ይመዘግባል፤ በመተግበሪያው ክፍያ አይላክም።',
   payoutHistory: 'የክፍያ ታሪክ', loadingPayouts: 'ክፍያዎች በመጫን ላይ…',
   noPayouts: 'እስካሁን ክፍያ የለም። Konjo ክፍያ ሲያዘጋጅ የተጠናቀቁ ጉብኝቶች እዚህ ይታያሉ።',
   payoutPaid: 'ተከፍሏል', payoutRef: ' · ማጣቀሻ {reference}', payoutQueued: 'በKonjo በሂደት ላይ', payoutFailed: 'ክፍያ አልተሳካም · ድጋፍን ያነጋግሩ',
@@ -266,7 +266,7 @@ const amharic: ProfessionalCopy = {
   documentsPrivacy: 'የከፍተኛ ትምህርት ሰርተፊኬትዎ ለምዝገባ ያስፈልጋል። የጥፍር፣ የፀጉር አስተካካይ፣ የማሳጅ ወይም ሌሎች የኮርስ ሰርተፊኬቶችንም ማከል ይችላሉ። የማንነት ምስሎች ለውስጥ ግምገማ ብቻ ይውላሉ።',
 
   payoutTitle: 'የክፍያ ሂሳብ', payoutMethodEyebrow: 'የክፍያ ዘዴ', notSetYet: 'እስካሁን አልተቀመጠም',
-  payoutDescription: 'ደንበኞች ለKonjo ይከፍላሉ፤ እያንዳንዱ ጉብኝት ከተጠናቀቀ በኋላ የKonjo ቡድን ገቢዎን እዚህ ይልካል። የመድረኩ ኮሚሽን አስቀድሞ ተቀንሷል።',
+  payoutDescription: 'ይህ ሂሳብ በስሪት 1 ለደንበኛ የጥሬ ገንዘብ ክፍያ አይጠቀምም። ለተፈቀደ የወደፊት ማስተካከያ ብቻ ይቀመጣል።',
   changePayout: 'የክፍያ ዘዴ ቀይር', addPayout: 'የክፍያ ዘዴ ጨምር', payoutHistoryEyebrow: 'የክፍያ ታሪክ',
 
   helpTitle: 'እገዛ እና ድጋፍ', emergencyTitle: 'በጉብኝት ወቅት አደጋ ሲያጋጥም',
@@ -285,8 +285,8 @@ const amharic: ProfessionalCopy = {
   specialtyLocked: 'የጸደቀው ሙያዎ በKonjo ድጋፍ ብቻ ሊቀየር ይችላል።', aboutYou: 'ስለ እርስዎ', displayName: 'የባለሙያ መጠሪያ ስም', emailOptional: 'ኢሜይል (አማራጭ)',
   introduction: 'መግቢያ', yearsExperience: 'የሙያ ልምድ በዓመት', educationLevel: 'ከፍተኛው የትምህርት ደረጃ', gender: 'ጾታ',
   genderHelp: 'ደንበኞች የሚመቻቸውን ባለሙያ እንዲያጣሩ እና እንዲመርጡ በይፋ መገለጫዎ ላይ ይታያል።',
-  genderFemale: 'ሴት', genderMale: 'ወንድ', genderUnspecified: 'መናገር አልፈልግም', howPaid: 'Konjo እንዴት ይክፈልዎት',
-  payoutHelp: 'ደንበኞች ለKonjo ይከፍላሉ። እያንዳንዱ ጉብኝት ከተጠናቀቀ በኋላ የKonjo ቡድን ገቢዎን እዚህ ይልካል።',
+  genderFemale: 'ሴት', genderMale: 'ወንድ', genderUnspecified: 'መናገር አልፈልግም', howPaid: 'የማስተካከያ ሂሳብ',
+  payoutHelp: 'የስሪት 1 ቦታ ማስያዣዎች በጥሬ ገንዘብ ብቻ ናቸው። ይህ ሂሳብ ለተፈቀደ የወደፊት ማስተካከያ ይቀመጣል።',
   telebirr: 'ቴሌብር', cbeBirr: 'ሲቢኢ ብር', bankAccount: 'የባንክ ሂሳብ', accountHolder: 'የሂሳብ ባለቤት ስም', bankName: 'የባንክ ስም', accountNumber: 'የሂሳብ ቁጥር', mobileNumber: 'የሞባይል ቁጥር',
   languagesYouSpeak: 'የሚናገሯቸው ቋንቋዎች', baseLocation: 'መነሻ አካባቢ', baseLocationHint: 'የሚገኙበት ቦታ። ደንበኞች በመገለጫዎ ላይ ያዩታል።',
   workingDaysHours: 'የሥራ ቀናት እና ሰዓት', workingHint: 'ለመቀየር የመጀመሪያ ወይም የመጨረሻ ሰዓቱን ይንኩ።', startTime: 'የ{day} መጀመሪያ ሰዓት', endTime: 'የ{day} መጨረሻ ሰዓት', dayOff: 'የዕረፍት ቀን',
@@ -343,7 +343,7 @@ const oromo: ProfessionalCopy = {
 
   earningsTitle: 'Galii', thisWeekEyebrow: 'TORBAN KANA', payoutProcessing: 'Kaffaltiin adeemsa irra jira', payoutsGoTo: 'Kaffaltiin kan ergamu gara',
   addPayoutInProfile: 'Piroofaayilii keessan keessatti mala kaffaltii dabalaa',
-  commissionNote: 'Maamiltoonni Konjo’f kaffalu. Daawwannaan tokko tokko erga xumuramee booda, gareen Konjo galii keessan qulqulluu gara mala kaffaltii armaan olii erga. Komishiniin waltajjii duraan hir’ifameera.',
+  commissionNote: 'Version 1 keessatti maamiltoonni tajaajila booda maallaqa harkaan kallattiin isiniif kaffalu. Konjo waliigala beellama xumuramee galmeessa; kaffaltii appii keessaa hin ergu.',
   payoutHistory: 'Seenaa kaffaltii', loadingPayouts: 'Kaffaltiiwwan fe’amaa jiru…',
   noPayouts: 'Hanga ammaatti kaffaltiin hin jiru. Konjo kaffaltii qopheessinaan daawwannaawwan xumuraman asitti mul’atu.',
   payoutPaid: 'Kaffalameera', payoutRef: ' · wabii {reference}', payoutQueued: 'Konjo’n adeemsifamaa jira', payoutFailed: 'Kaffaltiin hin milkoofne · deeggarsa quunnamaa',
@@ -404,7 +404,7 @@ const oromo: ProfessionalCopy = {
   documentsPrivacy: 'Ragaan barnoota olaanaa keessanii galmeef barbaachisa. Ragaalee leenjii qeensaa, rifeensa muruu, maasaajii ykn kan biroo dabaluu dandeessu. Suuraaleen eenyummaa gamaaggama keessoo qofaaf fayyadamu.',
 
   payoutTitle: 'Herrega kaffaltii', payoutMethodEyebrow: 'MALA KAFFALTII', notSetYet: 'Hanga ammaatti hin kaa’amne',
-  payoutDescription: 'Maamiltoonni Konjo’f kaffalu; daawwannaan tokko tokko erga xumuramee booda gareen Konjo galii keessan asitti erga. Komishiniin waltajjii duraan hir’ifameera.',
+  payoutDescription: 'Herregni kun version 1 keessatti kaffaltii maallaqa harkaa maamilaa hin fayyadamu. Sirreeffama gara fuulduraa hayyamame qofaaf kuufama.',
   changePayout: 'Mala kaffaltii jijjiiri', addPayout: 'Mala kaffaltii dabali', payoutHistoryEyebrow: 'SEENAA KAFFALTII',
 
   helpTitle: 'Gargaarsa fi deeggarsa', emergencyTitle: 'Yeroo daawwannaa balaa hatattamaa yoo uumame',
@@ -423,8 +423,8 @@ const oromo: ProfessionalCopy = {
   specialtyLocked: 'Ogummaan keessan mirkanaa’e deeggarsa Konjo qofaan jijjiiramuu danda’a.', aboutYou: 'WAA’EE KEESSAN', displayName: 'Maqaa ogummaa', emailOptional: 'Imeelii (filannoo)',
   introduction: 'Seensa', yearsExperience: 'Waggaa muuxannoo ogummaa', educationLevel: 'Sadarkaa barnootaa olaanaa', gender: 'Saala',
   genderHelp: 'Maamiltoonni ogeessa isaaniif mijatu akka calalanii filataniif piroofaayilii ifaa keessan irratti mul’ata.',
-  genderFemale: 'Dubartii', genderMale: 'Dhiira', genderUnspecified: 'Himuu hin barbaadu', howPaid: 'Konjo akkamitti isin kaffala',
-  payoutHelp: 'Maamiltoonni Konjo’f kaffalu. Daawwannaan tokko tokko erga xumuramee booda gareen Konjo galii keessan asitti erga.',
+  genderFemale: 'Dubartii', genderMale: 'Dhiira', genderUnspecified: 'Himuu hin barbaadu', howPaid: 'Herrega sirreeffamaa',
+  payoutHelp: 'Beellamni version 1 maallaqa harkaa qofa. Herregni kun sirreeffama gara fuulduraa hayyamameef kuufama.',
   telebirr: 'Telebirr', cbeBirr: 'CBE Birr', bankAccount: 'Herrega baankii', accountHolder: 'Maqaa abbaa herregaa', bankName: 'Maqaa baankii', accountNumber: 'Lakkoofsa herregaa', mobileNumber: 'Lakkoofsa bilbilaa',
   languagesYouSpeak: 'Afaanota dubbattan', baseLocation: 'BAKKA KA’UMSAA', baseLocationHint: 'Bakka jiraattan. Maamiltoonni piroofaayilii keessan irratti argu.',
   workingDaysHours: 'GUYYOOTA FI SA’AATII HOJII', workingHint: 'Jijjiiruuf sa’aatii jalqabaa ykn dhumaa tuqaa.', startTime: 'Sa’aatii jalqabaa {day}', endTime: 'Sa’aatii dhumaa {day}', dayOff: 'Guyyaa boqonnaa',

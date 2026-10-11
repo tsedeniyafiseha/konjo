@@ -73,15 +73,15 @@ Beta description:
 
 > Test Konjo's complete at-home beauty and wellness booking experience in
 > Addis Ababa. Please test client email registration and recovery, professional
-> registration, administrator approval, booking, preview checkout, live trip
+> registration, administrator approval, cash booking, live trip
 > tracking, notifications, cancellation, reviews, safety tools and account
 > deletion.
 
-What to test for build `1.0.0 (1)`:
+What to test for build `1.0.0 (3)`:
 
-> This is an internal preview build. Use professional verification code 247124.
-> Use only test identities and the preview checkout; do not enter real payment
-> credentials. Test with one client and one professional on separate phones.
+> This is the production release candidate using the Supabase Edge API, real
+> SMS delivery and cash-only payment. Do not enter card or wallet credentials.
+> Test with one client and one professional on separate phones.
 > Report the role, device/iOS version, exact steps, expected result and actual
 > result with each TestFlight screenshot.
 
@@ -94,7 +94,8 @@ Feedback email: `info@konjoet.com`
 > 1 accepts cash paid directly to the professional after the physical service.
 > Konjo does not sell digital content or app functionality.
 >
-> Client review account: [production review email] / [password]
+> Client review account: appreview.client@konjoet.com / [password stored in the
+> account owner's macOS Keychain as “Konjo App Review Client”]
 > Professional review account: [production review phone] / [password or stable
 > reviewer OTP procedure]
 >
@@ -109,9 +110,9 @@ Feedback email: `info@konjoet.com`
 >
 > Support: info@konjoet.com
 
-Never paste the preview mock OTP or preview sandbox instructions into the final
-App Review notes. Replace every bracketed value using production review
-accounts before submission.
+Never paste the historical mock OTP or sandbox-payment instructions into the
+final App Review notes. Replace the remaining bracketed values using production
+review accounts immediately before submission.
 
 ## Screenshot set
 
@@ -131,8 +132,9 @@ Use the exact device sizes requested by App Store Connect at upload time.
 Expected declarations, subject to the final archive/provider audit:
 
 - Contact Info: name, email, phone number, physical address.
-- Financial Info: selected payment method, professional payout details and
-  earnings history; Konjo does not receive full card or wallet credentials.
+- Financial Info: cash-payment status plus professional settlement-account
+  details retained for approved future adjustments; version 1 collects no
+  client card or wallet credentials.
 - Precise Location: booking address and active professional trip location.
 - User Content: portfolio/identity photos, reviews, reports and support data.
 - Identifiers: user ID and device/push identifier.

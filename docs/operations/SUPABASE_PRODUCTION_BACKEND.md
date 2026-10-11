@@ -1,6 +1,6 @@
 # Supabase production backend
 
-Updated: 9 October 2026
+Updated: 11 October 2026
 
 Konjo no longer needs Render for the mobile API. Preview and production EAS
 environments now use:
@@ -20,7 +20,7 @@ https://uikwhmkkfidckcejllrk.supabase.co/functions/v1/api
 | Identity, portfolio and website-application files | Private Supabase Storage buckets |
 | Booking reminders, reassignment and outbox delivery | Supabase Cron + Edge worker route |
 | Push delivery | Expo Push Service, with FCM/APNs credentials managed through EAS |
-| Payment checkout | Chapa; still in test mode until merchant activation |
+| Version 1 payment state | Cash-only in Supabase; Chapa code and secrets remain dormant |
 
 Firebase is retained only for Android FCM delivery. It is not the application
 database, authentication service or API host. AWS is not part of this design.
@@ -35,7 +35,8 @@ database, authentication service or API host. AWS is not part of this design.
   succeeded and the resulting Edge request returned HTTP 200.
 - The worker credential was rotated and stored independently in Edge secrets
   and Supabase Vault.
-- Chapa credentials and backend signing secrets are in Edge secrets.
+- Chapa credentials and backend signing secrets remain in Edge secrets but are
+  not used while `KONJO_PAYMENT_MODE=cash_only`.
 - The SMS Ethiopia API key is in Edge secrets and the signed Supabase Send SMS
   Hook is enabled at `/functions/v1/send-sms`.
 - A synthetic contact message and professional application passed through the
@@ -67,19 +68,20 @@ uses the account balance—the dashboard showed ETB 10 at connection time, so do
 not assume a permanent “free 100” allowance. Each real OTP test can consume
 provider credit.
 
-Chapa remains in Test Mode. Do not submit the current online-payment flow to
-App Review as a live payment flow until merchant activation, live webhooks,
-refund execution and payout transport have been proven. A new native build is
-also required for the EAS environment changes; existing APK/TestFlight binaries
-keep the environment values embedded when they were built.
+Chapa remains in Test Mode and is disabled for version 1. Do not enable any
+online method until merchant activation, live webhooks, refund execution and
+payout transport have been proven. Production build 3 already embeds the
+Supabase/cash-only environment; replacement build 4 is required for the
+11 October cash-workflow and legal-copy fixes.
 
 ## Website cutover
 
 The production website is hosted on the existing LiteSpeed host, not Render.
-`website/site.js` now posts contact and professional-application forms directly
-to the Supabase Edge API. Deploy the updated static file to the website host;
-until then the live host still answers those relative POST paths with HTML and
-does not persist the forms.
+`website/site.js` posts contact and professional-application forms directly to
+the Supabase Edge API. The deployed website bundles were verified using the
+protected `/v1/public/contact` and `/v1/public/professional-applications`
+endpoints. Publish the 11 October privacy/terms cash-only wording before store
+submission.
 
 ## Migrations
 

@@ -22,6 +22,7 @@ import { distanceMeters, formatDistance, isRecentPoint } from '@/features/locati
 import { openExternalNavigation } from '@/features/location/external-navigation';
 import { liveLocationReporter } from '@/features/location/live-location-reporter';
 import { BookingMap, type MapMarker } from '@/features/location/booking-map';
+import { onlinePaymentsEnabled } from '@/features/booking/payment-mode';
 import { useOptionalNotifications } from '@/features/notifications/notification-context';
 import { fontFamilies, professionalPalette, radii, spacing } from '@/theme/tokens';
 import { useProfessionalPayouts } from '@/features/professional/use-professional-payouts';
@@ -215,7 +216,7 @@ function ActiveJobCard({ job }: { job: ProfessionalJob }) {
     else if (job.status === 'traveling') { if (job.arrivedAt) checkIn(job.id); else arrive(job.id); }
     else setShowCheckout(true);
   };
-  const waitingForDeposit = job.status === 'accepted' && job.paymentSummary?.depositPaid === false;
+  const waitingForDeposit = job.paymentMethod !== 'cash' && job.status === 'accepted' && job.paymentSummary?.depositPaid === false;
   // Accepted bookings can set off at any time: nothing waits for the appointment hour.
   const waitingForStart = false;
   const otherJourney = useOtherJourney(job.id);
@@ -264,7 +265,7 @@ function Metric({ value, label, onPress }: { value: string; label: string; onPre
 export function jobPaymentStatus(job: ProfessionalJob, t: Translate): { label: string; settled: boolean } {
   if (job.outcome === 'cancelled') return { label: t('cancelled'), settled: true };
   const summary = job.paymentSummary;
-  const cash = job.payment === 'Cash' || job.payment === 'ጥሬ ገንዘብ' || job.payment === 'Maallaqa harkaa';
+  const cash = job.paymentMethod === 'cash';
   if (!summary) return { label: cash ? t('paidInCash') : t('paymentPending'), settled: cash };
   if (summary.fullyPaid) return { label: t('paidInFull', { amount: summary.paidAmount.toLocaleString() }), settled: true };
   return { label: t('awaitingFinalPayment', { amount: summary.outstandingAmount.toLocaleString() }), settled: false };
@@ -382,9 +383,9 @@ export function ProfessionalEarningsScreen() {
       <StatusBar style="dark" />
       <Text accessibilityRole="header" style={proSharedStyles.pageTitle}>{t('earningsTitle')}</Text>
       <View style={styles.earningsHero}><Text style={styles.earningsEyebrow}>{t('thisWeekEyebrow')}</Text><Text style={styles.earningsValue}>ETB {weekEarnings}</Text></View>
-      <View style={styles.nextPayout}><View style={styles.nextPayoutCopy}><Text style={styles.nextPayoutTitle}>{owed > 0 ? t('payoutProcessing') : t('payoutsGoTo')}</Text><Text style={styles.nextPayoutMeta}>{payoutMethodLabel}</Text></View><Text style={styles.nextPayoutAmount}>ETB {owed > 0 ? owed.toLocaleString() : weekEarnings.toLocaleString()}</Text></View>
+      {onlinePaymentsEnabled ? <View style={styles.nextPayout}><View style={styles.nextPayoutCopy}><Text style={styles.nextPayoutTitle}>{owed > 0 ? t('payoutProcessing') : t('payoutsGoTo')}</Text><Text style={styles.nextPayoutMeta}>{payoutMethodLabel}</Text></View><Text style={styles.nextPayoutAmount}>ETB {owed > 0 ? owed.toLocaleString() : weekEarnings.toLocaleString()}</Text></View> : null}
       <Text style={styles.commission}>{t('commissionNote')}</Text>
-      <Text style={styles.payoutTitle}>{t('payoutHistory')}</Text>
+      {onlinePaymentsEnabled ? <><Text style={styles.payoutTitle}>{t('payoutHistory')}</Text>
       <View style={styles.payoutStack}>
         {loading ? <Text style={styles.paid}>{t('loadingPayouts')}</Text> : null}
         {!loading && !payouts.length ? <Text style={styles.paid}>{t('noPayouts')}</Text> : null}
@@ -397,7 +398,7 @@ export function ProfessionalEarningsScreen() {
             <Text style={styles.payoutAmount}>ETB {payout.amount.toLocaleString()}</Text>
           </View>
         ))}
-      </View>
+      </View></> : null}
     </ProfessionalTabScreen>
   );
 }
@@ -418,10 +419,10 @@ function FinishedJobDetail({ job }: { job: ProfessionalJob }) {
       <View style={[styles.paymentStatusCard, payment.settled ? styles.paymentSettledCard : styles.paymentDueCard]}>
         <Text style={styles.paymentStatusLabel}>{job.outcome === 'cancelled' ? t('bookingCancelled') : payment.settled ? t('paymentComplete') : t('finalPaymentOutstanding')}</Text>
         <Text style={styles.paymentStatusValue}>{payment.label}</Text>
-        {summary && job.outcome !== 'cancelled' ? (
+        {summary && job.paymentMethod !== 'cash' && job.outcome !== 'cancelled' ? (
           <Text style={styles.mapNote}>{t('depositBalanceLine', { deposit: summary.depositAmount.toLocaleString(), depositMark: summary.depositPaid ? '✓' : t('unpaidMark'), balance: summary.balanceAmount.toLocaleString(), balanceMark: summary.fullyPaid ? '✓' : t('pendingMark') })}</Text>
         ) : null}
-        {!payment.settled && job.outcome !== 'cancelled' ? <Text style={styles.mapNote}>{t('balanceNote')}</Text> : null}
+        {!payment.settled && job.paymentMethod !== 'cash' && job.outcome !== 'cancelled' ? <Text style={styles.mapNote}>{t('balanceNote')}</Text> : null}
       </View>
     </View>
   );
@@ -467,7 +468,7 @@ export function ProfessionalJobScreen() {
     ...(ownPoint ? [{ id: 'self', point: ownPoint, kind: 'self' as const, label: t('you') }] : []),
   ] : [];
   const remaining = job?.destination && ownPoint ? distanceMeters(ownPoint, job.destination) : null;
-  const waitingForDeposit = job?.status === 'accepted' && job.paymentSummary?.depositPaid === false;
+  const waitingForDeposit = job?.paymentMethod !== 'cash' && job?.status === 'accepted' && job.paymentSummary?.depositPaid === false;
   const waitingForStart = false;
   const otherJourney = useOtherJourney(job?.id);
   const blockedByJourney = job?.status === 'accepted' && Boolean(otherJourney);

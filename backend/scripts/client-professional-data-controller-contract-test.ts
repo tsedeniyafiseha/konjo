@@ -89,6 +89,7 @@ const fallback: ProfessionalDataSnapshot = {
     service: 'Fallback service',
     description: 'Development job',
     price: 700,
+    paymentMethod: 'cash',
     payment: 'Cash',
     time: 'Today',
     address: 'Bole',
@@ -255,7 +256,7 @@ function controller(
   assert.equal(data.getSnapshot().jobs.length, 0);
   assert.equal(data.getSnapshot().completedCount, 10);
   assert.equal(data.getSnapshot().weekEarnings, 13_100);
-  assert.match(data.getSnapshot().toast ?? '', /final payment requested/);
+  assert.match(data.getSnapshot().toast ?? '', /cash payment recorded/);
 }
 
 {

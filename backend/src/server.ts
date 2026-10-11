@@ -1806,7 +1806,22 @@ async function route(request: IncomingMessage, response: ServerResponse) {
     if (result === 'payment_required') {
       throw new HttpError(409, 'PAYMENT_REQUIRED', 'Payment must be secured before this booking can continue.');
     }
-    const dashboard = await professionalReads.getDashboard(user.id);
+    let dashboard = await professionalReads.getDashboard(user.id);
+    // Cash-only releases do not make the client perform a fake checkout step.
+    // Accepting the booking creates the durable cash-due intent immediately,
+    // so the professional can start the journey and the cash is marked collected
+    // only when the visit is completed.
+    if (action === 'accept' && config.paymentMode === 'cash_only') {
+      const accepted = dashboard?.jobs.find((job) => job.id === professionalBookingActionMatch[1]);
+      if (!accepted?.clientId || accepted.paymentMethod !== 'cash') {
+        throw new HttpError(500, 'CASH_PAYMENT_SETUP_FAILED', 'The booking was accepted, but its cash payment could not be prepared. Open the booking and try again.');
+      }
+      const payment = await initiateBookingPayment.execute(accepted.clientId, accepted.id);
+      if (payment.result !== 'created' && payment.result !== 'duplicate') {
+        throw new HttpError(500, 'CASH_PAYMENT_SETUP_FAILED', 'The booking was accepted, but its cash payment could not be prepared. Open the booking and try again.');
+      }
+      dashboard = await professionalReads.getDashboard(user.id);
+    }
     sendJson(response, 200, { dashboard });
     // The client is waiting on this answer: deliver their notification right away.
     runBackgroundJobsNow('professional_booking_transition');

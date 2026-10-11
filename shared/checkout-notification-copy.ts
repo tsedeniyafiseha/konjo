@@ -1,9 +1,9 @@
 type Message = { title: string; body: string };
 export const checkoutNotificationCopy: Record<string, Record<'en' | 'am' | 'om', Message>> = {
   booking_accepted: {
-    en: { title: 'Booking accepted', body: 'Open your booking to pay the 50% deposit and confirm your visit.' },
-    am: { title: 'ጥያቄዎ ተቀባይነት አግኝቷል', body: '50% ቅድመ ክፍያ ለመክፈል ቦታ ማስያዣዎን ይክፈቱ።' },
-    om: { title: 'Beellamni fudhatameera', body: 'Kaffaltii duraa 50% kaffaluuf beellama keessan banaa.' },
+    en: { title: 'Booking accepted', body: 'Your visit is confirmed. Pay the professional in cash after the service.' },
+    am: { title: 'ጥያቄዎ ተቀባይነት አግኝቷል', body: 'ጉብኝትዎ ተረጋግጧል። አገልግሎቱ ከተጠናቀቀ በኋላ ለባለሙያው በጥሬ ገንዘብ ይክፈሉ።' },
+    om: { title: 'Beellamni fudhatameera', body: 'Daawwannaan keessan mirkanaaʼeera. Tajaajila booda ogeessaaf maallaqa harkaan kaffalaa.' },
   },
   booking_arrived: {
     en: { title: 'Your professional has arrived', body: 'The session timer starts when your professional begins work.' },
@@ -11,9 +11,9 @@ export const checkoutNotificationCopy: Record<string, Record<'en' | 'am' | 'om',
     om: { title: 'Ogeessi keessan ga’eera', body: 'Yeroon tajaajilaa yeroo ogeessi hojii jalqabu eegala.' },
   },
   booking_completed: {
-    en: { title: 'Your session is complete', body: 'Open your booking to review the final payment and receipt.' },
-    am: { title: 'አገልግሎቱ ተጠናቋል', body: 'የመጨረሻ ክፍያና ደረሰኝ ለማየት ቦታ ማስያዣዎን ይክፈቱ።' },
-    om: { title: 'Tajaajilli xumurameera', body: 'Kaffaltii xumuraa fi nagahee ilaaluuf beellama keessan banaa.' },
+    en: { title: 'Your session is complete', body: 'Your cash payment is recorded. Open the booking for the receipt and review.' },
+    am: { title: 'አገልግሎቱ ተጠናቋል', body: 'የጥሬ ገንዘብ ክፍያዎ ተመዝግቧል። ደረሰኙን ለማየትና ግምገማ ለመስጠት ቦታ ማስያዣዎን ይክፈቱ።' },
+    om: { title: 'Tajaajilli xumurameera', body: 'Kaffaltiin maallaqa harkaa galmaaʼeera. Nagahee fi madaallii ilaaluuf beellama banaa.' },
   },
   booking_deposit_paid: {
     en: { title: '50% deposit received', body: 'The visit is confirmed. Open the booking when you are ready to travel.' },

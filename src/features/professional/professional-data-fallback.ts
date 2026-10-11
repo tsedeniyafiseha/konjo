@@ -4,9 +4,9 @@ import { apiBaseUrl } from '@/services/api-client';
 /** Sample workspace shown only in the design preview, when no API is configured. */
 const sampleProfessionalData: ProfessionalDataSnapshot = {
   jobs: [
-    { id: 'j1', name: 'Meron G.', initials: 'MG', service: 'Box braids', description: '3 hr wellness ritual', price: 2450, payment: 'Cash / Telebirr', time: 'Today at 2:30 PM', address: 'Bole Atlas', addressDetail: 'Behind Edna Mall, blue gate #14', travelFee: 150, status: 'offer' },
-    { id: 'j2', name: 'Selam D.', initials: 'SD', service: 'Cornrows', description: 'Shuruba accents · 90 min', price: 900, payment: 'Telebirr', time: 'Today at 5:30 PM', address: 'CMC Michael', addressDetail: 'Near the main roundabout', travelFee: 0, status: 'accepted' },
-    { id: 'j3', name: 'Kalkidan B.', initials: 'KB', service: 'Silk press', description: 'Thermal protectant · 2 hr', price: 1200, payment: 'CBE Birr', time: 'Today at 7:45 PM', address: 'Kazanchis', addressDetail: 'Gate 2, apartment block C', travelFee: 0, status: 'accepted' },
+    { id: 'j1', name: 'Meron G.', initials: 'MG', service: 'Box braids', description: '3 hr wellness ritual', price: 2450, paymentMethod: 'cash', payment: 'Cash', time: 'Today at 2:30 PM', address: 'Bole Atlas', addressDetail: 'Behind Edna Mall, blue gate #14', travelFee: 150, status: 'offer' },
+    { id: 'j2', name: 'Selam D.', initials: 'SD', service: 'Cornrows', description: 'Shuruba accents · 90 min', price: 900, paymentMethod: 'cash', payment: 'Cash', time: 'Today at 5:30 PM', address: 'CMC Michael', addressDetail: 'Near the main roundabout', travelFee: 0, status: 'accepted' },
+    { id: 'j3', name: 'Kalkidan B.', initials: 'KB', service: 'Silk press', description: 'Thermal protectant · 2 hr', price: 1200, paymentMethod: 'cash', payment: 'Cash', time: 'Today at 7:45 PM', address: 'Kazanchis', addressDetail: 'Gate 2, apartment block C', travelFee: 0, status: 'accepted' },
   ],
   recentJobs: [],
   dashboardLoaded: true,

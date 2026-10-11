@@ -1,4 +1,4 @@
-import type { ApiBookingPaymentSummary } from '../../../shared/api-contracts';
+import type { ApiBookingPaymentMethod, ApiBookingPaymentSummary } from '../../../shared/api-contracts';
 export type ProfessionalJobStatus = 'offer' | 'accepted' | 'traveling' | 'onsite';
 
 export interface ProfessionalJobLocation {
@@ -18,6 +18,7 @@ export interface ProfessionalJob {
   service: string;
   description: string;
   price: number;
+  paymentMethod: ApiBookingPaymentMethod;
   payment: string;
   time: string;
   /** New time the client asked for, awaiting this professional's answer. */

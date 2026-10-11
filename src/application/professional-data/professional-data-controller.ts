@@ -573,6 +573,7 @@ export class ProfessionalDataController {
       service: job.serviceName,
       description: this.copy('jobDescription'),
       price: job.total,
+      paymentMethod: job.paymentMethod,
       payment: this.paymentLabel(job.paymentMethod),
       time: `${this.runtime.dateLabel(job.dateIso)} ${this.copy('timeJoiner')} ${job.time}`,
       proposedDateIso: job.proposedDateIso ?? null,

@@ -594,7 +594,7 @@ function EscrowSection({
 
   return (
     <View>
-      <PageTitle subtitle="Clients pay Konjo; the team pays professionals by hand to the method they registered and records the reference here" title="Escrow & payouts" />
+      <PageTitle subtitle="Version 1 is cash-only. This ledger remains for approved future settlements and adjustments." title="Settlement records" />
       <View style={styles.kpiGrid}>
         <Kpi label="Held in escrow" value={`ETB ${money(data.summary.capturedPaymentAmount)}`} />
         <Kpi label="Prepared, unpaid" value={`ETB ${money(data.summary.queuedPayoutAmount)}`} />

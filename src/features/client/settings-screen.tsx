@@ -14,6 +14,7 @@ import { type NotificationPreferenceKey, useClientData } from '@/features/client
 import { useAuthSession } from '@/features/auth/session-context';
 import type { ClientCopyKey } from '@/localization/client-copy';
 import { useClientCopy } from '@/localization/use-client-copy';
+import { onlinePaymentsEnabled } from '@/features/booking/payment-mode';
 import { openSupportEmail, supportEmail } from '@/features/support/support-links';
 import { fontFamilies, layout, palette, radii, spacing } from '@/theme/tokens';
 
@@ -178,13 +179,16 @@ function ProfileContent() {
 
 function PaymentMethodsContent() {
   const { t } = useClientCopy();
-  return (
-    <View style={styles.stack}>
-      {[
+  const methods = onlinePaymentsEnabled
+    ? [
         ['Telebirr', t('telebirrCheckout')],
         ['CBE Birr', t('cbeCheckout')],
         ['Visa / Mastercard', t('cardCheckout')],
-      ].map(([label, description]) => (
+      ]
+    : [['Cash', t('cashDueNotice')]];
+  return (
+    <View style={styles.stack}>
+      {methods.map(([label, description]) => (
         <View key={label} style={styles.paymentCard}>
           <View style={styles.paymentMark}><Text style={styles.paymentMarkText}>{label.slice(0, 3).toUpperCase()}</Text></View>
           <View style={styles.flexCopy}>

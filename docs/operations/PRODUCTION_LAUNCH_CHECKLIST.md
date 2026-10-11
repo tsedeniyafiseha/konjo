@@ -1,6 +1,6 @@
 # Production launch checklist
 
-## Status on 2026-10-07: what is left before launch
+## Status on 2026-10-11: what is left before launch
 
 Everything below the line is the full gate list. These are the concrete items
 still open after the end-to-end work of 2026-09-23 to 2026-09-26; each needs
@@ -12,10 +12,12 @@ The physical-iPhone test sequence is in
 and the prepared store copy is in
 [`APP_STORE_LISTING_DRAFT.md`](./APP_STORE_LISTING_DRAFT.md).
 
-The first TestFlight build from 7 October 2026 used the former Render/mock-OTP
-preview. On 9 October 2026 the EAS environments were cut over to Supabase Edge
-and real SMS; a new binary is required to use those values. The public privacy,
-terms and account-deletion URLs return HTTP 200.
+Version `1.0.0 (3)` was built from commit `84ba45c` with Supabase Edge, real
+SMS and cash-only payments, and uploaded successfully to App Store Connect.
+The 11 October automatic cash setup and synchronized legal-copy corrections
+require replacement build `4`. The public privacy, terms and account-deletion
+URLs return HTTP 200; publish the 11 October cash-only legal-page update before
+selecting the build for review.
 
 1. **API hosting — completed on Supabase 9 October 2026.** The shared HTTP
    contract runs in the Supabase `api` Edge Function. EAS preview and production
@@ -23,16 +25,12 @@ terms and account-deletion URLs return HTTP 200.
    protected worker every minute using Vault. Health/readiness, public catalogue,
    authenticated user/admin reads, Cron HTTP 200 and private website-submission
    storage were verified live. Render is no longer in the mobile API path.
-2. **Chapa live**: switch to `CHAPA_LIVE_` keys once the merchant account is
-   approved, register `https://<api>/v1/payments/webhooks/{telebirr|cbe|card}`
-   and the webhook secret in the Chapa dashboard, enable Telebirr, CBE Birr and
-   cards on the merchant, then run one controlled live payment. Verify-on-return
-   is already in place for the app, webhooks are the source of truth.
-   Verified 7 October 2026: the Chapa merchant is still in **Test Mode** and
-   the dashboard says compliance is due. The verification workflow requires
-   Business Information, Business Contact, Documents & Verification, and
-   Contact Person. The account holder must review and submit that sensitive
-   business information before Chapa can issue live access.
+2. **Version 1 payments — cash-only.** Preview, production and the Supabase
+   Edge API use `cash_only`. Accepting a cash booking creates its cash-due record
+   automatically; completing the visit records the cash collection. Chapa is
+   disabled and is not a submission dependency. Merchant activation, webhooks,
+   provider refunds and payout transport remain post-launch work before any
+   online payment method can be enabled.
    Apple In-App Purchase is intentionally not used: the booking buys a physical,
    in-person service consumed outside the app. Apple Pay is optional, is not
    listed by Chapa, and Ethiopia is not currently an Apple Pay market.
@@ -42,8 +40,8 @@ terms and account-deletion URLs return HTTP 200.
    in development, preview and production; and the Firebase service account is
    assigned to that package for FCM V1 in EAS. The downloaded private key was
    removed after upload. The Apple APNs key was configured in EAS on 7 October
-   2026. Remaining: make native builds and prove closed-app delivery on physical
-   Android and iPhone devices. Expo Go cannot receive push.
+   2026. Remaining: prove closed-app delivery on physical Android and iPhone
+   devices. Expo Go cannot receive push.
 4. **Supabase**: on 9 October 2026 the Auth minimum password length was raised
    from 6 to 10 characters to match the client and API, the production Site URL
    was corrected from `http://localhost:8081` to `https://konjoet.com`, and
@@ -57,8 +55,12 @@ terms and account-deletion URLs return HTTP 200.
    Ethiopia API key and signed Supabase Auth Send SMS Hook are active. Preview
    mock OTP is off. Run signup, resend, invalid/expired code and recovery tests
    on physical devices; each delivery can consume SMS Ethiopia balance.
-6. **Play Store**: signing key, listing, privacy policy and data-safety form;
-   the package is `com.tsedeniya.konjoclient`, version `1.0.0`.
+6. **Play Store**: finish organization registration (D-U-N-S, public phone and
+   email, business document and USD 25 fee), create the app, enable Play App
+   Signing, add its SHA-256 certificate to `assetlinks.json`, upload the AAB,
+   and complete listing, Data safety, background-location declaration/video
+   and account-deletion URL. Package `com.tsedeniya.konjoclient`, version
+   `1.0.0`.
 7. **Web app** (optional, for shareable profile links): deploy the
    `npm run web:export` output under `EXPO_PUBLIC_WEB_URL`; until then the share
    button sends the `konjoclient://` deep link.
@@ -183,14 +185,14 @@ adapter or runbook is not evidence that the hosted control is operating.
 
 ## Product providers
 
-- [ ] SMS/OTP, push, Fayda, maps/geocoding, Chapa merchant methods (Telebirr,
-  CBE Birr and cards), Chapa refunds, and payout production accounts are
-  certified and end-to-end tested.
+- [ ] SMS/OTP, push, Fayda, maps/geocoding and the cash booking lifecycle are
+  certified and end-to-end tested. Chapa/refund/payout activation is deferred
+  and must remain disabled in version 1.
 - [ ] Resend shows the sending domain as Verified; Supabase Confirm email is
   enabled; client signup, confirmation, login, and password recovery pass with
   real delivery evidence.
-- [ ] Payment acceptance, duplicate callbacks, cancellation, no-show,
-  administrator refund, completion, and payout reconciliation are exercised.
+- [ ] Cash-due creation, cancellation, no-show, completion and cash-receipt
+  recording are exercised. Online callbacks, refunds and payouts stay disabled.
 - [ ] Emergency escalation contacts and the customer SOS fallback are approved.
 
 ## Release quality
@@ -263,39 +265,29 @@ What the Konjo team has to do, in order:
    production, and mock OTP is false in both environments.
 5. **Branding**: completed on 7 October 2026. The iOS icon, Android adaptive
    foreground/background/monochrome icons, and web favicon use Konjo branding.
-6. **Build and TestFlight**: the `testflight` profile makes an App Store build
-   using the EAS `preview` environment. Preview and production now use the same
-   Supabase API, but do not submit a build until Chapa is live and the complete
-   provider flow is verified. Run
-   `eas build --platform ios --profile testflight --auto-submit` for the internal
-   testing build. Install via TestFlight on a real iPhone and run one full booking: client books,
-   professional accepts, deposit via Chapa checkout, travel with background
-   location, check out, final payment, payout.
-   First upload completed 7 October 2026: version `1.0.0`, build `1`, EAS build
-   `e5be1e18-3e2b-4efd-9c33-3d23f5d8b195`; App Store Connect status is
-   **Ready to Test** in the internal `Team (Expo)` group. Internal invitations
-   were sent to `konjoserve@gmail.com` and `tsedeniyafisehaw@gmail.com` on
-   7 October 2026; delivery of the TestFlight invitation was confirmed in the
-   tester inbox. App Store Connect currently reports zero sessions and zero
-   crashes because neither invited tester has installed and opened the build
-   yet. EAS reports the iOS store build as `FINISHED`, SDK 57, version `1.0.0`
-   build `1`. Complete the real-iPhone test pass before promoting another build
-   toward App Review.
+6. **Build and TestFlight**: production iOS build `1.0.0 (3)`, EAS build
+   `a60c14ac-0f7b-4c4f-88d4-adb395d371e9`, was uploaded successfully through
+   EAS submission `51b0d134-ba8d-45a8-b700-60540fe84478`. Production Android
+   build 3 is EAS build `c587f1f5-6e9e-4779-b8be-93e4b624d7e8`. Build and upload
+   replacement build 4 after the 11 October cash-workflow corrections, then
+   install it on real iPhone and Android phones. Run one full booking: client
+   requests, professional accepts, travels with background location, arrives,
+   completes the service, records cash, and the client reviews the receipt.
 7. **Store listing**: screenshots for 6.7" and 6.5" iPhones (at least the
    home, booking calendar, live map and professional dashboard), subtitle,
    description in English (Amharic optional), keywords, support URL, marketing
    URL, and the **privacy policy URL** (host `website/privacy.html`).
-   Draft English metadata, categories, public URLs and manual-release settings
-   were validated and synced to App Store Connect on 7 October 2026 from
-   `store.config.json`. Screenshots, copyright owner, age rating, review
-   credentials and final approval of the wording remain open.
+   Draft English metadata, categories, public URLs, age rating, copyright and
+   manual-release settings were validated and synced to App Store Connect from
+   `store.config.json`. Screenshots, review contact, professional review access
+   and final approval of the wording remain open.
 8. **App Privacy questionnaire**: declare Contact Info, User Content,
-   Identifiers, Precise Location, Purchase History, Payment Info and Other
-   Financial Info for their real purposes. Konjo does not receive full client
-   card or wallet credentials from Chapa, but it stores the selected payment
-   channel and professional payout details. Inspect the final archive's Xcode
-   privacy report; do not assume Diagnostics is empty. Mark nothing as tracking
-   unless the final SDK/provider audit says otherwise.
+   Identifiers, Precise Location and Purchase History for their real purposes.
+   Clients provide no card or wallet credentials in version 1. Because the
+   professional application still collects a settlement account, declare the
+   relevant financial-information category conservatively. Inspect the final
+   archive's Xcode privacy report and mark nothing as tracking unless the final
+   SDK/provider audit says otherwise.
 9. **Review notes** (App Review Information): a client test phone number and a
    professional test account with their SMS codes available during review, a
    sentence explaining that payments are for in-person beauty services (Apple
