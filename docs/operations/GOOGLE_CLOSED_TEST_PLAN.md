@@ -17,14 +17,14 @@ locked until the final Store Listing task is complete.
 ## Prepared release
 
 - Track: Closed testing
-- Release name: `Konjo 1.0.0 (6) – closed test`
+- Release name: `Konjo 1.0.0 (7) – closed test`
 - Package: `com.tsedeniya.konjoclient`
 - Version: `1.0.0`
-- Version code: `6`
-- AAB: `store-assets/google-play/Konjo-1.0.0-6.aab`
-- EAS build ID: `7b0b6603-9283-40a6-af23-309f5b2332c6`
+- Version code: `7`
+- AAB: `store-assets/google-play/Konjo-1.0.0-7.aab`
+- EAS build ID: `9df9d237-8d5b-416e-bc23-02118f90af41`
 - Verified SHA-256:
-  `72292d2954d078df2f4e716fcd579c377aa9960c3729cbb33a33cec30534e2a5`
+  `ae710345ee1eafbf0452140fcf3c58f09dbcd0fcbb42918bd2ec203077aed043`
 
 Release notes:
 
@@ -40,7 +40,7 @@ Release notes:
 2. Upload the four verified release-build phone screenshots in
    `store-assets/google-play/screenshots/`.
 3. Complete the Store Listing and confirm the dashboard shows 11 of 11.
-4. Upload the verified build-6 AAB to a Closed testing track.
+4. Upload the verified build-7 AAB to a Closed testing track.
 5. Complete any Location Permissions or foreground-service declaration Google
    requests for that bundle, including the short background-location video.
 6. Add tester Google-account email addresses. Recruit at least 15 testers so a
