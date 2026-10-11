@@ -73,7 +73,7 @@ Beta description:
 
 > Test Konjo's complete at-home beauty and wellness booking experience in
 > Addis Ababa. Please test client email registration and recovery, professional
-> registration, administrator approval, cash booking, live trip
+> sign-in with the supplied pre-approved account, cash booking, live trip
 > tracking, notifications, cancellation, reviews, safety tools and account
 > deletion.
 

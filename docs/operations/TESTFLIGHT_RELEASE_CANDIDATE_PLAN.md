@@ -74,7 +74,7 @@ with a short description of what was expected.
 - [ ] Expired or reused links show the recovery fallback instead of a raw error.
 - [ ] Sign-out and sign-in with the new password both work.
 
-### 3. Professional registration
+### 3. Professional registration — run after SMS Ethiopia approval
 
 - [ ] Enter a valid Ethiopian mobile number not used by another Konjo role.
 - [ ] Receive and enter the SMS Ethiopia code within its validity window.
@@ -85,6 +85,9 @@ with a short description of what was expected.
 - [ ] Terms/privacy acceptance works on the first completed read.
 - [ ] The submitted application appears in the administrator review queue.
 - [ ] Approve the professional and confirm the professional sees the new state.
+
+For App Review before provider approval, skip this section and sign in with the
+supplied already-verified and already-approved professional review account.
 
 ### 4. Marketplace and booking
 
