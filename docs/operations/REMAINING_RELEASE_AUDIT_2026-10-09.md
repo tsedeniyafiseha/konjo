@@ -122,9 +122,9 @@ the internal-distribution APK.
   reused recovery links, plus professional OTP signup, resend, invalid code,
   and expired code.
 - Prove APNs/FCM closed-app delivery and cold-start navigation.
-- Run a two-account booking: request, acceptance, deposit, background travel,
-  arrival, checkout, final payment, receipt, report/block, admin resolution,
-  and account deletion.
+- Run a two-account booking: request, acceptance, cash-method confirmation,
+  background travel, arrival, service completion, cash receipt, review,
+  report/block, admin resolution, and account deletion.
 - Monitor the support inbox and assign an owner for payment, safety, privacy,
   and account-deletion escalations.
 
@@ -151,9 +151,10 @@ Other scanner findings were manually triaged:
 
 - Production mobile API: Supabase Edge Function — live.
 - Database, private Storage, Auth, Cron and Vault worker: Supabase — live.
-- SMS Ethiopia signed Auth hook: configured; real-device delivery evidence
-  still required. The dashboard balance is only ETB 10 and the active key has a
-  February 2027 expiry, so add a balance monitor and rotation reminder.
+- SMS Ethiopia signed Auth hook: deployed, but provider approval and
+  real-device delivery evidence are still pending. Do not claim working SMS in
+  review notes until a delivery is visible in both Supabase and SMS Ethiopia
+  logs. Add a balance monitor and key-rotation reminder after approval.
 - Resend SMTP/domain: configured and verified. Recent confirmation and password
   reset messages show as delivered; release-device link completion still needs
   evidence.

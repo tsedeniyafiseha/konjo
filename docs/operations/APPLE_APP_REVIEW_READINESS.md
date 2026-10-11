@@ -105,10 +105,13 @@ Do not submit to App Review until every P0 item below has dated evidence.
 5. **Keep online payments disabled for version 1.** Chapa merchant activation,
    provider refunds and payout transport are post-launch work. They are not App
    Review dependencies while no online method is shown or accepted.
-6. **Professional OTP configuration is complete; evidence remains.** The SMS
-   Ethiopia key and signed Supabase hook are active and mock OTP is off in EAS.
-   Prove signup, resend, invalid-code, expired-code and recovery cases on a
-   physical iPhone before submission.
+6. **Professional OTP provider approval is pending.** The signed Supabase hook
+   is deployed and mock OTP is off in EAS, but SMS Ethiopia delivery is not a
+   launch claim until the provider account is approved and a real handset test
+   succeeds. Give App Review an already-approved professional account that can
+   sign in with phone and password without requesting a new OTP. Prove signup,
+   resend, invalid-code, expired-code and recovery cases before opening public
+   professional registration.
 7. **Complete client email auth evidence.** On a release build, prove signup,
    email confirmation, login, nonexistent-user errors, password-reset deep
    link, expired link and reused link.

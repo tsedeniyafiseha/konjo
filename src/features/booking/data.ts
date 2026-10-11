@@ -7,7 +7,7 @@ export const bookingPaymentMethods: readonly BookingPaymentMethod[] = [
   { id: 'telebirr', label: 'Telebirr', description: 'Mobile money' },
   { id: 'cbe', label: 'CBE Birr', description: 'Bank transfer' },
   { id: 'card', label: 'Visa / Mastercard', description: 'For diaspora & card payments' },
-  { id: 'cash', label: 'Cash', description: 'Pay the specialist directly', tag: 'Pilot' },
+  { id: 'cash', label: 'Cash', description: 'Pay the specialist directly' },
 ];
 
 export function getZoneTravelFee(zone: string): number {

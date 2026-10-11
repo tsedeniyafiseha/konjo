@@ -11,7 +11,6 @@ export interface BookingPaymentMethod {
   id: BookingPaymentMethodId;
   label: string;
   description: string;
-  tag?: string;
 }
 
 export interface CreateBookingInput {

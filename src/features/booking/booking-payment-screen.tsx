@@ -246,13 +246,6 @@ export function BookingPaymentScreen() {
                       <Text style={styles.paymentName}>{method.label}</Text>
                       <Text style={styles.paymentDescription}>{description}</Text>
                     </View>
-                    {method.tag ? (
-                      <View style={[styles.tag, selected && styles.tagSelected]}>
-                        <Text style={[styles.tagLabel, selected && styles.tagLabelSelected]}>
-                          {method.tag ? t('pilot') : null}
-                        </Text>
-                      </View>
-                    ) : null}
                   </Pressable>
                 );
               })}
@@ -386,10 +379,6 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     marginTop: 2,
   },
-  tag: { borderRadius: 100, backgroundColor: palette.surfaceMuted, paddingHorizontal: 8, paddingVertical: 3 },
-  tagSelected: { backgroundColor: 'rgba(200, 162, 82, 0.13)' },
-  tagLabel: { color: palette.textMuted, fontFamily: fontFamilies.body.bold, fontSize: 10 },
-  tagLabelSelected: { color: palette.gold },
   summaryWrapper: { marginTop: spacing.lg },
   securityNote: {
     flexDirection: 'row',

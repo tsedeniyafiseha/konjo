@@ -288,8 +288,9 @@ What the Konjo team has to do, in order:
    relevant financial-information category conservatively. Inspect the final
    archive's Xcode privacy report and mark nothing as tracking unless the final
    SDK/provider audit says otherwise.
-9. **Review notes** (App Review Information): a client test phone number and a
-   professional test account with their SMS codes available during review, a
+9. **Review notes** (App Review Information): a client email/password account
+    and an already-approved professional phone/password account that do not
+    require email confirmation, SMS delivery, or manual approval during review; a
    sentence explaining that payments are for in-person beauty services (Apple
    allows external payment for physical services, so no In-App Purchase), and
    the background-location justification: "Professionals share live location
