@@ -77,10 +77,12 @@ Beta description:
 > tracking, notifications, cancellation, reviews, safety tools and account
 > deletion.
 
-What to test for build `1.0.0 (4)`:
+What to test for iOS build `1.0.0 (7)`:
 
-> This is the production release candidate using the Supabase Edge API, real
-> SMS delivery and cash-only payment. Do not enter card or wallet credentials.
+> This is the production release candidate using the Supabase Edge API and
+> cash-only payment. Use the supplied pre-approved professional review account;
+> professional SMS registration is not part of this review path. Do not enter
+> card or wallet credentials.
 > Test with one client and one professional on separate phones.
 > Report the role, device/iOS version, exact steps, expected result and actual
 > result with each TestFlight screenshot.

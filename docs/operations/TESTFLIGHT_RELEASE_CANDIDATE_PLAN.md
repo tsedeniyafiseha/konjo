@@ -6,25 +6,26 @@ Updated: 11 October 2026
 
 - App Store name: **Konjo: Beauty & Wellness**
 - Bundle ID: `com.tsedeniya.konjoclient`
-- Version/build: `1.0.0 (4)`
-- EAS build: `f57f5550-9de2-4cb2-95b9-c15c8377cbec` (finished)
-- EAS submission: `a219ff9a-143e-4ebf-9284-8a6a9276ffcb` (uploaded; Apple processing)
+- Version/build: `1.0.0 (7)`
+- EAS build: `9c659a05-9941-49cd-be53-b05b75309f57` (finished)
+- EAS submission: `afaba338-f996-4734-8673-00257655be95` (uploaded; Apple processing)
 - TestFlight group: `Team (Expo)`
 - Internal testers: `konjoserve@gmail.com`, `tsedeniyafisehaw@gmail.com`
 - Environment: production Supabase Edge API
-- Professional registration: real SMS Ethiopia OTP
+- Professional registration: SMS Ethiopia configured; provider approval and
+  delivery verification remain pending. Use a pre-approved professional account.
 - Payment mode: cash to the professional after the service
 
 Builds 1 and 2 must not be submitted to App Review. Build 1 used the old
 preview environment. Build 2 failed iOS signing after Universal Links were
 added. Associated Domains is now enabled on the Apple identifier and the new
-active provisioning profile is used by build 4. Chapa is deliberately disabled
-in build 4; version 1 is cash-only.
+active provisioning profile is used by build 7. Chapa is deliberately disabled
+in build 7; version 1 is cash-only.
 
 ## Install
 
 Each tester must install Apple's TestFlight app, open the invitation email on
-the iPhone, accept the invitation, and install Konjo build 4. Record the iPhone
+the iPhone, accept the invitation, and install Konjo build 7. Record the iPhone
 model and iOS version below before testing.
 
 | Tester | Device / iOS | Invitation accepted | Build installed |
@@ -135,8 +136,9 @@ repeat of the affected flow plus the installation/authentication smoke tests.
 - [ ] Email confirmation and password recovery pass using delivered email.
 - [ ] Closed-app push and background location have physical-device evidence.
 - [ ] No open crash, authentication, booking, privacy, deletion or safety defect.
-- [ ] Production Supabase API, real SMS, email and cash booking flow are
-      operational.
+- [ ] Production Supabase API, email and cash booking flow are operational. SMS
+      Ethiopia delivery must be tested after provider approval and is not part
+      of the supplied reviewer-account path.
 - [ ] App Store metadata and privacy answers match the final archive.
 - [ ] The final production build is retested; only that exact build is selected
       for App Review.

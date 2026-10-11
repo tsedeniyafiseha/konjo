@@ -7,10 +7,10 @@ release decision record, not a guarantee of store approval.
 ## Decision
 
 **The code is a release candidate; do not select it for final store review
-until the two build-4 binaries pass the physical-device test matrix.**
+until the final iOS build 7 and Android build 6 pass the physical-device test matrix.**
 The website and mobile API now use the protected Supabase Edge API, payments
 are intentionally cash-only for version 1, and final store builds were produced
-from release commit `230ea6b`.
+from release commit `f7b5e65`.
 
 ## P0 — block submission
 
@@ -32,17 +32,17 @@ Universal Links were added because the older provisioning profile did not yet
 contain Associated Domains. The Apple capability was enabled and a new active
 profile (`S75Q6J32JL`) was generated on 10 October 2026.
 
-Version `1.0.0` build `4` finished successfully from commit `230ea6b` for both
-stores:
+The final version `1.0.0` candidates finished successfully from commit
+`f7b5e65`:
 
-- Android build `534ab7b9-89ce-4c1b-a4b3-fddea92fdfd2`;
-- iOS build `f57f5550-9de2-4cb2-95b9-c15c8377cbec`.
+- Android build 6: `7b0b6603-9283-40a6-af23-309f5b2332c6`;
+- iOS build 7: `9c659a05-9941-49cd-be53-b05b75309f57`.
 
 The iOS archive was uploaded successfully to App Store Connect through EAS
-submission `a219ff9a-143e-4ebf-9284-8a6a9276ffcb`. Both invited testers must
-install build 4 after Apple finishes processing it and complete the release
-test matrix. Builds 1 through 3 are obsolete and must not be submitted for
-review.
+submission `afaba338-f996-4734-8673-00257655be95`. Both invited testers must
+install build 7 after Apple finishes processing it and complete the release
+test matrix. Earlier iOS builds 1 through 6 and Android builds 1 through 5 are
+obsolete and must not be submitted for review.
 
 ### 3. Payment launch decision — completed for version 1
 
@@ -171,9 +171,9 @@ Other scanner findings were manually triaged:
 3. ~~Choose a review-safe payment mode.~~ Cash-only completed for version 1.
 4. Create the Google Play Organization account and app record.
 5. Record the background-location evidence video and complete its declaration.
-6. ~~Create the iOS and Android build-4 candidates from commit `230ea6b`.~~
-   Completed 11 October 2026; iOS was uploaded to App Store Connect the same
-   day and the signed Android AAB is ready for Play Console.
+6. ~~Create the final iOS and Android candidates from commit `f7b5e65`.~~
+   Completed 11 October 2026; iOS build 7 was uploaded to App Store Connect the
+   same day and the signed Android build 6 AAB is ready for Play Console.
 7. Provision stable reviewer access and complete physical-device/two-account
    testing.
 8. Finish store privacy forms, screenshots, app access, and review notes.

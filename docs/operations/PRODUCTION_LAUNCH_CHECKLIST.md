@@ -12,13 +12,14 @@ The physical-iPhone test sequence is in
 and the prepared store copy is in
 [`APP_STORE_LISTING_DRAFT.md`](./APP_STORE_LISTING_DRAFT.md).
 
-Version `1.0.0 (4)` was built from commit `230ea6b` with Supabase Edge, real
-SMS, automatic cash-due setup and cash-only payments. iOS build
-`f57f5550-9de2-4cb2-95b9-c15c8377cbec` was uploaded successfully to App Store
-Connect through submission `a219ff9a-143e-4ebf-9284-8a6a9276ffcb`. Android
-build `534ab7b9-89ce-4c1b-a4b3-fddea92fdfd2` produced the signed Play Store AAB.
-The public privacy, terms and account-deletion URLs return HTTP 200; publish the
-11 October cash-only legal-page update before selecting the build for review.
+Final candidates were built from commit `f7b5e65` with Supabase Edge, cash-only
+configuration, and minimized iOS permission declarations. iOS `1.0.0 (7)`, EAS
+build `9c659a05-9941-49cd-be53-b05b75309f57`, was uploaded successfully through
+submission `afaba338-f996-4734-8673-00257655be95`; Android `1.0.0 (6)`, EAS
+build `7b0b6603-9283-40a6-af23-309f5b2332c6`, produced the signed Play Store AAB.
+The public privacy, terms and account-deletion URLs return HTTP 200. The
+11 October cash-only privacy and terms text is published and was verified on
+the public site before selecting the build for review.
 
 1. **API hosting — completed on Supabase 9 October 2026.** The shared HTTP
    contract runs in the Supabase `api` Edge Function. EAS preview and production
@@ -266,11 +267,11 @@ What the Konjo team has to do, in order:
    production, and mock OTP is false in both environments.
 5. **Branding**: completed on 7 October 2026. The iOS icon, Android adaptive
    foreground/background/monochrome icons, and web favicon use Konjo branding.
-6. **Build and TestFlight**: production iOS build `1.0.0 (4)`, EAS build
-   `f57f5550-9de2-4cb2-95b9-c15c8377cbec`, was uploaded successfully through
-   EAS submission `a219ff9a-143e-4ebf-9284-8a6a9276ffcb`. Production Android
-   build 4 is EAS build `534ab7b9-89ce-4c1b-a4b3-fddea92fdfd2`. Install this
-   exact build on real iPhone and Android phones. Run one full booking: client
+6. **Build and TestFlight**: production iOS build `1.0.0 (7)`, EAS build
+   `9c659a05-9941-49cd-be53-b05b75309f57`, was uploaded successfully through
+   EAS submission `afaba338-f996-4734-8673-00257655be95`. Production Android
+   build `1.0.0 (6)` is EAS build `7b0b6603-9283-40a6-af23-309f5b2332c6`.
+   Install these exact builds on real iPhone and Android phones. Run one full booking: client
    requests, professional accepts, travels with background location, arrives,
    completes the service, records cash, and the client reviews the receipt.
 7. **Store listing**: screenshots for 6.7" and 6.5" iPhones (at least the

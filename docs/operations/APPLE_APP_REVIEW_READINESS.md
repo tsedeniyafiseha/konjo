@@ -50,7 +50,7 @@ must be reviewed before implementation.
 | Location disclosure | `app.json` explains address pinning and professional background sharing; the sharing window is tied to “I'm on my way” through arrival/end. | Good design; needs physical-iPhone evidence. |
 | User safety | In-app profile/review reporting, account-level server blocking, booking enforcement, SOS wording and an auditable administrator moderation queue exist. | Migration `202610080001_content_moderation_and_blocking.sql` and API commit `bd19123` were deployed on 9 October 2026. Complete the release-build two-account test for final evidence. |
 | Privacy/legal pages | `website/privacy.html`, `website/terms.html` and `website/delete-account.html` exist with Konjo contact information. | Public URLs returned HTTP 200; obtain formal legal approval. |
-| Release guardrails | Production uses the Supabase Edge API, real SMS, HTTPS-only origins, and cash-only payments. EAS production rejects a missing/non-HTTPS API URL or enabled mock professional OTP. | Deployed; continue monitoring during review. |
+| Release guardrails | Production uses the Supabase Edge API, HTTPS-only origins, cash-only payments, and mock professional OTP disabled. SMS Ethiopia is configured, but provider approval/delivery is still pending. | Deployed; continue monitoring during review and give reviewers a pre-approved professional account. |
 
 Repository quality evidence was restored on 9 October 2026. GitHub Quality
 runs 6 and 7 completed successfully; the latest run used Node 24-compatible
@@ -58,11 +58,12 @@ GitHub actions on a pinned Ubuntu 24.04 runner with no annotations. The
 production-compatible API now runs on Supabase Edge Functions. Health/readiness,
 public catalogue, authenticated user/admin routes, the Vault-backed Cron call
 and private website-submission storage were verified live. EAS preview and
-production point to that endpoint. Version `1.0.0 (4)` was built from release
-commit `230ea6b`; iOS build `f57f5550-9de2-4cb2-95b9-c15c8377cbec` was uploaded
-to App Store Connect through submission
-`a219ff9a-143e-4ebf-9284-8a6a9276ffcb`, and Android build
-`534ab7b9-89ce-4c1b-a4b3-fddea92fdfd2` produced the signed Play Store AAB.
+production point to that endpoint. The final permission-minimized candidates
+were built from release commit `f7b5e65`: iOS `1.0.0 (7)`, EAS build
+`9c659a05-9941-49cd-be53-b05b75309f57`, was uploaded to App Store Connect
+through submission `afaba338-f996-4734-8673-00257655be95`; Android `1.0.0 (6)`,
+EAS build `7b0b6603-9283-40a6-af23-309f5b2332c6`, produced the signed Play
+Store AAB.
 
 ## Submission blockers
 
@@ -88,20 +89,23 @@ Do not submit to App Review until every P0 item below has dated evidence.
    `6820140076`. The exact name `Konjo` was unavailable in App Store Connect;
    the on-device app name remains `Konjo`. The Apple ID is configured in the
    `testflight` and `production` EAS Submit profiles.
-   Version `1.0.0 (4)`, EAS build
-   `f57f5550-9de2-4cb2-95b9-c15c8377cbec`, was uploaded successfully through
-   EAS submission `a219ff9a-143e-4ebf-9284-8a6a9276ffcb`. It uses Supabase,
-   real SMS, automatic cash-due setup and cash-only payments.
+   Final version `1.0.0 (7)`, EAS build
+   `9c659a05-9941-49cd-be53-b05b75309f57`, was uploaded successfully through
+   EAS submission `afaba338-f996-4734-8673-00257655be95`. It uses Supabase,
+   automatic cash-due setup and cash-only payments. SMS Ethiopia delivery is
+   pending, so the review account must already be verified and approved.
    `konjoserve@gmail.com` and `tsedeniyafisehaw@gmail.com` were invited as
    internal testers on 7 October 2026.
 3. **Production backend — completed 9 October 2026.** Supabase Edge Functions,
    Postgres, private Storage and Vault-backed Cron now own the production API.
    Mock OTP and sandbox checkout are off. Keep the Supabase project reachable
    for the full review window and monitor Edge/Cron failures.
-4. **Build replacement release candidate `1.0.0 (4)` — completed 11 October
+4. **Final release candidates — completed 11 October
    2026.** The uploaded build includes automatic cash-due setup, the unblocked
-   professional travel flow, cash-only settings, and synchronized in-app legal
-   copy. Apple processing and release-device testing remain.
+   professional travel flow, cash-only settings, synchronized in-app legal
+   copy, honest cash-method wording, and minimized iOS permissions. Use iOS
+   `1.0.0 (7)` and Android `1.0.0 (6)`. Apple processing and release-device
+   testing remain.
 5. **Keep online payments disabled for version 1.** Chapa merchant activation,
    provider refunds and payout transport are post-launch work. They are not App
    Review dependencies while no online method is shown or accepted.
@@ -216,7 +220,7 @@ make that path explicit, stable and restricted to the supplied review account.
 
 - [x] The Account Holder completed the one-time Apple signing and APNs setup
   in EAS; no Apple password or two-factor code was shared.
-- [x] App record exists and build `1.0.0 (4)` was uploaded successfully for
+- [x] App record exists and build `1.0.0 (7)` was uploaded successfully for
   bundle ID `com.tsedeniya.konjoclient`.
 - [ ] Production API and worker remain reachable for the entire review window.
 - [x] Version 1 is cash-only; Chapa is disabled and is not a review dependency.

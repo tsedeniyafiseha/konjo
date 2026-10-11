@@ -43,7 +43,9 @@ database, authentication service or API host. AWS is not part of this design.
   live Edge API into Postgres/private Storage; the test rows and objects were
   then removed.
 - EAS `preview` and `production` use the Supabase Edge URL. Preview mock OTP is
-  disabled, so any newly built preview uses real SMS delivery.
+  disabled, so no release build accepts the development OTP. SMS requests route
+  to SMS Ethiopia, but provider approval and end-to-end delivery verification
+  remain pending.
 - Supabase Auth Site URL is `https://konjoet.com`; the allow-list contains the
   Konjo native scheme and `https://konjoet.com/**`. Email confirmation is on,
   the password minimum is 10 characters, and custom Resend SMTP is enabled.
@@ -71,8 +73,8 @@ provider credit.
 Chapa remains in Test Mode and is disabled for version 1. Do not enable any
 online method until merchant activation, live webhooks, refund execution and
 payout transport have been proven. Production build 3 already embeds the
-Supabase/cash-only environment; replacement build 4 is required for the
-11 October cash-workflow and legal-copy fixes.
+Supabase/cash-only environment; final iOS build 7 and Android build 6 are
+required for the 11 October cash-workflow, legal-copy, and permission fixes.
 
 ## Website cutover
 
