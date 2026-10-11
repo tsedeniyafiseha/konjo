@@ -16,6 +16,7 @@
         "LSApplicationQueriesSchemes": [
           "comgooglemaps"
         ],
+        "NSMotionUsageDescription": "Konjo uses motion activity to support reliable live trip location while a professional is travelling to an active booking.",
         "ITSAppUsesNonExemptEncryption": false,
         "CFBundleAllowMixedLocalizations": true
       },
@@ -249,7 +250,7 @@
           "locationWhenInUsePermission": "Konjo uses your location to pin your address for a home visit and, if you trigger SOS, to share where you are with the safety team.",
           "locationAlwaysAndWhenInUsePermission": "Konjo uses your location while you are travelling to a booking so the client can follow your progress, including when Konjo is in the background while you navigate. Sharing stops when you arrive or the booking ends.",
           "locationAlwaysPermission": "Konjo uses your location while you are travelling to a booking so the client can follow your progress, including when Konjo is in the background while you navigate. Sharing stops when you arrive or the booking ends.",
-          "motionUsagePermission": false,
+          "motionUsagePermission": "Konjo uses motion activity to support reliable live trip location while a professional is travelling to an active booking.",
           "isAndroidBackgroundLocationEnabled": true,
           "isIosBackgroundLocationEnabled": true,
           "isAndroidForegroundServiceEnabled": true
