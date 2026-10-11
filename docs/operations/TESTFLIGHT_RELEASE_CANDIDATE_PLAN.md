@@ -1,27 +1,30 @@
 # Konjo TestFlight release-candidate plan
 
-Updated: 9 October 2026
+Updated: 10 October 2026
 
 ## Current internal build
 
 - App Store name: **Konjo: Beauty & Wellness**
 - Bundle ID: `com.tsedeniya.konjoclient`
-- Version/build: `1.0.0 (1)`
-- EAS build: `e5be1e18-3e2b-4efd-9c33-3d23f5d8b195`
+- Version/build: `1.0.0 (3)`
+- EAS build: `a60c14ac-0f7b-4c4f-88d4-adb395d371e9` (finished)
+- EAS submission: `51b0d134-ba8d-45a8-b700-60540fe84478` (finished)
 - TestFlight group: `Team (Expo)`
 - Internal testers: `konjoserve@gmail.com`, `tsedeniyafisehaw@gmail.com`
-- Environment: preview only
-- Professional registration code: `247124` (historical build 1 only)
+- Environment: production Supabase Edge API
+- Professional registration: real SMS Ethiopia OTP
+- Payment mode: cash to the professional after the service
 
-Build 1 uses the old preview Render API, mock professional OTP, and sandbox
-payment. It must not be submitted to App Review. On 9 October 2026 the EAS
-preview environment was changed to the Supabase Edge API and real SMS; those
-values apply only to a new build. Chapa is still in test mode.
+Builds 1 and 2 must not be submitted to App Review. Build 1 used the old
+preview environment. Build 2 failed iOS signing after Universal Links were
+added. Associated Domains is now enabled on the Apple identifier and the new
+active provisioning profile is used by build 3. Chapa remains in test mode and
+is deliberately disabled in build 3; version 1 is cash-only.
 
 ## Install
 
 Each tester must install Apple's TestFlight app, open the invitation email on
-the iPhone, accept the invitation, and install Konjo build 1. Record the iPhone
+the iPhone, accept the invitation, and install Konjo build 3. Record the iPhone
 model and iOS version below before testing.
 
 | Tester | Device / iOS | Invitation accepted | Build installed |
@@ -36,8 +39,8 @@ email or phone number that belongs to an existing role.
 
 | Role | Test identity | Result |
 | --- | --- | --- |
-| Client | Record the new email in the private test log | [ ] |
-| Professional | Record the Ethiopian phone number in the private test log | [ ] |
+| Client | `appreview.client@konjoet.com`; password is in macOS Keychain under `Konjo App Review Client` | Ready |
+| Professional | Approved reviewer identity pending owner confirmation | [ ] |
 | Admin | Existing authorized administrator | [ ] |
 
 Never commit passwords, email-link tokens, payment credentials, identity
@@ -91,8 +94,9 @@ with a short description of what was expected.
 - [ ] Client chooses service, date/time, location and payment method.
 - [ ] Booking request appears for the professional.
 - [ ] Professional accepts; both sides receive the expected state update.
-- [ ] Preview checkout completes without collecting real payment credentials.
-- [ ] Duplicate taps and reopening the app do not duplicate the booking/payment.
+- [ ] The payment screen offers cash only and clearly says payment is due to
+      the professional after service.
+- [ ] Duplicate taps and reopening the app do not duplicate the booking.
 
 ### 5. Live trip and completion
 
@@ -102,7 +106,7 @@ with a short description of what was expected.
 - [ ] Tracking continues with the professional app backgrounded and phone
       locked, within iOS permission limits.
 - [ ] **I've arrived** stops active travel sharing.
-- [ ] Completion, final payment state, receipt and review all work.
+- [ ] Completion, cash-payment state, receipt and review all work.
 - [ ] Location is no longer shared after arrival, completion, cancellation,
       sign-out or account deletion.
 
@@ -130,8 +134,9 @@ repeat of the affected flow plus the installation/authentication smoke tests.
 - [ ] The complete two-account booking journey passes on physical iPhones.
 - [ ] Email confirmation and password recovery pass using delivered email.
 - [ ] Closed-app push and background location have physical-device evidence.
-- [ ] No open crash, authentication, payment, privacy, deletion or safety defect.
-- [ ] Production API, real SMS, Chapa, refunds and payouts are operational.
+- [ ] No open crash, authentication, booking, privacy, deletion or safety defect.
+- [ ] Production Supabase API, real SMS, email and cash booking flow are
+      operational.
 - [ ] App Store metadata and privacy answers match the final archive.
 - [ ] The final production build is retested; only that exact build is selected
       for App Review.
