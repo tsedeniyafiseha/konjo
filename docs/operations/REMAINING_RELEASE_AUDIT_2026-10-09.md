@@ -87,18 +87,22 @@ The implementation requests permission only after the disclosure and stops
 sharing on arrival, booking end, sign-out, expiry, or authorization failure.
 The remaining item is a real-device evidence video and the Play Console form.
 
-### 5. Create and configure the Google Play developer account
+### 5. Create and configure the Google Play developer account — app record created
 
-The owner confirmed that Google Play will use an Individual/Personal developer
-account. The browser is now on the personal registration path, which does not
-require a D-U-N-S number. Complete the public developer email, private Google
-contact details, identity and real-Android-device verification, and the USD 25
-fee. Because this is a new personal account, run a closed test with at least 12
-continuously opted-in testers for 14 days before applying for production access.
+The Individual/Personal developer account is active and Play Console reported
+no developer-account policy issues on 11 October 2026. The permanent app record
+was created as **Konjo: Beauty & Wellness**, app type **App**, price **Free**,
+default language **English (United States)**, package
+`com.tsedeniya.konjoclient`, Play app ID `4975048077116437921`.
 
-After account creation, add the app with package
-`com.tsedeniya.konjoclient`, configure Play App Signing, and upload an AAB—not
-the internal-distribution APK.
+The remaining Play Console setup tasks are the privacy policy, sign-in details,
+ads declaration, content rating, target audience, Data safety, government-app,
+financial-features and health declarations, category/contact details, Store
+Listing, Play App Signing and the signed AAB upload. Upload Android build 6's
+AAB—not the internal-distribution APK. Because this is a new personal account,
+production access also requires a closed test with at least 12 continuously
+opted-in testers for at least 14 days; the console currently reports 0 opted-in
+testers.
 
 ## P1 — required store forms and evidence
 
@@ -169,14 +173,18 @@ Other scanner findings were manually triaged:
 2. ~~Remove Render after disconnecting its Blueprint.~~ Completed 9 October
    2026.
 3. ~~Choose a review-safe payment mode.~~ Cash-only completed for version 1.
-4. Create the Google Play Personal account and app record, then start the
-   required 12-tester/14-day closed test.
+4. ~~Create the Google Play Personal account and app record.~~ Completed
+   11 October 2026. Finish the Play setup forms and start the required
+   12-tester/14-day closed test.
 5. Record the background-location evidence video and complete its declaration.
 6. ~~Create the final iOS and Android candidates.~~ Completed 11 October 2026;
    corrected iOS build 8 was uploaded to App Store Connect the same day and the
    signed Android build 6 AAB is ready for Play Console.
-7. Provision stable reviewer access and complete physical-device/two-account
-   testing.
-8. Finish store privacy forms, screenshots, app access, and review notes.
+7. ~~Provision stable Apple reviewer access and review notes.~~ Completed
+   11 October 2026; App Store Connect has the stable client account, Kiki's
+   approved professional account and the reviewer contact. Complete the
+   physical-device/two-account testing.
+8. Finish Apple App Privacy, both stores' remaining declarations, screenshots,
+   Google app access and review evidence.
 9. Submit the exact build that passed the release test matrix.
 

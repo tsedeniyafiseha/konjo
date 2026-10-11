@@ -129,6 +129,12 @@ Do not submit to App Review until every P0 item below has dated evidence.
 
 ### P0 — App Store Connect submission data
 
+Console checkpoint, 11 October 2026: iOS build 8 is attached to version 1.0.0,
+and App Review Information is saved with stable client and Kiki professional
+access plus the verified reviewer contact. The version was not added for
+review. App Privacy still shows **Get Started**, and the primary iPhone media
+set shows `0 of 10 App Screenshots`.
+
 1. Complete the App Privacy questionnaire from the release archive and the
    live provider configuration. The likely declarations are:
    - Contact Info: name, email address and phone number — app functionality.
@@ -155,7 +161,8 @@ Do not submit to App Review until every P0 item below has dated evidence.
    and provide the verified business contact information if distributing in
    the EU. Apple still requires a trader-status declaration even when the app
    is not offered in the EU.
-5. Provide stable review accounts and instructions. Do not require the reviewer
+5. Completed 11 October 2026: provide stable review accounts and instructions.
+   The saved client and professional reviewer paths do not require the reviewer
    to wait for a manual professional approval, find an SMS sent to a private
    phone, or create a real payment. Preconfigure deterministic reviewer access
    that uses the same production authorization rules.

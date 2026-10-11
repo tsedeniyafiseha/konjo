@@ -274,6 +274,8 @@ What the Konjo team has to do, in order:
    `1d95f927-a415-4bc1-978c-ddcbcd55cae6`, was uploaded through EAS submission
    `f5584c29-078e-479e-9ad9-f6a0b976ab9f`. Production Android
    build `1.0.0 (6)` is EAS build `7b0b6603-9283-40a6-af23-309f5b2332c6`.
+   Build 8 was selected and saved on App Store Connect version `1.0.0` on
+   11 October 2026; build 7 must not be used.
    Install these exact builds on real iPhone and Android phones. Run one full booking: client
    requests, professional accepts, travels with background location, arrives,
    completes the service, records cash, and the client reviews the receipt.
@@ -283,8 +285,10 @@ What the Konjo team has to do, in order:
    URL, and the **privacy policy URL** (host `website/privacy.html`).
    Draft English metadata, categories, public URLs, age rating, copyright and
    manual-release settings were validated and synced to App Store Connect from
-   `store.config.json`. Screenshots, review contact, professional review access
-   and final approval of the wording remain open.
+   `store.config.json`. Stable client and professional review credentials,
+   reviewer contact information and review notes were saved on 11 October 2026.
+   The screenshot set remains empty (`0 of 10` for the primary iPhone size), so
+   real release-build screenshots and final wording approval remain open.
 8. **App Privacy questionnaire**: declare Contact Info, User Content,
    Identifiers, Precise Location and Purchase History for their real purposes.
    Clients provide no card or wallet credentials in version 1. Because the
@@ -292,7 +296,8 @@ What the Konjo team has to do, in order:
    relevant financial-information category conservatively. Inspect the final
    archive's Xcode privacy report and mark nothing as tracking unless the final
    SDK/provider audit says otherwise.
-9. **Review notes** (App Review Information): a client email/password account
+9. **Review notes** (App Review Information): completed 11 October 2026 with a
+   client email/password account
     and an already-approved professional phone/password account that do not
     require email confirmation, SMS delivery, or manual approval during review; a
    sentence explaining that payments are for in-person beauty services (Apple
@@ -300,7 +305,8 @@ What the Konjo team has to do, in order:
    the background-location justification: "Professionals share live location
    with the client only between tapping I'm on my way and I've arrived; the
    client sees it on a map; sharing stops automatically." Attach a 30-second
-   screen recording of that flow.
+   screen recording of that flow. The credentials remain in macOS Keychain and
+   App Store Connect; they are not committed to this repository.
 10. **Sign in with Apple** is not required: clients use Konjo-owned
     email/password authentication and professionals use Konjo-owned phone/OTP,
     with no third-party social login. Revisit this before adding Google,
