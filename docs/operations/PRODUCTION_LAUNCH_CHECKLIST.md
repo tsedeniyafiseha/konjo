@@ -63,13 +63,17 @@ the public site before selecting the build for review.
    on physical devices; each delivery can consume SMS Ethiopia balance.
 6. **Play Store**: the Personal developer account is active, its private
    contact email/phone are verified, and Policy status reports no account
-   issues. The app record exists and 9 of 11 app-information tasks are complete:
+   issues. The app record exists and its policy declarations are complete:
    privacy policy, reviewer access, ads, content rating, target audience, Data
    Safety, government-app, financial-features, and health declarations. The
    completed changes are saved in Publishing overview and have not been sent
-   for review. Finish category/contact details and the Store Listing, enable
-   Play App Signing, add its SHA-256 certificate to `assetlinks.json`, upload
-   the AAB, and complete the background-location declaration/video. A new
+   for review. The Beauty category, discovery tags and public contact details
+   are saved; the Store Listing copy is saved as a draft. Prepared icon and
+   feature-graphic files plus the verified build-6 AAB are staged under
+   `store-assets/google-play/`. Add real release screenshots, upload the
+   approved assets, enable Play App Signing, add its SHA-256 certificate to
+   `assetlinks.json`, upload the AAB, and complete the background-location
+   declaration/video. A new
    personal account must then run a closed test
    with at least 12 continuously opted-in testers for 14 days before applying
    for production access. Package `com.tsedeniya.konjoclient`, version `1.0.0`.
@@ -142,10 +146,12 @@ the public site before selecting the build for review.
 3. **Support**: confirm `EXPO_PUBLIC_SUPPORT_EMAIL` (defaults to
    `info@konjoet.com`) and optionally `EXPO_PUBLIC_SUPPORT_PHONE`; the inbox must be
    monitored.
-4. **Google Play**: Data Safety and the account-deletion URL were completed and
-   saved on 11 October 2026. Finish category/contact details, the Store Listing,
-   and the background-location declaration with a short video of the "I'm on
-   my way" flow plus foreground-service justification.
+4. **Google Play**: Data Safety, account deletion, Beauty category, discovery
+   tags, public contact details and Store Listing text were completed or saved
+   as drafts on 11 October 2026. Upload the prepared listing graphics after
+   approval, add real release screenshots, and finish the background-location
+   declaration with a short video of the "I'm on my way" flow plus
+   foreground-service justification.
    Also attach test evidence for the in-app content-report and account-level
    block flow after the `202610080001` migration is live.
 5. **Apple**: App Privacy and both demo accounts were completed on 11 October

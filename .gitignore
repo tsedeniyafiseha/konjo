@@ -50,3 +50,7 @@ example
 /supabase/.temp/
 .aider*
 sample-photos/
+
+# Downloaded signed store artifacts stay local; release metadata records the
+# immutable EAS build ID and checksum instead.
+/store-assets/google-play/*.aab

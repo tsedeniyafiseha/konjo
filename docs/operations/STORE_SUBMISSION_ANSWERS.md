@@ -63,10 +63,13 @@ analytics SDK.
 
 ## Google Play Data safety
 
-**Console status, 11 October 2026:** completed and saved to Publishing
-overview. Google Play shows 9 of 11 app-information tasks complete. These
-changes have **not** been sent for review. The two remaining dashboard setup
-tasks are category/contact details and the Store Listing.
+**Console status, 11 October 2026:** policy declarations are completed and
+saved to Publishing overview. The Beauty category, public support email and
+HTTPS website, and five discovery tags are also saved. These changes have
+**not** been sent for review. Google Play reports **10 of 11** setup tasks
+complete. The Store Listing is the remaining dashboard
+setup task; its text is saved as a draft and its prepared icon/feature graphic
+are in `store-assets/google-play/`, pending upload and release screenshots.
 
 Top-level answers:
 
@@ -204,7 +207,7 @@ These cannot be truthfully completed from source code alone:
 4. Apple screenshots, age-rating answers, DSA trader status, current
    agreements, build selection, and final App Review submission in the account
    owner's UI. App Privacy was published on 11 October 2026.
-5. Google category/contact details, Store Listing, signed AAB upload,
+5. Google Store Listing screenshots/asset upload, signed AAB upload,
    background-location declaration/video, real-device verification, the
    required 12-tester/14-day closed test, production-access application, and
    rollout. The Personal account and nine policy/declaration tasks are already

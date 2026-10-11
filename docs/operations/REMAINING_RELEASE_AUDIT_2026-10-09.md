@@ -104,10 +104,20 @@ declares no third-party sharing, encryption in transit, account deletion, and
 the exact collected types in `STORE_SUBMISSION_ANSWERS.md`, including optional
 files/documents and ephemeral address-search queries.
 
-The remaining Play Console setup tasks are category/contact details, the Store
-Listing, Play App Signing and the signed AAB upload. Upload Android build 6's
-AAB—not the internal-distribution APK. The background-location declaration and
-video also remain. Because this is a new personal account, production access
+Later on 11 October 2026, the app category was saved as **Beauty**, the tags
+Beauty, Cosmetics, Hairstyle, Health & fitness and Lifestyle were saved, and
+the public contact was set to `info@konjoet.com` and
+`https://konjoet.com`. The default Store Listing copy is saved as a draft.
+Correctly sized icon and feature-graphic assets were prepared under
+`store-assets/google-play/`; real release screenshots still block completing
+the listing.
+
+The remaining Play work is the Store Listing screenshot/asset upload, Play App
+Signing and the signed AAB upload. Upload Android build 6's AAB—not the
+internal-distribution APK. The exact build-6 AAB was downloaded locally and its
+archive integrity and SHA-256 were verified. The background-location
+declaration and video also remain. Because this is a new personal account,
+production access
 requires a closed test with at least 12 continuously opted-in testers for at
 least 14 days; the console currently reports 0 opted-in testers.
 
@@ -179,9 +189,9 @@ Other scanner findings were manually triaged:
 2. ~~Remove Render after disconnecting its Blueprint.~~ Completed 9 October
    2026.
 3. ~~Choose a review-safe payment mode.~~ Cash-only completed for version 1.
-4. ~~Create the Google Play Personal account and app record; complete the nine
-   policy/declaration tasks.~~ Completed 11 October 2026. Finish category/contact,
-   Store Listing, AAB/background-location evidence, then start the required
+4. ~~Create the Google Play Personal account and app record; complete policy
+   declarations and category/contact details.~~ Completed 11 October 2026.
+   Finish Store Listing media, AAB/background-location evidence, then start the required
    12-tester/14-day closed test.
 5. Record the background-location evidence video and complete its declaration.
 6. ~~Create the final iOS and Android candidates.~~ Completed 11 October 2026;
