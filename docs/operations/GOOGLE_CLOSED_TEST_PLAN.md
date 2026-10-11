@@ -36,9 +36,9 @@ Release notes:
 
 ## Before starting the clock
 
-1. Approve and upload the prepared Play icon and feature graphic.
-2. Capture and upload at least two real release-build phone screenshots; four
-   or more are preferred.
+1. Upload the prepared Play icon and feature graphic.
+2. Upload the four verified release-build phone screenshots in
+   `store-assets/google-play/screenshots/`.
 3. Complete the Store Listing and confirm the dashboard shows 11 of 11.
 4. Upload the verified build-6 AAB to a Closed testing track.
 5. Complete any Location Permissions or foreground-service declaration Google
@@ -46,6 +46,14 @@ Release notes:
 6. Add tester Google-account email addresses. Recruit at least 15 testers so a
    few dropouts do not put the test below the required 12.
 7. Confirm every tester can open the opt-in URL and install from Google Play.
+
+Local preparation completed on 11 October 2026:
+
+- Icon and feature graphic validated at the required dimensions.
+- Four genuine Android release-build screenshots prepared at 1080 × 1920.
+- The onboarding page-2 Android layout defect found during screenshot capture
+  was fixed, rebuilt, and visually verified in the release variant.
+- TypeScript typecheck, Expo lint, and the local Android release build passed.
 
 ## Tester instructions
 

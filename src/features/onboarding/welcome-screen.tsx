@@ -96,10 +96,11 @@ export function WelcomeScreen() {
   const insets = useSafeAreaInsets();
   const [activePage, setActivePage] = useState(0);
   const pageWidth = Math.min(width, layout.contentMaxWidth);
+  const pageHeight = Math.max(1, screenHeight);
 
   const [containerSize, setContainerSize] = useState({
     width: pageWidth,
-    height: screenHeight || 844,
+    height: pageHeight,
   });
 
   // Animated values for the signature thread entrance and ambient living effects
@@ -294,7 +295,7 @@ export function WelcomeScreen() {
           scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}
           style={styles.scrollView}
-          contentContainerStyle={styles.scrollContent}>
+          contentContainerStyle={[styles.scrollContent, { height: pageHeight }]}>
           <Pressable
             accessibilityHint={t('showIntroduction')}
             accessibilityLabel={t('continueKonjo')}
@@ -303,7 +304,7 @@ export function WelcomeScreen() {
             onPress={showIntroduction}
             style={({ pressed }) => [
               styles.splashPage,
-              { width: pageWidth },
+              { width: pageWidth, height: pageHeight },
               pressed && styles.pressed,
             ]}>
             {/* The Brand Artwork - Exact design where line passes through "j" */}
@@ -356,7 +357,7 @@ export function WelcomeScreen() {
             </Animated.View>
           </Pressable>
 
-          <View style={[styles.heroPage, { width: pageWidth }]}>
+          <View style={[styles.heroPage, { width: pageWidth, height: pageHeight }]}>
             <Image
               accessibilityLabel={t('beautyHeroImage')}
               contentFit="cover"
@@ -420,7 +421,6 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    height: '100%',
   },
   visualOverlay: {
     position: 'absolute',
@@ -431,8 +431,8 @@ const styles = StyleSheet.create({
     pointerEvents: 'none',
   },
   splashPage: {
-    flex: 1,
-    height: '100%',
+    flexGrow: 0,
+    flexShrink: 0,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: onboardingPalette.splash,
@@ -539,8 +539,8 @@ const styles = StyleSheet.create({
     lineHeight: 26,
   },
   heroPage: {
-    flex: 1,
-    height: '100%',
+    flexGrow: 0,
+    flexShrink: 0,
     justifyContent: 'flex-end',
     overflow: 'hidden',
   },
