@@ -58,9 +58,11 @@ GitHub actions on a pinned Ubuntu 24.04 runner with no annotations. The
 production-compatible API now runs on Supabase Edge Functions. Health/readiness,
 public catalogue, authenticated user/admin routes, the Vault-backed Cron call
 and private website-submission storage were verified live. EAS preview and
-production point to that endpoint. Version `1.0.0 (3)` was built from commit
-`84ba45c` and uploaded successfully to App Store Connect; the cash-flow/legal
-corrections made on 11 October require replacement build `4` before review.
+production point to that endpoint. Version `1.0.0 (4)` was built from release
+commit `230ea6b`; iOS build `f57f5550-9de2-4cb2-95b9-c15c8377cbec` was uploaded
+to App Store Connect through submission
+`a219ff9a-143e-4ebf-9284-8a6a9276ffcb`, and Android build
+`534ab7b9-89ce-4c1b-a4b3-fddea92fdfd2` produced the signed Play Store AAB.
 
 ## Submission blockers
 
@@ -86,20 +88,20 @@ Do not submit to App Review until every P0 item below has dated evidence.
    `6820140076`. The exact name `Konjo` was unavailable in App Store Connect;
    the on-device app name remains `Konjo`. The Apple ID is configured in the
    `testflight` and `production` EAS Submit profiles.
-   Version `1.0.0 (3)`, EAS build
-   `a60c14ac-0f7b-4c4f-88d4-adb395d371e9`, was uploaded successfully through
-   EAS submission `51b0d134-ba8d-45a8-b700-60540fe84478`. It uses Supabase,
-   real SMS and cash-only payments. A replacement build is required for the
-   11 October cash-workflow and legal-copy corrections.
+   Version `1.0.0 (4)`, EAS build
+   `f57f5550-9de2-4cb2-95b9-c15c8377cbec`, was uploaded successfully through
+   EAS submission `a219ff9a-143e-4ebf-9284-8a6a9276ffcb`. It uses Supabase,
+   real SMS, automatic cash-due setup and cash-only payments.
    `konjoserve@gmail.com` and `tsedeniyafisehaw@gmail.com` were invited as
    internal testers on 7 October 2026.
 3. **Production backend — completed 9 October 2026.** Supabase Edge Functions,
    Postgres, private Storage and Vault-backed Cron now own the production API.
    Mock OTP and sandbox checkout are off. Keep the Supabase project reachable
    for the full review window and monitor Edge/Cron failures.
-4. **Build replacement release candidate `1.0.0 (4)`.** Build 3 is uploaded,
-   but build 4 must include automatic cash-due setup, the unblocked professional
-   travel flow, cash-only settings, and synchronized legal copy.
+4. **Build replacement release candidate `1.0.0 (4)` — completed 11 October
+   2026.** The uploaded build includes automatic cash-due setup, the unblocked
+   professional travel flow, cash-only settings, and synchronized in-app legal
+   copy. Apple processing and release-device testing remain.
 5. **Keep online payments disabled for version 1.** Chapa merchant activation,
    provider refunds and payout transport are post-launch work. They are not App
    Review dependencies while no online method is shown or accepted.
@@ -211,7 +213,7 @@ make that path explicit, stable and restricted to the supplied review account.
 
 - [x] The Account Holder completed the one-time Apple signing and APNs setup
   in EAS; no Apple password or two-factor code was shared.
-- [x] App record exists and build `1.0.0 (3)` was uploaded successfully for
+- [x] App record exists and build `1.0.0 (4)` was uploaded successfully for
   bundle ID `com.tsedeniya.konjoclient`.
 - [ ] Production API and worker remain reachable for the entire review window.
 - [x] Version 1 is cash-only; Chapa is disabled and is not a review dependency.

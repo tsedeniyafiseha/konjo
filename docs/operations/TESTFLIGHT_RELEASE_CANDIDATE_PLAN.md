@@ -1,14 +1,14 @@
 # Konjo TestFlight release-candidate plan
 
-Updated: 10 October 2026
+Updated: 11 October 2026
 
 ## Current internal build
 
 - App Store name: **Konjo: Beauty & Wellness**
 - Bundle ID: `com.tsedeniya.konjoclient`
-- Version/build: `1.0.0 (3)`
-- EAS build: `a60c14ac-0f7b-4c4f-88d4-adb395d371e9` (finished)
-- EAS submission: `51b0d134-ba8d-45a8-b700-60540fe84478` (finished)
+- Version/build: `1.0.0 (4)`
+- EAS build: `f57f5550-9de2-4cb2-95b9-c15c8377cbec` (finished)
+- EAS submission: `a219ff9a-143e-4ebf-9284-8a6a9276ffcb` (uploaded; Apple processing)
 - TestFlight group: `Team (Expo)`
 - Internal testers: `konjoserve@gmail.com`, `tsedeniyafisehaw@gmail.com`
 - Environment: production Supabase Edge API
@@ -18,13 +18,13 @@ Updated: 10 October 2026
 Builds 1 and 2 must not be submitted to App Review. Build 1 used the old
 preview environment. Build 2 failed iOS signing after Universal Links were
 added. Associated Domains is now enabled on the Apple identifier and the new
-active provisioning profile is used by build 3. Chapa remains in test mode and
-is deliberately disabled in build 3; version 1 is cash-only.
+active provisioning profile is used by build 4. Chapa is deliberately disabled
+in build 4; version 1 is cash-only.
 
 ## Install
 
 Each tester must install Apple's TestFlight app, open the invitation email on
-the iPhone, accept the invitation, and install Konjo build 3. Record the iPhone
+the iPhone, accept the invitation, and install Konjo build 4. Record the iPhone
 model and iOS version below before testing.
 
 | Tester | Device / iOS | Invitation accepted | Build installed |

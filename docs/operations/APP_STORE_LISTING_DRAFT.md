@@ -1,6 +1,6 @@
 # Konjo App Store listing draft
 
-Updated: 7 October 2026
+Updated: 11 October 2026
 
 Sync status: the fields represented by `store.config.json` were validated and
 synced to App Store Connect on 7 October 2026. This did not submit the app for
@@ -43,7 +43,7 @@ Description:
 > • Browse beauty, hair, nails, grooming, makeup, massage and wellness services.
 > • Review professional profiles, services, prices and availability.
 > • Save an Addis Ababa service address and request an appointment.
-> • Receive booking updates and securely continue to provider-hosted payment.
+> • See clear booking prices and pay the professional in cash after the service.
 > • Follow an assigned professional's trip after they choose “I'm on my way.”
 > • Manage bookings, reviews, safety reports and account privacy in one place.
 >
@@ -77,7 +77,7 @@ Beta description:
 > tracking, notifications, cancellation, reviews, safety tools and account
 > deletion.
 
-What to test for build `1.0.0 (3)`:
+What to test for build `1.0.0 (4)`:
 
 > This is the production release candidate using the Supabase Edge API, real
 > SMS delivery and cash-only payment. Do not enter card or wallet credentials.
